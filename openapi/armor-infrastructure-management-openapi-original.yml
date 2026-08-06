@@ -1,0 +1,150 @@
+openapi: 3.0.3
+info:
+  title: Infrastructure Management API
+  description: |
+    This API provides an interface for interacting with Armor Infrastructure
+    management functionality.
+
+    Base URL: `https://infrastructure.api.secure-prod.services/`
+  version: 1.0.0
+
+servers:
+  - url: https://infrastructure.api.secure-dev.services
+    description: Development
+  - url: https://infrastructure.api.secure-stage.services
+    description: Staging
+  - url: https://infrastructure.api.secure-prod.services
+    description: Production
+
+security:
+  - OAuth2: []
+  - ApiKey: []
+  - FHAuth: []
+
+tags:
+  - name: Toolbox
+    description: Infrastructure management toolbox operations
+
+paths:
+  /virtual-machines:
+    get:
+      tags:
+        - Toolbox
+      summary: Get Virtual Machines
+      description: Get a list of virtual machines, including completed ones.
+      operationId: getVirtualMachines
+      parameters:
+        - name: top
+          in: query
+          description: Maximum records for request.
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          description: Offset position.
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          description: Available filters like Products, Status, Account.
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Free text to search Task Name, etc.
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          description: "Sort direction. Example: id desc."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InfrastructureManagementGetVirtualMachines'
+
+  /operating-systems:
+    get:
+      tags:
+        - Toolbox
+      summary: Get Operating Systems
+      description: Get operating systems.
+      operationId: getOperatingSystems
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InfrastructureManagementGetOperatingSystem'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+
+    ApiKey:
+      type: apiKey
+      description: API Key authentication
+      name: x-api-key
+      in: header
+
+    FHAuth:
+      type: apiKey
+      description: FH Auth authentication
+      name: Authorization
+      in: header
+
+  schemas:
+    InfrastructureManagementGetOperatingSystem:
+      type: object
+      properties:
+        operatingSystem:
+          type: string
+          description: The name of operating system.
+
+    InfrastructureManagementGetVirtualMachine:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+          format: uuid
+          description: The GUID of the VM the task is scheduled to run on.
+        hostName:
+          type: string
+          description: The name of the VM the task will be run on.
+        operatingSystem:
+          type: string
+          description: Operating System of the VM.
+
+    InfrastructureManagementGetVirtualMachines:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Page number.
+        total:
+          type: integer
+          description: Total records.
+        countPerPage:
+          type: integer
+          description: Maximum records per page.
+        filters:
+          type: object
+          description: Available filters.
+        items:
+          type: array
+          description: List of virtual machines.
+          items:
+            $ref: '#/components/schemas/InfrastructureManagementGetVirtualMachine'

@@ -1,0 +1,1370 @@
+openapi: 3.0.3
+info:
+  title: Agent Management API
+  description: |
+    This API provides an interface for interacting with Armor's agent
+    management functionality.
+
+    Base URL: `https://agent-management.api.secure-prod.services/`
+  version: 1.0.0
+
+servers:
+  - url: https://agent-management.api.secure-dev.services
+    description: Development
+  - url: https://agent-management.api.secure-stage.services
+    description: Staging
+  - url: https://agent-management.api.secure-prod.services
+    description: Production
+
+security:
+  - OAuth2: []
+  - ApiKey: []
+  - FHAuth: []
+
+tags:
+  - name: Health Monitoring Status
+    description: Health monitoring status operations
+  - name: Malware Configuration
+    description: |
+      Malware configuration APIs. These APIs are only available for specific partners.
+  - name: Scheduled Tasks
+    description: |
+      The tasks resource enables an API customer to schedule, cancel and view agent CLI operations.
+  - name: Tags
+    description: Tag management operations
+
+paths:
+  /healthmonitoringstatus:
+    get:
+      tags:
+        - Health Monitoring Status
+      summary: Get Health Monitoring Status
+      description: Get a list of health statuses for all coreInstances on your account.
+      operationId: getHealthMonitoringStatus
+      parameters:
+        - name: registered
+          in: query
+          description: Filter by registration status (true/false).
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementHealthMonitoringStatusResults'
+
+  /healthmonitoringstatus/{coreInstanceId}:
+    get:
+      tags:
+        - Health Monitoring Status
+      summary: Get Health Monitoring Status by CoreInstanceId
+      description: Get Health Monitoring Status details by CoreInstanceId.
+      operationId: getHealthMonitoringStatusByCoreInstanceId
+      parameters:
+        - name: coreInstanceId
+          in: path
+          required: true
+          description: The CoreInstanceId of the Armor Agent.
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementHealthMonitoringStatusResults'
+
+  /trend/exclusion-list:
+    get:
+      tags:
+        - Malware Configuration
+      summary: Get exclusion lists for account
+      description: Get all exclusion lists for account ID, optionally filtered by type.
+      operationId: getExclusionLists
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: type
+          in: query
+          description: The type of exclusion list to fetch (FileList, FileExtension, DirectoryList).
+          schema:
+            type: string
+            enum:
+              - FileList
+              - FileExtension
+              - DirectoryList
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementExclusionList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Malware Configuration
+      summary: Create a new exclusion list
+      description: Create a new exclusion list.
+      operationId: createExclusionList
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementExclusionCreate'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementExclusion'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /trend/exclusion-list/{id}:
+    put:
+      tags:
+        - Malware Configuration
+      summary: Update an exclusion list
+      description: Update an exclusion list.
+      operationId: updateExclusionList
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The id of the exclusion list.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementExclusion'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementExclusion'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Malware Configuration
+      summary: Delete an exclusion list
+      description: Delete an exclusion list.
+      operationId: deleteExclusionList
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The id of the exclusion list.
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: true
+          description: The type of exclusion list to delete (FileList, FileExtension, DirectoryList).
+          schema:
+            type: string
+            enum:
+              - FileList
+              - FileExtension
+              - DirectoryList
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /trend/malware-exclusion-config:
+    get:
+      tags:
+        - Malware Configuration
+      summary: Get malware exclusion configs
+      description: Get a list of malware exclusion configs for an account.
+      operationId: getMalwareExclusionConfigs
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementMalwareConfigRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Malware Configuration
+      summary: Create a new malware exclusion config
+      description: |
+        Create a new malware exclusion config. To send a configuration where a list id is not provided
+        for one or more list types, use the allowEmptyExclusionList flag.
+      operationId: createMalwareExclusionConfig
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementMalwareConfigRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Malware Configuration
+      summary: Update a malware exclusion config
+      description: |
+        Update a malware exclusion config. To send a configuration where a list id is not provided
+        for one or more list types, use the allowEmptyExclusionList flag.
+      operationId: updateMalwareExclusionConfig
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementMalwareConfigRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Malware Configuration
+      summary: Delete a malware exclusion config
+      description: Delete a malware exclusion config.
+      operationId: deleteMalwareExclusionConfig
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementMalwareConfigDeleteRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /trend/malware-exclusion-config/apply:
+    put:
+      tags:
+        - Malware Configuration
+      summary: Apply a malware exclusion config
+      description: Apply a malware exclusion config.
+      operationId: applyMalwareExclusionConfig
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementApplyMalwareExclusionConfig'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /scheduled-tasks/details/{cid}:
+    get:
+      tags:
+        - Scheduled Tasks
+      summary: Get CLI Results for CoreInstanceId
+      description: Get a paginated list of CLI command results history by core instance id.
+      operationId: getCliResultsByCoreInstanceId
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/PaginationToken'
+        - name: x-pagesize
+          in: header
+          description: Number of records per page.
+          schema:
+            type: integer
+          example: 10
+        - name: cid
+          in: path
+          required: true
+          description: Core instance id.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledTasksCliResults'
+
+  /products:
+    get:
+      tags:
+        - Scheduled Tasks
+      summary: Get Products
+      description: Get a list of agent products and their commands.
+      operationId: getProducts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementProduct'
+
+  /scheduled-tasks:
+    get:
+      tags:
+        - Scheduled Tasks
+      summary: Get Scheduled Tasks
+      description: Get a list of scheduled tasks, including completed ones.
+      operationId: getScheduledTasks
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementScheduledTask'
+    post:
+      tags:
+        - Scheduled Tasks
+      summary: Schedule a Task
+      description: Schedule a task to be picked-up by the agent and run on VMs.
+      operationId: scheduleTask
+      parameters:
+        - name: dryrun
+          in: query
+          description: |
+            Set to true to validate coreInstanceIds belong to the current account or any of its child accounts.
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementScheduledTaskRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScheduledTasksResponseList'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /v2/scheduled-tasks:
+    get:
+      tags:
+        - Scheduled Tasks
+      summary: Get Scheduled Tasks with Pagination
+      description: Get a paginated list of scheduled tasks, including completed ones.
+      operationId: getScheduledTasksPaginated
+      parameters:
+        - name: top
+          in: query
+          description: Maximum records for request.
+          schema:
+            type: integer
+        - name: skip
+          in: query
+          description: Offset position.
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          description: Available filters like Products, Status, Account.
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Free text to search Task Name, etc.
+          schema:
+            type: string
+        - name: orderby
+          in: query
+          description: "Sort direction. Example: id desc."
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementScheduledTaskPagedList'
+
+  /scheduled-tasks/{id}:
+    get:
+      tags:
+        - Scheduled Tasks
+      summary: Get Task Details
+      description: Get a specific scheduled task by id.
+      operationId: getTaskDetails
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the scheduled task.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementScheduledTask'
+    post:
+      tags:
+        - Scheduled Tasks
+      summary: Update a Task
+      description: Update the state of a given task. This is how you would cancel a task.
+      operationId: updateTask
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id of the scheduled task.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementScheduledTaskUpdate'
+      responses:
+        '200':
+          description: Successful response
+
+  /tags:
+    get:
+      tags:
+        - Tags
+      summary: Get all tags for account
+      description: Get a list of tags for your account.
+      operationId: getAllTags
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: offset
+          in: query
+          description: The offset value to fetch next records.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: The value to limit the number of records fetched.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementTagsResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/resources:
+    post:
+      tags:
+        - Tags
+      summary: Get resources by tag
+      description: Get all resources by tag.
+      operationId: getResourcesByTag
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: offset
+          in: query
+          description: The offset value to fetch next records.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: The value to limit the number of records fetched.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementResourceByTag'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementResourceByTagResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/{resourceid}:
+    get:
+      tags:
+        - Tags
+      summary: Get tags by resource
+      description: Get all tags by resource.
+      operationId: getTagsByResource
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementResourceByTagResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Tags
+      summary: Create tag
+      description: Create a tag.
+      operationId: createTag
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/lock/{resourceid}:
+    post:
+      tags:
+        - Tags
+      summary: Create locked tag
+      description: Create a locked tag.
+      operationId: createLockedTag
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/delete/lock/{resourceid}:
+    post:
+      tags:
+        - Tags
+      summary: Delete locked tag
+      description: Delete a locked tag.
+      operationId: deleteLockedTag
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/delete/resource/{resourceid}:
+    post:
+      tags:
+        - Tags
+      summary: Delete all tags by resource ID
+      description: Delete all tags by resource ID.
+      operationId: deleteAllTagsByResourceId
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /tags/delete/{resourceid}:
+    post:
+      tags:
+        - Tags
+      summary: Delete a tag
+      description: Delete a tag.
+      operationId: deleteTag
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: resourceid
+          in: path
+          required: true
+          description: The id of the resource.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+
+    ApiKey:
+      type: apiKey
+      description: API Key authentication
+      name: x-api-key
+      in: header
+
+    FHAuth:
+      type: apiKey
+      description: FH Auth authentication
+      name: Authorization
+      in: header
+
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+
+    HealthMonitoringStatus:
+      type: object
+      properties:
+        SubAgentName:
+          type: string
+          description: The name of the SubAgent.
+        Version:
+          type: string
+          description: The version of the SubAgent.
+        Status:
+          type: string
+          description: The status of the SubAgent.
+        Message:
+          type: string
+          description: The status message of the SubAgent.
+        UpdateTime:
+          type: string
+          format: date-time
+          description: The last UpdateTime of the SubAgent's status.
+
+    AgentManagementHealthMonitoringStatusResults:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the coreInstance.
+        CoreInstance:
+          type: string
+          description: The coreInstance of the Armor Agent.
+        IsRegistered:
+          type: string
+          description: The coreInstance registered status.
+        SubAgents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthMonitoringStatus'
+
+    AgentManagementExclusion:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The Id of the exclusion list.
+        name:
+          type: string
+          description: The name of the exclusion list.
+        type:
+          type: string
+          description: The type of exclusion list (FileList, FileExtension, DirectoryList).
+        description:
+          type: string
+          description: The description of the exclusion list.
+        items:
+          type: array
+          description: The list of excluded items (directories, files or extensions).
+          items:
+            type: string
+
+    AgentManagementExclusionCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the exclusion list.
+        type:
+          type: string
+          description: The type of exclusion list (FileList, FileExtension, DirectoryList).
+        description:
+          type: string
+          description: The description of the exclusion list.
+        items:
+          type: array
+          description: The list of excluded items (directories, files or extensions).
+          items:
+            type: string
+
+    AgentManagementExclusionList:
+      type: object
+      properties:
+        TrendExclusions:
+          type: array
+          description: A list of exclusions.
+          items:
+            $ref: '#/components/schemas/AgentManagementExclusion'
+
+    AgentManagementMalwareConfigRequest:
+      type: object
+      properties:
+        trendRealTimeMalwareScanConfigId:
+          type: integer
+          description: The id of the real time malware scan config.
+        trendManualScheduledMalwareScanConfigId:
+          type: integer
+          description: The id of the manual/scheduled malware scan config.
+        name:
+          type: string
+          description: The name of the malware scan config.
+        description:
+          type: string
+          description: Description of the malware exclusion config.
+        excludedDirectoryListID:
+          type: integer
+          description: The id of the directory list.
+        excludedFileExtensionListID:
+          type: integer
+          description: The id of the file extension list.
+        excludedFileListID:
+          type: integer
+          description: The id of the file list.
+        machineLearningEnabled:
+          type: boolean
+          description: Is machine learning enabled.
+        scanActionForMachineLearning:
+          type: string
+          description: Determines the action taken when malware is found.
+        behaviorMonitoringEnabled:
+          type: boolean
+          description: Is behavior monitoring enabled.
+        scanActionForBehaviorMonitoring:
+          type: string
+          description: Determines the action taken when unusual behavior is found.
+        allowEmptyExclusionList:
+          type: boolean
+          description: Optional property that allows for sending a list id of null or 0 when set to true. Default is false.
+        configType:
+          type: array
+          description: Configuration type information.
+          items:
+            type: string
+        assignedTo:
+          type: array
+          description: Policy information the Configuration assigned to.
+          items:
+            type: string
+
+    AgentManagementMalwareConfigDeleteRequest:
+      type: object
+      properties:
+        trendRealTimeMalwareScanConfigId:
+          type: integer
+          description: The id of the real time malware scan config.
+        trendManualScheduledMalwareScanConfigId:
+          type: integer
+          description: The id of the manual/scheduled malware scan config.
+        trendConfigName:
+          type: string
+          description: The name of the malware scan config.
+
+    AgentManagementApplyMalwareExclusionConfig:
+      type: object
+      properties:
+        trendRealTimeMalwareScanConfigId:
+          type: integer
+          description: The id of the real time malware scan config.
+        trendManualScheduledMalwareScanConfigId:
+          type: integer
+          description: The id of the manual/scheduled malware scan config.
+        name:
+          type: string
+          description: The name of the malware scan config.
+        operatingSystem:
+          type: string
+          description: Operating System of the VM.
+        coreInstanceIdList:
+          type: array
+          description: List of CoreInstanceId to apply malware config.
+          items:
+            type: string
+
+    AgentManagementProduct:
+      type: object
+      properties:
+        productId:
+          type: integer
+          description: The numeric identifier of the agent product.
+          example: 3
+        productName:
+          type: string
+          description: The name of the Armor product, used by the Armor CLI.
+          example: fim
+        productDescription:
+          type: string
+          description: The friendly name of the Armor product.
+          example: File Integrity Monitoring
+        operationName:
+          type: string
+          description: The name of the product operation to be performed by the Armor CLI.
+          example: "on"
+        operationDescription:
+          type: string
+          description: A description of the operation.
+          example: Turn file integrity monitoring on
+        configuration:
+          type: object
+          description: Operation specific configuration, used by the Armor CLI.
+        isDeleted:
+          type: boolean
+          description: Whether or not the product has been deleted.
+
+    AgentManagementScheduledTask:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The unique task id.
+          example: 1
+        accountName:
+          type: string
+          description: The name of the Account the task is scheduled for.
+          example: Armor Test
+        coreInstanceId:
+          type: string
+          format: uuid
+          description: The GUID of the VM the task is scheduled to run on.
+        taskProductTypeId:
+          type: integer
+          description: "Identifies the executor of the task. 0 = Core, 1 = Supervisor."
+          example: 1
+        runAfter:
+          type: string
+          format: date-time
+          description: When the task is scheduled to run. After this time the task will be run at the next agent heartbeat.
+        dateCreated:
+          type: string
+          format: date-time
+          description: When the task was created.
+        isPending:
+          type: boolean
+          description: Whether the task has been run.
+        taskId:
+          type: integer
+          description: Correlates to the specific operation/product combination.
+        taskName:
+          type: string
+          description: An agent generated description of the task.
+        hostName:
+          type: string
+          description: The name of the VM the task will be run on.
+        isCancelled:
+          type: boolean
+          description: Whether or not the task has been cancelled.
+        productName:
+          type: string
+          description: The name of the Armor product, used by the Armor CLI.
+          example: fim
+        productDescription:
+          type: string
+          description: The friendly name of the Armor product.
+          example: File Integrity Monitoring
+        operationName:
+          type: string
+          description: The name of the product operation to be performed by the Armor CLI.
+          example: "on"
+        operationDescription:
+          type: string
+          description: A description of the operation.
+          example: Turn file integrity monitoring on
+        configuration:
+          type: object
+          description: Operation specific configuration, used by the Armor CLI.
+        userLabel:
+          type: string
+          description: An optional user-defined name for the task/batch.
+        results:
+          type: object
+          description: The data resulting from a task run.
+        resultCode:
+          type: string
+          description: The code to represent if a task execution is success or failed.
+
+    AgentManagementScheduledTaskPagedList:
+      type: object
+      properties:
+        page:
+          type: integer
+          description: Page number.
+        total:
+          type: integer
+          description: Total records.
+        countPerPage:
+          type: integer
+          description: Maximum records per page.
+        filters:
+          type: object
+          description: Available filters.
+        items:
+          type: array
+          description: List of scheduled tasks.
+          items:
+            $ref: '#/components/schemas/AgentManagementScheduledTask'
+
+    AgentManagementScheduledTaskRequest:
+      type: object
+      required:
+        - coreInstanceId
+        - operationName
+        - productName
+        - runAfter
+      properties:
+        coreInstanceId:
+          type: array
+          description: The GUIDs of the VMs the scheduled task should run on.
+          items:
+            type: string
+            format: uuid
+        operationName:
+          type: string
+          description: The name of the product operation to be performed by the Armor CLI.
+          example: "on"
+        productName:
+          type: string
+          description: The name of the Armor product, used by the Armor CLI.
+          example: fim
+        runAfter:
+          type: string
+          description: When the task should run. After this time the task will be run at the next agent heartbeat.
+        configuration:
+          type: object
+          description: An optional operation specific configuration, used by the Armor CLI.
+        userLabel:
+          type: string
+          description: An optional user-defined name for the task/batch.
+
+    AgentManagementScheduledTaskUpdate:
+      type: object
+      properties:
+        isCancelled:
+          type: boolean
+          description: Whether the task should be cancelled.
+        isPending:
+          type: boolean
+          description: Whether the task has been run.
+        userLabel:
+          type: string
+          description: An optional user-defined name for the task/batch.
+
+    ScheduledTasksCliCommandsHistory:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+          description: The GUID of the VM the scheduled task should run on.
+        taskAssignmentId:
+          type: integer
+          description: Unique id for each task.
+        timestamp:
+          type: string
+          format: date-time
+          description: Created Date Time.
+        agentProductName:
+          type: string
+          description: Agent product name.
+        agentProductOperation:
+          type: string
+          description: Agent product operation.
+        agentProductOperationConfiguration:
+          type: string
+          description: Agent product operation configuration details.
+        resultCode:
+          type: string
+          description: Result code.
+        runtime:
+          type: integer
+          description: Run time.
+        scope:
+          type: string
+          description: Task scope.
+        scriptOutput:
+          type: string
+          description: Task script output.
+        scriptError:
+          type: string
+          description: Script error details.
+
+    ScheduledTasksCliResults:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: CLI commands history.
+          items:
+            $ref: '#/components/schemas/ScheduledTasksCliCommandsHistory'
+
+    ScheduledTasksResponse:
+      type: object
+      properties:
+        CoreInstanceId:
+          type: string
+          description: The GUID of the VM the task is scheduled to run on.
+        TaskId:
+          type: integer
+          description: Unique Id for each task.
+        Error:
+          type: string
+          description: Error details.
+
+    ScheduledTasksResponseList:
+      type: object
+      properties:
+        data:
+          type: array
+          description: Scheduled tasks response list.
+          items:
+            $ref: '#/components/schemas/ScheduledTasksResponse'
+
+    AgentManagementTag:
+      type: object
+      properties:
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+
+    AgentManagementResourceTag:
+      type: object
+      properties:
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
+
+    AgentManagementTagRequest:
+      type: object
+      properties:
+        Tags:
+          type: array
+          description: The list of tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+
+    AgentManagementTagsResult:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        ResourceId:
+          type: string
+          description: The coreInstance of the Armor Agent.
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
+
+    AgentManagementResourceByTag:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: The type of the tag.
+        Tags:
+          type: array
+          description: The list of the tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+
+    AgentManagementResourceByTagResult:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        Resource:
+          type: string
+          description: The Resource of the tag.
+        Tags:
+          type: array
+          description: The details of the tag.
+          items:
+            $ref: '#/components/schemas/AgentManagementResourceTag'

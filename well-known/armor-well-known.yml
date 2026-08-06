@@ -1,0 +1,171 @@
+generated: '2026-08-06'
+method: probed
+source: live GET of the /.well-known/ discovery surface on every Armor apis.yml and OpenAPI servers[]
+  host
+finding: Armor publishes NO /.well-known/ discovery documents. The marketing host www.armor.com and the
+  developer portal developer.armor.com return a hard 404 for every well-known path. The v2 platform API
+  hosts on *.api.secure-prod.services answer 403 {"message":"Missing Authentication Token"} for every
+  path including /.well-known/*, so nothing is anonymously discoverable there. api.armor.com closes the
+  connection on /.well-known/* while serving 401 on /me, so the host is live but the well-known namespace
+  is not routed. Note that docs.armor.com, amp.armor.com and status.armor.com each return HTTP 200 with
+  an HTML SPA shell for EVERY /.well-known/* path — those are catch-all false positives, not documents,
+  and are recorded as such.
+documents: []
+probed:
+- host: www.armor.com
+  path: /.well-known/security.txt
+  status: 404
+  result: not found
+- host: www.armor.com
+  path: /.well-known/openid-configuration
+  status: 404
+  result: not found
+- host: www.armor.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  result: not found
+- host: www.armor.com
+  path: /.well-known/oauth-protected-resource
+  status: 404
+  result: not found
+- host: www.armor.com
+  path: /.well-known/api-catalog
+  status: 404
+  result: not found
+- host: www.armor.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/security.txt
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/openid-configuration
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/oauth-protected-resource
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/api-catalog
+  status: 404
+  result: not found
+- host: developer.armor.com
+  path: /.well-known/ai-plugin.json
+  status: 404
+  result: not found
+- host: api.armor.com
+  path: /.well-known/security.txt
+  status: null
+  result: connection closed
+- host: api.armor.com
+  path: /.well-known/openid-configuration
+  status: null
+  result: connection closed
+- host: api.armor.com
+  path: /.well-known/oauth-authorization-server
+  status: null
+  result: connection closed
+- host: api.armor.com
+  path: /.well-known/oauth-protected-resource
+  status: null
+  result: connection closed
+- host: api.armor.com
+  path: /.well-known/api-catalog
+  status: null
+  result: connection closed
+- host: api.armor.com
+  path: /.well-known/ai-plugin.json
+  status: null
+  result: connection closed
+- host: mdr.api.secure-prod.services
+  path: /.well-known/security.txt
+  status: 404
+  result: not found
+- host: mdr.api.secure-prod.services
+  path: /.well-known/openid-configuration
+  status: 404
+  result: not found
+- host: mdr.api.secure-prod.services
+  path: /.well-known/oauth-authorization-server
+  status: 404
+  result: not found
+- host: mdr.api.secure-prod.services
+  path: /.well-known/oauth-protected-resource
+  status: 404
+  result: not found
+- host: mdr.api.secure-prod.services
+  path: /.well-known/api-catalog
+  status: 404
+  result: not found
+- host: mdr.api.secure-prod.services
+  path: /.well-known/ai-plugin.json
+  status: 404
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/security.txt
+  status: 403
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/openid-configuration
+  status: 403
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/oauth-authorization-server
+  status: 403
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/oauth-protected-resource
+  status: 403
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/api-catalog
+  status: 403
+  result: not found
+- host: compliance.api.secure-prod.services
+  path: /.well-known/ai-plugin.json
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/security.txt
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/openid-configuration
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/oauth-authorization-server
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/oauth-protected-resource
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/api-catalog
+  status: 403
+  result: not found
+- host: webhooks.api.secure-prod.services
+  path: /.well-known/ai-plugin.json
+  status: 403
+  result: not found
+spa_catchall_hosts:
+- host: docs.armor.com
+  status: 200
+  content_type: text/html
+  note: Next.js access-code gate; returns the same HTML shell for every path
+- host: amp.armor.com
+  status: 200
+  content_type: text/html
+  note: Armor Management Portal SPA catch-all
+- host: status.armor.com
+  status: 200
+  content_type: text/html
+  note: status page SPA catch-all

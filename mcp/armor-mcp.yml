@@ -1,0 +1,543 @@
+generated: '2026-08-06'
+method: derived
+status: candidate
+source: openapi/ (12 OpenAPI 3.0.3 contracts)
+search_result:
+  hosted_server: none
+  searched:
+  - https://developer.armor.com/ and its full ReDoc bundle
+  - https://www.armor.com/llms.txt (25.9 KB first-party, April 2026)
+  - github.com/armor (22 public repositories)
+  - npm @armor scope and the @modelcontextprotocol scope
+  - DNS + HTTP probes of mcp.armor.com, www.armor.com/mcp, api.armor.com/mcp, mdr.api.secure-prod.services/mcp
+  - /.well-known/oauth-protected-resource and /.well-known/oauth-authorization-server on every Armor host
+  finding: No Armor MCP server exists. mcp.armor.com does not resolve; every /mcp path returns 404 or
+    closes the connection; no /.well-known/oauth-protected-resource is served. Armor markets an "Armor
+    Intelligence Platform" and agentic AI triage, and publishes a first-party llms.txt, but exposes no
+    agent-callable tool surface. The tool list below is a DERIVED CANDIDATE grounded in real Armor operationIds
+    - Armor does not publish it.
+server:
+  name: armor
+  transport: http
+  url: null
+  status: not-published
+tools:
+- name: getCloudConnectionsByAccountId
+  description: Get cloud connections by Account Id
+  source_operation: openapi/armor-accounts-openapi-original.yml#getCloudConnectionsByAccountId
+- name: getConnectionServiceTypes
+  description: Get All Connection Service Types
+  source_operation: openapi/armor-accounts-openapi-original.yml#getConnectionServiceTypes
+- name: getCloudConnectionDetail
+  description: Get cloud connection detail by connection Id
+  source_operation: openapi/armor-accounts-openapi-original.yml#getCloudConnectionDetail
+- name: getAllSecureNotes
+  description: Get all secure notes
+  source_operation: openapi/armor-accounts-openapi-original.yml#getAllSecureNotes
+- name: createSecureNote
+  description: Create a new secure note
+  source_operation: openapi/armor-accounts-openapi-original.yml#createSecureNote
+- name: getSecureNoteById
+  description: Get secure note by ID
+  source_operation: openapi/armor-accounts-openapi-original.yml#getSecureNoteById
+- name: updateSecureNote
+  description: Update secure note
+  source_operation: openapi/armor-accounts-openapi-original.yml#updateSecureNote
+- name: deleteSecureNote
+  description: Delete secure note
+  source_operation: openapi/armor-accounts-openapi-original.yml#deleteSecureNote
+- name: revealSecureNoteContent
+  description: Reveal secure note content
+  source_operation: openapi/armor-accounts-openapi-original.yml#revealSecureNoteContent
+- name: getTourPreferences
+  description: Get tour preferences
+  source_operation: openapi/armor-accounts-openapi-original.yml#getTourPreferences
+- name: updateTourPreferences
+  description: Update tour preferences
+  source_operation: openapi/armor-accounts-openapi-original.yml#updateTourPreferences
+- name: getHealthMonitoringStatus
+  description: Get Health Monitoring Status
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getHealthMonitoringStatus
+- name: getHealthMonitoringStatusByCoreInstanceId
+  description: Get Health Monitoring Status by CoreInstanceId
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getHealthMonitoringStatusByCoreInstanceId
+- name: getExclusionLists
+  description: Get exclusion lists for account
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getExclusionLists
+- name: createExclusionList
+  description: Create a new exclusion list
+  source_operation: openapi/armor-agent-management-openapi-original.yml#createExclusionList
+- name: updateExclusionList
+  description: Update an exclusion list
+  source_operation: openapi/armor-agent-management-openapi-original.yml#updateExclusionList
+- name: deleteExclusionList
+  description: Delete an exclusion list
+  source_operation: openapi/armor-agent-management-openapi-original.yml#deleteExclusionList
+- name: getMalwareExclusionConfigs
+  description: Get malware exclusion configs
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getMalwareExclusionConfigs
+- name: createMalwareExclusionConfig
+  description: Create a new malware exclusion config
+  source_operation: openapi/armor-agent-management-openapi-original.yml#createMalwareExclusionConfig
+- name: updateMalwareExclusionConfig
+  description: Update a malware exclusion config
+  source_operation: openapi/armor-agent-management-openapi-original.yml#updateMalwareExclusionConfig
+- name: deleteMalwareExclusionConfig
+  description: Delete a malware exclusion config
+  source_operation: openapi/armor-agent-management-openapi-original.yml#deleteMalwareExclusionConfig
+- name: applyMalwareExclusionConfig
+  description: Apply a malware exclusion config
+  source_operation: openapi/armor-agent-management-openapi-original.yml#applyMalwareExclusionConfig
+- name: getCliResultsByCoreInstanceId
+  description: Get CLI Results for CoreInstanceId
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getCliResultsByCoreInstanceId
+- name: getProducts
+  description: Get Products
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getProducts
+- name: getScheduledTasks
+  description: Get Scheduled Tasks
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getScheduledTasks
+- name: scheduleTask
+  description: Schedule a Task
+  source_operation: openapi/armor-agent-management-openapi-original.yml#scheduleTask
+- name: getScheduledTasksPaginated
+  description: Get Scheduled Tasks with Pagination
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getScheduledTasksPaginated
+- name: getTaskDetails
+  description: Get Task Details
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getTaskDetails
+- name: updateTask
+  description: Update a Task
+  source_operation: openapi/armor-agent-management-openapi-original.yml#updateTask
+- name: getAllTags
+  description: Get all tags for account
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getAllTags
+- name: getResourcesByTag
+  description: Get resources by tag
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getResourcesByTag
+- name: getTagsByResource
+  description: Get tags by resource
+  source_operation: openapi/armor-agent-management-openapi-original.yml#getTagsByResource
+- name: createTag
+  description: Create tag
+  source_operation: openapi/armor-agent-management-openapi-original.yml#createTag
+- name: createLockedTag
+  description: Create locked tag
+  source_operation: openapi/armor-agent-management-openapi-original.yml#createLockedTag
+- name: deleteLockedTag
+  description: Delete locked tag
+  source_operation: openapi/armor-agent-management-openapi-original.yml#deleteLockedTag
+- name: deleteAllTagsByResourceId
+  description: Delete all tags by resource ID
+  source_operation: openapi/armor-agent-management-openapi-original.yml#deleteAllTagsByResourceId
+- name: deleteTag
+  description: Delete a tag
+  source_operation: openapi/armor-agent-management-openapi-original.yml#deleteTag
+- name: getAssessmentAccounts
+  description: Retrieve list of assessment accounts
+  source_operation: openapi/armor-compliance-openapi-original.yml#getAssessmentAccounts
+- name: createAssessmentAccount
+  description: Create assessment account
+  source_operation: openapi/armor-compliance-openapi-original.yml#createAssessmentAccount
+- name: updateAssessmentAccount
+  description: Update assessment account
+  source_operation: openapi/armor-compliance-openapi-original.yml#updateAssessmentAccount
+- name: deleteAssessmentAccount
+  description: Cancel assessment account
+  source_operation: openapi/armor-compliance-openapi-original.yml#deleteAssessmentAccount
+- name: listCloudConnectors
+  description: List all CSPM CloudConnectors
+  source_operation: openapi/armor-compliance-openapi-original.yml#listCloudConnectors
+- name: createCloudConnector
+  description: Create CSPM CloudConnector
+  source_operation: openapi/armor-compliance-openapi-original.yml#createCloudConnector
+- name: getCloudConnectorById
+  description: Get CSPM CloudConnector by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCloudConnectorById
+- name: deleteCloudConnector
+  description: Delete CSPM CloudConnector by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#deleteCloudConnector
+- name: getCspmPolicies
+  description: Get CSPM policies
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmPolicies
+- name: getCspmPolicyControls
+  description: Get CSPM policy controls by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmPolicyControls
+- name: getCspmControlRemediation
+  description: Get CSPM control remediation
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmControlRemediation
+- name: getCspmReportConfiguration
+  description: Get report configuration by provider
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmReportConfiguration
+- name: createCspmReportConfiguration
+  description: Create CSPM report configuration
+  source_operation: openapi/armor-compliance-openapi-original.yml#createCspmReportConfiguration
+- name: listCspmReports
+  description: Get list of CSPM reports
+  source_operation: openapi/armor-compliance-openapi-original.yml#listCspmReports
+- name: runCspmReport
+  description: Run CSPM report configuration by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#runCspmReport
+- name: getCspmReportById
+  description: Get CSPM report details by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmReportById
+- name: deleteCspmReport
+  description: Delete CSPM report configuration by ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#deleteCspmReport
+- name: getCspmReportControlResources
+  description: Get report control resources by report and control ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmReportControlResources
+- name: listCspmResources
+  description: Get list of CSPM resources
+  source_operation: openapi/armor-compliance-openapi-original.yml#listCspmResources
+- name: getCspmResourceById
+  description: Get resource details
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmResourceById
+- name: getCspmSummary
+  description: Get CSPM CloudConnector summary
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmSummary
+- name: getCspmUsage
+  description: Get CSPM CloudConnector usage
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCspmUsage
+- name: getVsAssetVulnerabilities
+  description: Get asset vulnerabilities
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVsAssetVulnerabilities
+- name: getAssetVulnerabilitiesPaged
+  description: Get asset and vulnerabilities with pagination
+  source_operation: openapi/armor-compliance-openapi-original.yml#getAssetVulnerabilitiesPaged
+- name: getCurrentVulnerabilities
+  description: Get list of current vulnerabilities
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCurrentVulnerabilities
+- name: getCurrentVulnerabilityDetail
+  description: Get details of a vulnerability
+  source_operation: openapi/armor-compliance-openapi-original.yml#getCurrentVulnerabilityDetail
+- name: getVmsByScanId
+  description: List of VMs by scan report ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVmsByScanId
+- name: getVulnerabilitiesByScanId
+  description: List of vulnerabilities by scan report ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVulnerabilitiesByScanId
+- name: getVulnerabilitiesWithAssetsCount
+  description: List of vulnerabilities with affected assets count
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVulnerabilitiesWithAssetsCount
+- name: getVulnerabilityDetailByScanId
+  description: Get vulnerability detail by scan and vulnerability report ID
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVulnerabilityDetailByScanId
+- name: listVsExclusions
+  description: List vulnerability scan exclusions
+  source_operation: openapi/armor-compliance-openapi-original.yml#listVsExclusions
+- name: createVsExclusion
+  description: Create vulnerability scan exclusion
+  source_operation: openapi/armor-compliance-openapi-original.yml#createVsExclusion
+- name: deleteVsExclusion
+  description: Delete vulnerability scan exclusion
+  source_operation: openapi/armor-compliance-openapi-original.yml#deleteVsExclusion
+- name: getExcludedAssets
+  description: List excluded assets for an exclusion
+  source_operation: openapi/armor-compliance-openapi-original.yml#getExcludedAssets
+- name: generateVulnerabilityReport
+  description: Generate new vulnerability report
+  source_operation: openapi/armor-compliance-openapi-original.yml#generateVulnerabilityReport
+- name: listVsSummaryReports
+  description: List vulnerability scan summary reports
+  source_operation: openapi/armor-compliance-openapi-original.yml#listVsSummaryReports
+- name: generateDetailedVsReport
+  description: Generate detailed vulnerabilities report
+  source_operation: openapi/armor-compliance-openapi-original.yml#generateDetailedVsReport
+- name: getVsExportData
+  description: Get detailed vulnerabilities report for CSV export
+  source_operation: openapi/armor-compliance-openapi-original.yml#getVsExportData
+- name: getAccountDetails
+  description: Get Account-Specific Installation Details
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAccountDetails
+- name: createSubscription
+  description: Create Subscription
+  source_operation: openapi/armor-container-security-openapi-original.yml#createSubscription
+- name: getAwsBaseConfig
+  description: Get AWS Configuration Details
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAwsBaseConfig
+- name: getAllConnectors
+  description: Get All Connectors
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAllConnectors
+- name: createConnector
+  description: Create Connector
+  source_operation: openapi/armor-container-security-openapi-original.yml#createConnector
+- name: getConnectorDetail
+  description: Get Connector Detail
+  source_operation: openapi/armor-container-security-openapi-original.yml#getConnectorDetail
+- name: deleteConnector
+  description: Delete Connector
+  source_operation: openapi/armor-container-security-openapi-original.yml#deleteConnector
+- name: getAllImages
+  description: Get All Images
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAllImages
+- name: getImageDetail
+  description: Get Image Detail
+  source_operation: openapi/armor-container-security-openapi-original.yml#getImageDetail
+- name: getAllRegistries
+  description: Get All Registries
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAllRegistries
+- name: createRegistry
+  description: Create Registry
+  source_operation: openapi/armor-container-security-openapi-original.yml#createRegistry
+- name: getRegistryDetail
+  description: Get Registry Detail
+  source_operation: openapi/armor-container-security-openapi-original.yml#getRegistryDetail
+- name: deleteRegistry
+  description: Delete Registry
+  source_operation: openapi/armor-container-security-openapi-original.yml#deleteRegistry
+- name: getVendorTypes
+  description: Get Vendor Types
+  source_operation: openapi/armor-container-security-openapi-original.yml#getVendorTypes
+- name: getAllSensors
+  description: Get All Sensors
+  source_operation: openapi/armor-container-security-openapi-original.yml#getAllSensors
+- name: authorize
+  description: Get authorization code
+  source_operation: openapi/armor-fh-auth-openapi-original.yml#authorize
+- name: exchangeToken
+  description: Exchange authorization code for access token
+  source_operation: openapi/armor-fh-auth-openapi-original.yml#exchangeToken
+- name: refreshToken
+  description: Refresh an access token
+  source_operation: openapi/armor-fh-auth-openapi-original.yml#refreshToken
+- name: getCurrentUser
+  description: Get current user information
+  source_operation: openapi/armor-fh-auth-openapi-original.yml#getCurrentUser
+- name: getEdrUninstallCode
+  description: Get EDR uninstall code
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getEdrUninstallCode
+- name: getEdrSignUp
+  description: Get EDR sign-up details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getEdrSignUp
+- name: createEdrSignUp
+  description: Create EDR sign-up details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#createEdrSignUp
+- name: getEdrConfiguration
+  description: Get EDR configuration details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getEdrConfiguration
+- name: createEdrConfiguration
+  description: Create EDR configuration details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#createEdrConfiguration
+- name: getEdrEventForwarder
+  description: Get EDR Event Forwarder details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getEdrEventForwarder
+- name: getEdrUsage
+  description: Get EDR usage details
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getEdrUsage
+- name: listDetectionEvents
+  description: List Events related to a Detection
+  source_operation: openapi/armor-incident-management-openapi-original.yml#listDetectionEvents
+- name: getDetectionDetail
+  description: Get Details of a Detection
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getDetectionDetail
+- name: listDetections
+  description: List Detections
+  source_operation: openapi/armor-incident-management-openapi-original.yml#listDetections
+- name: listDetectionsV2
+  description: List Detections with Pagination
+  source_operation: openapi/armor-incident-management-openapi-original.yml#listDetectionsV2
+- name: listParentCustomerDetections
+  description: List Parent Customer Security Detections
+  source_operation: openapi/armor-incident-management-openapi-original.yml#listParentCustomerDetections
+- name: listParentCustomerDetectionsV2
+  description: List Parent Customer Security Detections with Pagination
+  source_operation: openapi/armor-incident-management-openapi-original.yml#listParentCustomerDetectionsV2
+- name: getSecurityDetectionsOverview
+  description: Security Detections Overview
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getSecurityDetectionsOverview
+- name: getTrendAvReport
+  description: Get Details of a Trend AV report
+  source_operation: openapi/armor-incident-management-openapi-original.yml#getTrendAvReport
+- name: getVirtualMachines
+  description: Get Virtual Machines
+  source_operation: openapi/armor-infrastructure-management-openapi-original.yml#getVirtualMachines
+- name: getOperatingSystems
+  description: Get Operating Systems
+  source_operation: openapi/armor-infrastructure-management-openapi-original.yml#getOperatingSystems
+- name: getLogSources
+  description: Get all log sources
+  source_operation: openapi/armor-log-management-openapi-original.yml#getLogSources
+- name: createLogSource
+  description: Create a log source
+  source_operation: openapi/armor-log-management-openapi-original.yml#createLogSource
+- name: deleteLogSource
+  description: Delete a log source
+  source_operation: openapi/armor-log-management-openapi-original.yml#deleteLogSource
+- name: updateLogSource
+  description: Update a log source
+  source_operation: openapi/armor-log-management-openapi-original.yml#updateLogSource
+- name: getLogGroups
+  description: Get all log groups
+  source_operation: openapi/armor-log-management-openapi-original.yml#getLogGroups
+- name: getFlowSources
+  description: Get all flow sources
+  source_operation: openapi/armor-log-management-openapi-original.yml#getFlowSources
+- name: createFlowSource
+  description: Create a flow source
+  source_operation: openapi/armor-log-management-openapi-original.yml#createFlowSource
+- name: updateFlowSource
+  description: Update a flow source
+  source_operation: openapi/armor-log-management-openapi-original.yml#updateFlowSource
+- name: getFlowCollectors
+  description: Get all flow collectors
+  source_operation: openapi/armor-log-management-openapi-original.yml#getFlowCollectors
+- name: allocateFlowSource
+  description: Allocate a flow source
+  source_operation: openapi/armor-log-management-openapi-original.yml#allocateFlowSource
+- name: getLogEndpoints
+  description: Get all log endpoints
+  source_operation: openapi/armor-log-management-openapi-original.yml#getLogEndpoints
+- name: allocateLogEndpoint
+  description: Allocate an endpoint
+  source_operation: openapi/armor-log-management-openapi-original.yml#allocateLogEndpoint
+- name: getLogAcls
+  description: Get all ACLs
+  source_operation: openapi/armor-log-management-openapi-original.yml#getLogAcls
+- name: createLogAcl
+  description: Create an ACL
+  source_operation: openapi/armor-log-management-openapi-original.yml#createLogAcl
+- name: updateLogAcl
+  description: Update an ACL
+  source_operation: openapi/armor-log-management-openapi-original.yml#updateLogAcl
+- name: checkHostnameAvailability
+  description: Check hostname availability
+  source_operation: openapi/armor-log-management-openapi-original.yml#checkHostnameAvailability
+- name: getLogSourceTypes
+  description: Get log source types
+  source_operation: openapi/armor-log-management-openapi-original.yml#getLogSourceTypes
+- name: aipHealthCheck
+  description: AIP health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#aipHealthCheck
+- name: defenderHealthCheck
+  description: Defender health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#defenderHealthCheck
+- name: rulesHealthCheck
+  description: Detection rules health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#rulesHealthCheck
+- name: jsmHealthCheck
+  description: JSM health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#jsmHealthCheck
+- name: reportsHealthCheck
+  description: Reports health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#reportsHealthCheck
+- name: tiHealthCheck
+  description: TI health check
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#tiHealthCheck
+- name: getIncidentAipData
+  description: Get incident AIP data
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getIncidentAipData
+- name: fetchEntityForIncident
+  description: Fetch entity threat intelligence for an incident
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#fetchEntityForIncident
+- name: getMachines
+  description: List all machines
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getMachines
+- name: getMachineActions
+  description: List all machine actions
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getMachineActions
+- name: getMachineAction
+  description: Get specific machine action
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getMachineAction
+- name: executeMachineAction
+  description: Execute action on machine
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#executeMachineAction
+- name: getPackageUri
+  description: Get investigation package download URI
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getPackageUri
+- name: getLiveResponseResult
+  description: Get live response result download link
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getLiveResponseResult
+- name: getRulesForCustomer
+  description: Retrieve detection rules for a customer
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getRulesForCustomer
+- name: listIncidents
+  description: List incidents
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#listIncidents
+- name: getIncidentDetails
+  description: Get incident details
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getIncidentDetails
+- name: addIncidentComment
+  description: Add comment to incident
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#addIncidentComment
+- name: getCommentAttachments
+  description: Get comment attachments
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getCommentAttachments
+- name: getIncidentMetrics
+  description: Get incident summary metrics
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getIncidentMetrics
+- name: getThreatIntelUpdates
+  description: Get threat intelligence updates
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getThreatIntelUpdates
+- name: getDataIngestionMetrics
+  description: Get data ingestion metrics
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getDataIngestionMetrics
+- name: listServiceRequests
+  description: List service requests
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#listServiceRequests
+- name: getOrganizations
+  description: Get organizations by user
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getOrganizations
+- name: listMSRFiles
+  description: List available MSR files
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#listMSRFiles
+- name: getMSRFile
+  description: Download a specific MSR file
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getMSRFile
+- name: proxyGraphQL
+  description: OpenCTI GraphQL proxy
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#proxyGraphQL
+- name: getAllThreatActors
+  description: Get all threat actors
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getAllThreatActors
+- name: getThreatActorsByCountry
+  description: Get threat actors grouped by country
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getThreatActorsByCountry
+- name: getThreatActorById
+  description: Get specific threat actor by ID
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getThreatActorById
+- name: getCustomerTI
+  description: Get customer-specific threat intelligence
+  source_operation: openapi/armor-mdr-public-openapi-original.yml#getCustomerTI
+- name: getUserPreferences
+  description: Get User Preferences
+  source_operation: openapi/armor-notifications-openapi-original.yml#getUserPreferences
+- name: createOrUpdateUserPreferences
+  description: Create or Update User Preferences
+  source_operation: openapi/armor-notifications-openapi-original.yml#createOrUpdateUserPreferences
+- name: listPreferencesForOrg
+  description: List Preferences for Organization
+  source_operation: openapi/armor-notifications-openapi-original.yml#listPreferencesForOrg
+- name: getCurrentUser
+  description: Get current user information
+  source_operation: openapi/armor-psk-auth-openapi-original.yml#getCurrentUser
+- name: getDetectionConfiguration
+  description: Get Account Detection Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#getDetectionConfiguration
+- name: createDetectionConfiguration
+  description: Create a Detection Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#createDetectionConfiguration
+- name: updateDetectionConfiguration
+  description: Update a Detection Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#updateDetectionConfiguration
+- name: deleteDetectionConfiguration
+  description: Delete a Detection Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#deleteDetectionConfiguration
+- name: getEventTypes
+  description: Get the Event Types
+  source_operation: openapi/armor-webhooks-openapi-original.yml#getEventTypes
+- name: getNotificationConfigurations
+  description: Get Account Notification Configurations
+  source_operation: openapi/armor-webhooks-openapi-original.yml#getNotificationConfigurations
+- name: createNotificationConfiguration
+  description: Create a Notification Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#createNotificationConfiguration
+- name: getNotificationConfigurationById
+  description: Get Notification Configuration details
+  source_operation: openapi/armor-webhooks-openapi-original.yml#getNotificationConfigurationById
+- name: updateNotificationConfiguration
+  description: Update a Notification Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#updateNotificationConfiguration
+- name: deleteNotificationConfiguration
+  description: Delete a Notification Configuration
+  source_operation: openapi/armor-webhooks-openapi-original.yml#deleteNotificationConfiguration

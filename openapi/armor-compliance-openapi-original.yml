@@ -1,0 +1,1908 @@
+openapi: 3.0.3
+info:
+  title: Armor Compliance API
+  description: |
+    Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+    and Vulnerability Scanning (VS) services.
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+
+servers:
+  - url: https://compliance.api.secure-prod.services
+    description: Production server
+
+security:
+  - OAuth2: []
+
+tags:
+  - name: Assessments
+    description: Assessment account management
+  - name: CSPM Connector
+    description: Cloud Security Posture Management cloud connectors
+  - name: CSPM Policies
+    description: CSPM policy management
+  - name: CSPM Policy Controls
+    description: CSPM policy controls management
+  - name: CSPM Control Remediation
+    description: CSPM control remediation information
+  - name: CSPM Report Configuration
+    description: CSPM report configuration management
+  - name: CSPM Report
+    description: CSPM report operations
+  - name: CSPM Resources
+    description: CSPM resource management
+  - name: CSPM Summary
+    description: CSPM cloud connector summary
+  - name: CSPM Usage
+    description: CSPM cloud connector usage
+  - name: Vulnerability Scanning
+    description: Vulnerability scanning operations
+  - name: VS Exclusions
+    description: Vulnerability scan exclusions management
+  - name: VS Reports
+    description: Vulnerability scan reports
+
+paths:
+  # Assessments APIs
+  /assessments/accounts:
+    get:
+      tags:
+        - Assessments
+      summary: Retrieve list of assessment accounts
+      operationId: getAssessmentAccounts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssessmentAccountResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - Assessments
+      summary: Create assessment account
+      operationId: createAssessmentAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssessmentCreateAccountRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  /assessments/accounts/{id}:
+    put:
+      tags:
+        - Assessments
+      summary: Update assessment account
+      operationId: updateAssessmentAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assessment account ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssessmentUpdateAccountRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - Assessments
+      summary: Cancel assessment account
+      operationId: deleteAssessmentAccount
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: Assessment account ID
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  # CSPM Connector APIs
+  /cspm/connector:
+    get:
+      tags:
+        - CSPM Connector
+      summary: List all CSPM CloudConnectors
+      operationId: listCloudConnectors
+      parameters:
+        - name: id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Connector ID to get specific connector
+        - name: refresh
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Set to true to run the cloud connector
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectors'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+        - CSPM Connector
+      summary: Create CSPM CloudConnector
+      operationId: createCloudConnector
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudConnectorRequestDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+
+  /cspm/connector/{id}:
+    get:
+      tags:
+        - CSPM Connector
+      summary: Get CSPM CloudConnector by ID
+      operationId: getCloudConnectorById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Connector ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectorDetails'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+        - CSPM Connector
+      summary: Delete CSPM CloudConnector by ID
+      operationId: deleteCloudConnector
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Connector ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  # CSPM Policies APIs
+  /cspm/policies:
+    get:
+      tags:
+        - CSPM Policies
+      summary: Get CSPM policies
+      operationId: getCspmPolicies
+      parameters:
+        - name: provider
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - AWS
+              - Azure
+              - GCP
+          description: Provider type filter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmPolicy'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  # CSPM Policy Controls API
+  /cspm/policy/{id}/controls:
+    get:
+      tags:
+        - CSPM Policy Controls
+      summary: Get CSPM policy controls by ID
+      operationId: getCspmPolicyControls
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Policy ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmPolicyControl'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  # CSPM Control Remediation API
+  /cspm/control/{controlId}/remediation:
+    get:
+      tags:
+        - CSPM Control Remediation
+      summary: Get CSPM control remediation
+      operationId: getCspmControlRemediation
+      parameters:
+        - name: controlId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Control ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+  # CSPM Report Configuration APIs
+  /cspm/report/configuration:
+    get:
+      tags:
+        - CSPM Report Configuration
+      summary: Get report configuration by provider
+      operationId: getCspmReportConfiguration
+      parameters:
+        - name: provider
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - AWS
+              - Azure
+              - GCP
+          description: Provider type
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportConfigurationResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    post:
+      tags:
+        - CSPM Report Configuration
+      summary: Create CSPM report configuration
+      operationId: createCspmReportConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CspmReportConfiguration'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+
+  /cspm/report/list:
+    get:
+      tags:
+        - CSPM Report
+      summary: Get list of CSPM reports
+      operationId: listCspmReports
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmReportListDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /cspm/report/run:
+    post:
+      tags:
+        - CSPM Report
+      summary: Run CSPM report configuration by ID
+      operationId: runCspmReport
+      parameters:
+        - name: reportConfigId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Report configuration ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  /cspm/report/{id}:
+    get:
+      tags:
+        - CSPM Report
+      summary: Get CSPM report details by ID
+      operationId: getCspmReportById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CspmReportDetailsDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+        - CSPM Report
+      summary: Delete CSPM report configuration by ID
+      operationId: deleteCspmReport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  /cspm/report/{id}/control/{controlId}/resources:
+    get:
+      tags:
+        - CSPM Report
+      summary: Get report control resources by report and control ID
+      operationId: getCspmReportControlResources
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Report ID
+        - name: controlId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Control ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmResourceDetails'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+
+  # CSPM Resources APIs
+  /cspm/resources:
+    get:
+      tags:
+        - CSPM Resources
+      summary: Get list of CSPM resources
+      operationId: listCspmResources
+      parameters:
+        - name: provider
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - AWS
+              - Azure
+              - GCP
+          description: Provider type filter
+        - name: cloudAccountId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Cloud account ID filter
+        - name: resourceType
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Resource type filter
+        - name: top
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Number of records to return
+        - name: skip
+          in: query
+          required: false
+          schema:
+            type: integer
+          description: Number of records to skip
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResultSet'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /cspm/resources/{id}:
+    get:
+      tags:
+        - CSPM Resources
+      summary: Get resource details
+      operationId: getCspmResourceById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Resource ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResourceDetailDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  # CSPM Summary API
+  /cspm/summary:
+    get:
+      tags:
+        - CSPM Summary
+      summary: Get CSPM CloudConnector summary
+      operationId: getCspmSummary
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectorSummaryDto'
+        '403':
+          description: Forbidden
+
+  # CSPM Usage API
+  /cspm/usage:
+    get:
+      tags:
+        - CSPM Usage
+      summary: Get CSPM CloudConnector usage
+      operationId: getCspmUsage
+      parameters:
+        - name: startDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Start date for usage query
+        - name: endDate
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+          description: End date for usage query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmUsageDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+
+  # Vulnerability Scanning Asset Vulnerabilities APIs
+  /vs/asset-vulnerabilities/{coreinstanceid}:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: Get asset vulnerabilities
+      operationId: getVsAssetVulnerabilities
+      parameters:
+        - name: coreinstanceid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Asset identifier (GUID)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetVulnerabilityDetail'
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/asset-vulnerabilities/{coreinstanceid}:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: Get asset and vulnerabilities with pagination
+      operationId: getAssetVulnerabilitiesPaged
+      parameters:
+        - name: coreinstanceid
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: Asset identifier (GUID)
+        - name: x-range
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Pagination range (e.g., entities=0-10; max=10)
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetVulnerabilitiesPagedList'
+        '206':
+          description: Partial Content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssetVulnerabilitiesPagedList'
+        '403':
+          description: Forbidden
+
+  # Vulnerability Scanning Current Vulnerabilities APIs
+  /vulnerability-scan/current:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: Get list of current vulnerabilities
+      operationId: getCurrentVulnerabilities
+      parameters:
+        - name: filter
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter by assetId or other criteria
+        - name: x-range
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Pagination range
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrentVulnerabilitiesSummary'
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/current/{vulnerabilityReportId}:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: Get details of a vulnerability
+      operationId: getCurrentVulnerabilityDetail
+      parameters:
+        - name: vulnerabilityReportId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetail'
+        '403':
+          description: Forbidden
+
+  # Vulnerability Scanning by Scan Report ID APIs
+  /vulnerability-scan/{scanId}/vms:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: List of VMs by scan report ID
+      operationId: getVmsByScanId
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Scan report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VulnerabilityByVm'
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/{scanId}/vulnerabilities:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: List of vulnerabilities by scan report ID
+      operationId: getVulnerabilitiesByScanId
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Scan report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Vulnerability'
+        '403':
+          description: Forbidden
+
+  /v2/vulnerability-scan/{scanId}/vulnerabilities:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: List of vulnerabilities with affected assets count
+      operationId: getVulnerabilitiesWithAssetsCount
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Scan report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VulnerabilityWithAssetsCount'
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/{scanId}/{vulnerabilityReportId}:
+    get:
+      tags:
+        - Vulnerability Scanning
+      summary: Get vulnerability detail by scan and vulnerability report ID
+      operationId: getVulnerabilityDetailByScanId
+      parameters:
+        - name: scanId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Scan report ID
+        - name: vulnerabilityReportId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Vulnerability report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VulnerabilityDetail'
+        '403':
+          description: Forbidden
+
+  # Vulnerability Scanning Exclusions APIs
+  /vulnerability-scan/exclusions:
+    get:
+      tags:
+        - VS Exclusions
+      summary: List vulnerability scan exclusions
+      operationId: listVsExclusions
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExclusionList'
+        '403':
+          description: Forbidden
+    post:
+      tags:
+        - VS Exclusions
+      summary: Create vulnerability scan exclusion
+      operationId: createVsExclusion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddExclusion'
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+        - VS Exclusions
+      summary: Delete vulnerability scan exclusion
+      operationId: deleteVsExclusion
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/exclusions/{exclusionId}:
+    get:
+      tags:
+        - VS Exclusions
+      summary: List excluded assets for an exclusion
+      operationId: getExcludedAssets
+      parameters:
+        - name: exclusionId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Exclusion ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetInfo'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+
+  # Vulnerability Scanning Report APIs
+  /vulnerability-scan/vulnerability-import-scan:
+    put:
+      tags:
+        - VS Reports
+      summary: Generate new vulnerability report
+      operationId: generateVulnerabilityReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateReportRequest'
+      responses:
+        '202':
+          description: Accepted
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/summary-reports:
+    get:
+      tags:
+        - VS Reports
+      summary: List vulnerability scan summary reports
+      operationId: listVsSummaryReports
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryReport'
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/generate-report:
+    post:
+      tags:
+        - VS Reports
+      summary: Generate detailed vulnerabilities report
+      operationId: generateDetailedVsReport
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+
+  /vulnerability-scan/get-export-data:
+    get:
+      tags:
+        - VS Reports
+      summary: Get detailed vulnerabilities report for CSV export
+      operationId: getVsExportData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedVSReportForExport'
+        '403':
+          description: Forbidden
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}
+
+  schemas:
+    # Assessment Schemas
+    AssessmentAccountResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Coalfire account identifier
+        sku:
+          type: string
+          description: Billing reference
+        accountId:
+          type: integer
+          description: Armor Account ID
+        status:
+          type: string
+          description: Assessment status
+        scanTargetStatus:
+          type: string
+          description: Scan Target status
+
+    AssessmentCreateAccountRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Armor Account ID
+        sku:
+          type: string
+          description: Billing reference
+
+    AssessmentUpdateAccountRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Updated assessment status
+        scanTargetStatus:
+          type: string
+          description: Updated scan target status
+
+    # CSPM Connector Schemas
+    CloudConnectors:
+      type: object
+      properties:
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorDetails'
+
+    CloudConnectorRequestDto:
+      type: object
+      required:
+        - accountId
+        - name
+        - provider
+      properties:
+        accountId:
+          type: integer
+          description: Account ID
+        arn:
+          type: string
+          description: ARN (for AWS)
+        name:
+          type: string
+          description: Connector Name
+        description:
+          type: string
+          description: Description
+        provider:
+          type: string
+          enum:
+            - AWS
+            - Azure
+            - GCP
+          description: Provider Type
+        externalId:
+          type: string
+          description: External ID
+        isChinaRegion:
+          type: boolean
+          description: Is China Region
+        isGovCloud:
+          type: boolean
+          description: Is Government Cloud
+        isPortalConnector:
+          type: boolean
+          description: Is Portal Connector
+        httpMethod:
+          type: string
+          description: HTTP Method
+        applicationId:
+          type: string
+          description: Azure Application ID
+        directoryId:
+          type: string
+          description: Azure Directory ID
+        subscriptionId:
+          type: string
+          description: Azure Subscription ID
+        authenticationKey:
+          type: string
+          description: Authentication Key
+        projectId:
+          type: string
+          description: GCP Project ID
+        gcpConfigJson:
+          type: string
+          description: GCP Config JSON
+
+    CloudConnectorDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Internal ID
+        connectorId:
+          type: string
+          description: Connector ID
+        arn:
+          type: string
+          description: ARN
+        externalId:
+          type: string
+          description: External ID
+        baseAccountId:
+          type: integer
+          description: Base Account ID
+        awsAccountId:
+          type: string
+          description: AWS Account ID
+        state:
+          type: string
+          description: State of connector
+        totalAssets:
+          type: string
+          description: Total assets count
+        name:
+          type: string
+          description: Connector name
+        description:
+          type: string
+          description: Description
+        provider:
+          type: string
+          enum:
+            - AWS
+            - Azure
+            - GCP
+          description: Provider type
+        isChinaRegion:
+          type: boolean
+          description: Is China Region
+        isGovCloud:
+          type: boolean
+          description: Is Government Cloud
+        isPortalConnector:
+          type: boolean
+          description: Is Portal Connector
+        error:
+          type: string
+          description: Error code
+        error_message:
+          type: string
+          description: Error message
+        lastSyncedOn:
+          type: string
+          format: date-time
+          description: Last sync date
+        dateCreated:
+          type: string
+          format: date-time
+          description: Creation date
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorByIdGroups'
+
+    CloudConnectorByIdGroups:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group ID
+        groupName:
+          type: string
+          description: Group name
+
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+
+    # CSPM Policy Schemas
+    CspmPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Policy ID
+        name:
+          type: string
+          description: Policy name
+        description:
+          type: string
+          description: Policy description
+        provider:
+          type: string
+          enum:
+            - AWS
+            - Azure
+            - GCP
+          description: Provider type
+        controlsCount:
+          type: integer
+          description: Number of controls
+
+    CspmPolicyControl:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        controlName:
+          type: string
+          description: Control name
+        description:
+          type: string
+          description: Control description
+        severity:
+          type: string
+          description: Control severity
+        remediationAvailable:
+          type: boolean
+          description: Whether remediation is available
+
+    # CSPM Report Schemas
+    CspmReportConfiguration:
+      type: object
+      required:
+        - title
+        - cloudtype
+      properties:
+        title:
+          type: string
+          description: Report Title
+        description:
+          type: string
+          description: Description
+        format:
+          type: string
+          description: Format details
+        type:
+          type: string
+          description: Report Type
+        cloudtype:
+          type: string
+          enum:
+            - AWS
+            - Azure
+            - GCP
+          description: Cloud Type
+        mandateId:
+          type: integer
+          description: Mandate ID
+        connectorIds:
+          type: array
+          items:
+            type: integer
+          description: Array of connector IDs
+        policies:
+          type: array
+          items:
+            type: string
+          description: Array of policies
+
+    ReportConfigurationResponse:
+      type: object
+      properties:
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmReportConfiguration'
+
+    CspmReportListDto:
+      type: object
+      properties:
+        reportId:
+          type: string
+          description: Report ID
+        title:
+          type: string
+          description: Report title
+        cloudType:
+          type: string
+          description: Cloud type
+        reportType:
+          type: string
+          description: Report type
+        lastRunDate:
+          type: string
+          format: date-time
+          description: Last run date
+
+    CspmReportDetailsDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Report title
+        reportId:
+          type: string
+          description: Report ID
+        accountId:
+          type: integer
+          description: Account ID
+        mandatesCount:
+          type: integer
+          description: Mandates count
+        requirementsCount:
+          type: integer
+          description: Requirements count
+        controlsCount:
+          type: integer
+          description: Controls count
+        totalEvaluationsCount:
+          type: integer
+          description: Total evaluations count
+        policiesCount:
+          type: integer
+          description: Policies count
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
+        passPercent:
+          type: number
+          format: float
+          description: Pass percentage
+        failPercent:
+          type: number
+          format: float
+          description: Fail percentage
+        cloudType:
+          type: string
+          description: Cloud type
+        reportType:
+          type: string
+          description: Report type
+        mandateName:
+          type: string
+          description: Mandate name
+        lastRunDate:
+          type: string
+          format: date-time
+          description: Last run date
+        dataLakeSearchUrl:
+          type: string
+          description: Data lake search URL
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmReportRequirementDetails'
+
+    CspmReportRequirementDetails:
+      type: object
+      properties:
+        requirementId:
+          type: string
+          description: Requirement ID
+        requirementName:
+          type: string
+          description: Requirement name
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
+
+    CspmResourceDetails:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        region:
+          type: string
+          description: Region
+        status:
+          type: string
+          description: Status
+
+    # CSPM Resources Schemas
+    PagedResultSet:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmResourceListDto'
+
+    CspmResourceListDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        accountId:
+          type: integer
+          description: Account ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        cloudAccountId:
+          type: string
+          description: Cloud account ID
+        region:
+          type: string
+          description: Region
+        provider:
+          type: string
+          enum:
+            - AWS
+            - Azure
+            - GCP
+          description: Provider
+        dateDiscovered:
+          type: string
+          format: date-time
+          description: Date discovered
+        dateLastFound:
+          type: string
+          format: date-time
+          description: Date last found
+        resourceEvaluation:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceEvaluationDto'
+
+    ResourceDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        details:
+          type: object
+          additionalProperties: true
+          description: Resource details
+
+    ResourceEvaluationDto:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        status:
+          type: string
+          description: Evaluation status
+        evaluatedOn:
+          type: string
+          format: date-time
+          description: Evaluation date
+
+    # CSPM Summary Schemas
+    CloudConnectorSummaryDto:
+      type: object
+      properties:
+        totalConnectors:
+          type: integer
+          description: Total connectors
+        activeConnectors:
+          type: integer
+          description: Active connectors
+        totalAssets:
+          type: integer
+          description: Total assets
+        byProvider:
+          type: object
+          additionalProperties:
+            type: integer
+          description: Count by provider
+
+    # CSPM Usage Schemas
+    CspmUsageDto:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Usage date
+        assetsCount:
+          type: integer
+          description: Assets count
+        connectorsCount:
+          type: integer
+          description: Connectors count
+
+    # Vulnerability Scanning Schemas
+    AssetVulnerabilityDetail:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset identifier
+        assetName:
+          type: string
+          description: Asset name
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetVulnerability'
+
+    AssetVulnerabilitiesPagedList:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetVulnerability'
+
+    AssetVulnerability:
+      type: object
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        title:
+          type: string
+          description: Vulnerability title
+        description:
+          type: string
+          description: Diagnosis Information
+        consequence:
+          type: string
+          description: Exploitation consequence
+        severity:
+          type: string
+          enum:
+            - Critical
+            - High
+            - Medium
+            - Low
+            - Informational
+          description: Severity level
+        cvssScore:
+          type: string
+          description: CVSS v2.0 Score (0-10)
+        cvss3Score:
+          type: string
+          description: CVSS v3.0 Score (0-10)
+        cveList:
+          type: object
+          additionalProperties: true
+          description: CVE entries
+        exploits:
+          type: integer
+          description: Number of Exploits
+        discoveredDate:
+          type: string
+          format: date-time
+          description: First found date
+        port:
+          type: integer
+          description: Network Port
+        protocol:
+          type: string
+          description: Protocol
+        proof:
+          type: string
+          description: Proof of vulnerability
+        solution:
+          type: string
+          description: Remediation solution
+        published:
+          type: string
+          description: Publication date
+        references:
+          type: object
+          additionalProperties: true
+          description: References
+
+    CurrentVulnerabilitiesSummary:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Vulnerability'
+
+    Vulnerability:
+      type: object
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityReportId:
+          type: string
+          description: Vulnerability report ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        vms:
+          type: array
+          items:
+            type: string
+          description: Associated instances
+        hasExploits:
+          type: string
+          description: Has exploits flag
+        isMetasploit:
+          type: string
+          description: Is Metasploit flag
+        severity:
+          type: integer
+          description: Numerical severity
+        severityLevel:
+          type: string
+          enum:
+            - Critical
+            - High
+            - Medium
+            - Low
+            - Informational
+          description: Severity level
+        category:
+          type: array
+          items:
+            type: string
+          description: Categories
+        cvssBaseScore:
+          type: string
+          description: CVSS base score
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        affectedAssetsCount:
+          type: integer
+          description: Affected assets count
+        excludedAssetsCount:
+          type: integer
+          description: Excluded assets count
+        excludedAssets:
+          type: array
+          items:
+            type: string
+          description: Excluded assets list
+
+    VulnerabilityWithAssetsCount:
+      allOf:
+        - $ref: '#/components/schemas/Vulnerability'
+        - type: object
+          properties:
+            totalAffectedAssets:
+              type: integer
+              description: Total affected assets count
+
+    VulnerabilityDetail:
+      type: object
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        description:
+          type: string
+          description: Detailed description
+        severity:
+          type: string
+          description: Severity level
+        cvssScore:
+          type: string
+          description: CVSS score
+        cvss3Score:
+          type: string
+          description: CVSS v3 score
+        solution:
+          type: string
+          description: Remediation solution
+        references:
+          type: object
+          additionalProperties: true
+          description: References
+        affectedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+
+    VulnerabilityByVm:
+      type: object
+      properties:
+        vmId:
+          type: string
+          description: VM ID
+        vmName:
+          type: string
+          description: VM name
+        criticalCount:
+          type: integer
+          description: Critical vulnerabilities count
+        highCount:
+          type: integer
+          description: High vulnerabilities count
+        mediumCount:
+          type: integer
+          description: Medium vulnerabilities count
+        lowCount:
+          type: integer
+          description: Low vulnerabilities count
+        informationalCount:
+          type: integer
+          description: Informational vulnerabilities count
+
+    # VS Exclusions Schemas
+    ExclusionList:
+      type: object
+      properties:
+        exclusionId:
+          type: string
+          description: Exclusion ID
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets flag
+        comment:
+          type: string
+          description: Exclusion comment
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+        createdBy:
+          type: string
+          description: Created by user
+        createdDate:
+          type: string
+          format: date-time
+          description: Creation date
+
+    AddExclusion:
+      type: object
+      required:
+        - vulnerabilityId
+        - vulnerabilityName
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets
+        excludedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          description: Specific excluded assets
+        comment:
+          type: string
+          description: Exclusion details
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+
+    AssetInfo:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset ID
+        assetName:
+          type: string
+          description: Asset name
+
+    # VS Reports Schemas
+    GenerateReportRequest:
+      type: object
+      properties:
+        reportType:
+          type: string
+          description: Report type
+        format:
+          type: string
+          description: Report format
+
+    SummaryReport:
+      type: object
+      properties:
+        reportId:
+          type: string
+          description: Report ID
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        totalVulnerabilities:
+          type: integer
+          description: Total vulnerabilities
+        criticalCount:
+          type: integer
+          description: Critical count
+        highCount:
+          type: integer
+          description: High count
+        mediumCount:
+          type: integer
+          description: Medium count
+        lowCount:
+          type: integer
+          description: Low count
+        informationalCount:
+          type: integer
+          description: Informational count
+        assetsScanned:
+          type: integer
+          description: Assets scanned count
+
+    DetailedVSReportForExport:
+      type: object
+      properties:
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Export data rows

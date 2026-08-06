@@ -1,0 +1,744 @@
+openapi: 3.0.3
+info:
+  title: Accounts API
+  description: |
+    This API provides an interface for configuring and interacting with Armor's account
+    management functionality.
+
+    Base URL: `https://accounts.api.secure-prod.services/`
+  version: 1.0.0
+
+servers:
+  - url: https://accounts.api.secure-dev.services
+    description: Development
+  - url: https://accounts.api.secure-stage.services
+    description: Staging
+  - url: https://accounts.api.secure-prod.services
+    description: Production
+
+security:
+  - OAuth2: []
+
+tags:
+  - name: Cloud Connections
+    description: Cloud connection management operations
+  - name: Secure Notes
+    description: |
+      The secure notes resource allows users to securely store and manage sensitive information such as passwords,
+      credentials, and other confidential data.
+  - name: Tours
+    description: |
+      The tours resource describes a list of UI tours that help users learn about features in the ARMOR Management Portal.
+      The preferences stored in this resource aid the portal in determining which tours should be displayed to the currently logged-in user.
+
+paths:
+  /cloud-connections:
+    post:
+      tags:
+        - Cloud Connections
+      summary: Get cloud connections by Account Id
+      description: Retrieve All Cloud Connections based on Account Id.
+      operationId: getCloudConnectionsByAccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: searchText
+          in: query
+          description: Search text to filter cloud connections.
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          description: Current page number.
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          description: Number of cloud connections to be displayed on page.
+          schema:
+            type: integer
+        - name: sortFld
+          in: query
+          description: Cloud connections sorting field.
+          schema:
+            type: string
+        - name: sortDir
+          in: query
+          description: Cloud connection sort order direction (asc/desc).
+          schema:
+            type: string
+        - name: filterBy
+          in: query
+          description: Cloud connections filter by provider type.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionResourceResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /cloud-connection/service-types:
+    get:
+      tags:
+        - Cloud Connections
+      summary: Get All Connection Service Types
+      description: Retrieve All Connection Service Types.
+      operationId: getConnectionServiceTypes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionServiceTypesResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /cloud-connections/{connectionId}:
+    get:
+      tags:
+        - Cloud Connections
+      summary: Get cloud connection detail by connection Id
+      description: Retrieve cloud connection detail by connection Id.
+      operationId: getCloudConnectionDetail
+      parameters:
+        - name: connectionId
+          in: path
+          required: true
+          description: The unique identifier of the cloud connection.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionDetailResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /securenotes/securenotes:
+    get:
+      tags:
+        - Secure Notes
+      summary: Get all secure notes
+      description: Retrieve a list of all secure notes for the account.
+      operationId: getAllSecureNotes
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecureNote'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      tags:
+        - Secure Notes
+      summary: Create a new secure note
+      description: Create a new secure note with encrypted content.
+      operationId: createSecureNote
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecureNoteCreateRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecureNoteDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /securenotes/securenotes/{id}:
+    get:
+      tags:
+        - Secure Notes
+      summary: Get secure note by ID
+      description: Retrieve a specific secure note by its ID. This endpoint does not include the encrypted content.
+      operationId: getSecureNoteById
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the secure note.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecureNoteDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Secure Notes
+      summary: Update secure note
+      description: Update an existing secure note's details.
+      operationId: updateSecureNote
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the secure note.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SecureNoteUpdateRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecureNoteDetail'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      tags:
+        - Secure Notes
+      summary: Delete secure note
+      description: Delete a secure note by its ID.
+      operationId: deleteSecureNote
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the secure note.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /securenotes/securenotes/{id}/reveal:
+    get:
+      tags:
+        - Secure Notes
+      summary: Reveal secure note content
+      description: Retrieve a secure note with its encrypted content revealed.
+      operationId: revealSecureNoteContent
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: id
+          in: path
+          required: true
+          description: The unique identifier of the secure note.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecureNoteRevealResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /users/{userId}/tours:
+    get:
+      tags:
+        - Tours
+      summary: Get tour preferences
+      description: Get the tour preferences for the specified user.
+      operationId: getTourPreferences
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The identifier of the user for which tour preferences are being requested.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourPreference'
+    put:
+      tags:
+        - Tours
+      summary: Update tour preferences
+      description: Update the tour preferences of the specified user.
+      operationId: updateTourPreferences
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          description: The identifier of the user for which tour preferences are being updated.
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TourPreference'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourPreference'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+
+    ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Cloud connection sub service type id.
+        name:
+          type: string
+          description: Cloud connection sub service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection provider sub service type name.
+        imageName:
+          type: string
+          description: Cloud connection provider sub service type image name.
+        policy:
+          type: string
+          description: Cloud connection provider sub service type policy.
+
+    ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          type: integer
+          description: Account cloud connection id.
+        lastSuccessfulConnectionDate:
+          type: string
+          description: Last successful connection date.
+        id:
+          type: integer
+          description: Cloud connection service id.
+        name:
+          type: string
+          description: Cloud connection service name.
+        subServices:
+          type: array
+          description: Cloud connection sub service type.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+        imageName:
+          type: string
+          description: Cloud connection provider service image name.
+
+    CloudConnectionResourceResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cloud connection.
+        accountId:
+          type: integer
+          description: The accountId of the cloud connection.
+        name:
+          type: string
+          description: The Name of the cloud connection.
+        externalId:
+          type: string
+          description: The ExternalId of the cloud connection.
+        provider:
+          type: string
+          description: The Name of the cloud provider.
+        providerAccountId:
+          type: string
+          description: The accountId of the cloud provider.
+        providerAccessResource:
+          type: string
+          description: The Name of the cloud provider access resource.
+        total:
+          type: integer
+          description: The cloud connections count.
+        isEnabled_Beta:
+          type: boolean
+          description: Flag indicating if beta is enabled.
+        isEnabled_Ec2:
+          type: boolean
+          description: Flag indicating if EC2 is enabled.
+        isEnabled_Log:
+          type: boolean
+          description: States log enabled or not.
+        setupStatus:
+          type: string
+          description: Cloud connection setup status.
+        services:
+          type: array
+          description: Cloud Connection Services.
+          items:
+            $ref: '#/components/schemas/ConnectionService'
+
+    CloudConnectionServiceTypesResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cloud connection service type.
+        name:
+          type: string
+          description: The name of the service type.
+        subServices:
+          type: array
+          description: Cloud connection sub services.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection service type policy.
+        imageName:
+          type: string
+          description: The image name of the service type.
+
+    CloudConnectionDetailResult:
+      type: object
+      properties:
+        providerAccountId:
+          type: integer
+          description: Armor AWS account id.
+        connectionName:
+          type: string
+          description: Cloud connection name.
+        description:
+          type: string
+          description: Cloud connection description.
+        externalId:
+          type: string
+          description: Cloud connection externalId.
+        providerAccessResource:
+          type: string
+          description: Cloud connection provider access resource.
+        accountConnectionId:
+          type: integer
+          description: Account connection id.
+        providerTypeName:
+          type: string
+          description: Cloud connection provider type name.
+        serviceTypeName:
+          type: string
+          description: Cloud connection service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection sub service name.
+        awsBaseJsonPolicy:
+          type: string
+          description: AWS Base JSON Policy.
+        armorAwsAccountId:
+          type: string
+          description: Armor AWS account id.
+        serviceTypeId:
+          type: string
+          description: Cloud connection service type id.
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+
+    TourPreference:
+      type: object
+      required:
+        - tourId
+        - displayCount
+        - dismissed
+      properties:
+        tourId:
+          type: integer
+          description: The numeric identifier of the page tour.
+          example: 1
+        displayCount:
+          type: integer
+          description: The number of times this tour has been displayed to the currently logged-in user.
+          example: 1
+        dismissed:
+          type: boolean
+          description: Whether or not the tour has been dismissed by the currently logged-in user.
+          example: false
+
+    SecureNote:
+      type: object
+      required:
+        - id
+        - accountId
+        - displayName
+        - isEmployee
+        - isShared
+        - createdAt
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the secure note.
+          example: 6667d45e-73c5-42b1-986e-dffa5226e65b
+        accountId:
+          type: integer
+          description: The account ID associated with the secure note.
+          example: 2
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: My Secure Note
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Contains production credentials
+        isEmployee:
+          type: boolean
+          description: Indicates if the secure note is associated with an employee.
+          example: false
+        isShared:
+          type: boolean
+          description: Indicates if the secure note is shared with others.
+          example: false
+        createdAt:
+          type: string
+          description: The timestamp when the secure note was created.
+          example: '2025-12-06T23:53:31.000Z'
+
+    SecureNoteDetail:
+      type: object
+      required:
+        - id
+        - accountId
+        - displayName
+        - isEmployee
+        - isShared
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the secure note.
+          example: 6667d45e-73c5-42b1-986e-dffa5226e65b
+        accountId:
+          type: integer
+          description: The account ID associated with the secure note.
+          example: 2
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: My Secure Note
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Contains production credentials
+        isEmployee:
+          type: boolean
+          description: Indicates if the secure note is associated with an employee.
+          example: false
+        isShared:
+          type: boolean
+          description: Indicates if the secure note is shared with others.
+          example: false
+        createdAt:
+          type: string
+          description: The timestamp when the secure note was created.
+          example: '2025-12-06T23:53:31.000Z'
+        updatedAt:
+          type: string
+          description: The timestamp when the secure note was last updated.
+          example: '2025-12-07T00:27:48.000Z'
+
+    SecureNoteCreateRequest:
+      type: object
+      required:
+        - displayName
+        - isShared
+      properties:
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: Test123
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Test
+        secureNote:
+          $ref: '#/components/schemas/SecureNoteContent'
+        isShared:
+          type: boolean
+          description: Indicates if the secure note should be shared with others.
+          example: true
+
+    SecureNoteUpdateRequest:
+      type: object
+      required:
+        - displayName
+        - isShared
+      properties:
+        displayName:
+          type: string
+          description: The updated display name of the secure note.
+          example: Test123 Updated
+        isShared:
+          type: boolean
+          description: Indicates if the secure note should be shared with others.
+          example: true
+
+    SecureNoteRevealResult:
+      type: object
+      required:
+        - id
+        - accountId
+        - displayName
+        - isEmployee
+        - isShared
+        - createdAt
+        - updatedAt
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the secure note.
+          example: 6667d45e-73c5-42b1-986e-dffa5226e65b
+        accountId:
+          type: integer
+          description: The account ID associated with the secure note.
+          example: 2
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: My Secure Note
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Contains production credentials
+        isEmployee:
+          type: boolean
+          description: Indicates if the secure note is associated with an employee.
+          example: false
+        isShared:
+          type: boolean
+          description: Indicates if the secure note is shared with others.
+          example: false
+        createdAt:
+          type: string
+          description: The timestamp when the secure note was created.
+          example: '2025-12-06T23:53:31.000Z'
+        updatedAt:
+          type: string
+          description: The timestamp when the secure note was last updated.
+          example: '2025-12-07T00:27:48.000Z'
+        secureNote:
+          $ref: '#/components/schemas/SecureNoteContent'
+
+    SecureNoteContent:
+      type: object
+      required:
+        - secureNote
+      properties:
+        secureNote:
+          type: string
+          description: The encrypted content of the secure note.

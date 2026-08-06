@@ -1,0 +1,1123 @@
+openapi: 3.0.3
+info:
+  title: Incident Management API
+  description: |
+    APIs for interacting with Armor products and services for incident management.
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+  version: 1.0.0
+
+servers:
+  - url: https://security-detections.api.secure-dev.services
+    description: Development
+  - url: https://security-detections.api.secure-stage.services
+    description: Staging
+  - url: https://security-detections.api.secure-prod.services
+    description: Production
+
+security:
+  - OAuth2: []
+
+tags:
+  - name: EDR
+    description: Endpoint Detection and Response operations
+  - name: Security Detection Events
+    description: Security detection event operations
+  - name: Security Detections
+    description: Security detection operations
+  - name: Security Detections Overview
+    description: Security detections overview operations
+  - name: Trend
+    description: Trend AV report operations
+
+paths:
+  /edr/uninstall-code/{cid}:
+    get:
+      tags:
+        - EDR
+      summary: Get EDR uninstall code
+      description: Get EDR uninstall code for a core instance.
+      operationId: getEdrUninstallCode
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: cid
+          in: path
+          required: true
+          description: The coreInstance of the Armor Agent.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /edr/sign-up:
+    get:
+      tags:
+        - EDR
+      summary: Get EDR sign-up details
+      description: Get EDR sign-up details. You can see ticket and provision status.
+      operationId: getEdrSignUp
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEdrSignUp'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - EDR
+      summary: Create EDR sign-up details
+      description: Create EDR sign-up details. You can choose EDR plan and number of licenses.
+      operationId: createEdrSignUp
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostEdrSignUp'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /edr/configuration:
+    get:
+      tags:
+        - EDR
+      summary: Get EDR configuration details
+      description: Get EDR configuration details. You can see the configuration required to setup organization in Carbon Black Cloud.
+      operationId: getEdrConfiguration
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEdrConfiguration'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - EDR
+      summary: Create EDR configuration details
+      description: Create EDR configuration details. You can setup EDR configuration in Carbon Black Cloud for an organization.
+      operationId: createEdrConfiguration
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostEdrConfiguration'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /edr/event-forwarder:
+    get:
+      tags:
+        - EDR
+      summary: Get EDR Event Forwarder details
+      description: Get EDR event forwarder details. You can see the list of event forwarders configured in Carbon Black Cloud for an organization.
+      operationId: getEdrEventForwarder
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetEdrEventForwarder'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /edr/usage:
+    get:
+      tags:
+        - EDR
+      summary: Get EDR usage details
+      description: Get EDR usage details. You can see the list of EDR usage.
+      operationId: getEdrUsage
+      parameters:
+        - name: limit
+          in: query
+          description: Total number of records to return.
+          schema:
+            type: integer
+        - name: offset
+          in: query
+          description: Total number of records to skip.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetEdrUsage'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /security-detections/{detectionId}/events:
+    get:
+      tags:
+        - Security Detection Events
+      summary: List Events related to a Detection
+      description: |
+        Get a list of events related to a security detection.
+
+        If more than 1000 events are related to the given detection, then the 1000 most recent
+        events are returned. This endpoint does not presently support paging using the `Range` header.
+      operationId: listDetectionEvents
+      parameters:
+        - name: detectionId
+          in: path
+          required: true
+          description: The unique identifier of the detection.
+          schema:
+            type: integer
+      responses:
+        '206':
+          description: Partial content - list of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetectionEvent'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /security-detections/{detectionId}:
+    get:
+      tags:
+        - Security Detections
+      summary: Get Details of a Detection
+      description: Get the details of a specific security detection or incident.
+      operationId: getDetectionDetail
+      parameters:
+        - name: detectionId
+          in: path
+          required: true
+          description: The unique ID for detection.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /security-detections:
+    get:
+      tags:
+        - Security Detections
+      summary: List Detections
+      description: Get a list of all security detections and incidents.
+      operationId: listDetections
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/PaginationToken'
+        - name: filter
+          in: query
+          description: |
+            OData filter parameter.
+            Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: |
+            Search by Description, Id, etc.
+            Note: Fields are case sensitive.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /v2/security-detections:
+    get:
+      tags:
+        - Security Detections
+      summary: List Detections with Pagination
+      description: Get a list of all security detections and incidents with pagination support.
+      operationId: listDetectionsV2
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/XRange'
+        - $ref: '#/components/parameters/PaginationToken'
+        - name: filter
+          in: query
+          description: |
+            OData filter parameter.
+            Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New+lookBackInDays+eq+1`
+            Using lookBackInDays filter, you can filter data based on lastUpdatedTime. Min: 1, Max: 395 days.
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: |
+            Search by Description, Id, etc.
+            Note: Fields are case sensitive.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response - all results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionsResponse'
+        '206':
+          description: Partial content - more results available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /security-detections/accounts/{accountId}:
+    get:
+      tags:
+        - Security Detections
+      summary: List Parent Customer Security Detections
+      description: Get a list of all security detections and incidents with delivery receiptIds.
+      operationId: listParentCustomerDetections
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/PaginationToken'
+        - name: accountId
+          in: path
+          required: true
+          description: The accountId.
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          description: |
+            OData filter parameter.
+            Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: |
+            Search by Description, Id, etc.
+            Note: Fields are case sensitive.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /v2/security-detections/accounts/{accountId}:
+    get:
+      tags:
+        - Security Detections
+      summary: List Parent Customer Security Detections with Pagination
+      description: Get a list of all security detections and incidents with delivery receiptIds.
+      operationId: listParentCustomerDetectionsV2
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/Range'
+        - $ref: '#/components/parameters/PaginationToken'
+        - name: accountId
+          in: path
+          required: true
+          description: The accountId.
+          schema:
+            type: integer
+        - name: filter
+          in: query
+          description: |
+            OData filter parameter.
+            Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: |
+            Search by Description, Id, etc.
+            Note: Fields are case sensitive.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /security-detections-overview:
+    get:
+      tags:
+        - Security Detections Overview
+      summary: Security Detections Overview
+      description: Get security detections overview.
+      operationId: getSecurityDetectionsOverview
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: filter
+          in: query
+          description: OData filter parameter.
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: Search parameter.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionOverview'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /trend/av-report:
+    get:
+      tags:
+        - Trend
+      summary: Get Details of a Trend AV report
+      description: Get the details of a Trend AV report.
+      operationId: getTrendAvReport
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: offset
+          in: query
+          description: The offset value to fetch next records.
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          description: The value to limit the number of records fetched.
+          schema:
+            type: integer
+        - name: orderby
+          in: query
+          description: "Sort direction. Example: `id desc`."
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: "Sort by column. Example: `VM Name`, `Report Date`, etc."
+          schema:
+            type: string
+        - name: search
+          in: query
+          description: |
+            Search by VM Name.
+            Note: Fields are case sensitive.
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendAvReportResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+
+    Range:
+      name: Range
+      in: header
+      description: "Range header for pagination. Example: `entities=0-10; max=10`"
+      schema:
+        type: string
+
+    XRange:
+      name: x-range
+      in: header
+      description: "Range header for pagination. Example: `entities=0-10; max=10`"
+      schema:
+        type: string
+
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+
+    EdrServices:
+      type: object
+      properties:
+        skuMappingId:
+          type: integer
+          description: Unique identifier of mapping id.
+        sku:
+          type: string
+          description: EDR SKU name.
+        accountType:
+          type: string
+          description: Type of account.
+        accountProduct:
+          type: string
+          description: Account Product.
+        name:
+          type: string
+          description: EDR service name.
+        description:
+          type: string
+          description: EDR service description.
+        features:
+          type: array
+          description: EDR features.
+          items:
+            type: string
+
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of admin user.
+        email:
+          type: string
+          description: Admin user email id.
+        firstName:
+          type: string
+          description: Admin user first name.
+        lastName:
+          type: string
+          description: Admin user last name.
+
+    GetEdrSignUp:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        userId:
+          type: string
+          description: EDR user Id.
+        companyName:
+          type: string
+          description: Company Name.
+        companyEmail:
+          type: string
+          description: Company email address.
+        phoneNumber:
+          type: string
+          description: Phone number.
+        address:
+          type: string
+          description: Company address.
+        numberOfLicense:
+          type: integer
+          description: Number of licenses.
+        ticketNumber:
+          type: string
+          description: Ticket number.
+        dateCreated:
+          type: string
+          format: date-time
+          description: Date EDR record created.
+        dateModified:
+          type: string
+          format: date-time
+          description: Modified date.
+        orgKey:
+          type: string
+          description: EDR organization key.
+        companyCode:
+          type: string
+          description: EDR company code.
+        provisionCompleted:
+          type: boolean
+          description: Status of EDR provision.
+        edrSku:
+          type: string
+          description: EDR SKU name.
+        planName:
+          type: string
+          description: EDR plan name.
+        edrServices:
+          type: array
+          description: Available EDR services.
+          items:
+            $ref: '#/components/schemas/EdrServices'
+        contactInfo:
+          type: object
+          description: Contact information.
+        mainTo:
+          type: object
+          description: Mail To information.
+        adminUser:
+          $ref: '#/components/schemas/AdminUser'
+
+    PostEdrSignUp:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Company Name.
+        companyEmail:
+          type: string
+          description: Company email address.
+        phoneNumber:
+          type: string
+          description: Phone number.
+        address:
+          type: string
+          description: Company address.
+        numberOfLicense:
+          type: integer
+          description: Number of licenses.
+        edrSku:
+          type: string
+          description: EDR SKU name (from `edrServices` in GET /edr/sign-up).
+        adminUser:
+          $ref: '#/components/schemas/AdminUser'
+
+    GetEdrConfiguration:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        companyCode:
+          type: string
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+
+    PostEdrConfiguration:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+        superAdminApiId:
+          type: string
+          description: ApiId used with Carbon Black User APIs.
+        superAdminApiSecretKey:
+          type: string
+          description: SecretKey used with Carbon Black User APIs.
+
+    GetEdrEventForwarder:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique Id of an event forwarder.
+        org_key:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        name:
+          type: string
+          description: Name of an event forwarder.
+        enabled:
+          type: boolean
+          description: Flag to denote if an event forwarder is enabled or not.
+        s3_bucket_name:
+          type: string
+          description: Name of the AWS S3 bucket configured.
+        s3_prefix:
+          type: string
+          description: Prefix text used for event forwarder logs.
+        type:
+          type: string
+          description: Type of the event forwarder log whether Alert or Event.
+        create_time:
+          type: string
+          format: date-time
+          description: Date and Time when the event forwarder is setup.
+
+    GetEdrUsage:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        count:
+          type: string
+          description: Total number of VMs with EDR agents installed.
+
+    SecurityDetectionEvent:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        category:
+          type: string
+          description: The category of the event.
+        coreInstanceId:
+          type: string
+          format: uuid
+          description: The unique identifier of the instance.
+        destIp:
+          type: string
+          nullable: true
+          description: The IP address targeted by this event.
+        destPort:
+          type: integer
+          nullable: true
+          description: The IP port targeted by this event.
+        eventId:
+          type: string
+          format: uuid
+          description: The unique identifier of the event.
+        logSourceId:
+          type: string
+          format: uuid
+          description: The unique identifier of the log source from which the event originated.
+        logSourceName:
+          type: string
+          description: The name of the log source from which the event originated.
+        name:
+          type: string
+          description: The name of the event - describes the event type.
+        rawEvent:
+          type: string
+          nullable: true
+          description: The payload associated with this event.
+        sourceIp:
+          type: string
+          nullable: true
+          description: The IP address from which this event originated.
+        sourcePort:
+          type: integer
+          nullable: true
+          description: The IP port from which this event originated.
+        timestamp:
+          type: string
+          format: date-time
+          description: The date and time this event was received.
+        username:
+          type: string
+          nullable: true
+          description: The username associated with this event.
+
+    DeliveryReceipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+          description: The receiptId of notification sent.
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time notification sent.
+        status:
+          type: string
+          description: The status of receipt.
+
+    SecurityDetection:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        detectionId:
+          type: integer
+          description: The unique identifier of the detection.
+        description:
+          type: string
+          description: A description of the detection.
+        categories:
+          type: array
+          description: Event categories that are associated with the detection.
+          items:
+            type: string
+        severity:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: The severity of the detection.
+        ticketStatus:
+          type: string
+          nullable: true
+          description: The ticket status of the detection.
+        status:
+          type: string
+          description: The status of the detection.
+          enum:
+            - New
+            - Open
+            - In Progress
+            - Pending Customer
+            - Customer Responded
+            - Completed
+            - Closed
+        detectionType:
+          type: string
+          description: The type of the detection.
+          enum:
+            - Detection
+            - Incident
+        eventCount:
+          type: integer
+          description: The number of events that are associated with the detection.
+        startTime:
+          type: string
+          format: date-time
+          description: The date and time the first event associated with this detection was received.
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time the most recent event associated with this detection was received.
+        ticketId:
+          type: string
+          nullable: true
+          description: The Id of the ticket created to manage detections tagged as incident.
+        ticketUrl:
+          type: string
+          nullable: true
+          description: The URL of the ticket created in response to this detection.
+        deliveryReceipts:
+          type: array
+          description: ReceiptIds generated for every notification delivery.
+          items:
+            $ref: '#/components/schemas/DeliveryReceipt'
+
+    SecurityDetectionsResponse:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: List of SecurityDetection records.
+          items:
+            $ref: '#/components/schemas/SecurityDetection'
+
+    SeverityLevel:
+      type: object
+      properties:
+        severityName:
+          type: string
+          description: The severity associated with the incident/detection.
+        severityCount:
+          type: integer
+          description: The number of incidents/detections for the severity.
+        severityPercentage:
+          type: string
+          description: The percentage of incidents/detections for the severity.
+
+    Category:
+      type: object
+      properties:
+        categoryName:
+          type: string
+          description: The category associated with the incident/detection.
+        categoryCount:
+          type: integer
+          description: The number of incidents/detections for the category.
+        categoryPercentage:
+          type: string
+          description: The percentage of incidents/detections for the category.
+
+    Description:
+      type: object
+      properties:
+        descriptionName:
+          type: string
+          description: The description associated with the incident/detection.
+        descriptionCount:
+          type: integer
+          description: The number of incidents/detections for the description.
+        descriptionPercentage:
+          type: string
+          description: The percentage of incidents/detections for the description.
+
+    SecurityDetectionOverview:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        offenseId:
+          type: integer
+          description: The same value as the customer Account identifier.
+        incidentCount:
+          type: integer
+          description: The number of incidents.
+        detectionCount:
+          type: integer
+          description: The number of detections.
+        severityLevels:
+          type: array
+          description: The severity levels for the incidents and detections.
+          items:
+            $ref: '#/components/schemas/SeverityLevel'
+        categories:
+          type: array
+          description: The categories that are associated with the incidents and detections.
+          items:
+            $ref: '#/components/schemas/Category'
+        descriptions:
+          type: array
+          description: The descriptions that are associated with the incidents and detections.
+          items:
+            $ref: '#/components/schemas/Description'
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time the recent security overview report was updated.
+
+    TrendAvReports:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: The accountId of a VM asset.
+        vmName:
+          type: string
+          description: Name of a VM asset.
+        coreInstanceId:
+          type: string
+          description: Unique identifier of a VM asset.
+        agentVersion:
+          type: string
+          description: Agent version.
+        signatureVersion:
+          type: integer
+          description: Signature version.
+        signatureUpdateDate:
+          type: string
+          format: date-time
+          description: Signature update date.
+        reportDate:
+          type: string
+          format: date-time
+          description: Report generated date.
+        manualScanDate:
+          type: string
+          format: date-time
+          description: Date of manual scan.
+        policyUpdateStatus:
+          type: string
+          description: Policy update status.
+        cleanCount:
+          type: integer
+          description: Clean count.
+        passCount:
+          type: integer
+          description: Pass count.
+        quarantineCount:
+          type: integer
+          description: Quarantine count.
+        deleteCount:
+          type: integer
+          description: Delete count.
+        denyAccessCount:
+          type: integer
+          description: Deny access count.
+        otherCount:
+          type: integer
+          description: Other count.
+        malwareStatus:
+          type: string
+          description: Malware status.
+        malwareUpdateTime:
+          type: string
+          format: date-time
+          description: Malware update time.
+        malwareMessage:
+          type: string
+          description: Malware message.
+
+    TrendAvReportResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Trend AV Reports list.
+          items:
+            $ref: '#/components/schemas/TrendAvReports'
+        total:
+          type: integer
+          description: Total number of reports.

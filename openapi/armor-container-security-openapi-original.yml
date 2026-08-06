@@ -1,0 +1,1058 @@
+openapi: 3.0.3
+info:
+  title: Container Security API
+  description: |
+    This API provides an interface for configuring and interacting with Armor's container security platform.
+
+    To connect to this API, use the following fully-qualified domain name (FQDN):
+    `compliance.api.secure-prod.services/containers`
+  version: 1.0.0
+
+servers:
+  - url: https://compliance.api.secure-dev.services/containers
+    description: Development
+  - url: https://compliance.api.secure-stage.services/containers
+    description: Staging
+  - url: https://compliance.api.secure-prod.services/containers
+    description: Production
+
+security:
+  - OAuth2: []
+
+tags:
+  - name: Account
+    description: Account management operations
+  - name: Connector
+    description: Connector management operations
+  - name: Image
+    description: Image management operations
+  - name: Registry
+    description: Registry management operations
+  - name: Sensor
+    description: Sensor management operations
+
+paths:
+  /accounts:
+    get:
+      tags:
+        - Account
+      summary: Get Account-Specific Installation Details
+      description: Returns metadata used for managing your container security subscription.
+      operationId: getAccountDetails
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetailsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Account
+      summary: Create Subscription
+      description: Newly-subscribe your account to begin using container security.
+      operationId: createSubscription
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '202':
+          description: Subscription creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerSecurityAccountCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /connectors/aws-base:
+    get:
+      tags:
+        - Connector
+      summary: Get AWS Configuration Details
+      description: Returns values necessary for configuring AWS IAM ahead of configuring AWS ECR-specific Connectors.
+      operationId: getAwsBaseConfig
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AwsBaseResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /connectors:
+    get:
+      tags:
+        - Connector
+      summary: Get All Connectors
+      description: Returns a list of all connectors.
+      operationId: getAllConnectors
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewAllConnectorsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Connector
+      summary: Create Connector
+      description: Creates a new connector.
+      operationId: createConnector
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConnectorCreateRequest'
+      responses:
+        '202':
+          description: Connector creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /connectors/{id}:
+    get:
+      tags:
+        - Connector
+      summary: Get Connector Detail
+      description: Returns details for a specific connector.
+      operationId: getConnectorDetail
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Connector
+      summary: Delete Connector
+      description: Deletes a specific connector.
+      operationId: deleteConnector
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/ConnectorId'
+      responses:
+        '200':
+          description: Connector deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectorDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /images:
+    get:
+      tags:
+        - Image
+      summary: Get All Images
+      description: Returns a list of all images.
+      operationId: getAllImages
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewAllImagesResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /images/{id}:
+    get:
+      tags:
+        - Image
+      summary: Get Image Detail
+      description: Returns details for a specific image.
+      operationId: getImageDetail
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/ImageId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /registries:
+    get:
+      tags:
+        - Registry
+      summary: Get All Registries
+      description: Returns a list of all registries.
+      operationId: getAllRegistries
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerRegistryResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+        - Registry
+      summary: Create Registry
+      description: Creates a new registry.
+      operationId: createRegistry
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistryCreateRequest'
+      responses:
+        '202':
+          description: Registry creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /registries/{id}:
+    get:
+      tags:
+        - Registry
+      summary: Get Registry Detail
+      description: Returns details for a specific registry.
+      operationId: getRegistryDetail
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/RegistryId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Registry
+      summary: Delete Registry
+      description: Deletes a specific registry.
+      operationId: deleteRegistry
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - $ref: '#/components/parameters/RegistryId'
+      responses:
+        '202':
+          description: Registry deletion accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /registries/vendor-types:
+    get:
+      tags:
+        - Registry
+      summary: Get Vendor Types
+      description: Returns list of public cloud container registries supported by the Armor platform.
+      operationId: getVendorTypes
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorTypesResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /sensors:
+    get:
+      tags:
+        - Sensor
+      summary: Get All Sensors
+      description: Returns list of currently-installed container sensors.
+      operationId: getAllSensors
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SensorDetailsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+
+    ConnectorId:
+      name: id
+      in: path
+      required: true
+      description: Connector ID
+      schema:
+        type: integer
+
+    ImageId:
+      name: id
+      in: path
+      required: true
+      description: Image ID
+      schema:
+        type: integer
+
+    RegistryId:
+      name: id
+      in: path
+      required: true
+      description: Registry ID
+      schema:
+        type: integer
+
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+
+    AccountDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
+        customerId:
+          type: string
+          description: Account-specific unique identifier, auto-generated based on your subscription
+        activationId:
+          type: string
+          description: Activation Id for the container sensor, auto-generated based on your subscription. This value is like a password and should not be shared
+        platformUrl:
+          type: string
+          description: URL used to install the container sensor within Docker Hub. Not used for other supported container registry vendors
+        sensorFile:
+          type: string
+          description: URL for downloading the most-current container sensor installation package
+        status:
+          type: string
+          description: Status of the account (Processing/Active/Error)
+        supportTicketNo:
+          type: string
+          description: Reference to Armor Ticketing System (ATS) issue used to track container security subscription setup to completion
+
+    ContainerSecurityAccountCreateResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
+
+    AwsBaseResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: AWS Account ID
+        externalId:
+          type: string
+          description: External ID
+
+    ConnectorCreateRequest:
+      type: object
+      required:
+        - type
+      properties:
+        type:
+          type: number
+          description: Vendor type id
+        awsConnector:
+          $ref: '#/components/schemas/ConnectorEcrParam'
+        gcpConnector:
+          $ref: '#/components/schemas/ConnectorGcrParam'
+        azureConnector:
+          $ref: '#/components/schemas/ConnectorAzureParam'
+        dockerHubConnector:
+          $ref: '#/components/schemas/ConnectorOthersParam'
+
+    ConnectorEcrParam:
+      type: object
+      required:
+        - displayName
+        - externalId
+        - arn
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for connector
+        externalId:
+          type: string
+          description: The external ID to access the role
+        arn:
+          type: string
+          description: AWS role ARN created to allow access
+
+    ConnectorGcrParam:
+      type: object
+      required:
+        - displayName
+        - serviceAccountJson
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        serviceAccountJson:
+          type: string
+          description: Configuration JSON file
+
+    ConnectorAzureParam:
+      type: object
+      required:
+        - displayName
+        - applicationId
+        - clientSecret
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        applicationId:
+          type: string
+          description: Azure application ID
+        clientSecret:
+          type: string
+          description: Azure client secret
+
+    ConnectorOthersParam:
+      type: object
+      required:
+        - displayName
+        - username
+        - password
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        username:
+          type: string
+          description: Username to connect to registry (base64 format)
+        password:
+          type: string
+          description: Password to connect to registry (base64 format)
+
+    ConnectorCreateResponse:
+      type: object
+      properties:
+        connectorId:
+          type: number
+          description: Id for the connector created
+
+    ConnectorDeleteResponse:
+      type: object
+      properties:
+        connectorId:
+          type: number
+          description: Id for the connector deleted
+
+    ConnectorDetailResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the connector
+        vendorTypeId:
+          type: number
+          description: Vendor Type Id
+        status:
+          type: string
+          description: Status of the connector (Accepted/Deleted/Processing/Active/Error)
+        displayName:
+          type: string
+          description: Friendly name of the connector
+        awsAccountId:
+          type: string
+          description: AWS Account Id (For Amazon ECR Connectors)
+        gcpProjectId:
+          type: string
+          description: GCP project Id (For Google Cloud Registry Connectors)
+        gcpConnectorId:
+          type: string
+          description: Internal unique identifier for the GCP connector, sharable with Armor Support upon their request
+        acrConnectorId:
+          type: string
+          description: Internal unique identifier for the Azure connector, sharable with Armor Support upon their request
+        createdBy:
+          type: string
+          description: The user who created the connector
+        createdDate:
+          type: string
+          description: The date & time the connector was created
+        modifiedBy:
+          type: string
+          description: The user who modified the connector
+        modifiedDate:
+          type: string
+          description: The date & time the connector was updated
+
+    ViewAllConnectorsResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the connector
+        vendorTypeId:
+          type: number
+          description: Vendor Type Id
+        status:
+          type: string
+          description: Status of the connector (Accepted/Processing/Active/Error)
+        displayName:
+          type: string
+          description: Friendly name of the connector
+        awsAccountId:
+          type: string
+          description: AWS Account Id of ECR connectors
+        createdDate:
+          type: string
+          description: The date & time the connector was created
+
+    ViewAllImagesResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the Image
+        repositoryId:
+          type: number
+          description: Id of the repository which the image is associated with
+        repositoryName:
+          type: string
+          description: Friendly name of the associated registry
+        registryId:
+          type: number
+          description: Id of the registry which the repository is associated with
+        registryName:
+          type: string
+          description: Friendly name of the associated registry
+        imageUniqueId:
+          type: string
+          description: The unique hash value for the image
+        tags:
+          type: string
+          description: Tags applied to the image
+        sha:
+          type: string
+          description: Unique identifier for the image, as reported by the parent registry vendor
+        size:
+          type: number
+          description: Image size, as reported by the parent registry vendor
+        operatingSystem:
+          type: string
+          description: Operating system leveraged by the image software
+        lastScanned:
+          type: string
+          description: Datetime when image was most-recently scanned for vulnerabilities
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        status:
+          type: string
+          description: Image's scanning state. "Unavailable" indicates the image may no longer be available within the parent registry
+        imageCreatedDate:
+          type: string
+          description: The date on which the image is created
+        imageModifiedDate:
+          type: string
+          description: The date on which the image is modified
+
+    ImageDetailResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the Image
+        imageUniqueId:
+          type: string
+          description: The unique hash value for the image
+        repositoryId:
+          type: number
+          description: Repository Id that the image is associated with
+        repositoryName:
+          type: string
+          description: Friendly name of the associated repository
+        registryId:
+          type: number
+          description: Registry Id that the image is associated with
+        registryName:
+          type: string
+          description: Friendly name of the associated registry
+        tags:
+          type: string
+          description: Image tags as defined in the associated repository
+        sha:
+          type: string
+          description: Unique identifier for the image, as reported by the parent registry vendor
+        size:
+          type: number
+          description: Image size, as reported by the parent registry vendor
+        operatingSystem:
+          type: string
+          description: Operating system leveraged by the image software
+        dockerVersion:
+          type: string
+          description: The docker host version reported by the sensor
+        architecture:
+          type: string
+          description: The targeted host architecture
+        lastScanned:
+          type: string
+          description: Datetime when image was most-recently scanned for vulnerabilities
+        layers:
+          type: array
+          description: The image's layer information
+          items:
+            $ref: '#/components/schemas/LayerInfo'
+        software:
+          type: array
+          description: The image's software information
+          items:
+            $ref: '#/components/schemas/SoftwareInfo'
+        labels:
+          type: array
+          description: The image's label information
+          items:
+            $ref: '#/components/schemas/LabelInfo'
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        status:
+          type: string
+          description: Image's scanning state. "Unavailable" indicates the image may no longer be available within the parent registry
+        imageCreatedDate:
+          type: string
+          description: Datetime on which the image was created
+        imageModifiedDate:
+          type: string
+          description: Datetime on which the image was updated
+
+    LayerInfo:
+      type: object
+      properties:
+        size:
+          type: number
+          description: The size in bytes
+        tags:
+          type: string
+          description: The tags applied to the layer
+        layerCreatedDate:
+          type: string
+          description: The date on which layer is created
+        layerCreatedBy:
+          type: string
+          description: Program details regarding layer creation
+
+    SoftwareInfo:
+      type: object
+      properties:
+        fixVersion:
+          type: string
+          description: The fix version of the software
+        name:
+          type: string
+          description: Name of the software
+        version:
+          type: string
+          description: The version of the software
+
+    LabelInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the label
+        value:
+          type: string
+          description: Corresponding value of the label
+
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
+
+    ContainerRegistryResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The ID of the registry
+        name:
+          type: string
+          description: Name of the registry
+        uuid:
+          type: string
+          description: Internal unique identifier for the registry, sharable with Armor Support upon their request
+        uri:
+          type: string
+          description: The URI for the registry in the system
+        vendorTypeId:
+          type: number
+          description: The registry type Id
+        connectorId:
+          type: number
+          description: The connector Id the registry is using
+        repoCount:
+          type: number
+          description: The number of repositories in the registry
+        totalImages:
+          type: number
+          description: The number of images in the registry
+        totalVulnerableImages:
+          type: number
+          description: The number of images with vulnerabilities
+        totalVulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        lastScanned:
+          type: string
+          description: The last time the registry was scanned
+        status:
+          type: string
+          description: The status of the registry (Accepted/Processing/Active/Error)
+        createdDate:
+          type: string
+          description: The date & time the registry was created
+        modifiedDate:
+          type: string
+          description: The date & time the registry was updated
+
+    RegistryDetailResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The ID of the registry
+        name:
+          type: string
+          description: Name of the registry
+        uuid:
+          type: string
+          description: Internal unique identifier for the registry, sharable with Armor Support upon their request
+        uri:
+          type: string
+          description: The URI for the registry in the system
+        vendorTypeId:
+          type: number
+          description: The registry type Id
+        connectorId:
+          type: number
+          description: The connector Id the registry is using
+        repoCount:
+          type: number
+          description: The number of repositories in the registry
+        totalImages:
+          type: number
+          description: The number of images in the registry
+        totalVulnerableImages:
+          type: number
+          description: The number of images with vulnerabilities
+        totalVulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        lastScanned:
+          type: string
+          description: The last time the registry was scanned
+        status:
+          type: string
+          description: The status of the registry (Accepted/Processing/Active/Error)
+        createdDate:
+          type: string
+          description: The date & time the registry was created
+        createdBy:
+          type: string
+          description: The user who created the registry
+        modifiedBy:
+          type: string
+          description: The user who updated the registry
+        modifiedDate:
+          type: string
+          description: The date & time the registry was updated
+
+    RegistryCreateRequest:
+      type: object
+      required:
+        - registryName
+        - registryUri
+        - connectorId
+        - repositories
+      properties:
+        registryName:
+          type: string
+          description: The name for the registry
+        registryUri:
+          type: string
+          description: The registry URI
+        connectorId:
+          type: number
+          description: Connector Id
+        region:
+          type: string
+          description: Region (not required for DockerHub)
+        dockerHubOrgName:
+          type: string
+          description: Organization name if registry type is DockerHub
+        repositories:
+          type: array
+          description: Array of Repositories
+          items:
+            $ref: '#/components/schemas/RepositoryRequest'
+
+    RepositoryRequest:
+      type: object
+      required:
+        - name
+        - tags
+      properties:
+        name:
+          type: string
+          description: Name of the repository
+        tags:
+          type: array
+          description: Tags of the images in this repository
+          items:
+            type: string
+
+    RegistryCreateResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry created
+
+    RegistryDeleteResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry deleted
+
+    VendorTypesResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Vendor Id
+        code:
+          type: string
+          description: The Vendor Code
+        name:
+          type: string
+          description: The Vendor Name
+        regions:
+          type: array
+          description: List of Region Name or URI
+          items:
+            $ref: '#/components/schemas/Region'
+
+    Region:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Region Code
+        name:
+          type: string
+          description: The Region Name
+        uri:
+          type: string
+          description: Registry URI
+
+    SensorDetailsResponse:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the sensor
+        name:
+          type: string
+          description: Name of the sensor, as defined when installing it
+        sensorType:
+          type: string
+          description: "Type of the sensor. Possible values: REGISTRY"
+        sensorVersion:
+          type: string
+          description: Version of the sensor
+        status:
+          type: string
+          description: "Status of the sensor. Possible values: Running, Unknown"
+        hostName:
+          type: string
+          description: Name of the container host where sensor is installed
+        ipv4:
+          type: string
+          description: IPv4 address of the container host where sensor is installed
+        createdDate:
+          type: string
+          description: Date on which sensor is installed
+        lastReportedIn:
+          type: string
+          description: Datetime when sensor was last communicated with by the Armor platform

@@ -1,0 +1,60 @@
+generated: '2026-08-06'
+method: searched
+source: https://registry.npmjs.org (@armor scope), https://pypi.org, https://github.com/armor
+packages:
+- language: javascript
+  registry: npm
+  name: '@armor/api'
+  version: 23.3.0
+  url: https://www.npmjs.com/package/@armor/api
+  install: npm install @armor/api
+  description: Wrapper for the Armor services API.
+  official: true
+  repository: https://github.com/armor/api (private)
+  last_published: '2024-07-30'
+  evidence: published under the @armor npm scope by armor_ci, mojo-armor, armor-preston and other armor.com
+    maintainers
+- language: javascript
+  registry: npm
+  name: '@armor/api-docs'
+  version: 5.37.5
+  url: https://www.npmjs.com/package/@armor/api-docs
+  install: npm install @armor/api-docs
+  description: API Blueprint schemas and documentation for the ARMOR API.
+  official: true
+  repository: https://github.com/armor/api-docs (private)
+  last_published: '2026-02-12'
+  evidence: same @armor scope and maintainer set; still actively published in 2026
+- language: python
+  registry: pypi
+  name: armorapi
+  version: 0.0.3
+  url: https://pypi.org/project/armorapi/
+  install: pip install armorapi
+  description: Community module for working with the Armor API.
+  official: false
+  repository: https://github.com/gingebot/armorapi
+  evidence: authored by an independent maintainer (gingebot), not Armor Defense Inc.
+- language: python
+  registry: pypi
+  name: armor_api
+  version: 0.1.4
+  url: https://pypi.org/project/armor-api/
+  install: pip install armor-api
+  description: Community Armor API client.
+  official: false
+  repository: http://armor-api.hive.pt
+  evidence: authored by Hive Solutions Lda., not Armor Defense Inc.
+not_found:
+  registries_checked:
+  - npm
+  - PyPI
+  - Maven Central
+  - NuGet
+  - pkg.go.dev
+  - RubyGems
+  - Packagist
+  - crates.io
+  note: No Armor-published client library exists for Java, .NET, Go, Ruby, PHP or Rust. The two first-party
+    npm packages are published to the public registry but their GitHub repositories (armor/api, armor/api-docs)
+    are private, so the source is not readable.

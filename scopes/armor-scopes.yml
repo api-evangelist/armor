@@ -1,0 +1,95 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/armor-accounts-openapi-original.yml, openapi/armor-agent-management-openapi-original.yml,
+  openapi/armor-compliance-openapi-original.yml, openapi/armor-container-security-openapi-original.yml,
+  openapi/armor-incident-management-openapi-original.yml, openapi/armor-infrastructure-management-openapi-original.yml,
+  openapi/armor-log-management-openapi-original.yml, openapi/armor-notifications-openapi-original.yml,
+  openapi/armor-webhooks-openapi-original.yml
+schemes:
+- name: OAuth2
+  source: openapi/armor-accounts-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+  description: OAuth 2.0 authentication with scopes
+- name: OAuth2
+  source: openapi/armor-agent-management-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+  description: OAuth 2.0 authentication with scopes
+- name: OAuth2
+  source: openapi/armor-compliance-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.armor.com/authorize
+    tokenUrl: https://auth.armor.com/token
+- name: OAuth2
+  source: openapi/armor-container-security-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+- name: OAuth2
+  source: openapi/armor-incident-management-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+- name: OAuth2
+  source: openapi/armor-infrastructure-management-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+  description: OAuth 2.0 authentication with scopes
+- name: oauth2
+  source: openapi/armor-log-management-openapi-original.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.armor.com/auth/authorize
+    tokenUrl: https://api.armor.com/auth/token
+  description: OAuth2 authentication with scoped access
+- name: OAuth2
+  source: openapi/armor-notifications-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+  description: OAuth 2.0 authentication with scopes
+- name: OAuth2
+  source: openapi/armor-webhooks-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+scopes:
+- scope: openid
+  description: OIDC standard scope. Armor documents that every scoped-access-token request must include
+    it.
+  required: true
+  source: https://developer.armor.com/
+- scope: email
+  description: OIDC standard scope. Armor documents that every scoped-access-token request must include
+    it.
+  required: true
+  source: https://developer.armor.com/
+- scope: profile
+  description: OIDC standard scope. Armor documents that every scoped-access-token request must include
+    it.
+  required: true
+  source: https://developer.armor.com/
+- scope: '*:log-management'
+  description: Example Armor permission scope published on the developer portal, formed from the log-management
+    system name.
+  required: false
+  source: https://developer.armor.com/
+  note: Documented as an example of the naming convention, not as an exhaustive entry.
+docs: https://developer.armor.com/
+naming_convention:
+  pattern: '*:<system-name>'
+  example: '*:log-management'
+  source: https://developer.armor.com/ (Authentication page, "Requesting a Scoped Access Token")
+  note: 'The scope name is the "System" name of a permission prefixed with "*:". The authoritative list
+    of permission scopes is NOT published: it is only visible on the Roles and Permissions screen inside
+    the Armor Management Portal (amp.armor.com), which requires a customer login. The nine oauth2 securitySchemes
+    in the published contracts all declare an EMPTY scopes map, and no operation-level security[] requirement
+    names a scope, so no scope inventory can be derived from the specifications either.'
+coverage:
+  state: gated
+  detail: the full scope list lives behind the Armor Management Portal customer login

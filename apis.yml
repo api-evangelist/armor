@@ -1,23 +1,533 @@
 aid: armor
 name: Armor
-description: 'Armor is a company surfaced via the API Evangelist harvest backlog (source: secondary-market)
-  and added to the network as a stub for full-pipeline profiling.'
+description: 'Armor (legal name Armor Defense Inc.) is a cybersecurity company headquartered in Plano,
+  Texas, founded as FireHost in 2009 by Chris Drake and rebranded as Armor as its portfolio expanded from
+  secure cloud hosting into managed security. Armor sells vendor-agnostic, cloud-native managed detection
+  and response (Armor MDR), compliant managed private cloud (Armor Enterprise Cloud), the Armor Agent
+  workload protection agent (formerly Armor Anywhere), and compliance and offensive-security professional
+  services, to more than 1,700 organizations across 40 countries with a 24/7 follow-the-sun SOC operating
+  from Plano, London, Singapore and Pune. Armor publishes a public developer portal at developer.armor.com
+  that serves sixteen machine-readable contracts through ReDoc: four Swagger 2.0 documents for the original
+  v1 Armor Services API on api.armor.com (account management, infrastructure, security and support, 254
+  operations) and twelve OpenAPI 3.0.3 documents for the v2 platform on *.api.secure-prod.services (accounts,
+  agent management, compliance and CSPM, container security, incident management, infrastructure management,
+  log management, notifications, webhooks, the unified MDR public API, and the ARMOR-PSK and FH-AUTH authentication
+  contracts). Armor also publishes a detailed first-party llms.txt at armor.com/llms.txt and holds SOC
+  2 Type II, HITRUST CSF, PCI DSS Level 1 Service Provider, ISO 27001, TX-RAMP Level 2, HIPAA and Data
+  Privacy Framework attestations.'
+image: https://framerusercontent.com/images/iwYUUtUgg7arqxZ6LH5PMsmFouE.png
 url: https://raw.githubusercontent.com/api-evangelist/armor/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
-x-tier: stub
-x-tier-reason: harvest
+x-tier: profiled
+x-tier-reason: enrichment-pipeline
 specificationVersion: '0.20'
 created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
-apis: []
+- Cybersecurity
+- Managed Detection and Response
+- Cloud Security
+- Compliance
+- SIEM
+- Vulnerability Management
+- Endpoint Security
+- Threat Intelligence
+- Managed Private Cloud
+- CSPM
+- Container Security
+apis:
+- aid: armor:fh-auth-api
+  name: Armor FH-AUTH Security API
+  description: The token-based authentication API for the Armor security platform. POST /auth/authorize
+    exchanges user credentials for an authorization code that must be redeemed within two minutes; POST
+    /auth/token exchanges that code for an access token (valid 15 minutes) and an ID token; POST /auth/token/reissue
+    refreshes an expiring or expired access token; and GET /me returns the authenticated user profile
+    and the accounts the token can act on. Every downstream Armor API call carries the FH-AUTH bearer
+    token plus an X-Account-Context header naming the Armor account the request applies to.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Authentication
+  - OAuth2
+  - Bearer
+  - Tokens
+  - Identity
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.fh-auth.yaml
+  - type: OpenAPI
+    url: openapi/armor-fh-auth-openapi-original.yml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: Overlay
+    url: overlays/armor-fh-auth-overlay.yaml
+- aid: armor:armor-psk-api
+  name: Armor ARMOR-PSK Security API
+  description: 'The signature-based authentication scheme for the Armor platform, an alternative to FH-AUTH
+    tokens that removes the refresh flow entirely. An API Key ID and Secret Key are generated in the Armor
+    Management Portal, then every request carries an Authorization: ARMOR-PSK {key_id}:{signature}:{nonce}:{timestamp}
+    header whose signature is a base64 HMAC-SHA512 over the concatenation of key id, HTTP method, request
+    path, nonce, timestamp and request body. GET /me is published as the reference operation for verifying
+    a correctly signed request.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Authentication
+  - HMAC
+  - API
+  - Keys
+  - Request
+  - Signing
+  - Security
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.armor-psk.yaml
+  - type: OpenAPI
+    url: openapi/armor-psk-auth-openapi-original.yml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: Overlay
+    url: overlays/armor-psk-auth-overlay.yaml
+- aid: armor:accounts-api
+  name: Armor Accounts API
+  description: Account-level configuration for the Armor security platform. Covers cloud connections (the
+    credentials and subscriptions that link a customer AWS, Azure or Oracle Cloud environment to Armor),
+    secure notes (encrypted per-account credential and runbook storage), and product tours. Authenticated
+    with OAuth 2.0 client credentials against https://api.armor.com/auth/authorize, with separate dev,
+    stage and production host tiers published in the specification.
+  humanURL: https://developer.armor.com/
+  baseURL: https://accounts.api.secure-prod.services
+  tags:
+  - Accounts
+  - Cloud
+  - Connections
+  - Secure
+  - Notes
+  - Configuration
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/accounts-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-accounts-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-accounts-overlay.yaml
+- aid: armor:agent-management-api
+  name: Armor Agent Management API
+  description: 'Fleet management for Armor Agent, the lightweight Windows and Linux workload protection
+    agent formerly sold as Armor Anywhere. Endpoints cover health monitoring status across the agent estate,
+    malware protection configuration, scheduled tasks, and the tag model used to group and target hosts.
+    Supports three authentication schemes side by side: OAuth 2.0 client credentials, an API key header,
+    and the FH-AUTH bearer token.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://agent-management.api.secure-prod.services
+  tags:
+  - Agent
+  - Management
+  - Endpoint
+  - Security
+  - Malware
+  - Protection
+  - Health
+  - Monitoring
+  - Tags
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/agent-management-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-agent-management-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-agent-management-overlay.yaml
+- aid: armor:compliance-api
+  name: Armor Compliance API
+  description: The largest single Armor API surface, covering compliance assessments and cloud security
+    posture management. Endpoints span CSPM connectors, policies, policy controls, control remediation,
+    resources, summaries and usage; scheduled and on-demand CSPM report configuration and report retrieval;
+    and vulnerability scanning with its exclusions and reports. This is the only Armor API that declares
+    an OAuth 2.0 authorization-code flow against auth.armor.com rather than the client-credentials flow
+    used elsewhere.
+  humanURL: https://developer.armor.com/
+  baseURL: https://compliance.api.secure-prod.services
+  tags:
+  - Compliance
+  - CSPM
+  - Cloud
+  - Security
+  - Posture
+  - Vulnerability
+  - Scanning
+  - Assessments
+  - Remediation
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/compliance-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-compliance-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-compliance-overlay.yaml
+- aid: armor:container-security-api
+  name: Armor Container Security API
+  description: Container and registry security for the Armor platform, served on a /containers path prefix
+    of the compliance host. Endpoints manage the container security account, the connector that binds
+    a customer environment to Armor, container image inventory and scan results, the container registries
+    under watch, and the runtime sensor deployed into customer clusters.
+  humanURL: https://developer.armor.com/
+  baseURL: https://compliance.api.secure-prod.services/containers
+  tags:
+  - Container
+  - Security
+  - Registry
+  - Scanning
+  - Image
+  - Scanning
+  - Kubernetes
+  - Runtime
+  - Security
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/container-security-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-container-security-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-container-security-overlay.yaml
+- aid: armor:incident-management-api
+  name: Armor Incident Management API
+  description: 'Programmatic access to the security detections Armor raises against a customer environment.
+    Endpoints return individual security detections and their underlying detection events, an overview
+    roll-up, trend data over time, and EDR-specific detection context. This is the read side of the Armor
+    SOC: the detections surfaced here are the ones the 24/7 SOC triages, and they are the objects webhook
+    subscriptions in the Webhooks API deliver.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://security-detections.api.secure-prod.services
+  tags:
+  - Incident
+  - Management
+  - Security
+  - Detections
+  - EDR
+  - Threat
+  - Detection
+  - SOC
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/incident-management-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-incident-management-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-incident-management-overlay.yaml
+- aid: armor:infrastructure-management-api
+  name: Armor Infrastructure Management API
+  description: A small operational API exposing the Armor Toolbox, the utility surface used to run infrastructure
+    management actions against protected hosts. It is the v2 successor to the much larger v1 Infrastructure
+    API and currently publishes two operations, authenticated with OAuth 2.0 client credentials, an API
+    key header, or an FH-AUTH bearer token.
+  humanURL: https://developer.armor.com/
+  baseURL: https://infrastructure.api.secure-prod.services
+  tags:
+  - Infrastructure
+  - Toolbox
+  - Operations
+  - Management
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-infrastructure-management-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-infrastructure-management-overlay.yaml
+- aid: armor:log-management-api
+  name: Armor Log Management API
+  description: SIEM log ingestion and routing for the Armor platform, and the only v2 Armor API published
+    on an armor.com host as well as the secure-prod.services tier. Endpoints manage log sources and log
+    groups, flow sources, log endpoints, and the access control lists that govern which networks may ship
+    logs to Armor, plus a meta surface describing supported source types. Uses an OAuth 2.0 authorization-code
+    flow against api.armor.com.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.logs.armor.com
+  tags:
+  - Log
+  - Management
+  - SIEM
+  - Log
+  - Sources
+  - Flow
+  - Logs
+  - Access
+  - Control
+  - Lists
+  - Ingestion
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/logs-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-log-management-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-log-management-overlay.yaml
+- aid: armor:notifications-api
+  name: Armor Notifications API
+  description: A focused API for reading and updating a user notification preferences within the Armor
+    platform, controlling which security and operational events generate outbound notifications. Authenticated
+    with OAuth 2.0 client credentials.
+  humanURL: https://developer.armor.com/
+  baseURL: https://notifications.api.secure-prod.services
+  tags:
+  - Notifications
+  - Preferences
+  - Alerting
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/notifications-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-notifications-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-notifications-overlay.yaml
+- aid: armor:webhooks-api
+  name: Armor Webhooks API
+  description: The subscription API for Armor event delivery. Callers register detection configurations
+    (which security detections should be pushed, with default labels and a transform to reshape the delivered
+    payload) and notification configurations, list the available event types, and manage both configuration
+    families through create, read, update and delete operations. Armor publishes no AsyncAPI document;
+    this OpenAPI is the machine-readable description of the event surface.
+  humanURL: https://developer.armor.com/
+  baseURL: https://webhooks.api.secure-prod.services
+  tags:
+  - Webhooks
+  - Events
+  - Detections
+  - Notifications
+  - Subscriptions
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/webhooks-api.yaml
+  - type: OpenAPI
+    url: openapi/armor-webhooks-openapi-original.yml
+  - type: Webhooks
+    url: asyncapi/armor-webhooks-events.yml
+  - type: Overlay
+    url: overlays/armor-webhooks-overlay.yaml
+- aid: armor:mdr-public-api
+  name: Armor MDR Public API
+  description: The unified public API for Armor MDR, spanning six subsystems behind one host. The Armor
+    Intelligence Platform (AIP) endpoints return AI-processed incident analysis and entity threat intelligence.
+    The Microsoft Defender integration lists machines, executes and tracks machine actions such as isolation
+    and scans, and retrieves investigation packages and live-response results. Detection Rules exposes
+    Microsoft Sentinel rules enriched with MITRE ATT&CK mappings. JSM middleware covers incidents, comments,
+    metrics, service requests and organizations. Reports serves monthly security reports, and Threat Intelligence
+    exposes threat actors plus an OpenCTI GraphQL proxy at POST /ti/graphql.
+  humanURL: https://developer.armor.com/
+  baseURL: https://mdr.api.secure-prod.services
+  tags:
+  - MDR
+  - Threat
+  - Intelligence
+  - Microsoft
+  - Defender
+  - Microsoft
+  - Sentinel
+  - MITRE
+  - ATTACK
+  - Incidents
+  - GraphQL
+  - Reporting
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/public-apis-all.yaml
+  - type: OpenAPI
+    url: openapi/armor-mdr-public-openapi-original.yml
+  - type: Overlay
+    url: overlays/armor-mdr-public-overlay.yaml
+- aid: armor:v1-account-management-api
+  name: Armor Services API v1 - Account Management
+  description: The account-management domain of the original Armor Services API (Swagger 2.0), still published
+    on api.armor.com alongside the newer v2 platform APIs. Fifty-two paths and seventy operations cover
+    accounts, users, roles and permissions, API keys, contacts, billing and invoicing, orders and subscriptions.
+    Authenticated with the Authorization header (FH-AUTH bearer or ARMOR-PSK signature) plus the mandatory
+    X-Account-Context header.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Account
+  - Management
+  - Users
+  - Roles
+  - Billing
+  - Subscriptions
+  - Swagger
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
+  - type: OpenAPI
+    url: openapi/armor-v1-account-management-swagger-original.json
+  - type: Overlay
+    url: overlays/armor-v1-account-management-overlay.yaml
+- aid: armor:v1-infrastructure-api
+  name: Armor Services API v1 - Infrastructure
+  description: 'The largest Armor API by operation count: ninety-six paths and one hundred and thirty-one
+    operations covering the Armor Enterprise Cloud and Armor Agent infrastructure estate. Endpoints manage
+    virtual machines, storage, backups, networks, firewall and DNAT rules, load balancers, IP addresses,
+    and the tasks and jobs that provision and modify them. Published as Swagger 2.0 on api.armor.com.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Infrastructure
+  - Virtual
+  - Machines
+  - Networking
+  - Firewall
+  - Storage
+  - Backup
+  - Load
+  - Balancing
+  - Swagger
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
+  - type: OpenAPI
+    url: openapi/armor-v1-infrastructure-swagger-original.json
+  - type: Overlay
+    url: overlays/armor-v1-infrastructure-overlay.yaml
+- aid: armor:v1-security-api
+  name: Armor Services API v1 - Security
+  description: 'The security domain of the v1 Armor Services API: thirty-four paths and thirty-five operations
+    covering security events and alerts, file integrity monitoring, malware and IDS findings, vulnerability
+    scan results, patching status, and the log-management surfaces that the v2 Log Management API later
+    replaced. Published as Swagger 2.0 on api.armor.com.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Security
+  - Events
+  - File
+  - Integrity
+  - Monitoring
+  - Vulnerability
+  - Management
+  - Patching
+  - IDS
+  - Swagger
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/security/swagger.json
+  - type: OpenAPI
+    url: openapi/armor-v1-security-swagger-original.json
+  - type: Overlay
+    url: overlays/armor-v1-security-overlay.yaml
+- aid: armor:v1-support-api
+  name: Armor Services API v1 - Support
+  description: 'The support domain of the v1 Armor Services API: sixteen paths and eighteen operations
+    covering support tickets, ticket comments and attachments, and the notification surfaces around them,
+    giving customers programmatic access to the same ticket queue the Armor SOC works. Published as Swagger
+    2.0 on api.armor.com.'
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Support
+  - Tickets
+  - Notifications
+  - Attachments
+  - Swagger
+  properties:
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/support/swagger.json
+  - type: OpenAPI
+    url: openapi/armor-v1-support-swagger-original.json
+  - type: Overlay
+    url: overlays/armor-v1-support-overlay.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: AgenticAccess
+  url: agentic-access/armor-agentic-access.yml
+- type: DomainSecurity
+  url: security/armor-domain-security.yml
+- type: OAuthScopes
+  url: scopes/armor-scopes.yml
 - type: Website
-  url: https://forgeglobal.com/armor_stock/
+  url: https://www.armor.com/
+- type: DeveloperPortal
+  url: https://developer.armor.com/
+- type: Documentation
+  url: https://developer.armor.com/
+- type: APIReference
+  url: https://developer.armor.com/
+- type: Blog
+  url: https://res.armor.com/resources/?fwp_type=blog&_type=blog
+- type: Support
+  url: https://www.armor.com/forms/under-attack
+- type: GitHubOrganization
+  url: https://github.com/armor
+- type: Pricing
+  url: https://www.armor.com/solutions/pricing
+- type: SignUp
+  url: https://amp.armor.com/
+- type: TermsOfService
+  url: https://armor.pub/docs/Armor-General-Terms-of-Service.pdf
+- type: PrivacyPolicy
+  url: https://www.armor.com/legal/privacy-policy
+- type: Compliance
+  url: https://www.armor.com/why-armor/trusted-expertise
+- type: StatusPage
+  url: https://status.armor.com/
+- type: LLMsTxt
+  url: llms/armor-llms.txt
+- type: Authentication
+  url: authentication/armor-authentication.yml
+- type: Packages
+  url: packages/armor-packages.yml
+- type: SDKs
+  url: packages/armor-packages.yml
+- type: Conventions
+  url: conventions/armor-conventions.yml
+- type: ErrorCatalog
+  url: errors/armor-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/armor-lifecycle.yml
+- type: Conformance
+  url: conformance/armor-conformance.yml
+- type: DataModel
+  url: data-model/armor-data-model.yml
+- type: Webhooks
+  url: asyncapi/armor-webhooks-events.yml
+- type: AgentSkill
+  url: skills/_index.yml
+x-enrichment:
+  date: '2026-08-06'
+  status: enriched
+  artifacts_added: 57
+  pass: local-v1

@@ -1,0 +1,55 @@
+generated: '2026-08-06'
+method: searched
+source: https://developer.armor.com/, https://status.armor.com/, https://www.armor.com/legal
+versioning:
+  scheme: generation split by host and document
+  current: v2
+  legacy: v1 Armor Services API (Swagger 2.0) on api.armor.com, still published and still served
+  docs: https://developer.armor.com/
+  note: The developer portal offers a Legacy / v2 selector. There is no URI version segment, no version
+    header, and no published date-based version train.
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  note: Armor publishes no deprecation or sunset policy and declares no Sunset/Deprecation response headers
+    (RFC 8594). Deprecation is signalled only inside the specification, via the OpenAPI deprecated flag.
+deprecated_operations:
+- openapi/armor-log-management-openapi-original.yml#createLogSource
+- openapi/armor-log-management-openapi-original.yml#deleteLogSource
+- openapi/armor-log-management-openapi-original.yml#updateLogSource
+- openapi/armor-log-management-openapi-original.yml#getLogEndpoints
+- openapi/armor-log-management-openapi-original.yml#allocateLogEndpoint
+- openapi/armor-log-management-openapi-original.yml#getLogAcls
+- openapi/armor-log-management-openapi-original.yml#createLogAcl
+- openapi/armor-log-management-openapi-original.yml#updateLogAcl
+- openapi/armor-log-management-openapi-original.yml#checkHostnameAvailability
+sla:
+  published: true
+  documents:
+  - name: Armor Cloud SLA
+    url: https://armor.pub/docs/Armor-Cloud-SLA.pdf
+  - name: Armor Service Level Agreement (MDR) 2025
+    url: https://armor.pub/docs/Armor-Service-Level-Agreement-(MDR)-2025.pdf
+  format: PDF
+  note: Both SLAs are PDF-only; no uptime target is published in machine-readable form.
+status_page: https://status.armor.com/
+status_page_note: Live and reachable, but rendered client-side; no public status JSON/RSS feed was found
+  at the usual Statuspage paths.
+changelog:
+  published: false
+  note: No dated changelog or release-notes surface was found on armor.com, developer.armor.com or res.armor.com.
+    developer.armor.com/changelog returns 404.
+legal:
+- name: Armor General Terms of Service
+  url: https://armor.pub/docs/Armor-General-Terms-of-Service.pdf
+- name: Acceptable Use Policy
+  url: https://www.armor.com/legal/aup
+- name: Privacy Policy
+  url: https://www.armor.com/legal/privacy-policy
+- name: Penetration Testing Policy
+  url: https://www.armor.com/legal/penetration-testing
+- name: MDR Services Schedule
+  url: https://armor.pub/docs/Armor-MDR-Services-Schedule.pdf
+- name: Armor AI Supplement to the Terms of Service
+  url: https://armor.pub/docs/Armor-AI-Supplement-to-Armor-TOS.pdf

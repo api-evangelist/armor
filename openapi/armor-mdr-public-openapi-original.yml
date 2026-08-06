@@ -1,0 +1,2203 @@
+openapi: 3.0.3
+info:
+  title: MDR Public APIs
+  version: 1.0.0
+  description: |
+    Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
+
+    This unified API provides access to:
+
+    ## AI Platform (AIP)
+    - AI-processed incident analysis with threat indicators and recommendations
+    - Entity threat intelligence for security entities associated with incidents
+
+    ## Microsoft Defender Integration
+    - Machine/device management in Microsoft Defender for Endpoint
+    - Security action execution (isolation, scans, investigations)
+    - Investigation package collection and live response operations
+
+    ## Detection Rules Management
+    - Microsoft Sentinel detection rules across customer environments
+    - Enriched rule metadata including MITRE ATT&CK mappings
+    - Incident generation statistics
+
+    ## JSM Middleware
+    - Security incident management and tracking
+    - Metrics aggregation and reporting
+    - Service request management
+    - Organization management
+
+    ## Monthly Security Reports
+    - Access to monthly security reports (PowerPoint, JSON, PDF)
+    - Security metrics and performance indicators
+    - Data ingestion analytics
+
+    ## Threat Intelligence
+    - Threat actor intelligence data
+    - Customer-specific threat intelligence based on deployed products
+    - OpenCTI GraphQL proxy for advanced queries
+
+    ## Authentication
+    All endpoints (except health checks) require OAuth2 Bearer token authentication.
+
+    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
+
+  contact:
+    name: Armor Security Team
+    url: https://armor.com
+
+servers:
+  - url: https://mdr.api.secure-prod.services
+    description: Production environment
+  - url: https://mdr.api.secure-dev.services
+    description: Development environment
+
+security:
+  - OAuth2BearerAuth: []
+  - FH-AUTH: []
+
+tags:
+  - name: Health
+    description: Service health and monitoring endpoints
+  - name: AIP - Incident Data
+    description: AI-processed incident data and analytics
+  - name: AIP - Entity Intelligence
+    description: Threat intelligence data for security entities
+  - name: Defender - Machines
+    description: Microsoft Defender machine/device management
+  - name: Defender - Machine Actions
+    description: Execute and manage actions on Microsoft Defender machines
+  - name: Defender - Investigation
+    description: Investigation package and live response operations
+  - name: Detection Rules
+    description: Operations for retrieving and managing detection rules
+  - name: JSM - Incidents
+    description: Security incident management
+  - name: JSM - Metrics
+    description: Metrics aggregation and reporting
+  - name: JSM - Service Requests
+    description: Service request management
+  - name: JSM - Organizations
+    description: JSM organization management
+  - name: Reports - MSR
+    description: Monthly Security Report file management and retrieval
+  - name: TI - Threat Actors
+    description: Retrieve threat actor intelligence data
+  - name: TI - Customer Intelligence
+    description: Customer-specific threat intelligence
+  - name: TI - GraphQL
+    description: Proxy endpoint for OpenCTI GraphQL queries
+
+paths:
+  # Health endpoints
+  /aip/health:
+    get:
+      tags:
+        - Health
+      summary: AIP health check
+      description: Returns the health status of the AIP Middleware service
+      operationId: aipHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy and operational
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: "OK"
+
+  /defender/health:
+    get:
+      tags:
+        - Health
+      summary: Defender health check
+      description: Returns the health status of the Defender Middleware service
+      operationId: defenderHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+  /rules/health:
+    get:
+      tags:
+        - Health
+      summary: Detection rules health check
+      description: Returns the health status of the Detection Middleware service
+      operationId: rulesHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy and operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+  /incidents/health:
+    get:
+      tags:
+        - Health
+      summary: JSM health check
+      description: Returns OK if the JSM Middleware service is running
+      operationId: jsmHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+  /report/health:
+    get:
+      tags:
+        - Health
+      summary: Reports health check
+      description: Returns health status of the Reports service
+      operationId: reportsHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy and operational
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+  /ti-middleware/health:
+    get:
+      tags:
+        - Health
+      summary: TI health check
+      description: Returns the operational status of the Threat Intelligence Middleware service
+      operationId: tiHealthCheck
+      security: []
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+
+  # AIP endpoints
+  /aip/incident/{incidentKey}:
+    get:
+      tags:
+        - AIP - Incident Data
+      summary: Get incident AIP data
+      description: |
+        Retrieves AI-processed incident data including triage history, analytics, threat indicators,
+        similar incidents, and recommended actions.
+
+        **Authorization**: This endpoint validates that the requesting account has permission to
+        view the incident by checking customer organization associations with the Jira issue.
+      operationId: getIncidentAipData
+      parameters:
+        - name: incidentKey
+          in: path
+          required: true
+          description: The incident identifier (e.g., SEC-2024-001)
+          schema:
+            type: string
+          example: "SEC-2024-001"
+        - name: x-account-context
+          in: header
+          required: true
+          description: The AMP account ID for authorization context
+          schema:
+            type: string
+          example: "12345"
+      responses:
+        '200':
+          description: Incident data retrieved successfully or no data available
+          content:
+            application/json:
+              schema:
+                oneOf:
+                  - $ref: '#/components/schemas/IncidentDataResponse'
+                  - $ref: '#/components/schemas/IncidentNotAvailableResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Issue not found
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /aip/incident/{incidentId}/entity/{value}:
+    get:
+      tags:
+        - AIP - Entity Intelligence
+      summary: Fetch entity threat intelligence for an incident
+      description: |
+        Retrieves threat intelligence data for a security entity (IP address, domain, hash, email, or URL)
+        that is associated with a specific incident.
+
+        **Authorization**: Validates that the requesting account has permission to view the incident
+        and that the entity belongs to the incident.
+      operationId: fetchEntityForIncident
+      parameters:
+        - name: incidentId
+          in: path
+          required: true
+          description: The incident identifier
+          schema:
+            type: string
+          example: "SEC-2024-001"
+        - name: value
+          in: path
+          required: true
+          description: The entity value to look up
+          schema:
+            type: string
+          example: "192.168.1.100"
+        - name: x-account-context
+          in: header
+          required: true
+          description: The AMP account ID for authorization context
+          schema:
+            type: string
+          example: "12345"
+      responses:
+        '200':
+          description: Entity data retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityIntelligenceResponse'
+        '400':
+          description: Bad request
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Issue not found
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # Defender endpoints
+  /defender/machines:
+    get:
+      tags:
+        - Defender - Machines
+      summary: List all machines
+      description: |
+        Retrieves a list of all machines/devices registered in Microsoft Defender for Endpoint
+        for the specified customer account.
+      operationId: getMachines
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successfully retrieved list of machines
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachinesResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /defender/machineactions:
+    get:
+      tags:
+        - Defender - Machine Actions
+      summary: List all machine actions
+      description: |
+        Retrieves a list of all machine actions executed across all machines for the specified
+        customer account.
+      operationId: getMachineActions
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successfully retrieved list of machine actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineActionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /defender/machineactions/{actionId}:
+    get:
+      tags:
+        - Defender - Machine Actions
+      summary: Get specific machine action
+      description: Retrieves detailed information about a specific machine action by its action ID
+      operationId: getMachineAction
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: actionId
+          in: path
+          required: true
+          description: The unique identifier of the machine action
+          schema:
+            type: string
+            format: uuid
+          example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+      responses:
+        '200':
+          description: Successfully retrieved machine action details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineAction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /defender/machineactions/{machineId}:
+    post:
+      tags:
+        - Defender - Machine Actions
+      summary: Execute action on machine
+      description: |
+        Executes a security action on a specific machine identified by machine ID.
+
+        Supported actions include: isolate, unisolate, runAntiVirusScan, collectInvestigationPackage,
+        restrictCodeExecution, unrestrictCodeExecution, runliveresponse, startInvestigation,
+        StopAndQuarantineFile, cancel, offboard.
+      operationId: executeMachineAction
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: machineId
+          in: path
+          required: true
+          description: The unique identifier of the machine to perform the action on
+          schema:
+            type: string
+          example: 4899036531e374137f63289c3267bad772c13fef
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineActionRequest'
+      responses:
+        '200':
+          description: Action successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineAction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /defender/packageuri/{actionId}:
+    get:
+      tags:
+        - Defender - Investigation
+      summary: Get investigation package download URI
+      description: |
+        Retrieves a SAS URI to download an investigation package collected from a machine.
+        Should be called after a 'collectInvestigationPackage' action has completed successfully.
+      operationId: getPackageUri
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: actionId
+          in: path
+          required: true
+          description: The action ID of the investigation package collection action
+          schema:
+            type: string
+            format: uuid
+          example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+      responses:
+        '200':
+          description: Successfully retrieved package download URI
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUriResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /defender/liveresponseresult/{actionId}/{commandId}:
+    get:
+      tags:
+        - Defender - Investigation
+      summary: Get live response result download link
+      description: |
+        Retrieves a download link for the results of a specific live response command.
+        The commandId corresponds to the index of the command in the original live response commands array.
+      operationId: getLiveResponseResult
+      parameters:
+        - $ref: '#/components/parameters/AccountContext'
+        - name: actionId
+          in: path
+          required: true
+          description: The action ID of the live response action
+          schema:
+            type: string
+            format: uuid
+          example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+        - name: commandId
+          in: path
+          required: true
+          description: The index of the command in the live response commands array
+          schema:
+            type: integer
+            minimum: 0
+          example: 0
+      responses:
+        '200':
+          description: Successfully retrieved live response result download link
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveResponseResultResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  # Detection Rules endpoints
+  /rules:
+    get:
+      tags:
+        - Detection Rules
+      summary: Retrieve detection rules for a customer
+      description: |
+        Retrieves all Microsoft Sentinel detection rules deployed across a customer's
+        Azure subscriptions and workspaces, including enriched metadata.
+      operationId: getRulesForCustomer
+      parameters:
+        - name: x-account-context
+          in: header
+          required: true
+          description: The unique account identifier for the customer
+          schema:
+            type: string
+          example: "12345678-abcd-1234-abcd-123456789abc"
+      responses:
+        '200':
+          description: Successfully retrieved detection rules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DetectionRule'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  # JSM Incidents endpoints
+  /incidents:
+    get:
+      tags:
+        - JSM - Incidents
+      summary: List incidents
+      description: |
+        Retrieve a paginated list of security incidents from JSM with filtering and sorting options.
+      operationId: listIncidents
+      parameters:
+        - name: sortBy
+          in: query
+          description: Field to sort by
+          schema:
+            type: string
+            enum: [id, status, summary, priority, severity, updated, created]
+            default: id
+        - name: sortDirection
+          in: query
+          description: Sort direction
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+        - name: textSearch
+          in: query
+          description: Text search query
+          schema:
+            type: string
+        - name: startAt
+          in: query
+          description: Pagination start index
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: priority
+          in: query
+          description: Comma-separated list of priorities
+          schema:
+            type: string
+        - name: status
+          in: query
+          description: Comma-separated list of statuses
+          schema:
+            type: string
+        - name: tactic
+          in: query
+          description: Comma-separated list of MITRE ATT&CK tactics
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: Comma-separated list of organization IDs
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved incidents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '402':
+          description: No organizations found
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /incidents/{issueKey}:
+    get:
+      tags:
+        - JSM - Incidents
+      summary: Get incident details
+      description: |
+        Retrieve detailed information about a specific security incident including metadata,
+        alerts, evidence, impacted assets, comments, and AI-powered insights.
+      operationId: getIncidentDetails
+      parameters:
+        - name: issueKey
+          in: path
+          required: true
+          description: JSM issue key (e.g., SEC-1234)
+          schema:
+            type: string
+            pattern: '^[A-Z]+-[0-9]+$'
+      responses:
+        '200':
+          description: Successfully retrieved incident details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentDetails'
+        '400':
+          description: Bad request
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /incidents/{issueKey}/comments:
+    post:
+      tags:
+        - JSM - Incidents
+      summary: Add comment to incident
+      description: Add a comment to an incident with optional file attachments
+      operationId: addIncidentComment
+      parameters:
+        - name: issueKey
+          in: path
+          required: true
+          description: JSM issue key
+          schema:
+            type: string
+            pattern: '^[A-Z]+-[0-9]+$'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - comment
+              properties:
+                comment:
+                  type: string
+                  minLength: 1
+                  maxLength: 5000
+                files:
+                  type: array
+                  maxItems: 10
+                  items:
+                    type: string
+                    format: binary
+      responses:
+        '200':
+          description: Comment added successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+        '400':
+          description: Bad request
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  /incidents/{issueKey}/comment/{commentId}:
+    get:
+      tags:
+        - JSM - Incidents
+      summary: Get comment attachments
+      description: Retrieve all attachments for a specific comment
+      operationId: getCommentAttachments
+      parameters:
+        - name: issueKey
+          in: path
+          required: true
+          description: JSM issue key
+          schema:
+            type: string
+            pattern: '^[A-Z]+-[0-9]+$'
+        - name: commentId
+          in: path
+          required: true
+          description: Comment ID
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved attachments
+          content:
+            multipart/mixed:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Error retrieving attachments
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  # JSM Metrics endpoints
+  /metrics/incidents:
+    get:
+      tags:
+        - JSM - Metrics
+      summary: Get incident summary metrics
+      description: |
+        Retrieve aggregated incident metrics including event-to-incident ratio trends,
+        incident statistics, and summary data over time.
+      operationId: getIncidentMetrics
+      responses:
+        '200':
+          description: Successfully retrieved incident metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IncidentMetrics'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /metrics/ti-updates:
+    get:
+      tags:
+        - JSM - Metrics
+      summary: Get threat intelligence updates
+      description: |
+        Retrieve threat intelligence updates from various sources including threat feeds,
+        device ingestion, identity ingestion, and vulnerability summaries.
+      operationId: getThreatIntelUpdates
+      responses:
+        '200':
+          description: Successfully retrieved threat intelligence updates
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreatIntelUpdate'
+        '400':
+          description: Missing account context
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+
+  /metrics/data-ingestion:
+    get:
+      tags:
+        - JSM - Metrics
+      summary: Get data ingestion metrics
+      description: Retrieve data ingestion metrics from DynamoDB for the authenticated customer
+      operationId: getDataIngestionMetrics
+      responses:
+        '200':
+          description: Successfully retrieved data ingestion metrics
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # JSM Service Requests endpoints
+  /service-requests:
+    get:
+      tags:
+        - JSM - Service Requests
+      summary: List service requests
+      description: |
+        Retrieve a paginated list of service requests from JSM with filtering and sorting options.
+      operationId: listServiceRequests
+      parameters:
+        - name: sortBy
+          in: query
+          description: Field to sort by
+          schema:
+            type: string
+            enum: [id, status, summary, priority, severity, updated, created]
+            default: id
+        - name: sortDirection
+          in: query
+          description: Sort direction
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+        - name: textSearch
+          in: query
+          description: Text search query
+          schema:
+            type: string
+        - name: startAt
+          in: query
+          description: Pagination start index
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+        - name: pageSize
+          in: query
+          description: Number of items per page
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+        - name: status
+          in: query
+          description: Comma-separated list of statuses
+          schema:
+            type: string
+        - name: priority
+          in: query
+          description: Comma-separated list of priority levels
+          schema:
+            type: string
+        - name: organization
+          in: query
+          description: Comma-separated list of organization IDs
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved service requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceRequestListResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '404':
+          description: No organizations found
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  # JSM Organizations endpoints
+  /jsm-orgs/:
+    get:
+      tags:
+        - JSM - Organizations
+      summary: Get organizations by user
+      description: Retrieve all JSM organizations that the authenticated user has access to
+      operationId: getOrganizations
+      responses:
+        '200':
+          description: Successfully retrieved organizations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Organization'
+        '400':
+          description: Error retrieving organizations
+          content:
+            text/plain:
+              schema:
+                type: string
+
+  # Reports endpoints
+  /msr/:
+    get:
+      tags:
+        - Reports - MSR
+      summary: List available MSR files
+      description: |
+        Retrieves a list of all available Monthly Security Report files for the authenticated
+        customer's account.
+      operationId: listMSRFiles
+      parameters:
+        - name: x-account-context
+          in: header
+          required: true
+          description: The AMP account ID
+          schema:
+            type: string
+          example: "12345"
+      responses:
+        '200':
+          description: Successfully retrieved list of available MSR files
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /msr/{fileName}/:
+    get:
+      tags:
+        - Reports - MSR
+      summary: Download a specific MSR file
+      description: |
+        Retrieves and downloads a specific Monthly Security Report file from S3 storage.
+        The file is streamed back to the client with appropriate content type and disposition headers.
+      operationId: getMSRFile
+      parameters:
+        - name: x-account-context
+          in: header
+          required: true
+          description: The AMP account ID
+          schema:
+            type: string
+          example: "12345"
+        - name: fileName
+          in: path
+          required: true
+          description: The name of the MSR file to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved the MSR file
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  # Threat Intelligence endpoints
+  /ti/graphql:
+    post:
+      tags:
+        - TI - GraphQL
+      summary: OpenCTI GraphQL proxy
+      description: |
+        Proxies GraphQL queries to the OpenCTI platform. This endpoint automatically
+        injects the required OpenCTI Bearer token before forwarding requests.
+      operationId: proxyGraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: Successful GraphQL response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '400':
+          description: Invalid GraphQL query
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLError'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /ti/threat-actors:
+    get:
+      tags:
+        - TI - Threat Actors
+      summary: Get all threat actors
+      description: |
+        Retrieves a comprehensive list of all threat actors from DynamoDB.
+        Returns the latest threat actor intelligence data including profiles and capabilities.
+      operationId: getAllThreatActors
+      responses:
+        '200':
+          description: Successfully retrieved all threat actors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ThreatActor'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /ti/threat-actors-by-country:
+    get:
+      tags:
+        - TI - Threat Actors
+      summary: Get threat actors grouped by country
+      description: |
+        Retrieves threat actors organized by their country of origin or operation.
+        Provides a geographical view of threat actor distribution.
+      operationId: getThreatActorsByCountry
+      responses:
+        '200':
+          description: Successfully retrieved threat actors grouped by country
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/ThreatActor'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /ti/threat-actors/{threatActorId}:
+    get:
+      tags:
+        - TI - Threat Actors
+      summary: Get specific threat actor by ID
+      description: |
+        Retrieves detailed information about a specific threat actor using their unique identifier.
+        Returns comprehensive profile data including TTPs and historical activity.
+      operationId: getThreatActorById
+      parameters:
+        - name: threatActorId
+          in: path
+          required: true
+          description: Unique identifier of the threat actor
+          schema:
+            type: string
+          example: "threat-actor-001"
+      responses:
+        '200':
+          description: Successfully retrieved threat actor data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThreatActorDetail'
+        '400':
+          description: Threat actor not found
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+
+  /ti/customer-ti/:
+    get:
+      tags:
+        - TI - Customer Intelligence
+      summary: Get customer-specific threat intelligence
+      description: |
+        Retrieves threat intelligence tailored to a specific customer based on their
+        deployed products and vendors. Maps rules to products and queries OpenCTI for
+        relevant vulnerabilities and reports.
+      operationId: getCustomerTI
+      parameters:
+        - name: x-account-context
+          in: header
+          required: true
+          description: AMP Account ID for customer identification
+          schema:
+            type: string
+          example: "12345-67890-abcde"
+      responses:
+        '200':
+          description: Successfully retrieved customer threat intelligence
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerTIResponse'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Customer not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    OAuth2BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2
+      description: |
+        OAuth2 Scoped Access Token authentication. An authorization header with Bearer token
+        must be included with every authenticated request.
+
+        For authentication details, see the official documentation:
+        https://kb.armor.com/kb/sso-authentication-with-postman
+
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: |
+        FH-AUTH token authentication.
+
+        ## Authentication Flow
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+        ## Security Notes
+
+        - Authorization codes expire in 2 minutes
+        - Access tokens expire in 15 minutes
+        - All endpoints require HTTPS
+        - Never log or persist tokens in plain text
+
+        Include the access token in the Authorization header:
+        ```
+        Authorization: FH-AUTH {access_token}
+        ```
+
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
+
+  schemas:
+    # AIP Schemas
+    IncidentDataResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/IncidentData'
+
+    IncidentNotAvailableResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: false
+        message:
+          type: string
+        incidentKey:
+          type: string
+        data:
+          type: object
+          nullable: true
+
+    IncidentData:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        displayName:
+          type: string
+        status:
+          type: string
+          enum: [Escalate, Resolved, Suppressed, Benign, Investigation]
+        severity:
+          type: string
+          enum: [High, Medium, Low]
+        detected_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        assigned_to:
+          type: string
+        customer_id:
+          type: string
+        customer_name:
+          type: string
+        detection_method:
+          type: string
+        source_product:
+          type: string
+        ai_metrics:
+          $ref: '#/components/schemas/AIMetrics'
+        ai_investigation:
+          $ref: '#/components/schemas/AIInvestigation'
+        attack_story:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttackEvent'
+        similar_incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimilarIncident'
+
+    AIMetrics:
+      type: object
+      properties:
+        ai_classification:
+          type: string
+          enum: [True Positive, False Positive, Benign Positive, Unknown]
+        ai_threat_level:
+          type: string
+          enum: [HIGH, MEDIUM, LOW]
+        ai_historical_similarity:
+          type: string
+        ai_community_similarity:
+          type: string
+        time_saved_by_ai:
+          type: string
+        ai_speed_percentage:
+          type: string
+        time_to_triage:
+          type: string
+        time_to_investigate:
+          type: string
+        time_to_contain:
+          type: string
+
+    AIInvestigation:
+      type: object
+      properties:
+        summary:
+          type: string
+        indicators_of_compromise:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatIndicator'
+        root_cause_analysis:
+          type: string
+        recommended_actions:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        reason_for_recommeded_actions:
+          type: string
+
+    ThreatIndicator:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [IP Address, Domain, URL, File Hash, Email Address, Unknown]
+        value:
+          type: string
+        description:
+          type: string
+
+    AttackEvent:
+      type: object
+      properties:
+        Timestamp:
+          type: string
+          format: date-time
+        description:
+          type: string
+        MitreTactic:
+          type: string
+        MitreTechnique:
+          type: string
+        MitreTacticId:
+          type: string
+        MitreTechniqueId:
+          type: string
+        IncidentCreatedBy:
+          type: string
+
+    SimilarIncident:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        severity:
+          type: string
+        detected_on:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        customer_name:
+          type: string
+
+    EntityIntelligenceResponse:
+      type: object
+      properties:
+        value:
+          type: string
+        kind:
+          type: string
+          enum: [ip, domain, url, filehash, email]
+        reputation:
+          type: string
+          enum: [malicious, suspicious, benign, unknown]
+        count_incidents:
+          type: integer
+        first_seen:
+          type: string
+          format: date-time
+        last_seen:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        geolocation:
+          type: object
+          properties:
+            country:
+              type: string
+            region:
+              type: string
+
+    # Defender Schemas
+    MachinesResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Machine'
+
+    Machine:
+      type: object
+      properties:
+        id:
+          type: string
+        computerDnsName:
+          type: string
+        firstSeen:
+          type: string
+          format: date-time
+        lastSeen:
+          type: string
+          format: date-time
+        osPlatform:
+          type: string
+        osVersion:
+          type: string
+        osProcessor:
+          type: string
+        lastIpAddress:
+          type: string
+        lastExternalIpAddress:
+          type: string
+        healthStatus:
+          type: string
+          enum: [Active, Inactive, ImpairedCommunication, NoSensorData]
+        rbacGroupName:
+          type: string
+        riskScore:
+          type: string
+          enum: [None, Low, Medium, High]
+        exposureLevel:
+          type: string
+          enum: [None, Low, Medium, High]
+        isAadJoined:
+          type: boolean
+        aadDeviceId:
+          type: string
+          format: uuid
+        machineTags:
+          type: array
+          items:
+            type: string
+
+    MachineActionsResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineAction'
+
+    MachineAction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum: [Isolate, Unisolate, RunAntiVirusScan, CollectInvestigationPackage, RestrictCodeExecution, UnrestrictCodeExecution, RunLiveResponse, StartInvestigation, StopAndQuarantineFile, CancelAction, Offboard]
+        requestor:
+          type: string
+        requestorComment:
+          type: string
+        status:
+          type: string
+          enum: [Pending, InProgress, Succeeded, Failed, TimeOut, Cancelled]
+        machineId:
+          type: string
+        computerDnsName:
+          type: string
+        creationDateTimeUtc:
+          type: string
+          format: date-time
+        lastUpdateDateTimeUtc:
+          type: string
+          format: date-time
+        relatedFileInfo:
+          type: object
+          properties:
+            fileIdentifier:
+              type: string
+            fileIdentifierType:
+              type: string
+
+    MachineActionRequest:
+      type: object
+      required:
+        - action
+        - comment
+      properties:
+        action:
+          type: string
+          enum: [isolate, unisolate, runAntiVirusScan, collectInvestigationPackage, restrictCodeExecution, unrestrictCodeExecution, runliveresponse, startInvestigation, StopAndQuarantineFile, cancel, offboard]
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        type:
+          type: string
+          enum: [Quick, Full]
+        commands:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              params:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string
+        sha1:
+          type: string
+          pattern: '^[a-fA-F0-9]{40}$'
+
+    PackageUriResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
+
+    LiveResponseResultResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
+
+    # Detection Rules Schemas
+    DetectionRule:
+      type: object
+      required:
+        - name
+        - productVendor
+        - productName
+        - dataSource
+        - modifiedTime
+        - severity
+        - description
+        - tactics
+        - techniques
+        - subscriptionId
+        - workspaceId
+        - incidentsGenerated
+      properties:
+        name:
+          type: string
+        productVendor:
+          type: string
+        productName:
+          type: string
+        dataSource:
+          type: array
+          items:
+            type: string
+        modifiedTime:
+          type: string
+          format: date-time
+        severity:
+          type: string
+          enum: [Informational, Low, Medium, High, Critical]
+        description:
+          type: string
+        tactics:
+          type: array
+          items:
+            type: string
+        techniques:
+          type: array
+          items:
+            type: string
+        subscriptionId:
+          type: string
+        workspaceId:
+          type: string
+        incidentsGenerated:
+          type: integer
+          format: int32
+          minimum: 0
+
+    # JSM Schemas
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+
+    Organization:
+      type: object
+      properties:
+        jsmOrgId:
+          type: integer
+        label:
+          type: string
+
+    IncidentListResponse:
+      type: object
+      properties:
+        totalRows:
+          type: integer
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncidentListItem'
+        approvedOrgs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+
+    IncidentListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        summary:
+          type: string
+        status:
+          type: string
+        priority:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        assignee:
+          type: string
+          nullable: true
+        orgs:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              orgId:
+                type: string
+              orgName:
+                type: string
+        tactics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              id:
+                type: string
+
+    IncidentDetails:
+      type: object
+      properties:
+        tenantId:
+          type: string
+          nullable: true
+        incidentId:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+          nullable: true
+        status:
+          type: string
+        createdDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        lastUpdateDateTime:
+          type: string
+          format: date-time
+          nullable: true
+        timeToFirstResponse:
+          type: integer
+          nullable: true
+        timeToResolution:
+          type: integer
+          nullable: true
+        severity:
+          type: string
+          nullable: true
+        mitreTactics:
+          type: array
+          items:
+            type: string
+        source:
+          type: array
+          items:
+            type: string
+        detectionSource:
+          type: string
+        assignee:
+          type: string
+          nullable: true
+        ticketUpdatedDateTime:
+          type: string
+          format: date-time
+        ticketCreatedDateTime:
+          type: string
+          format: date-time
+        ticketDescription:
+          type: string
+        ticketSummary:
+          type: string
+        incidentLink:
+          type: string
+        orgs:
+          type: array
+          nullable: true
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+        comments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Comment'
+        alerts:
+          type: array
+          items:
+            type: object
+        impactedAssets:
+          type: array
+          items:
+            type: object
+        aipStatus:
+          type: string
+          nullable: true
+        aipSummary:
+          type: string
+        aipShortSummary:
+          type: string
+        aipEnrichmentUpdateTime:
+          type: string
+        aipConfidenceScore:
+          type: number
+          nullable: true
+        aipClassification:
+          type: string
+          nullable: true
+        similarIncidents:
+          type: array
+          items:
+            type: object
+        threatScore:
+          type: integer
+        aipDescription:
+          type: string
+        aipInvestigation:
+          type: string
+        aipContainmentAndRecovery:
+          type: string
+        changeLog:
+          type: array
+          items:
+            type: object
+
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        authorDisplayName:
+          type: string
+        authorEmail:
+          type: string
+        body:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean
+
+    ServiceRequestListResponse:
+      type: object
+      properties:
+        totalRows:
+          type: integer
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRequestListItem'
+        approvedOrgs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+
+    ServiceRequestListItem:
+      type: object
+      properties:
+        id:
+          type: string
+        summary:
+          type: string
+        status:
+          type: string
+        priority:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        assignee:
+          type: string
+          nullable: true
+        orgs:
+          type: array
+          items:
+            type: object
+            properties:
+              orgId:
+                type: string
+              orgName:
+                type: string
+
+    IncidentMetrics:
+      type: object
+      properties:
+        eventToIncidentRatioTrend:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              value:
+                type: object
+                properties:
+                  events:
+                    type: integer
+                  alerts:
+                    type: integer
+                  incidents:
+                    type: integer
+
+    ThreatIntelUpdate:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+        customerId:
+          type: string
+        customerName:
+          type: string
+        defenderTenant:
+          type: string
+        data:
+          type: object
+          properties:
+            threatFeedsIngested:
+              type: array
+              items:
+                type: object
+            deviceIngestionSummary:
+              type: array
+              items:
+                type: object
+            identityIngestionSummary:
+              type: array
+              items:
+                type: object
+            deviceVulnerabilitySummary:
+              type: array
+              items:
+                type: object
+            defenderIngestionSummary:
+              type: array
+              items:
+                type: object
+
+    # Reports Schemas
+    MSRDataFile:
+      type: object
+      properties:
+        reportPeriod:
+          type: string
+        customerId:
+          type: string
+        customerName:
+          type: string
+        securityIncidents:
+          type: object
+        dataIngestion:
+          type: object
+        serviceRequests:
+          type: object
+        metrics:
+          type: object
+        defenderScore:
+          type: object
+
+    # Threat Intelligence Schemas
+    GraphQLRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
+          type: string
+
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
+              path:
+                type: array
+                items:
+                  type: string
+
+    GraphQLError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
+
+    ThreatActor:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        sophistication:
+          type: string
+          enum: [none, minimal, intermediate, advanced, expert, innovator, strategic]
+        aliases:
+          type: array
+          items:
+            type: string
+        primary_motivation:
+          type: string
+          enum: [accidental, coercion, dominance, ideology, notoriety, organizational-gain, personal-gain, personal-satisfaction, revenge, state-sponsored, unpredictable]
+        country:
+          type: string
+        resource_level:
+          type: string
+          enum: [individual, club, contest, team, organization, government]
+
+    ThreatActorDetail:
+      allOf:
+        - $ref: '#/components/schemas/ThreatActor'
+        - type: object
+          properties:
+            first_seen:
+              type: string
+              format: date-time
+            last_seen:
+              type: string
+              format: date-time
+            goals:
+              type: array
+              items:
+                type: string
+            tactics:
+              type: array
+              items:
+                type: string
+            associated_campaigns:
+              type: array
+              items:
+                type: string
+
+    ProductVendor:
+      type: object
+      required:
+        - productName
+        - productVendor
+      properties:
+        productName:
+          type: string
+        productVendor:
+          type: string
+
+    OpenCTIVulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        x_opencti_cvss_base_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 10.0
+        x_opencti_cvss_base_severity:
+          type: string
+          enum: [NONE, LOW, MEDIUM, HIGH, CRITICAL]
+
+    OpenCTIReport:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        published:
+          type: string
+          format: date-time
+        report_types:
+          type: array
+          items:
+            type: string
+
+    CustomerTIResponse:
+      type: object
+      required:
+        - accountId
+        - productsAndVendors
+        - threatIntelligence
+      properties:
+        accountId:
+          type: string
+        customerName:
+          type: string
+        productsAndVendors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProductVendor'
+        threatIntelligence:
+          type: object
+          required:
+            - vulnerabilities
+            - reports
+          properties:
+            vulnerabilities:
+              type: array
+              items:
+                $ref: '#/components/schemas/OpenCTIVulnerability'
+            reports:
+              type: array
+              items:
+                $ref: '#/components/schemas/OpenCTIReport'
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid parameters or malformed request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    NotFound:
+      description: Not Found - The requested resource does not exist
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

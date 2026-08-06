@@ -1,0 +1,19 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Accounts API
+  version: 1.0.0
+extends: openapi/armor-accounts-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: armor
+    x-apievangelist-harvested: '2026-08-06'
+    x-apievangelist-source: https://developer.armor.com/
+    x-apievangelist-operations: 11
+    x-apievangelist-idempotency: none - no Idempotency-Key contract is published for this API
+    x-apievangelist-error-format: proprietary JSON envelope; not RFC 9457 application/problem+json
+    x-apievangelist-rate-limits: not documented; no RateLimit or Retry-After headers declared
+    x-apievangelist-account-context: requests are scoped by the X-Account-Context header
+    x-apievangelist-conventions: conventions/armor-conventions.yml
+    x-apievangelist-authentication: authentication/armor-authentication.yml
+    x-apievangelist-errors: errors/armor-problem-types.yml

@@ -1,0 +1,987 @@
+openapi: 3.0.3
+info:
+  title: Armor Log Management API
+  description: |
+    This API provides an interface for configuring and interacting with
+    [Armor's Log Management Platform](https://www.armor.com/armor-log-management/).
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+
+servers:
+  - url: https://api.logs.armor.com
+    description: Production server
+  - url: https://logs.api.secure-prod.services
+    description: Production services
+  - url: https://logs.api.secure-stage.services
+    description: Staging services
+  - url: https://logs.api.secure-dev.services
+    description: Development services
+
+security:
+  - oauth2: []
+
+tags:
+  - name: Log Sources
+    description: Operations for managing log sources
+  - name: Log Groups
+    description: Operations for managing log groups
+  - name: Flow Sources
+    description: Operations for managing flow sources
+  - name: Log Endpoints
+    description: Operations for managing log endpoints
+  - name: Access Control Lists
+    description: Operations for managing ACLs (deprecated)
+  - name: Meta
+    description: Meta resources and utility operations
+
+paths:
+  /logs/sources:
+    get:
+      tags:
+        - Log Sources
+      summary: Get all log sources
+      description: Get a list of all configured log sources.
+      operationId: getLogSources
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogSource'
+    post:
+      tags:
+        - Log Sources
+      summary: Create a log source
+      description: Create a log source with the provided configuration options.
+      operationId: createLogSource
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogSourceCreateRequest'
+      responses:
+        '200':
+          description: Log source created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogSource'
+
+  /logs/sources/{sourceId}:
+    delete:
+      tags:
+        - Log Sources
+      summary: Delete a log source
+      description: |
+        Soft-delete a log source. The log source will be deprovisioned but the entity record will be
+        retained and state set to "Deleted". Only log sources with state `Online` may be deleted. You
+        can enumerate deleted log sources by appending the `?deleted=true` query string to a `GET`
+        request.
+      operationId: deleteLogSource
+      deprecated: true
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          description: The unique identifier of the log source being deleted.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Log source deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Log source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+    patch:
+      tags:
+        - Log Sources
+      summary: Update a log source
+      description: |
+        Update a log source with the provided configuration options.
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+        the `version` property of the request body. If the entity has been modified since the
+        supplied version, a `412` response will be returned. If this header is absent from the
+        request a `400` response will be returned.
+      operationId: updateLogSource
+      deprecated: true
+      parameters:
+        - name: sourceId
+          in: path
+          required: true
+          description: The unique identifier of the log source being updated.
+          schema:
+            type: integer
+        - name: If-Unmodified-Since
+          in: header
+          required: true
+          description: Version header for concurrency control
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogSourceUpdateRequest'
+      responses:
+        '200':
+          description: Log source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogSourceUpdateRequest'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Log source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '428':
+          description: Precondition required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /logs/groups:
+    get:
+      tags:
+        - Log Groups
+      summary: Get all log groups
+      description: Get a list of log groups.
+      operationId: getLogGroups
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogGroup'
+
+  /flows/sources:
+    get:
+      tags:
+        - Flow Sources
+      summary: Get all flow sources
+      description: |
+        Passing `all=true` can return Flow Sources across multiple orgs given you
+        have the necessary permissions.
+      operationId: getFlowSources
+      parameters:
+        - name: all
+          in: query
+          description: Return flow sources across multiple orgs
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowSource'
+    post:
+      tags:
+        - Flow Sources
+      summary: Create a flow source
+      description: Adds a flow source to the pool of available flow sources.
+      operationId: createFlowSource
+      x-internal: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowSourceCreateRequest'
+      responses:
+        '200':
+          description: Flow source created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowSource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /flows/sources/{flowSourceId}:
+    patch:
+      tags:
+        - Flow Sources
+      summary: Update a flow source
+      description: |
+        Update the settings of the given flow source.
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+        the `version` property of the request body. If the entity has been modified since the
+        supplied version, a `412` response will be returned. If this header is absent from the
+        request a `400` response will be returned.
+      operationId: updateFlowSource
+      x-internal: true
+      parameters:
+        - name: flowSourceId
+          in: path
+          required: true
+          description: The unique identifier of the flow source being updated.
+          schema:
+            type: string
+            format: uuid
+        - name: If-Unmodified-Since
+          in: header
+          required: true
+          description: Version header for concurrency control
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowSourceEditRequest'
+      responses:
+        '200':
+          description: Flow source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowSource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Flow source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '428':
+          description: Precondition required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /flows/collectors:
+    get:
+      tags:
+        - Flow Sources
+      summary: Get all flow collectors
+      description: Get a list of provisioned flow collectors.
+      operationId: getFlowCollectors
+      x-internal: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowCollector'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /meta/flows/actions/allocate-flow-source:
+    post:
+      tags:
+        - Flow Sources
+      summary: Allocate a flow source
+      description: |
+        Enable collection of network flow-based log sources by allocating a flow source to your account.
+        If you already have a flow source associated to your account, the API will return a 400 response.
+      operationId: allocateFlowSource
+      responses:
+        '200':
+          description: Flow source allocation already existed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '201':
+          description: Flow source allocation successfully performed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request - flow source already associated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /logs/endpoints:
+    get:
+      tags:
+        - Log Endpoints
+      summary: Get all log endpoints
+      description: Get a list of log endpoints.
+      operationId: getLogEndpoints
+      deprecated: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogEndpoint'
+
+  /logs/endpoints/actions/allocate:
+    post:
+      tags:
+        - Log Endpoints
+      summary: Allocate an endpoint
+      description: |
+        Request allocation of an Armor-managed endpoint.
+
+        This action assigns an Armor-managed endpoint and port range that can be used to send logs
+        that need to be collected. The endpoint will be assigned to the org specified in the bearer token.
+
+        A response of 200 means the allocation already existed and no action was taken.
+        A response of 201 means the allocation was successfully performed.
+      operationId: allocateLogEndpoint
+      deprecated: true
+      responses:
+        '200':
+          description: Allocation already existed
+        '201':
+          description: Allocation successfully performed
+
+  /logs/acls:
+    get:
+      tags:
+        - Access Control Lists
+      summary: Get all ACLs
+      description: Get a list of Access Control Lists (ACLs) that manage access to your log endpoints.
+      operationId: getLogAcls
+      deprecated: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogAcl'
+    post:
+      tags:
+        - Access Control Lists
+      summary: Create an ACL
+      description: Create an Access Control List (ACL) that manages access to your log endpoints.
+      operationId: createLogAcl
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogAclCreateRequest'
+      responses:
+        '200':
+          description: ACL created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogAcl'
+
+  /logs/acls/{aclId}:
+    put:
+      tags:
+        - Access Control Lists
+      summary: Update an ACL
+      description: |
+        Update an Access Control List (ACL) that manages access to your log endpoints.
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+        the `version` property of the request body. If the entity has been modified since the
+        supplied version, a `412` response will be returned. If this header is absent from the
+        request a `400` response will be returned.
+      operationId: updateLogAcl
+      deprecated: true
+      parameters:
+        - name: aclId
+          in: path
+          required: true
+          description: The unique identifier of the Log ACL being updated.
+          schema:
+            type: string
+            format: uuid
+        - name: If-Unmodified-Since
+          in: header
+          required: true
+          description: Version header for concurrency control
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogAcl'
+      responses:
+        '200':
+          description: ACL updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogAcl'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: ACL not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+
+  /meta/logs/sources/actions/check-unique-name:
+    post:
+      tags:
+        - Meta
+      summary: Check hostname availability
+      description: Check the availability of a log source identifier (hostname).
+      operationId: checkHostnameAvailability
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostnameAvailabilityCheckRequest'
+      responses:
+        '200':
+          description: Availability check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostnameAvailabilityCheckResponse'
+
+  /meta/logs/log-source-types:
+    get:
+      tags:
+        - Meta
+      summary: Get log source types
+      description: Retrieve the list of log source types available, and the protocols they support.
+      operationId: getLogSourceTypes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogSourceType'
+
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}
+
+  schemas:
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: "550e8400-e29b-41d4-a716-446655440000"
+
+    Hostname:
+      type: string
+      description: A fully-qualified domain name
+      example: "server.example.com"
+
+    IpAddress:
+      type: string
+      description: An IPv4 or IPv6 address
+      example: "192.168.1.1"
+
+    IpPort:
+      type: integer
+      minimum: 1
+      maximum: 65535
+      description: A valid IP port number
+      example: 514
+
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+        - tcp
+        - udp
+      example: "tcp"
+
+    CIDR:
+      type: string
+      description: An IPv4 network subnet in CIDR notation
+      pattern: '^([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}$'
+      example: "192.168.1.0/24"
+
+    DateTime:
+      type: string
+      format: date-time
+      description: An ISO 8601 formatted date-time string
+      example: "2024-01-15T12:00:00Z"
+
+    Message:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: "A confirmation message or explanation."
+
+    LogSource:
+      type: object
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        hostname:
+          type: string
+          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
+        endpoint:
+          type: string
+          description: The hostname of the endpoint to which logs are sent.
+        protocol:
+          $ref: '#/components/schemas/IpProtocol'
+        port:
+          type: integer
+          nullable: true
+          minimum: 1
+          maximum: 65535
+          description: The IP port to which logs are sent.
+        state:
+          type: string
+          description: The state of the log source.
+          enum:
+            - Pending
+            - Provisioning
+            - Online
+            - Deleting
+            - Deleted
+            - Error
+        type:
+          $ref: '#/components/schemas/LogSourceType'
+        logSourceProtocolId:
+          type: integer
+          description: The unique identifier of the log source protocol this log source uses.
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+        lastEventDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp of the last log this source received.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date and time this log source was created.
+        createdByUserId:
+          type: integer
+          description: The unique identifier of the user that created this log source.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date and time this log source was last updated.
+        modifiedByUserId:
+          type: integer
+          description: The unique identifier of the user that last updated this log source.
+
+    LogSourceCreateRequest:
+      type: object
+      required:
+        - hostname
+        - endpointId
+        - logSourceTypeId
+        - logSourceProtocolId
+      properties:
+        hostname:
+          type: string
+          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
+        endpointId:
+          $ref: '#/components/schemas/Guid'
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type this log source will be provisioned as.
+        logSourceProtocolId:
+          type: integer
+          description: The unique identifier of the log source protocol this log source will use.
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+
+    LogSourceUpdateRequest:
+      type: object
+      required:
+        - logSourceId
+        - options
+        - version
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+
+    LogSourceType:
+      type: object
+      properties:
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type.
+        name:
+          type: string
+          description: The friendly name of the log source type.
+        logSourceProtocols:
+          type: array
+          items:
+            type: integer
+          description: A collection of protocol IDs available for the type.
+        icon:
+          type: string
+          description: The Brandkit CSS class used to specify the icon for this log source type.
+        category:
+          type: string
+          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
+        vendor:
+          type: string
+          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
+        kbLink:
+          type: string
+          description: Link to the KB article for this log source type.
+        requiresFlow:
+          type: boolean
+          description: Whether or not network flow sources need to be enabled on the org for this log source type.
+
+    LogGroup:
+      type: object
+      properties:
+        logGroupId:
+          $ref: '#/components/schemas/Guid'
+        name:
+          type: string
+          description: The friendly name of this log group.
+        retentionDays:
+          type: integer
+          description: The number of days log events recorded for this group will be retained.
+        analysisEnabled:
+          type: boolean
+          description: Determines if log events recorded for this group should be analyzed or just stored.
+        apiToken:
+          type: string
+          description: The apiToken used to configure a log source to belong to this log group.
+
+    LogEndpoint:
+      type: object
+      properties:
+        endpointId:
+          $ref: '#/components/schemas/Guid'
+        hostname:
+          type: string
+          description: The fully-qualified domain name of the log endpoint.
+        publicIp:
+          type: string
+          description: The public IP address of the log endpoint.
+        privateIp:
+          type: string
+          nullable: true
+          description: The private IP address of the log endpoint.
+        softwareVersion:
+          type: string
+          description: The software version the endpoint is running.
+        state:
+          type: string
+          description: The state of the log endpoint.
+          enum:
+            - Pending
+            - Provisioning
+            - Online
+            - Deleting
+            - Deleted
+            - Error
+        version:
+          type: integer
+          description: The version of this log endpoint (used for concurrency checking). Pass this value with any subsequent update request.
+        lastEventDate:
+          type: string
+          format: date-time
+          nullable: true
+          description: The timestamp of the last log this endpoint received.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date and time this log endpoint was created.
+        createdByUserId:
+          type: integer
+          description: The unique identifier of the user that created this log endpoint.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date and time this log endpoint was last updated.
+        modifiedByUserId:
+          type: integer
+          description: The unique identifier of the user that last updated this log endpoint.
+
+    FlowSource:
+      type: object
+      properties:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        flowCollector:
+          $ref: '#/components/schemas/FlowCollector'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+            - ipfix
+            - sflow
+            - jflow
+        orgId:
+          type: integer
+          nullable: true
+          description: The unique identifier of organization with which this flow source is associated.
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        state:
+          type: string
+          nullable: true
+          description: The state of the Flow Source.
+          enum:
+            - Allocated
+            - Unallocated
+            - Not Configured
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+
+    FlowSourceCreateRequest:
+      type: object
+      required:
+        - siemFlowSourceId
+        - flowCollectorId
+        - port
+        - type
+      properties:
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+            - ipfix
+            - sflow
+            - jflow
+
+    FlowSourceEditRequest:
+      type: object
+      required:
+        - flowSourceId
+        - version
+      properties:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        siemFlowSourceId:
+          type: integer
+          nullable: true
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          type: string
+          format: uuid
+          nullable: true
+          description: The unique identifier of the flow collector.
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+          nullable: true
+          description: The port on which this flow source will listen for network flow data.
+        type:
+          type: string
+          nullable: true
+          description: The type of network flow data this source can consume.
+          enum:
+            - ipfix
+            - sflow
+            - jflow
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+
+    FlowCollector:
+      type: object
+      properties:
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        flowCollectorName:
+          type: string
+          nullable: true
+          description: The friendly name of the Flow Collector.
+        ipAddress:
+          type: string
+          description: The IP address of the flow collector.
+
+    LogAcl:
+      type: object
+      required:
+        - aclId
+        - allowedNetworks
+        - maxAllowedNetworks
+        - version
+      properties:
+        aclId:
+          $ref: '#/components/schemas/Guid'
+        allowedNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CIDR'
+          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
+        maxAllowedNetworks:
+          type: integer
+          description: The maximum number of IPv4 network subnets allowed to be specified in the `allowedNetworks` property of this ACL. (Default = 5).
+        version:
+          type: integer
+          description: The version of this log ACL (used for concurrency checking). Pass this value with any subsequent update request.
+
+    LogAclCreateRequest:
+      type: object
+      required:
+        - allowedNetworks
+      properties:
+        allowedNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CIDR'
+          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
+
+    HostnameAvailabilityCheckRequest:
+      type: object
+      required:
+        - hostname
+        - logSourceTypeId
+      properties:
+        hostname:
+          type: string
+          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
+
+    HostnameAvailabilityCheckResponse:
+      type: object
+      required:
+        - hostname
+        - logSourceTypeId
+        - available
+      properties:
+        hostname:
+          type: string
+          description: The hostname for which availability was checked.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
+        available:
+          type: boolean
+          description: Whether or not the hostname is available for use as a unique log source identifier.

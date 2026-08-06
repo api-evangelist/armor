@@ -1,0 +1,144 @@
+generated: '2026-08-06'
+method: searched
+source: openapi/armor-accounts-openapi-original.yml, openapi/armor-agent-management-openapi-original.yml,
+  openapi/armor-compliance-openapi-original.yml, openapi/armor-container-security-openapi-original.yml,
+  openapi/armor-fh-auth-openapi-original.yml, openapi/armor-incident-management-openapi-original.yml,
+  openapi/armor-infrastructure-management-openapi-original.yml, openapi/armor-log-management-openapi-original.yml,
+  openapi/armor-mdr-public-openapi-original.yml, openapi/armor-notifications-openapi-original.yml, openapi/armor-psk-auth-openapi-original.yml,
+  openapi/armor-v1-account-management-swagger-original.json ...
+summary:
+  types:
+  - apiKey
+  - http
+  - oauth2
+  api_key_in:
+  - header
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.armor.com/auth/authorize
+    scopes: 0
+  description: OAuth 2.0 authentication with scopes
+  sources:
+  - openapi/armor-accounts-openapi-original.yml
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-container-security-openapi-original.yml
+  - openapi/armor-incident-management-openapi-original.yml
+  - openapi/armor-infrastructure-management-openapi-original.yml
+  - openapi/armor-notifications-openapi-original.yml
+  - openapi/armor-webhooks-openapi-original.yml
+- name: ApiKey
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  description: API Key authentication
+  sources:
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-infrastructure-management-openapi-original.yml
+- name: FHAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: FH Auth authentication
+  sources:
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-infrastructure-management-openapi-original.yml
+  - openapi/armor-psk-auth-openapi-original.yml
+  - openapi/armor-v1-account-management-swagger-original.json
+  - openapi/armor-v1-infrastructure-swagger-original.json
+  - openapi/armor-v1-security-swagger-original.json
+  - openapi/armor-v1-support-swagger-original.json
+- name: OAuth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://auth.armor.com/authorize
+    tokenUrl: https://auth.armor.com/token
+    scopes: 0
+  sources:
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-log-management-openapi-original.yml
+- name: FH-AUTH
+  type: http
+  scheme: bearer
+  bearerFormat: FH-AUTH
+  description: |-
+    FH-AUTH token authentication.
+
+    ## Authentication Flow
+
+    1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+    2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+    3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+    4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/rei
+  sources:
+  - openapi/armor-fh-auth-openapi-original.yml
+  - openapi/armor-mdr-public-openapi-original.yml
+- name: X-Account-Context
+  type: apiKey
+  in: header
+  parameter: X-Account-Context
+  description: X-Account-Context
+  sources:
+  - openapi/armor-v1-account-management-swagger-original.json
+  - openapi/armor-v1-infrastructure-swagger-original.json
+  - openapi/armor-v1-security-swagger-original.json
+  - openapi/armor-v1-support-swagger-original.json
+docs: https://developer.armor.com/
+portal_documented:
+  source: https://developer.armor.com/ (Authentication page, rendered from the portal JS bundle)
+  statement: Armor Service APIs support multiple authentication methods; each resource declares which
+    schemes it supports.
+  schemes:
+  - name: OAuth2 (Scoped)
+    preferred: true
+    header: 'authorization: Bearer $ID_TOKEN,$ACCESS_TOKEN'
+    note: Requires BOTH an ID token and a scoped access token, comma-separated in one Bearer header. Armor
+      states this is the preferred method and that all future APIs will support it.
+  - name: OAuth2
+    header: 'authorization: Bearer $ID_TOKEN'
+    note: ID token only.
+  - name: Pre-Shared Key (ARMOR-PSK)
+    header: 'authorization: ARMOR-PSK $API_KEY_ID,$REQUEST_SIGNATURE'
+    note: HMAC-SHA512 signature over api_key_id + http_method + request_path + nonce + timestamp + request_body,
+      base64 encoded. The secret key is used directly as a UTF-8 string, not base64-decoded. Keys are
+      generated in the Armor Management Portal under Account > Users > API Keys. No token refresh is needed.
+  id_token_flow:
+    issuer: https://sts.armor.com/adfs/oauth2/authorize
+    protocol: AD FS OAuth 2.0, response_type=id_token, response_mode=form_post
+    steps:
+    - POST credentials with AuthMethod=FormsAuthentication; follow the 302
+    - Parse the returned HTML form for the MFA Context value, POST again with AuthMethod=AzureMfaServerAuthentication
+    - Parse the id_token input out of the resulting HTML form
+    clients:
+    - client_id: b2264823-30a3-4706-bf48-4cf80dad76d3
+      use: default interactive client; MFA required
+    - client_id: d467ba47-2382-44cd-8779-5fb9a3abf69b
+      use: service accounts and non-interactive sessions; MFA not required, but the account must be explicitly
+        excluded from MFA by support ticket
+    note: The ID token is delivered inside an HTML form, so a client must scrape it with XPath or an HTML
+      parser. This is a notable machine-unfriendliness in an otherwise machine-readable platform.
+  access_token_flow:
+    endpoint: POST https://api.armor.com/auth/token
+    requires: 'a valid ID token in the authorization: Bearer header, a space-delimited scope query parameter,
+      and a request body of exactly null'
+    response:
+      assertion: the scoped access token, a JWT
+      scope: space-separated list of granted scopes
+      token_type: jwt-bearer
+    note: Requested scopes the user has no permission for are silently dropped from the returned scope
+      list rather than erroring.
+  mfa:
+    required_by_default: true
+    exception: service accounts using the non-interactive client_id, after an approved support ticket
+      excludes the account from MFA
+account_context:
+  header: X-Account-Context
+  required: true
+  note: Declared as an apiKey securityScheme in all four v1 Swagger documents and as a parameter on both
+    /me operations; it names the Armor account the request acts on.

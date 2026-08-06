@@ -1,0 +1,77 @@
+generated: '2026-08-06'
+method: searched
+source: https://developer.armor.com/swagger/webhooks-api.yaml
+spec_type: Webhooks
+asyncapi_published: false
+note: 'Armor publishes no AsyncAPI document. It does publish a real, machine-readable webhook SUBSCRIPTION
+  API (OpenAPI 3.0.3, 7 paths / 10 operations) that lets a customer register which security detections
+  and notifications Armor should push, including a transform that reshapes the delivered payload. What
+  is NOT published is the delivered event payload schema itself: the available event types are only enumerated
+  at runtime by GET /security/detection/event-type, which requires an OAuth 2.0 client-credentials token,
+  so the event catalogue cannot be captured anonymously.'
+subscription_api:
+  base_url: https://webhooks.api.secure-prod.services/
+  openapi: openapi/armor-webhooks-openapi-original.yml
+  authentication: OAuth 2.0 client credentials (tokenUrl https://api.armor.com/auth/authorize)
+  operations:
+  - operationId: getDetectionConfiguration
+    method: GET
+    path: /security/detection
+    summary: Get Account Detection Configuration
+  - operationId: createDetectionConfiguration
+    method: POST
+    path: /security/detection
+    summary: Create a Detection Configuration
+  - operationId: updateDetectionConfiguration
+    method: POST
+    path: /security/detection/{detection_id}
+    summary: Update a Detection Configuration
+  - operationId: deleteDetectionConfiguration
+    method: POST
+    path: /security/detection/delete/{detection_id}
+    summary: Delete a Detection Configuration
+  - operationId: getEventTypes
+    method: GET
+    path: /security/detection/event-type
+    summary: Get the Event Types
+  - operationId: getNotificationConfigurations
+    method: GET
+    path: /security/notification
+    summary: Get Account Notification Configurations
+  - operationId: createNotificationConfiguration
+    method: POST
+    path: /security/notification
+    summary: Create a Notification Configuration
+  - operationId: getNotificationConfigurationById
+    method: GET
+    path: /security/notification/{notification_id}
+    summary: Get Notification Configuration details
+  - operationId: updateNotificationConfiguration
+    method: POST
+    path: /security/notification/{notification_id}
+    summary: Update a Notification Configuration
+  - operationId: deleteNotificationConfiguration
+    method: POST
+    path: /security/notification/delete/{notification_id}
+    summary: Delete a Notification Configuration
+event_families:
+- name: Detections
+  description: Security detections raised by the Armor SOC against a customer environment. Subscriptions
+    carry a default label set and an optional transform.
+  configured_via: createDetectionConfiguration
+  catalogue: getEventTypes (authenticated)
+- name: Notifications
+  description: Operational and account notifications, configured per account.
+  configured_via: createNotificationConfiguration
+- name: Events
+  description: The generic event tag on the webhooks contract, backing the event-type enumeration.
+  configured_via: getEventTypes
+related:
+  detection_read_api: openapi/armor-incident-management-openapi-original.yml
+  note: The objects delivered by a detection subscription are the same security detections the Incident
+    Management API returns over REST.
+x-evidence:
+  fetched: '2026-08-06'
+  url: https://developer.armor.com/swagger/webhooks-api.yaml
+  http_status: 200
+  content_type: text/yaml

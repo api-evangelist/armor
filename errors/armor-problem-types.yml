@@ -1,0 +1,169 @@
+generated: '2026-08-06'
+method: derived
+source: derived from the 4xx/5xx responses of all 16 contracts in openapi/, enriched with live anonymous
+  probes of api.armor.com and *.api.secure-prod.services
+format: proprietary
+rfc9457: false
+note: Armor publishes no error-code reference and no application/problem+json. Error semantics are carried
+  by HTTP status alone plus one of six differently-shaped JSON envelopes (see conventions/armor-conventions.yml).
+  The richest envelope, returned live by api.armor.com, is {"ErrorCode","Message","Detail","ReferenceId"}
+  - ErrorCode uses OAuth 2.0 error identifiers such as invalid_request, and ReferenceId is the support
+  correlation id.
+envelopes:
+- name: ArmorServicesError
+  fields:
+  - ErrorCode
+  - Message
+  - Detail
+  - ReferenceId
+  observed: https://api.armor.com/auth/token
+  http_status: 500
+  probed: '2026-08-06'
+- name: ArmorMessageOnly
+  fields:
+  - Message
+  observed: https://api.armor.com/me
+  http_status: 401
+  probed: '2026-08-06'
+- name: GatewayMessage
+  fields:
+  - message
+  observed: https://accounts.api.secure-prod.services/
+  http_status: 403
+  probed: '2026-08-06'
+  note: 'AWS API Gateway default: {"message":"Missing Authentication Token"}'
+- name: AuthErrorResponse
+  fields:
+  - error
+  - error_description
+  - status
+  source: openapi/armor-fh-auth-openapi-original.yml
+- name: MdrErrorResponse
+  fields:
+  - error
+  - detail
+  - message
+  - statusCode
+  source: openapi/armor-mdr-public-openapi-original.yml
+- name: WebhooksErrorMessage
+  fields:
+  - errorMessage
+  source: openapi/armor-webhooks-openapi-original.yml
+problems:
+- status: 400
+  occurrences: 262
+  common_descriptions:
+  - Bad Request
+  - Bad request
+  - Invalid Request
+  - Invalid request.
+  sources:
+  - openapi/armor-accounts-openapi-original.yml
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-container-security-openapi-original.yml
+  - openapi/armor-fh-auth-openapi-original.yml
+  - openapi/armor-log-management-openapi-original.yml
+  - openapi/armor-mdr-public-openapi-original.yml
+  - openapi/armor-v1-account-management-swagger-original.json
+  - openapi/armor-v1-infrastructure-swagger-original.json
+  - openapi/armor-v1-security-swagger-original.json
+  - openapi/armor-v1-support-swagger-original.json
+  - openapi/armor-webhooks-openapi-original.yml
+- status: 401
+  occurrences: 21
+  common_descriptions:
+  - Unauthorized
+  - Missing or invalid authorization token.
+  - Invalid credentials
+  - Invalid or expired token
+  sources:
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-fh-auth-openapi-original.yml
+  - openapi/armor-incident-management-openapi-original.yml
+  - openapi/armor-mdr-public-openapi-original.yml
+  - openapi/armor-psk-auth-openapi-original.yml
+  - openapi/armor-v1-infrastructure-swagger-original.json
+- status: 402
+  occurrences: 1
+  common_descriptions:
+  - No organizations found
+  sources:
+  - openapi/armor-mdr-public-openapi-original.yml
+- status: 403
+  occurrences: 120
+  common_descriptions:
+  - Forbidden
+  - Permission Denied
+  - Forbidden - invalid account context
+  sources:
+  - openapi/armor-accounts-openapi-original.yml
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-container-security-openapi-original.yml
+  - openapi/armor-fh-auth-openapi-original.yml
+  - openapi/armor-incident-management-openapi-original.yml
+  - openapi/armor-log-management-openapi-original.yml
+  - openapi/armor-notifications-openapi-original.yml
+  - openapi/armor-psk-auth-openapi-original.yml
+  - openapi/armor-v1-infrastructure-swagger-original.json
+- status: 404
+  occurrences: 114
+  common_descriptions:
+  - Not Found
+  - Log source not found
+  - Issue not found
+  - Invoice not found.
+  sources:
+  - openapi/armor-accounts-openapi-original.yml
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-container-security-openapi-original.yml
+  - openapi/armor-incident-management-openapi-original.yml
+  - openapi/armor-log-management-openapi-original.yml
+  - openapi/armor-mdr-public-openapi-original.yml
+  - openapi/armor-v1-account-management-swagger-original.json
+  - openapi/armor-v1-infrastructure-swagger-original.json
+  - openapi/armor-v1-support-swagger-original.json
+- status: 409
+  occurrences: 1
+  common_descriptions:
+  - Conflict
+  sources:
+  - openapi/armor-v1-infrastructure-swagger-original.json
+- status: 412
+  occurrences: 3
+  common_descriptions:
+  - Precondition failed - entity has been modified
+  sources:
+  - openapi/armor-log-management-openapi-original.yml
+- status: 428
+  occurrences: 2
+  common_descriptions:
+  - Precondition required
+  sources:
+  - openapi/armor-log-management-openapi-original.yml
+- status: 429
+  occurrences: 1
+  common_descriptions:
+  - Too many authentication attempts
+  sources:
+  - openapi/armor-fh-auth-openapi-original.yml
+- status: 500
+  occurrences: 143
+  common_descriptions:
+  - Internal Server Error
+  - Internal server error
+  - Internal ServerError
+  - Request failed due to server error
+  sources:
+  - openapi/armor-agent-management-openapi-original.yml
+  - openapi/armor-compliance-openapi-original.yml
+  - openapi/armor-container-security-openapi-original.yml
+  - openapi/armor-incident-management-openapi-original.yml
+  - openapi/armor-mdr-public-openapi-original.yml
+  - openapi/armor-v1-account-management-swagger-original.json
+  - openapi/armor-v1-infrastructure-swagger-original.json
+  - openapi/armor-v1-security-swagger-original.json
+  - openapi/armor-v1-support-swagger-original.json
+  - openapi/armor-webhooks-openapi-original.yml

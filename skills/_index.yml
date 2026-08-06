@@ -1,0 +1,150 @@
+generated: '2026-08-06'
+method: generated
+source: GENERATED from openapi/. Armor publishes no AGENTS.md or skill files; every operationId below
+  was verified verbatim in the published contracts.
+skills:
+- file: armor-triage-mdr-incident.md
+  name: Triage an Armor MDR incident
+  description: Pull the open incident queue from the Armor SOC, enrich one incident with the Armor Intelligence
+    Platform analysis and per-entity threat intelligence, and write findings back as a comment.
+  api: openapi/armor-mdr-public-openapi-original.yml
+  operations:
+  - listIncidents
+  - getIncidentDetails
+  - getIncidentAipData
+  - fetchEntityForIncident
+  - addIncidentComment
+  - getCommentAttachments
+- file: armor-contain-defender-machine.md
+  name: Contain a machine through Microsoft Defender
+  description: Find an affected machine in Armor-managed Microsoft Defender for Endpoint, execute a containment
+    action such as isolation or a scan, and collect the investigation package.
+  api: openapi/armor-mdr-public-openapi-original.yml
+  operations:
+  - getMachines
+  - executeMachineAction
+  - getMachineActions
+  - getMachineAction
+  - getPackageUri
+  - getLiveResponseResult
+- file: armor-run-cspm-report.md
+  name: Run a CSPM report and remediate a failing control
+  description: Take an Armor cloud connector from posture summary to a generated CSPM report, then pull
+    the remediation guidance for a specific failing control and the resources it affects.
+  api: openapi/armor-compliance-openapi-original.yml
+  operations:
+  - listCloudConnectors
+  - getCspmSummary
+  - getCspmPolicies
+  - getCspmPolicyControls
+  - createCspmReportConfiguration
+  - runCspmReport
+  - getCspmReportById
+  - getCspmReportControlResources
+  - getCspmControlRemediation
+- file: armor-triage-vulnerabilities.md
+  name: Review and exclude vulnerability-scan findings
+  description: 'Work the Armor vulnerability-scan queue: read current findings, drill into an asset, then
+    record an accepted-risk exclusion and export the result.'
+  api: openapi/armor-compliance-openapi-original.yml
+  operations:
+  - getCurrentVulnerabilities
+  - getCurrentVulnerabilityDetail
+  - getAssetVulnerabilitiesPaged
+  - getVulnerabilitiesWithAssetsCount
+  - listVsExclusions
+  - createVsExclusion
+  - getExcludedAssets
+  - generateDetailedVsReport
+  - getVsExportData
+- file: armor-subscribe-detection-webhook.md
+  name: Subscribe to Armor security detections over webhooks
+  description: Register a webhook subscription so Armor pushes security detections to your endpoint, with
+    a transform that reshapes the delivered payload.
+  api: openapi/armor-webhooks-openapi-original.yml
+  operations:
+  - getEventTypes
+  - getDetectionConfiguration
+  - createDetectionConfiguration
+  - updateDetectionConfiguration
+  - deleteDetectionConfiguration
+  - getNotificationConfigurations
+  - createNotificationConfiguration
+- file: armor-onboard-log-source.md
+  name: Onboard a log source into Armor SIEM
+  description: Register a new log source with Armor log management, allocate its endpoint and open the
+    ACL so the source can ship logs.
+  api: openapi/armor-log-management-openapi-original.yml
+  operations:
+  - getLogSourceTypes
+  - checkHostnameAvailability
+  - getLogSources
+  - createLogSource
+  - getLogGroups
+  - getLogAcls
+  - createLogAcl
+  - getLogEndpoints
+  - allocateLogEndpoint
+- file: armor-manage-agent-fleet.md
+  name: Manage the Armor Agent fleet
+  description: Check Armor Agent health across the estate, group hosts with tags, schedule work against
+    them, and manage malware exclusions.
+  api: openapi/armor-agent-management-openapi-original.yml
+  operations:
+  - getHealthMonitoringStatus
+  - getHealthMonitoringStatusByCoreInstanceId
+  - getProducts
+  - getAllTags
+  - getResourcesByTag
+  - createTag
+  - getScheduledTasksPaginated
+  - scheduleTask
+  - getTaskDetails
+  - getMalwareExclusionConfigs
+  - createMalwareExclusionConfig
+  - applyMalwareExclusionConfig
+- file: armor-secure-container-registry.md
+  name: Connect a container registry to Armor container security
+  description: 'Stand up Armor container security: subscribe the account, create the cloud connector,
+    register a container registry, and read back scanned images and deployed sensors.'
+  api: openapi/armor-container-security-openapi-original.yml
+  operations:
+  - getAccountDetails
+  - createSubscription
+  - getAwsBaseConfig
+  - getAllConnectors
+  - createConnector
+  - getConnectorDetail
+  - getAllRegistries
+  - getVendorTypes
+  - createRegistry
+  - getRegistryDetail
+  - getAllImages
+  - getImageDetail
+  - getAllSensors
+- file: armor-threat-intelligence.md
+  name: Pull Armor threat intelligence
+  description: Read Armor threat-actor intelligence and the customer-specific intelligence derived from
+    deployed products, including the OpenCTI GraphQL proxy for queries the REST surface cannot express.
+  api: openapi/armor-mdr-public-openapi-original.yml
+  operations:
+  - getAllThreatActors
+  - getThreatActorsByCountry
+  - getThreatActorById
+  - getCustomerTI
+  - getThreatIntelUpdates
+  - proxyGraphQL
+- file: armor-monthly-security-report.md
+  name: Retrieve the Armor monthly security report and metrics
+  description: 'Assemble the reporting pack a customer reviews each month: the Armor monthly security
+    report file, incident and ingestion metrics, open service requests, and the Sentinel detection rules
+    in force.'
+  api: openapi/armor-mdr-public-openapi-original.yml
+  operations:
+  - listMSRFiles
+  - getMSRFile
+  - getIncidentMetrics
+  - getDataIngestionMetrics
+  - getOrganizations
+  - listServiceRequests
+  - getRulesForCustomer

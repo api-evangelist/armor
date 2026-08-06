@@ -1,0 +1,110 @@
+generated: '2026-08-06'
+method: searched
+source: https://developer.armor.com/ (Authentication page + 16 ReDoc contracts), live probes of api.armor.com
+authentication:
+  styles:
+  - OAuth2 (Scoped) - Bearer with BOTH an ID token and a scoped access token, comma separated
+  - OAuth2 - Bearer with the ID token only
+  - ARMOR-PSK - HMAC-SHA512 request signature, no token refresh
+  - FH-AUTH - bearer token from /auth/authorize + /auth/token
+  - x-api-key header (agent-management and infrastructure-management only)
+  preferred: OAuth2 (Scoped)
+  header_examples:
+  - 'authorization: Bearer $ID_TOKEN,$ACCESS_TOKEN'
+  - 'authorization: Bearer $ID_TOKEN'
+  - 'authorization: ARMOR-PSK $API_KEY_ID,$REQUEST_SIGNATURE'
+  account_context:
+    header: X-Account-Context
+    required: true
+    note: Every v1 Armor Services API operation and the /me operations require X-Account-Context naming
+      the Armor account the request applies to. It is declared as a securityScheme of type apiKey in the
+      four v1 Swagger documents, so it is enforced alongside the Authorization header rather than as an
+      ordinary parameter.
+  token_lifetimes:
+    authorization_code: 2 minutes
+    access_token: 15 minutes
+    refresh: POST /auth/token/reissue exchanges an existing access token for a new one
+  docs: https://developer.armor.com/
+idempotency:
+  supported: false
+  evidence: No Idempotency-Key header, parameter, or documented replay contract appears in any of the
+    16 Armor contracts (427 operations) or on the developer portal. Mutating operations - including POST
+    /defender/machineactions/{machineId}, which isolates a machine - carry no idempotency key.
+  note: 'This is a real gap for agent use: the MDR machine-action operations are consequential writes
+    with no safe retry contract.'
+pagination:
+  consistent: false
+  styles:
+  - family: v1 Armor Services API (Swagger 2.0)
+    style: header-based range
+    params:
+    - x-pagesize (header)
+    - x-range (header)
+    sources:
+    - openapi/armor-v1-account-management-swagger-original.json
+    - openapi/armor-v1-infrastructure-swagger-original.json
+    - openapi/armor-v1-security-swagger-original.json
+    - openapi/armor-v1-support-swagger-original.json
+  - family: v2 platform APIs
+    style: mixed offset/limit, page-number and opaque token
+    params:
+    - limit
+    - offset
+    - pageNumber
+    - pageSize
+    - skip
+    - top
+    - nextPageToken
+    note: 'nextPageToken is the only cursor form; the remainder are offset or page-number based. Sorting
+      is equally inconsistent across the v2 set: orderBy, orderByDirection, orderby, sort, sortBy, sortDir,
+      sortDirection, sortField, sortFld and sortOrder all appear.'
+error_envelope:
+  rfc9457: false
+  shapes:
+  - shape: '{"ErrorCode","Message","Detail","ReferenceId"}'
+    observed_at: https://api.armor.com/auth/token (live 500)
+    note: ReferenceId is a per-request correlation id returned on errors - the closest thing Armor has
+      to a request-id trace header.
+  - shape: '{"Message"}'
+    observed_at: https://api.armor.com/me (live 401)
+  - shape: '{"message"}'
+    observed_at: 403 from every *.api.secure-prod.services host
+  - shape: '{"error","error_description","status"}'
+    source: openapi/armor-fh-auth-openapi-original.yml#ErrorResponse
+  - shape: '{"error","detail","message","statusCode"}'
+    source: openapi/armor-mdr-public-openapi-original.yml#ErrorResponse
+  - shape: '{"errorMessage"}'
+    source: openapi/armor-webhooks-openapi-original.yml#ErrorMessage
+  note: Six distinct error envelopes across one platform, differing even in the casing of the message
+    key. No application/problem+json anywhere.
+request_tracing:
+  header: null
+  correlation_field: ReferenceId
+  note: Returned in the error body, not as a response header. No X-Request-Id / traceparent was observed.
+versioning:
+  scheme: generation split by host and document, not by URI version segment
+  detail: The legacy generation is the Swagger 2.0 "Armor Services API v1" on api.armor.com; the current
+    generation is twelve OpenAPI 3.0.3 documents on per-service *.api.secure-prod.services hosts. The
+    developer portal presents these as a "Legacy" / "v2" selector. Individual operations are not version-tagged.
+rate_limiting:
+  documented: false
+  evidence: No RateLimit / X-RateLimit / Retry-After response headers are declared in any contract. A
+    single 429 response is declared, on POST /auth/authorize ("Too many authentication attempts"), with
+    no documented limit, window, or reset signal.
+environments:
+  tiers:
+  - secure-dev.services
+  - secure-stage.services
+  - secure-prod.services
+  note: Nine of the twelve v2 contracts publish dev, stage and production server entries. These are Armor
+    internal environment tiers, not a customer sandbox - no test credentials or fixtures are published.
+media_types:
+- application/json
+- application/octet-stream
+- multipart/mixed
+- text/plain
+cross_links:
+  authentication: authentication/armor-authentication.yml
+  scopes: scopes/armor-scopes.yml
+  errors: errors/armor-problem-types.yml
+  lifecycle: lifecycle/armor-lifecycle.yml
