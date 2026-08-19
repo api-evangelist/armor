@@ -1,0 +1,233 @@
+{
+  "item": [
+    {
+      "id": "b3ebf9b1-db36-4d24-baa5-fcfad6dd5f0d",
+      "name": "User",
+      "description": {
+        "content": "User profile and account information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3786e0f6-6794-4412-8f52-ca5eee9fadec",
+          "name": "Get current user information",
+          "request": {
+            "name": "Get current user information",
+            "description": {
+              "content": "Returns the authenticated user's profile and associated accounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "me"
+              ],
+              "host": [
+                "{{me-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The account ID context for the request",
+                "key": "X-Account-Context",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2034fde7-603b-483f-bc8e-43ec0e618898",
+              "name": "Current user information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{me-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account ID context for the request",
+                    "key": "X-Account-Context",
+                    "value": "1000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"type\": \"user\",\n    \"username\": \"john.doe@armor.com\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"links\": {\n      \"userId\": 4922\n    },\n    \"passwordExpiry\": \"2609961\"\n  },\n  \"accounts\": [\n    {\n      \"id\": 1000,\n      \"currency\": \"USD\",\n      \"name\": \"Armor Internal Test_AA\",\n      \"status\": \"Claimed\",\n      \"parent\": 1,\n      \"products\": [\n        \"string\",\n        \"string\"\n      ],\n      \"accountType\": \"Partner\",\n      \"isSynced\": true,\n      \"isFreeTrial\": false\n    },\n    {\n      \"id\": 1000,\n      \"currency\": \"USD\",\n      \"name\": \"Armor Internal Test_AA\",\n      \"status\": \"Claimed\",\n      \"parent\": 1,\n      \"products\": null,\n      \"accountType\": \"Partner\",\n      \"isSynced\": true,\n      \"isFreeTrial\": false\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a09558e1-bf30-4210-b82a-e7dc045fe66b",
+              "name": "Unauthorized - invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{me-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account ID context for the request",
+                    "key": "X-Account-Context",
+                    "value": "1000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4451578b-7960-4a9d-8cfb-6a8b745d453c",
+              "name": "Forbidden - invalid account context",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "me"
+                  ],
+                  "host": [
+                    "{{me-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The account ID context for the request",
+                    "key": "X-Account-Context",
+                    "value": "1000"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "me-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "73b4387c-5aee-4811-b7a1-0740f43e1359",
+    "name": "Armor User API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged User across 2 of this provider's published API definitions: armor-fh-auth-openapi-original.yml, armor-psk-auth-openapi-original.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

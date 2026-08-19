@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Log Management Access Control Lists API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.armor.com/auth/authorize",
+      "accessTokenUrl": "https://api.armor.com/auth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Access Control Lists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all ACLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/logs/acls"
+          },
+          "docs": "Get a list of Access Control Lists (ACLs) that manage access to your log endpoints."
+        },
+        {
+          "info": {
+            "name": "Create an ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logs.armor.com/logs/acls",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Access Control List (ACL) that manages access to your log endpoints."
+        },
+        {
+          "info": {
+            "name": "Update an ACL",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.logs.armor.com/logs/acls/:aclId",
+            "headers": [
+              {
+                "name": "If-Unmodified-Since",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "aclId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the Log ACL being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an Access Control List (ACL) that manages access to your log endpoints.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

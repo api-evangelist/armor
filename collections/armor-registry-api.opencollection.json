@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Container Security Registry API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get All Registries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/registries",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Returns a list of all registries."
+        },
+        {
+          "info": {
+            "name": "Create Registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://compliance.api.secure-dev.services/containers/registries",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new registry."
+        },
+        {
+          "info": {
+            "name": "Get Registry Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/registries/:id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Registry ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific registry."
+        },
+        {
+          "info": {
+            "name": "Delete Registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://compliance.api.secure-dev.services/containers/registries/:id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Registry ID"
+              }
+            ]
+          },
+          "docs": "Deletes a specific registry."
+        },
+        {
+          "info": {
+            "name": "Get Vendor Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/registries/vendor-types",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Returns list of public cloud container registries supported by the Armor platform."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

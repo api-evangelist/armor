@@ -1,0 +1,951 @@
+{
+  "item": [
+    {
+      "id": "a5f4aa3e-8f63-4ec6-b453-60eda4fa82cb",
+      "name": "Scheduled Tasks",
+      "description": {
+        "content": "The tasks resource enables an API customer to schedule, cancel and view agent CLI operations.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c17a543-ef13-47b1-b10d-b9055823088f",
+          "name": "Get CLI Results for CoreInstanceId",
+          "request": {
+            "name": "Get CLI Results for CoreInstanceId",
+            "description": {
+              "content": "Get a paginated list of CLI command results history by core instance id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-tasks",
+                "details",
+                ":cid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "cid",
+                  "description": "(Required) Core instance id."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Pagination token from previous response header.",
+                "key": "x-pagination-token",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Number of records per page.",
+                "key": "x-pagesize",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c78826d-dd8e-4038-ad15-b7987570443b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks",
+                    "details",
+                    ":cid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "cid",
+                      "description": "(Required) Core instance id."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Number of records per page.",
+                    "key": "x-pagesize",
+                    "value": "10"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"after\": \"string\",\n    \"before\": \"string\"\n  },\n  \"data\": [\n    {\n      \"coreInstanceId\": \"string\",\n      \"taskAssignmentId\": 3381,\n      \"timestamp\": \"2020-11-13T00:51:37.126Z\",\n      \"agentProductName\": \"string\",\n      \"agentProductOperation\": \"string\",\n      \"agentProductOperationConfiguration\": \"string\",\n      \"resultCode\": \"string\",\n      \"runtime\": 4134,\n      \"scope\": \"string\",\n      \"scriptOutput\": \"string\",\n      \"scriptError\": \"string\"\n    },\n    {\n      \"coreInstanceId\": \"string\",\n      \"taskAssignmentId\": 244,\n      \"timestamp\": \"1992-05-13T04:59:36.060Z\",\n      \"agentProductName\": \"string\",\n      \"agentProductOperation\": \"string\",\n      \"agentProductOperationConfiguration\": \"string\",\n      \"resultCode\": \"string\",\n      \"runtime\": 1657,\n      \"scope\": \"string\",\n      \"scriptOutput\": \"string\",\n      \"scriptError\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "109130a7-71a7-4e24-b8be-e601eff0de9e",
+          "name": "Get Products",
+          "request": {
+            "name": "Get Products",
+            "description": {
+              "content": "Get a list of agent products and their commands.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48717000-6510-4764-944e-697a0fa2caa7",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"productId\": 3,\n    \"productName\": \"fim\",\n    \"productDescription\": \"File Integrity Monitoring\",\n    \"operationName\": \"on\",\n    \"operationDescription\": \"Turn file integrity monitoring on\",\n    \"configuration\": {},\n    \"isDeleted\": false\n  },\n  {\n    \"productId\": 3,\n    \"productName\": \"fim\",\n    \"productDescription\": \"File Integrity Monitoring\",\n    \"operationName\": \"on\",\n    \"operationDescription\": \"Turn file integrity monitoring on\",\n    \"configuration\": {},\n    \"isDeleted\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed5eca17-7ab7-4834-8849-ff935d392c7a",
+          "name": "Get Scheduled Tasks",
+          "request": {
+            "name": "Get Scheduled Tasks",
+            "description": {
+              "content": "Get a list of scheduled tasks, including completed ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dd91243-bc1c-4cf7-9589-c0fddfc75bc2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"accountName\": \"Armor Test\",\n    \"coreInstanceId\": \"458d8bfd-231b-2cfb-671c-4aa28f76fc92\",\n    \"taskProductTypeId\": 1,\n    \"runAfter\": \"1994-05-28T01:09:11.602Z\",\n    \"dateCreated\": \"2020-08-02T23:23:33.373Z\",\n    \"isPending\": false,\n    \"taskId\": 8259,\n    \"taskName\": \"string\",\n    \"hostName\": \"string\",\n    \"isCancelled\": false,\n    \"productName\": \"fim\",\n    \"productDescription\": \"File Integrity Monitoring\",\n    \"operationName\": \"on\",\n    \"operationDescription\": \"Turn file integrity monitoring on\",\n    \"configuration\": {},\n    \"userLabel\": \"string\",\n    \"results\": {},\n    \"resultCode\": \"string\"\n  },\n  {\n    \"id\": 1,\n    \"accountName\": \"Armor Test\",\n    \"coreInstanceId\": \"b3f2431e-50f1-fcbe-9d64-c3ccbedb87e8\",\n    \"taskProductTypeId\": 1,\n    \"runAfter\": \"1957-02-16T04:08:17.521Z\",\n    \"dateCreated\": \"1996-07-23T19:02:48.491Z\",\n    \"isPending\": true,\n    \"taskId\": 8909,\n    \"taskName\": \"string\",\n    \"hostName\": \"string\",\n    \"isCancelled\": false,\n    \"productName\": \"fim\",\n    \"productDescription\": \"File Integrity Monitoring\",\n    \"operationName\": \"on\",\n    \"operationDescription\": \"Turn file integrity monitoring on\",\n    \"configuration\": {},\n    \"userLabel\": \"string\",\n    \"results\": {},\n    \"resultCode\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7573e23c-e4a9-4750-b9ab-28d1ab1953ff",
+          "name": "Schedule a Task",
+          "request": {
+            "name": "Schedule a Task",
+            "description": {
+              "content": "Schedule a task to be picked-up by the agent and run on VMs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dryrun",
+                  "value": "<boolean>",
+                  "description": "Set to true to validate coreInstanceIds belong to the current account or any of its child accounts.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"coreInstanceId\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"operationName\": \"<string>\",\n  \"productName\": \"<string>\",\n  \"runAfter\": \"<string>\",\n  \"configuration\": \"<object>\",\n  \"userLabel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6216b30-fecb-4a11-8c9d-bd21b89edd9d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryrun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coreInstanceId\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"operationName\": \"on\",\n  \"productName\": \"fim\",\n  \"runAfter\": \"<string>\",\n  \"configuration\": \"<object>\",\n  \"userLabel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"CoreInstanceId\": \"string\",\n      \"TaskId\": 9889,\n      \"Error\": \"string\"\n    },\n    {\n      \"CoreInstanceId\": \"string\",\n      \"TaskId\": 4838,\n      \"Error\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "734e94a6-0f90-4785-96ee-8cbccc01d0b2",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryrun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coreInstanceId\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"operationName\": \"on\",\n  \"productName\": \"fim\",\n  \"runAfter\": \"<string>\",\n  \"configuration\": \"<object>\",\n  \"userLabel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f04aab02-8500-48cf-a94c-5bf6b13602df",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryrun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coreInstanceId\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"operationName\": \"on\",\n  \"productName\": \"fim\",\n  \"runAfter\": \"<string>\",\n  \"configuration\": \"<object>\",\n  \"userLabel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "682bc5f9-0ed5-43c2-bd8f-16869d5ca07c",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dryrun",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"coreInstanceId\": [\n    \"<uuid>\",\n    \"<uuid>\"\n  ],\n  \"operationName\": \"on\",\n  \"productName\": \"fim\",\n  \"runAfter\": \"<string>\",\n  \"configuration\": \"<object>\",\n  \"userLabel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbcd35a0-cb38-4c81-bb7c-41f8bf11c2e4",
+          "name": "Get Scheduled Tasks with Pagination",
+          "request": {
+            "name": "Get Scheduled Tasks with Pagination",
+            "description": {
+              "content": "Get a paginated list of scheduled tasks, including completed ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "scheduled-tasks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "top",
+                  "value": "<integer>",
+                  "description": "Maximum records for request."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Offset position."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Available filters like Products, Status, Account."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Free text to search Task Name, etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort direction. Example: id desc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30c0f027-0da0-44d1-95e1-273b8a82bf4a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "scheduled-tasks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 2762,\n  \"total\": 9224,\n  \"countPerPage\": 817,\n  \"filters\": {},\n  \"items\": [\n    {\n      \"id\": 1,\n      \"accountName\": \"Armor Test\",\n      \"coreInstanceId\": \"c7cad7b1-b340-57e4-bbf1-bacd3ef20a91\",\n      \"taskProductTypeId\": 1,\n      \"runAfter\": \"1980-04-25T00:45:00.822Z\",\n      \"dateCreated\": \"1967-02-25T17:02:58.579Z\",\n      \"isPending\": false,\n      \"taskId\": 9994,\n      \"taskName\": \"string\",\n      \"hostName\": \"string\",\n      \"isCancelled\": true,\n      \"productName\": \"fim\",\n      \"productDescription\": \"File Integrity Monitoring\",\n      \"operationName\": \"on\",\n      \"operationDescription\": \"Turn file integrity monitoring on\",\n      \"configuration\": {},\n      \"userLabel\": \"string\",\n      \"results\": {},\n      \"resultCode\": \"string\"\n    },\n    {\n      \"id\": 1,\n      \"accountName\": \"Armor Test\",\n      \"coreInstanceId\": \"4ee7822a-4753-1daa-d1d1-a6bb0f2f4303\",\n      \"taskProductTypeId\": 1,\n      \"runAfter\": \"1992-01-22T15:40:57.345Z\",\n      \"dateCreated\": \"2025-10-10T16:17:40.781Z\",\n      \"isPending\": true,\n      \"taskId\": 926,\n      \"taskName\": \"string\",\n      \"hostName\": \"string\",\n      \"isCancelled\": false,\n      \"productName\": \"fim\",\n      \"productDescription\": \"File Integrity Monitoring\",\n      \"operationName\": \"on\",\n      \"operationDescription\": \"Turn file integrity monitoring on\",\n      \"configuration\": {},\n      \"userLabel\": \"string\",\n      \"results\": {},\n      \"resultCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afec7e3c-97ee-4ec8-ae32-1f63a8081462",
+          "name": "Get Task Details",
+          "request": {
+            "name": "Get Task Details",
+            "description": {
+              "content": "Get a specific scheduled task by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-tasks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the scheduled task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "675b2207-0423-4124-a5c6-9228db531f70",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the scheduled task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1,\n  \"accountName\": \"Armor Test\",\n  \"coreInstanceId\": \"e3b59895-5a4f-661d-625f-69b937bcfa80\",\n  \"taskProductTypeId\": 1,\n  \"runAfter\": \"1955-07-20T17:19:11.563Z\",\n  \"dateCreated\": \"2002-08-29T21:13:26.506Z\",\n  \"isPending\": false,\n  \"taskId\": 1195,\n  \"taskName\": \"string\",\n  \"hostName\": \"string\",\n  \"isCancelled\": true,\n  \"productName\": \"fim\",\n  \"productDescription\": \"File Integrity Monitoring\",\n  \"operationName\": \"on\",\n  \"operationDescription\": \"Turn file integrity monitoring on\",\n  \"configuration\": {},\n  \"userLabel\": \"string\",\n  \"results\": {},\n  \"resultCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95d4d44d-c219-4d50-b5fc-529f695afb31",
+          "name": "Update a Task",
+          "request": {
+            "name": "Update a Task",
+            "description": {
+              "content": "Update the state of a given task. This is how you would cancel a task.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "scheduled-tasks",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The id of the scheduled task."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isCancelled\": \"<boolean>\",\n  \"isPending\": \"<boolean>\",\n  \"userLabel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a397553-c040-4069-b518-c87efc189f09",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "scheduled-tasks",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The id of the scheduled task."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isCancelled\": \"<boolean>\",\n  \"isPending\": \"<boolean>\",\n  \"userLabel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent-management.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "34126885-9470-49f6-91ae-278da6bdae7a",
+    "name": "Agent Management Scheduled Tasks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for interacting with Armor's agent\nmanagement functionality.\n\nBase URL: `https://agent-management.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

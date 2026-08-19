@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance VS Exclusions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VS Exclusions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vulnerability scan exclusions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/vulnerability-scan/exclusions"
+          },
+          "docs": "List vulnerability scan exclusions"
+        },
+        {
+          "info": {
+            "name": "Create vulnerability scan exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://compliance.api.secure-prod.services/vulnerability-scan/exclusions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create vulnerability scan exclusion"
+        },
+        {
+          "info": {
+            "name": "Delete vulnerability scan exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://compliance.api.secure-prod.services/vulnerability-scan/exclusions"
+          },
+          "docs": "Delete vulnerability scan exclusion"
+        },
+        {
+          "info": {
+            "name": "List excluded assets for an exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/vulnerability-scan/exclusions/:exclusionId",
+            "params": [
+              {
+                "name": "exclusionId",
+                "value": "",
+                "type": "path",
+                "description": "Exclusion ID"
+              }
+            ]
+          },
+          "docs": "List excluded assets for an exclusion"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

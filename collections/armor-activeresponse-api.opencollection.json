@@ -1,0 +1,28 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Active Response API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ActiveResponse",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ActiveResponse_GetActiveResponse",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/security-analytics/active-response"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

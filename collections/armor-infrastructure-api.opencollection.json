@@ -1,0 +1,920 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Infrastructure API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Infrastructure",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a list of scheduled events that are associated to your account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/:entityType/:entityId/tasks",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "The type of the entity"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "id of the entity"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of scheduled events that are associated to your account."
+        },
+        {
+          "info": {
+            "name": "Delete a scheduled event that is associated to an entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/:entityType/:entityId/tasks",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "The type of the entity"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "id of the entity"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a scheduled event that is associated to an entity."
+        },
+        {
+          "info": {
+            "name": "Retrieve list of scheduled events for all accounts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/:entityType/tasks",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "The type of the entity"
+              }
+            ]
+          },
+          "docs": "Retrieve list of scheduled events for all accounts."
+        },
+        {
+          "info": {
+            "name": "Retrieve any workloads that are associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/apps"
+          },
+          "docs": "Retrieve any workloads that are associated to your Account."
+        },
+        {
+          "info": {
+            "name": "Retrieves all the tiers associated with a specified workload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/apps/:appId/tiers",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id for the workload to retrieve tiers"
+              }
+            ]
+          },
+          "docs": "Retrieves all the tiers associated with a specified workload."
+        },
+        {
+          "info": {
+            "name": "Create a new tier on a workload, to serve as a logical grouping of servers within a workload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/apps/:appId/tiers",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the workload to which the tier should be added"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new tier on a workload, to serve as a logical grouping of servers within a workload."
+        },
+        {
+          "info": {
+            "name": "Retrieves information for a specified tier from a workload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/apps/:appId/tiers/:tierId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workload that contains the tier"
+              },
+              {
+                "name": "tierId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the tier"
+              }
+            ]
+          },
+          "docs": "Retrieves information for a specified tier from a workload."
+        },
+        {
+          "info": {
+            "name": "Updates an existing tier on a workload",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/apps/:appId/tiers/:tierId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the workload to which the tier should be added"
+              },
+              {
+                "name": "tierId",
+                "value": "",
+                "type": "path",
+                "description": "id of the tier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing tier on a workload"
+        },
+        {
+          "info": {
+            "name": "Delete a single tier from a workload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/apps/:appId/tiers/:tierId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "id of the target workload"
+              },
+              {
+                "name": "tierId",
+                "value": "",
+                "type": "path",
+                "description": "id of the tier targeted for deletion"
+              }
+            ]
+          },
+          "docs": "<b>The tier must not contain any VMs.</b> If the tier does contain one or more VMs you will get a 400 back with an appropriate error message."
+        },
+        {
+          "info": {
+            "name": "Retrieve details for a workload that is associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the workload to retrieve details"
+              }
+            ]
+          },
+          "docs": "Retrieve details for a workload that is associated to your Account."
+        },
+        {
+          "info": {
+            "name": "Update the details for a workload that is associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of a workload (ignored)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details for a workload that is associated to your Account."
+        },
+        {
+          "info": {
+            "name": "Delete a workload that is associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/apps/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the workload to delete"
+              }
+            ]
+          },
+          "docs": "Workload must be empty for it to be deleted."
+        },
+        {
+          "info": {
+            "name": "Assign VM to Workload",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/apps/vms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the VM"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign VM to Workload"
+        },
+        {
+          "info": {
+            "name": "ServiceHealth_HealthStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/health-monitoring/core/health/:vmId",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "ServiceHealth_HealthStatusPublic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/health-monitoring/core/health-status/:vmId",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Return a set of available locations for provisioning new servers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/locations",
+            "params": [
+              {
+                "name": "requireZone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return a set of available locations for provisioning new servers."
+        },
+        {
+          "info": {
+            "name": "Retrieve the list of orders that are associated to your account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/orders"
+          },
+          "docs": "Retrieve the list of orders that are associated to your account."
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific order for your account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the Order"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific order for your account."
+        },
+        {
+          "info": {
+            "name": "Retrieve the Wsus details for your ordered vm.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/orders/:osname/wsus",
+            "params": [
+              {
+                "name": "osname",
+                "value": "",
+                "type": "path",
+                "description": "OS Name of the vm Ordered"
+              }
+            ]
+          },
+          "docs": "Retrieve the Wsus details for your ordered vm."
+        },
+        {
+          "info": {
+            "name": "Submit a subscription order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/orders/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a subscription order."
+        },
+        {
+          "info": {
+            "name": "Create a virtual machine (VM) order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/orders/vms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a virtual machine (VM) order."
+        },
+        {
+          "info": {
+            "name": "Get statistics on your VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/stats/vms/:vmId",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id of the VM"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval in which to display stats"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End Time in which to pull stats"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in which to pull stats"
+              }
+            ]
+          },
+          "docs": "Get statistics on your VM."
+        },
+        {
+          "info": {
+            "name": "Stats_GetAllStatusForOneVm",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/stats/vms/:vmId/metrics",
+            "params": [
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "Interval in which to display stats"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End Time in which to pull stats"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start Time in which to pull stats"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Returns a list of VM's, the related storage summaries for each storage tier (SSD, FLUID, and RAW), and the location the storage is utilized.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/storage/summary"
+          },
+          "docs": "Returns a list of VM's, the related storage summaries for each storage tier (SSD, FLUID, and RAW), and the location the storage is utilized."
+        },
+        {
+          "info": {
+            "name": "Get a list of virtual machines for the current account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms"
+          },
+          "docs": "Get a list of virtual machines for the current account."
+        },
+        {
+          "info": {
+            "name": "Get details for a specific VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VM ID"
+              }
+            ]
+          },
+          "docs": "Get details for a specific VM."
+        },
+        {
+          "info": {
+            "name": "Update the name of a VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/vms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the name of a VM."
+        },
+        {
+          "info": {
+            "name": "Delete a VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/vms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a VM."
+        },
+        {
+          "info": {
+            "name": "Update VM to a new fixed instance geometry in order to increase/decrease CPU and/or memory.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/vms/:id/adjustResources",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VM ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update VM to a new fixed instance geometry in order to increase/decrease CPU and/or memory."
+        },
+        {
+          "info": {
+            "name": "Vm_GetLicenseDetailsByVmId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/:id/license",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Perform a power action on a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/vms/:id/power/:powerAction",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the VM on which to perform power action"
+              },
+              {
+                "name": "powerAction",
+                "value": "",
+                "type": "path",
+                "description": "On, off, forceOff, reset, reboot, shutdown"
+              }
+            ]
+          },
+          "docs": "Perform a power action on a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Force processing a vm event scheduled in the future or already due, but incomplete",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/vms/:id/processScheduledEvent",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VM ID"
+              }
+            ]
+          },
+          "docs": "Force processing a vm event scheduled in the future or already due, but incomplete"
+        },
+        {
+          "info": {
+            "name": "Returns the list of available storage products that can be added to a VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/:vmId/availableStorage",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id for the VM"
+              }
+            ]
+          },
+          "docs": "Returns the list of available storage products that can be added to a VM."
+        },
+        {
+          "info": {
+            "name": "Add a disk to a VM by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/vms/:vmId/disk",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id of the VM to add disk."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add a disk to a VM by id."
+        },
+        {
+          "info": {
+            "name": "Deletes the specified disk, by id, for the specified VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/vms/:vmId/disk/:diskId",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id of the VM"
+              },
+              {
+                "name": "diskId",
+                "value": "",
+                "type": "path",
+                "description": "id of the disk to delete, the id can be retrieved from /vms/{vmId}"
+              }
+            ]
+          },
+          "docs": "Deletes the specified disk, by id, for the specified VM."
+        },
+        {
+          "info": {
+            "name": "Deletes the specified disk, by id, for the specified VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/vms/:vmId/disk/:diskId/advancedsettings",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id of the VM"
+              },
+              {
+                "name": "diskId",
+                "value": "",
+                "type": "path",
+                "description": "id of the disk to update the advanced settings (SCSI), the id can be retrieved from /vms/{vmId}"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes the specified disk, by id, for the specified VM."
+        },
+        {
+          "info": {
+            "name": "Vm_GetAccountAutoAgePolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/autoAgePolicy"
+          }
+        },
+        {
+          "info": {
+            "name": "Vm_UpsertAccountAgePolicy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/vms/autoAgePolicy",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          }
+        },
+        {
+          "info": {
+            "name": "Get details for an Anywhere VM",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/core/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The Guid of the Core Instance to get"
+              }
+            ]
+          },
+          "docs": "Get details for an Anywhere VM"
+        },
+        {
+          "info": {
+            "name": "Delete a Core VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/vms/core/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The Guid of the Core Instance to delete"
+              },
+              {
+                "name": "deleteTags",
+                "value": "",
+                "type": "query",
+                "description": "Bool specifying if locked tags should be deleted"
+              }
+            ]
+          },
+          "docs": "Delete a Core VM."
+        },
+        {
+          "info": {
+            "name": "Assign a profle to the Vm",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/vms/core/:coreInstanceId/profile",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assign a profle to the Vm"
+        },
+        {
+          "info": {
+            "name": "Get a list of virtual machines for the current account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/hybridVmList",
+            "params": [
+              {
+                "name": "includeCloudConnections",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a list of virtual machines for the current account."
+        },
+        {
+          "info": {
+            "name": "Vm_GetVmOSEndOfLife",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/os-endoflife"
+          }
+        },
+        {
+          "info": {
+            "name": "Get a list of virtual machines for the current account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/simpleVmList"
+          },
+          "docs": "Get a list of virtual machines for the current account."
+        },
+        {
+          "info": {
+            "name": "Get un protected ec2 instance details by instance id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/vms/unprotectedec2instance/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The Guid of the Core Instance to get"
+              }
+            ]
+          },
+          "docs": "Get un protected ec2 instance details by instance id"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

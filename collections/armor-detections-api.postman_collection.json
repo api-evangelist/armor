@@ -1,0 +1,963 @@
+{
+  "item": [
+    {
+      "id": "aea05e6a-e834-46f8-abbe-0227f3abb101",
+      "name": "Detections",
+      "description": {
+        "content": "The detection resource enables an API customer to build a webhook detection configuration.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e7c317c-d994-42b8-912f-01a61f291f4b",
+          "name": "Get Account Detection Configuration",
+          "request": {
+            "name": "Get Account Detection Configuration",
+            "description": {
+              "content": "Gets the detection configuration for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "detection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60451e12-72fd-4cbe-be8f-f1a67d023704",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"7854a268-bc98-478c-af0d-f65ff3d27d52\",\n  \"org_id\": 1000,\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"string\",\n    \"string\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b5d4c91-454f-4977-abae-ac5f9fc36b1b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c39fcfe5-9ba4-4ac5-af80-dea5b09c6b78",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa5f5f7d-60b8-420b-80bd-9745061b994e",
+          "name": "Create a Detection Configuration",
+          "request": {
+            "name": "Create a Detection Configuration",
+            "description": {
+              "content": "Create a new Detection Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "detection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"format\": \"<string>\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19dbb824-4091-4ce3-8f65-b0f7a0bd8ac9",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"New detection configuration was created True. DetectionId: 7854a268-bc98-478c-af0d-f65ff3d27d52.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a2c853-6feb-41a0-a6c3-0a504d241374",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3687ff84-fae1-4f26-b648-644224891f62",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03fb4e92-95dd-4eb4-ba8c-159a305d8e7f",
+          "name": "Update a Detection Configuration",
+          "request": {
+            "name": "Update a Detection Configuration",
+            "description": {
+              "content": "Update a Detection Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "detection",
+                ":detection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "detection_id",
+                  "description": "(Required) The id of the Detection Configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"format\": \"<string>\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9fc3248d-de35-4ab3-a9c5-0679d6d30ccc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d96b592b-04ce-40f4-9b9c-18e88b268ba0",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf5025c-5f95-4419-94d1-1100587bd922",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Detection Name\",\n  \"format\": \"splunk\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"transform\": [\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    },\n    {\n      \"key\": \"link_event_kibana\",\n      \"type\": \"add_log_search_url\",\n      \"value\": \"event_uuid\"\n    }\n  ],\n  \"default_label\": [\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    },\n    {\n      \"key\": \"rcn_idx\",\n      \"value\": \"Alpha\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5e18fda-2ef8-43f0-ba9a-8cd809e7ec77",
+          "name": "Delete a Detection Configuration",
+          "request": {
+            "name": "Delete a Detection Configuration",
+            "description": {
+              "content": "Delete a Detection Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "detection",
+                "delete",
+                ":detection_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "detection_id",
+                  "description": "(Required) The id of the Detection Configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b43fc3d1-27fd-4361-b07c-709b652bb1d8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    "delete",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7179a791-04cf-4920-9ee8-2dc69b577997",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    "delete",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99338d00-adc2-42bd-82e9-91be5f59d740",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "detection",
+                    "delete",
+                    ":detection_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "detection_id",
+                      "description": "(Required) The id of the Detection Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webhooks.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a34bb6b1-2401-4d65-92e7-3dd29a6274fb",
+    "name": "Armor Webhooks Detections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for building configurations that\nallow you to subscribe to events, detections, and incidents.\n\nBase URL: `https://webhooks.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

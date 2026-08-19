@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance CSPM Report API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSPM Report",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of CSPM reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/report/list"
+          },
+          "docs": "Get list of CSPM reports"
+        },
+        {
+          "info": {
+            "name": "Run CSPM report configuration by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://compliance.api.secure-prod.services/cspm/report/run",
+            "params": [
+              {
+                "name": "reportConfigId",
+                "value": "",
+                "type": "query",
+                "description": "Report configuration ID"
+              }
+            ]
+          },
+          "docs": "Run CSPM report configuration by ID"
+        },
+        {
+          "info": {
+            "name": "Get CSPM report details by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/report/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Get CSPM report details by ID"
+        },
+        {
+          "info": {
+            "name": "Delete CSPM report configuration by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://compliance.api.secure-prod.services/cspm/report/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              }
+            ]
+          },
+          "docs": "Delete CSPM report configuration by ID"
+        },
+        {
+          "info": {
+            "name": "Get report control resources by report and control ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/report/:id/control/:controlId/resources",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Report ID"
+              },
+              {
+                "name": "controlId",
+                "value": "",
+                "type": "path",
+                "description": "Control ID"
+              }
+            ]
+          },
+          "docs": "Get report control resources by report and control ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

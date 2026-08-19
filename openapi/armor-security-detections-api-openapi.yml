@@ -1,0 +1,373 @@
+openapi: 3.2.0
+info:
+  title: Incident Management Security Detections API
+  description: 'APIs for interacting with Armor products and services for incident management.
+
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://security-detections.api.secure-dev.services
+  description: Development
+- url: https://security-detections.api.secure-stage.services
+  description: Staging
+- url: https://security-detections.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Security Detections
+  description: Security detection operations
+paths:
+  /security-detections/{detectionId}:
+    get:
+      tags:
+      - Security Detections
+      summary: Get Details of a Detection
+      description: Get the details of a specific security detection or incident.
+      operationId: getDetectionDetail
+      parameters:
+      - name: detectionId
+        in: path
+        required: true
+        description: The unique ID for detection.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /security-detections:
+    get:
+      tags:
+      - Security Detections
+      summary: List Detections
+      description: Get a list of all security detections and incidents.
+      operationId: listDetections
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/Range'
+      - $ref: '#/components/parameters/PaginationToken'
+      - name: filter
+        in: query
+        description: 'OData filter parameter.
+
+          Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+
+          '
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: 'Search by Description, Id, etc.
+
+          Note: Fields are case sensitive.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /v2/security-detections:
+    get:
+      tags:
+      - Security Detections
+      summary: List Detections with Pagination
+      description: Get a list of all security detections and incidents with pagination support.
+      operationId: listDetectionsV2
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/XRange'
+      - $ref: '#/components/parameters/PaginationToken'
+      - name: filter
+        in: query
+        description: 'OData filter parameter.
+
+          Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New+lookBackInDays+eq+1`
+
+          Using lookBackInDays filter, you can filter data based on lastUpdatedTime. Min: 1, Max: 395 days.
+
+          '
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: 'Search by Description, Id, etc.
+
+          Note: Fields are case sensitive.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response - all results returned
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionsResponse'
+        '206':
+          description: Partial content - more results available
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /security-detections/accounts/{accountId}:
+    get:
+      tags:
+      - Security Detections
+      summary: List Parent Customer Security Detections
+      description: Get a list of all security detections and incidents with delivery receiptIds.
+      operationId: listParentCustomerDetections
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/Range'
+      - $ref: '#/components/parameters/PaginationToken'
+      - name: accountId
+        in: path
+        required: true
+        description: The accountId.
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        description: 'OData filter parameter.
+
+          Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+
+          '
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: 'Search by Description, Id, etc.
+
+          Note: Fields are case sensitive.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /v2/security-detections/accounts/{accountId}:
+    get:
+      tags:
+      - Security Detections
+      summary: List Parent Customer Security Detections with Pagination
+      description: Get a list of all security detections and incidents with delivery receiptIds.
+      operationId: listParentCustomerDetectionsV2
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/Range'
+      - $ref: '#/components/parameters/PaginationToken'
+      - name: accountId
+        in: path
+        required: true
+        description: The accountId.
+        schema:
+          type: integer
+      - name: filter
+        in: query
+        description: 'OData filter parameter.
+
+          Example: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`
+
+          '
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: 'Search by Description, Id, etc.
+
+          Note: Fields are case sensitive.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetection'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  parameters:
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+    XRange:
+      name: x-range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+    Range:
+      name: Range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    DeliveryReceipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+          description: The receiptId of notification sent.
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time notification sent.
+        status:
+          type: string
+          description: The status of receipt.
+    SecurityDetection:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        detectionId:
+          type: integer
+          description: The unique identifier of the detection.
+        description:
+          type: string
+          description: A description of the detection.
+        categories:
+          type: array
+          description: Event categories that are associated with the detection.
+          items:
+            type: string
+        severity:
+          type: integer
+          minimum: 1
+          maximum: 10
+          description: The severity of the detection.
+        ticketStatus:
+          type:
+          - string
+          - 'null'
+          description: The ticket status of the detection.
+        status:
+          type: string
+          description: The status of the detection.
+          enum:
+          - New
+          - Open
+          - In Progress
+          - Pending Customer
+          - Customer Responded
+          - Completed
+          - Closed
+        detectionType:
+          type: string
+          description: The type of the detection.
+          enum:
+          - Detection
+          - Incident
+        eventCount:
+          type: integer
+          description: The number of events that are associated with the detection.
+        startTime:
+          type: string
+          format: date-time
+          description: The date and time the first event associated with this detection was received.
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time the most recent event associated with this detection was received.
+        ticketId:
+          type:
+          - string
+          - 'null'
+          description: The Id of the ticket created to manage detections tagged as incident.
+        ticketUrl:
+          type:
+          - string
+          - 'null'
+          description: The URL of the ticket created in response to this detection.
+        deliveryReceipts:
+          type: array
+          description: ReceiptIds generated for every notification delivery.
+          items:
+            $ref: '#/components/schemas/DeliveryReceipt'
+    SecurityDetectionsResponse:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: List of SecurityDetection records.
+          items:
+            $ref: '#/components/schemas/SecurityDetection'
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

@@ -1,0 +1,833 @@
+{
+  "item": [
+    {
+      "id": "97a0735b-f276-4082-838b-b41d1bdb157e",
+      "name": "Log Sources",
+      "description": {
+        "content": "Operations for managing log sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63c570f4-e2e9-4ca8-b675-4bd9b1d6e11b",
+          "name": "Get all log sources",
+          "request": {
+            "name": "Get all log sources",
+            "description": {
+              "content": "Get a list of all configured log sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8d3c1639-c6a8-4b1e-bcc0-da6cc73c1029",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"hostname\": \"string\",\n    \"endpoint\": \"string\",\n    \"protocol\": \"tcp\",\n    \"port\": null,\n    \"state\": \"Error\",\n    \"type\": {\n      \"logSourceTypeId\": 8099,\n      \"name\": \"string\",\n      \"logSourceProtocols\": [\n        3709,\n        6406\n      ],\n      \"icon\": \"string\",\n      \"category\": \"string\",\n      \"vendor\": \"string\",\n      \"kbLink\": \"string\",\n      \"requiresFlow\": true\n    },\n    \"logSourceProtocolId\": 7494,\n    \"options\": {\n      \"key_0\": false\n    },\n    \"version\": 995,\n    \"lastEventDate\": \"2009-12-21T18:50:48.208Z\",\n    \"createdDate\": \"1985-10-01T04:50:20.289Z\",\n    \"createdByUserId\": 9230,\n    \"modifiedDate\": \"1994-01-13T23:04:05.347Z\",\n    \"modifiedByUserId\": 9961\n  },\n  {\n    \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"hostname\": \"string\",\n    \"endpoint\": \"string\",\n    \"protocol\": \"tcp\",\n    \"port\": null,\n    \"state\": \"Deleting\",\n    \"type\": {\n      \"logSourceTypeId\": 8551,\n      \"name\": \"string\",\n      \"logSourceProtocols\": [\n        813,\n        4166\n      ],\n      \"icon\": \"string\",\n      \"category\": \"string\",\n      \"vendor\": \"string\",\n      \"kbLink\": \"string\",\n      \"requiresFlow\": true\n    },\n    \"logSourceProtocolId\": 6573,\n    \"options\": {\n      \"key_0\": \"string\"\n    },\n    \"version\": 49,\n    \"lastEventDate\": null,\n    \"createdDate\": \"2004-08-20T20:32:30.784Z\",\n    \"createdByUserId\": 1884,\n    \"modifiedDate\": \"1978-12-26T19:24:11.336Z\",\n    \"modifiedByUserId\": 7248\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c78c4633-8b42-4851-ba72-9ccee46f38c3",
+          "name": "Create a log source",
+          "request": {
+            "name": "Create a log source",
+            "description": {
+              "content": "Create a log source with the provided configuration options.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostname\": \"<string>\",\n  \"endpointId\": \"<uuid>\",\n  \"logSourceTypeId\": \"<integer>\",\n  \"logSourceProtocolId\": \"<integer>\",\n  \"options\": {\n    \"key_0\": 3457\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f48c0b13-64ff-4087-83c1-ad89d028cdaa",
+              "name": "Log source created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"endpointId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"logSourceTypeId\": \"<integer>\",\n  \"logSourceProtocolId\": \"<integer>\",\n  \"options\": {\n    \"key_0\": true,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"hostname\": \"string\",\n  \"endpoint\": \"string\",\n  \"protocol\": \"tcp\",\n  \"port\": 44710,\n  \"state\": \"Error\",\n  \"type\": {\n    \"logSourceTypeId\": 2657,\n    \"name\": \"string\",\n    \"logSourceProtocols\": [\n      4151,\n      6818\n    ],\n    \"icon\": \"string\",\n    \"category\": \"string\",\n    \"vendor\": \"string\",\n    \"kbLink\": \"string\",\n    \"requiresFlow\": true\n  },\n  \"logSourceProtocolId\": 3144,\n  \"options\": {\n    \"key_0\": 3763,\n    \"key_1\": \"string\"\n  },\n  \"version\": 8024,\n  \"lastEventDate\": null,\n  \"createdDate\": \"1966-09-22T14:40:10.015Z\",\n  \"createdByUserId\": 992,\n  \"modifiedDate\": \"2025-12-27T07:34:07.578Z\",\n  \"modifiedByUserId\": 3216\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c7fd670-5cce-4667-8970-d3a4e1c9f5f5",
+          "name": "Delete a log source",
+          "request": {
+            "name": "Delete a log source",
+            "description": {
+              "content": "Soft-delete a log source. The log source will be deprovisioned but the entity record will be\nretained and state set to \"Deleted\". Only log sources with state `Online` may be deleted. You\ncan enumerate deleted log sources by appending the `?deleted=true` query string to a `GET`\nrequest.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "sources",
+                ":sourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sourceId",
+                  "description": "(Required) The unique identifier of the log source being deleted."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13732916-65c0-41b8-bf5c-59f3068ebde0",
+              "name": "Log source deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cae47fcd-8117-4df6-9c8e-781bf1b9f109",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a059fc4-52e7-4e12-b590-0d8a6976da5c",
+              "name": "Log source not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being deleted."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81cd7126-4b07-4e3c-868b-80a9bcd7933e",
+          "name": "Update a log source",
+          "request": {
+            "name": "Update a log source",
+            "description": {
+              "content": "Update a log source with the provided configuration options.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "sources",
+                ":sourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "sourceId",
+                  "description": "(Required) The unique identifier of the log source being updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Version header for concurrency control",
+                "key": "If-Unmodified-Since",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"logSourceId\": \"<uuid>\",\n  \"options\": {\n    \"key_0\": 3443,\n    \"key_1\": 2358\n  },\n  \"version\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "98d1beab-4147-40d5-866f-3d264beac050",
+              "name": "Log source updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97e04b77-c264-42c8-8591-3f3428ab840d",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d7f48df-9944-4947-8cb5-f35353c897c9",
+              "name": "Log source not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d42119fa-c729-417e-b96f-c409c5d16745",
+              "name": "Precondition failed - entity has been modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a18f384-572b-4fcb-ba72-cd9d11cfa216",
+              "name": "Precondition required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "sources",
+                    ":sourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "sourceId",
+                      "description": "(Required) The unique identifier of the log source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"logSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"options\": {\n    \"key_0\": false,\n    \"key_1\": false\n  },\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logs.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "179fca2a-33a1-4245-a455-2f319ef7946a",
+    "name": "Armor Log Management Log Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with\n[Armor's Log Management Platform](https://www.armor.com/armor-log-management/).\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

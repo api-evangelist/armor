@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor User API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/me",
+            "headers": [
+              {
+                "name": "X-Account-Context",
+                "value": ""
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Returns the authenticated user's profile and associated accounts"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

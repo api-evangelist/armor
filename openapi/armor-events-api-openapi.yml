@@ -1,0 +1,81 @@
+openapi: 3.2.0
+info:
+  title: Armor Webhooks Events API
+  description: 'This API provides an interface for building configurations that
+
+    allow you to subscribe to events, detections, and incidents.
+
+
+    Base URL: `https://webhooks.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://webhooks.api.secure-dev.services
+  description: Development
+- url: https://webhooks.api.secure-stage.services
+  description: Staging
+- url: https://webhooks.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Events
+  description: 'The event-type resource enables an API user to maintain the event types.
+
+    '
+paths:
+  /security/detection/event-type:
+    get:
+      tags:
+      - Events
+      summary: Get the Event Types
+      description: Gets the list of Event Types.
+      operationId: getEventTypes
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventsResponse'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    EventsResponse:
+      type: object
+      required:
+      - events
+      properties:
+        events:
+          type: array
+          description: The list of Event Types.
+          items:
+            type: string
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: string
+          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agent Management Health Monitoring Status API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health Monitoring Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Health Monitoring Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/healthmonitoringstatus",
+            "params": [
+              {
+                "name": "registered",
+                "value": "",
+                "type": "query",
+                "description": "Filter by registration status (true/false)."
+              }
+            ]
+          },
+          "docs": "Get a list of health statuses for all coreInstances on your account."
+        },
+        {
+          "info": {
+            "name": "Get Health Monitoring Status by CoreInstanceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/healthmonitoringstatus/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "The CoreInstanceId of the Armor Agent."
+              }
+            ]
+          },
+          "docs": "Get Health Monitoring Status details by CoreInstanceId."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

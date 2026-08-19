@@ -1,0 +1,210 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Keys API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Keys
+paths:
+  /users/{id}/keys:
+    get:
+      tags:
+      - Keys
+      summary: /Returns list of api keys for a user
+      operationId: Keys_GetApiTokenList
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.ApiKey'
+              example:
+                id: 00000000-0000-0000-0000-000000000000
+                name: Example Key Name
+                createdDate: '2026-02-12T00:00:00+00:00'
+                lastUsed: '2026-02-12T16:25:56.4275729Z'
+                keyStatus: 'True'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.ApiKey'
+        '400':
+          description: Bad Request
+      deprecated: false
+    put:
+      tags:
+      - Keys
+      summary: Rename Api key
+      operationId: Keys_RenameAPIKey
+      parameters:
+      - name: id
+        in: path
+        description: ''
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.UpdateApiKeyRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.UpdateApiKeyRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.UpdateApiKeyRequest'
+        required: true
+    post:
+      tags:
+      - Keys
+      summary: Method to create Api Key
+      operationId: Keys_CreateAPIKey
+      parameters:
+      - name: id
+        in: path
+        description: User Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyRequest'
+        description: Create Api Key request
+        required: true
+  /users/{id}/keys/{key}:
+    delete:
+      tags:
+      - Keys
+      summary: Deletes api key
+      operationId: Keys_DeleteApiKey
+      parameters:
+      - name: id
+        in: path
+        description: User Id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: key
+        in: path
+        description: Key Id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+              example: true
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+components:
+  schemas:
+    FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyResponse:
+      type: object
+      properties:
+        id:
+          type: string
+        apiKey:
+          type: string
+        name:
+          type: string
+    FireHost.Infrastructure.Accounts.Data.Persistence.UpdateApiKeyRequest:
+      type: object
+      properties:
+        apiKeyId:
+          type: string
+        prevApiKeyName:
+          type: string
+        newApiKeyName:
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        userId:
+          format: int32
+          type: integer
+      example:
+        name: New example API Key
+        userId: 1203
+    FireHost.Infrastructure.Accounts.Data.Persistence.ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        lastUsed:
+          format: date-time
+          type: string
+        keyStatus:
+          type: string
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

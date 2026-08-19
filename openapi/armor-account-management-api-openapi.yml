@@ -1,0 +1,3742 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Account Management API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Account Management
+paths:
+  /{entityType}/{entityId}/notes:
+    get:
+      tags:
+      - Account Management
+      summary: Return notes for a given entity type and id. Notes provide a free text field that can be used to storage additional information about a given entity.
+      operationId: Notes_GetNoteAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type (apps)
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+      deprecated: false
+    put:
+      tags:
+      - Account Management
+      summary: Add or update notes for a given entity type and id. A free text field that can be used to store additional information about a given entity.
+      operationId: Notes_UpdateNoteAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type (apps)
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest'
+        description: 'messages: Notes go here'
+        required: true
+    delete:
+      tags:
+      - Account Management
+      summary: Delete notes for a given entity type and id.
+      operationId: Notes_DeleteNoteAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest'
+        description: Request (empty object)
+        required: true
+  /{entityType}/{entityId}/tags:
+    get:
+      tags:
+      - Account Management
+      summary: Return tags for entity type and id. Tags are custom meta-data attributes that can be leveraged when searching for a given entity type.
+      operationId: Tags_GetTagsAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type (apps)
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+              example:
+              - tag1
+              - tag2
+            text/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '400':
+          description: Bad Request
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Add tags for a given entity type and id.
+      operationId: Tags_AddTagAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type (apps)
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest'
+        description: 'messages: Tags go here'
+        required: true
+    delete:
+      tags:
+      - Account Management
+      summary: Delete tags for a given entity type and id.
+      operationId: Tags_DeleteTagAsync
+      parameters:
+      - name: entityType
+        in: path
+        description: Entity Type (apps)
+        required: true
+        schema:
+          type: string
+      - name: entityId
+        in: path
+        description: Entity ID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest'
+        description: "messages: The name of the tag<br />\n            (You must enter the tag as it is logged. Here, tags are case-sensitive.)"
+        required: true
+  /account/activity/history:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve list of Account Activity for your account.
+      description: "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (required):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> date%20eq%20%27null%27%20and%20type%20eq%20%27null%27%20and%20startDate%20eq%20%272018-10-03T05.00.00%27%20and%20endDate%20eq%20%272018-10-06T04.59.59%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, location, status). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc<br /><br />\n            Times are submited as UTC"
+      operationId: AccountHistory_GetAccountActivityHistory
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.History.Models.AccountHistoryListResponseDto%5D'
+              example:
+              - account: Development Test Account
+                accountId: 1
+                type: Infrastructure
+                date: '2026-02-12T16:25:51.6777668+00:00'
+                user: Development Test User
+                userId: 2
+                activity: Added tier Example_Tier to workload Example_Workload.
+                details:
+                  workloadName: Example_Workload
+                  tierName: Example_Tier
+                  action: Added
+                  user: Development Test User
+                  url: http://example.url.com/orders/vms
+                isInternal: false
+                isArmor: false
+              - account: Development Test Account
+                accountId: 1
+                type: Security
+                date: '2026-02-12T16:25:51.6777668+00:00'
+                user: Development Test User
+                userId: 2
+                activity: Enabled SSL VPN access for development.user@armor.com in AMP
+                details:
+                  enable: 'True'
+                  location: DFW
+                  accountName: Development Test Account
+                  user: Development Test User
+                  url: http://example.url.com/sslvpn/enable
+                isInternal: false
+                isArmor: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.History.Models.AccountHistoryListResponseDto%5D'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+  /account/children:
+    get:
+      tags:
+      - Account Management
+      summary: Returns a list of child accounts associated to the parent account
+      description: '<strong>Get request URI contain the following query options</strong>
+
+        <br />
+
+        <br />
+
+        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=status%20eq%20%27Active%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=Armor<br /><br /><strong>$orderby (optional):</strong> order by column name (name, account ID, status, deployed agents). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=Name%20desc'
+      operationId: ChildAccounts_GetAllChildAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Accounts.Data.Persistence.ChildAccount%5D'
+              example:
+                total: 1
+                page: 1
+                items:
+                - id: 5
+                  name: Company Name 1
+                  status: Active
+                  deployedAgents: 3
+                - id: 12
+                  name: Company Name 2
+                  status: Cancelled
+                  deployedAgents: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Accounts.Data.Persistence.ChildAccount%5D'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Creates a child account
+      operationId: ChildAccounts_CreateChildAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: int32
+                type: integer
+            text/json:
+              schema:
+                format: int32
+                type: integer
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.ChildAccountSignupRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.ChildAccountSignupRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.ChildAccountSignupRequest'
+        description: "companyName: Name of the Account<br /><br />\n            relationshipEntity: Valid values: INC, LTD<br /><br />\n            addressLine1: Address Line 1<br /><br />\n            addressLine2: Address Line 2<br /><br />\n            city: City<br /><br />\n            state: State/Province ISO alpha-2 code<br /><br />\n            postalCode: Postal Code<br /><br />\n            country: Country ISO alpha-2 code<br /><br />\n            phone: Account Phone Number<br /><br />\n            website: Account Website<br /><br />\n            firstName: First Name<br /><br />\n            lastName: Last Name<br /><br />\n            email: Email<br /><br />\n            title: Title<br /><br />\n            currency: Valid values: USD, GBP<br /><br />\n            channel: Valid values: SMB, Enterprise, Government<br /><br />\n            productLine: Valid values: Anywhere, Complete<br /><br />\n            armorAnywhereLocation: Armor agent deployment location. Required if productLine is Anywhere. Valid values: Azure, AWS, Internal IT, Colocation, Other<br /><br />\n            armorAnywhereOtherLocation: Armor agent custom deployment location. Required if armorAnywhereLocation is Other<br /><br />\n            autoAcceptUserInvite: Setting this property to 'true' bypasses user invitation workflow, permitting users to immediately access the new sub-account.<br /><br />"
+        required: true
+  /account/children/massgrantaccess:
+    post:
+      tags:
+      - Account Management
+      summary: Give mass access for Parent Account Users to Child Account
+      operationId: ChildAccounts_MassGrantAccess
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                format: int32
+                type: integer
+            text/json:
+              schema:
+                format: int32
+                type: integer
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.MassGrantAccessRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.MassGrantAccessRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.ChildAccounts.MassGrantAccessRequest'
+        required: true
+  /account/contacts:
+    get:
+      tags:
+      - Account Management
+      summary: This will return the list of Armor Contacts for the given Armor Account.
+      operationId: AccountContacts_GetContacts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.AccountContacts'
+              example:
+                accountExecutive:
+                  accountId: '1'
+                  name: Users Name
+                  firstName: Users
+                  lastName: Name
+                  title: developer
+                  email: user@email.com
+                  homePhone: null
+                  mobilePhone: null
+                  street: 123 street
+                  city: New City
+                  state: TX
+                  zipcode: '75000'
+                  country: US
+                  salesforceId: null
+                  type: AccountOwner
+                accountStrategicManager: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.AccountContacts'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /account/pricing/{sku}:
+    get:
+      tags:
+      - Account Management
+      operationId: AccountSkuPricing_GetAccountPrice
+      parameters:
+      - name: sku
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+  /account/primary-user:
+    post:
+      tags:
+      - Account Management
+      summary: Set Primary User for one or more notification types
+      operationId: PrimaryNotificationUser_UpdateAccountPrimaryBillingContact
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample'
+        description: "userId: Id of the user being set<br /><br />\n            notificationTypes: one or more notification types to be set.  Valid values: Account, Billing, Technical<br /><br />"
+        required: true
+  /accounts:
+    get:
+      tags:
+      - Account Management
+      summary: Return a list of accounts and the products related to the account id.
+      operationId: Accounts_GetAccounts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UserAccountDto'
+              example:
+                id: 2
+                name: Development Test Account
+                currency: USD
+                status: Claimed
+                parentAccountId: 1
+                products:
+                  aA-CORE:
+                  - Monitoring
+                  - Anti-Malware and Virus Protection
+                  - Log Monitoring and Management
+                  - Vulnerability Scanning
+                  - File Integrity Monitoring
+                  - Invoicing
+                  armoR-COMPLETE:
+                  - Server Agent
+                  - Operating System Server Hardening
+                  - Operating System Patching
+                  - Invoicing
+                accountType: null
+                isSynced: false
+                isFreeTrial: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UserAccountDto'
+        '400':
+          description: Bad Request
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Update the Account information.
+      operationId: Accounts_UpdateAccount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.AccountDetail'
+              example:
+                name: Development Test Account
+                accountId: '2'
+                addressLine1: 123 street
+                addressLine2: ste 500
+                city: City
+                state: TX
+                postalCode: '75000'
+                country: US
+                accountSignupType: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.AccountDetail'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest'
+        description: 'addressLine1: Recipient Line<br /><br />addressLine2: Delivery Address Line<br /><br />city: City<br /><br />state: State<br /><br />postalCode: Postal Code<br /><br />country: Country'
+        required: true
+  /accounts/{accountId}:
+    get:
+      tags:
+      - Account Management
+      summary: Get the Account information.
+      operationId: Accounts_GetAccount
+      parameters:
+      - name: accountId
+        in: path
+        description: Armor account id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.AccountDetail'
+              example:
+                name: Development Test Account
+                accountId: '2'
+                addressLine1: 123 street
+                addressLine2: ste 500
+                city: City
+                state: TX
+                postalCode: '75000'
+                country: US
+                accountSignupType: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.AccountDetail'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /accounts/{accountId}/accountusersandrole:
+    get:
+      tags:
+      - Account Management
+      summary: Get the users of an account and their roles
+      operationId: Accounts_GetAccountUsersAndRole
+      parameters:
+      - name: accountId
+        in: path
+        description: Armor account id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRoleUser'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRoleUser'
+      deprecated: false
+  /accounts/{accountId}/roles:
+    get:
+      tags:
+      - Account Management
+      summary: Get the Roles of an account
+      operationId: Accounts_GetRoles
+      parameters:
+      - name: accountId
+        in: path
+        description: Armor account id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRolesResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRolesResponse'
+      deprecated: false
+  /cloud-connections:
+    post:
+      tags:
+      - Account Management
+      summary: Retrieve All Cloud Connections based on Account Id.
+      operationId: CloudConnections_CloudConnections
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsDto'
+              example:
+                id: 1
+                accountId: 0
+                name: AWS(Development)
+                externalId: 78a1d8dc-4d73-4575-8828-eb37bef28742
+                provider: AWS
+                providerAccountId: '345186984524'
+                providerAccessResource: null
+                total: 1
+                isEnabled_Beta: false
+                isEnabled_Ec2: false
+                isEnabled_Log: false
+                setupStatus: Completed
+                services: []
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsDto'
+        '400':
+          description: Invalid Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams'
+        description: 'Parameters: Contains page number, pagesize, search text, sort order, filter by and sorting field<br /><br />'
+        required: true
+  /cloud-connections/{connectionId}:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve cloud connection detail by connection Id
+      operationId: CloudConnections_CloudConnectionDetails
+      parameters:
+      - name: connectionId
+        in: path
+        description: Cloud connection Id to get the cloud connection details
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+              example:
+                armorAwsAccountId: '679703615338'
+                connectionName: AWS(Development)
+                description: For Search
+                externalId: 33c6b08a-0872-4908-97f4-81b61a0d9235
+                providerAccessResource: arn:aws:iam::d345186984524:role/armor_audit
+                accountConnectionId: 1
+                providerTypeName: AWS
+                serviceTypeName: CloudTrail Log Ingestion
+                awsBaseJsonPolicy: 'Enable the following policies on AWS:'
+                subServiceName: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+        '400':
+          description: Invalid Request
+      deprecated: false
+    delete:
+      tags:
+      - Account Management
+      summary: Soft Delete Cloud Connection by Id.
+      operationId: CloudConnections_CloudConnection
+      parameters:
+      - name: connectionId
+        in: path
+        description: Cloud connection Id to delete the cloud connection data
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid request.
+      deprecated: false
+  /cloud-connections/connections/isEnabled:
+    get:
+      tags:
+      - Account Management
+      summary: Check whether any enabled cloud connections exist.
+      operationId: CloudConnections_CloudConnectionsEnabled
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+  /cloud-connections/savecloudconnection:
+    post:
+      tags:
+      - Account Management
+      summary: Save cloud connection details.
+      operationId: CloudConnections_SaveCloudConnectionsDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+              example:
+                id: 1
+                accountId: 0
+                name: AWS(Development)
+                externalId: 98f5da34-d763-48ca-bfe5-291c19ed01c1
+                provider: AWS
+                providerAccountId: '345186984524'
+                providerAccessResource: null
+                total: 1
+                isEnabled_Beta: false
+                isEnabled_Ec2: false
+                isEnabled_Log: false
+                setupStatus: Completed
+                services: []
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto'
+        description: "connectionName: Connection Name<br /><br />\n            description: Description<br /><br />\n            armorAwsAccountId: Armor AWS account id<br /><br />\n            externalId: External id<br /><br />\n            providerAccessResource: Provider access resource<br /><br />\n            providerTypeName:Provider type name<br /><br />\n            accountConnectionId:Account connection id<br /><br />\n            serviceTypeName:Service type name<br /><br />\n            accountId:Account id"
+        required: true
+  /cloud-connections/servicetypes:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve All Connection Service Types.
+      operationId: CloudConnections_AllServiceTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionServiceTypesDto'
+              example:
+                id: 1
+                name: AWS Security Hub
+                subServices:
+                - id: 1
+                  name: Malware
+                  subServiceName: null
+                  imageName: securityhub.svg
+                  policy: null
+                policy: securityhub*
+                imageName: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionServiceTypesDto'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /cloud-connections/summary:
+    get:
+      tags:
+      - Account Management
+      summary: "Cloud connectiion summary dto used by ngx-portal\n            Returns cloud connection list for security hub"
+      operationId: CloudConnections_CloudConnectionsSummary
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsSummaryDto'
+              example:
+                armorAwsAccountId: '679703615338'
+                connectionName: AWS(Development)
+                description: For Search
+                externalId: 1f7ffe08-3174-4678-a8c3-d15ef4ab07be
+                providerAccessResource: arn:aws:iam::d345186984524:role/armor_audit
+                accountConnectionId: 1
+                providerTypeName: AWS
+                serviceTypeName: CloudTrail Log Ingestion
+                awsBaseJsonPolicy: 'Enable the following policies on AWS:'
+                subServiceName: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsSummaryDto'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /internal/awssecurityhub/audits:
+    get:
+      tags:
+      - Account Management
+      summary: Get AWS SecurityHub audit logs
+      operationId: InternalAWSSecurityHubAudit_GetAWSSecurityHubAuditsAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+  /internal/awssecurityhub/audits/{id}:
+    get:
+      tags:
+      - Account Management
+      summary: Get AWS SecurityHub payload by Id
+      operationId: InternalAWSSecurityHubAudit_GetAuditsPayloadByIdAsync
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+  /invoices:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve invoices for an account.
+      operationId: Invoice_GetInvoices
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceResponse'
+              example:
+              - invoiceId: 2c92a0b05925c98701595a9eeaa45251
+                invoiceNumber: INV0010001
+                invoiceDate: '2015-01-01T00:00:00'
+                invoiceDueDate: '2015-02-01T00:00:00'
+                amount: 900
+                status: Unpaid
+                remainingBalance: 900
+              - invoiceId: 2c92a0b158aa8e0b0158bb805071233e
+                invoiceNumber: INV0010000
+                invoiceDate: '2015-12-01T00:00:00'
+                invoiceDueDate: '2015-01-01T00:00:00'
+                amount: 900
+                status: Paid
+                remainingBalance: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /invoices/{id}:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve the invoice summary for an invoice.
+      description: 'Response Type: application/json or application/pdf - depends on Accept header on request'
+      operationId: Invoice_GetInvoiceSummary
+      parameters:
+      - name: id
+        in: path
+        description: id for the requested invoice
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceSummary'
+              example:
+                lineItems:
+                - productLine: Armor | Complete
+                  category: Network
+                  subCategory: Network + Connectivity
+                  sku: IP-001
+                  name: IP Address - Allocated
+                  itemTotal: 42.65
+                invoiceNumber: INV00100000
+                invoiceDate: '2015-12-22T00:00:00'
+                billingPeriodStartDate: '2015-12-22T00:00:00'
+                billingPeriodEndDate: '2015-12-31T00:00:00'
+                paymentStatus: Unpaid
+                subTotal: 7794.64
+                lineItemDiscounts: -85.15
+                invoiceTotal: 7709.48
+                billTo:
+                  name: Company
+                  addressLine1: 1234 Main St
+                  addressLine2: ''
+                  city: Dallas
+                  state: TX
+                  postalCode: '12345'
+                  country: US
+                soldTo:
+                  name: Company
+                  addressLine1: 1234 Main St
+                  addressLine2: ''
+                  city: Dallas
+                  state: TX
+                  postalCode: '12345'
+                  country: US
+                remitTo:
+                  name: Armor INC
+                  addressLine1: 2360 Campbell Creek Blvd.
+                  addressLine2: Suite 525
+                  city: Richardson
+                  state: TX
+                  postalCode: '75082'
+                  country: US
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceSummary'
+        '400':
+          description: Bad Request
+        '404':
+          description: Invoice not found.
+      deprecated: false
+  /invoices/{id}/detail:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve invoice export detail for an invoice.
+      description: 'Response Type: application/json or text/csv - depends on Accept header on request'
+      operationId: Invoice_GetInvoicesDetail
+      parameters:
+      - name: id
+        in: path
+        description: id for the requested invoice
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Invoice not found.
+      deprecated: false
+  /paymentmethods:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve payment methods for an account.
+      operationId: PaymentMethod_GetPaymentMethods
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.PaymentMethod'
+              example:
+              - id: 1
+                accountBillingId: 1
+                name: Corporate Visa
+                paymentMethodId: 2c92c0f959687a90015975b882f515a0
+                paymentType: CreditCard
+                achRoutingNumber: ''
+                achAccountMaskNumber: ''
+                creditCardType: ''
+                creditCardMaskNumber: '****1114'
+                creditCardExpirationMonth: 2
+                creditCardExpirationYear: 2020
+                createdDate: '2015-01-06T21:38:52.027'
+                createdBy: '2'
+                modifiedDate: null
+                modifiedBy: null
+                status: Pending
+                isDeleted: false
+                isPrimary: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.PaymentMethod'
+      deprecated: false
+  /paymentmethods/{id}:
+    delete:
+      tags:
+      - Account Management
+      summary: Delete payment method from an account
+      description: Primary payment method cannot be deleted
+      operationId: PaymentMethod_DeletePaymentMethodById
+      parameters:
+      - name: id
+        in: path
+        description: id of the payment method that you want to delete
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest'
+        description: 'modifiedBy: The user that is requesting the modification'
+        required: true
+    patch:
+      tags:
+      - Account Management
+      summary: Update payment method on an account.
+      operationId: PaymentMethod_SetDefaultPaymentMethod
+      parameters:
+      - name: id
+        in: path
+        description: id of the payment method that you want to delete
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest'
+        description: Indicate whether the payment method should be set as primary
+        required: true
+  /permissions:
+    get:
+      tags:
+      - Account Management
+      summary: Get a list of all permissions available on the account.
+      operationId: Roles_GetPermissions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetPermissionsResponse'
+              example:
+              - name: accounts
+                permissions:
+                - id: 29
+                  name: Read Identity
+                  system: Identity
+                  resource: Accounts
+                  endpoints:
+                  - method: GET
+                    route: accounts
+                  - method: GET
+                    route: accounts/{accountId}
+                  - method: GET
+                    route: account/contacts
+                  - method: GET
+                    route: roles
+                  - method: GET
+                    route: roles/{id}
+                  - method: GET
+                    route: users
+                  - method: GET
+                    route: users/{id}
+                  - method: GET
+                    route: usersecurity/challengephrase
+                  - method: GET
+                    route: usersecurity/challengephrase/{userId}
+                  - method: GET
+                    route: usersecurity/securityquestions
+                  - method: GET
+                    route: users/LockedOut/{accountId}/{email}
+                  - method: GET
+                    route: survey/{accountId}/{userId}
+                  description: View account information.
+                - id: 32
+                  name: Write Account
+                  system: identity
+                  resource: accounts
+                  endpoints:
+                  - method: POST
+                    route: accounts
+                  description: Update account information
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetPermissionsResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /products:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve any product lists that are associated to your Account.
+      operationId: ProductCatalog_GetProductLists
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Data.Persistence.ProductList'
+              example:
+              - id: 1
+                name: Armor USD
+                category: Primary
+                currency: USD
+                salesforceId: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Data.Persistence.ProductList'
+      deprecated: false
+  /products/{id}:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve a specific product list that is associated to your Account.
+      operationId: ProductCatalog_GetProductList
+      parameters:
+      - name: id
+        in: path
+        description: id for the product list of the desired products
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+              example:
+              - name: SSD (GB)
+                sku: SAN-001
+                category: Disk
+                description: SSD-based storage
+                typeCode: PT02
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 1.7
+                  units: null
+                - location: PHX01
+                  amount: 1.7
+                  units: null
+                priceType: PerUnit
+                tier: SSD
+                min: 10
+                max: 500
+                increment: 10
+                billingOnly: false
+                hasRules: false
+              - name: Fluid (GB)
+                sku: SAN-002
+                category: Disk
+                description: Fluid-based storage
+                typeCode: PT02
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 0.75
+                  units: null
+                - location: PHX01
+                  amount: 0.75
+                  units: null
+                priceType: PerUnit
+                tier: Fluid
+                min: 50
+                max: 2000
+                increment: 50
+                billingOnly: false
+                hasRules: false
+              - name: RAW (GB)
+                sku: SAN-003
+                category: Disk
+                description: RAW-based storage
+                typeCode: PT02
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 0.15
+                  units: null
+                - location: PHX01
+                  amount: 0.15
+                  units: null
+                priceType: PerUnit
+                tier: RAW
+                min: 250
+                max: 2000
+                increment: 250
+                billingOnly: false
+                hasRules: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /products/{id}/{category}:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve a filtered list of products specific to a category within a given product list on your Account.
+      operationId: ProductCatalog_GetProductListByCategory
+      parameters:
+      - name: id
+        in: path
+        description: id for the product list of the desired products
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: category
+        in: path
+        description: Category of the desired products in the product list
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+              example:
+              - name: A1-CentOS 6
+                sku: A1-101
+                category: Instance
+                description: Armor-hardened 64-bit CentOS 6 image with 30GB SSD storage
+                typeCode: PT01
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 25
+                  units: null
+                - location: PHX01
+                  amount: 25
+                  units: null
+                priceType: PerUnit
+                instanceSeries: A
+                cpu: 1
+                memory: 2
+                baseDiskSize: 30
+                baseDiskTier: SSD
+                operatingSystem: CentOS 6
+                billingOnly: false
+                hasRules: false
+              - name: A1-CentOS 7
+                sku: A1-102
+                category: Instance
+                description: Armor-hardened 64-bit CentOS 7 image with 30GB SSD storage
+                typeCode: PT01
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 25
+                  units: null
+                - location: PHX01
+                  amount: 25
+                  units: null
+                priceType: PerUnit
+                instanceSeries: A
+                cpu: 1
+                memory: 2
+                baseDiskSize: 30
+                baseDiskTier: SSD
+                operatingSystem: CentOS 7
+                billingOnly: false
+                hasRules: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /products/{id}/resizeinstance:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve a resizable list of products specific to a instance.
+      operationId: ProductCatalog_GetResizableInstanceProductList
+      parameters:
+      - name: id
+        in: path
+        description: id for the product list of the desired products
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+              example:
+              - name: A1-CentOS 6
+                sku: A1-101
+                category: Instance
+                description: Armor-hardened 64-bit CentOS 6 image with 30GB SSD storage
+                typeCode: PT01
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 25
+                  units: null
+                - location: PHX01
+                  amount: 25
+                  units: null
+                priceType: PerUnit
+                instanceSeries: A
+                cpu: 1
+                memory: 2
+                baseDiskSize: 30
+                baseDiskTier: SSD
+                operatingSystem: CentOS 6
+                billingOnly: false
+                hasRules: false
+              - name: A1-CentOS 7
+                sku: A1-102
+                category: Instance
+                description: Armor-hardened 64-bit CentOS 7 image with 30GB SSD storage
+                typeCode: PT01
+                storagePolicyClass: null
+                chargeType: null
+                price:
+                - location: DFW01
+                  amount: 25
+                  units: null
+                - location: PHX01
+                  amount: 25
+                  units: null
+                priceType: PerUnit
+                instanceSeries: A
+                cpu: 1
+                memory: 2
+                baseDiskSize: 30
+                baseDiskTier: SSD
+                operatingSystem: CentOS 7
+                billingOnly: false
+                hasRules: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductListItemModel'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /roles:
+    get:
+      tags:
+      - Account Management
+      summary: Get a list of all roles on an account, including the associated permissions and assigned users.
+      operationId: Roles_GetRoles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+              example:
+              - id: 4
+                name: Admin
+                created: '2015-12-13T02:00:46.51'
+                modified: null
+                members:
+                - id: 2
+                  firstName: John
+                  lastName: Smith
+                  email: john.smith@example.com
+                  added: '2015-12-13T02:01:30.923'
+                  enabled: true
+                  roleId: 0
+                permissions:
+                - 1
+                - 2
+                - 3
+                default: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Create a role with a group of permissions.
+      operationId: Roles_CreateRole
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+              example:
+                id: 8
+                name: Role 1
+                created: '2015-01-07T00:25:05.103'
+                modified: null
+                members: []
+                permissions:
+                - 1
+                - 2
+                - 3
+                default: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest'
+        description: Name and Permissions
+        required: true
+  /roles/{id}:
+    get:
+      tags:
+      - Account Management
+      summary: GET a role by the role id.
+      operationId: Roles_GetRole
+      parameters:
+      - name: id
+        in: path
+        description: Role ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+              example:
+                id: 4
+                name: Admin
+                created: '2015-12-13T02:00:46.51'
+                modified: null
+                members:
+                - id: 2
+                  firstName: John
+                  lastName: Smith
+                  email: john.smith@example.com
+                  added: '2015-12-13T02:01:30.923'
+                  enabled: true
+                  roleId: 0
+                permissions:
+                - 1
+                - 2
+                - 3
+                default: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+        '404':
+          description: Not Found
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Update the name and/or permissions assigned to a role.
+      operationId: Roles_UpdateRole
+      parameters:
+      - name: id
+        in: path
+        description: Role ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+              example:
+                id: 4
+                name: Admin
+                created: '2015-12-13T02:00:46.51'
+                modified: null
+                members:
+                - id: 2
+                  firstName: John
+                  lastName: Smith
+                  email: john.smith@example.com
+                  added: '2015-12-13T02:01:30.923'
+                  enabled: true
+                  roleId: 0
+                permissions:
+                - 1
+                - 2
+                - 3
+                default: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest'
+        description: Name and Permissions
+        required: true
+    delete:
+      tags:
+      - Account Management
+      summary: Delete a role by id.
+      operationId: Roles_DeleteRole
+      parameters:
+      - name: id
+        in: path
+        description: Role ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '404':
+          description: Not Found
+      deprecated: false
+  /roles/{id}/members/{userId}:
+    post:
+      tags:
+      - Account Management
+      summary: Add a user to a role.
+      operationId: Roles_UpdateRoleMember
+      parameters:
+      - name: id
+        in: path
+        description: Role ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.RBAC.Data.Domain.RoleUser'
+              example:
+                roleId: 4
+                id: 3
+                firstName: John
+                lastName: Smith
+                email: john.smith@example.com
+                createdDate: '2015-01-07T00:46:24.157'
+                isEnabled: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.RBAC.Data.Domain.RoleUser'
+        '404':
+          description: User cannot be found for the account
+      deprecated: false
+    delete:
+      tags:
+      - Account Management
+      summary: Delete a user from a role.
+      operationId: Roles_DeleteRoleMember
+      parameters:
+      - name: id
+        in: path
+        description: Role ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: userId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.RBAC.Data.Domain.RoleUser'
+              example:
+                roleId: 4
+                id: 3
+                firstName: John
+                lastName: Smith
+                email: john.smith@example.com
+                createdDate: '2015-01-07T00:46:24.157'
+                isEnabled: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.RBAC.Data.Domain.RoleUser'
+        '404':
+          description: User cannot be found for the account
+      deprecated: false
+  /subscriptions:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve subscriptions for an account.
+      operationId: Subscription_GetSubscriptions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.SubscriptionResponse'
+              example:
+              - uniqueProductIdentifier: a4bee0fd-4a3c-4c23-87a1-bc2a136e6d06
+                productName: SQL Server Express 2016
+                productCategory: Software License
+                quantity: 1
+                sku: DB-SQL-EXPRESS-2016
+                price: 0
+                totalPrice: 0
+                ticketNumber: null
+                contractEffectiveDate: null
+                pendingCancellation: false
+                ticketKey: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.SubscriptionResponse'
+      deprecated: false
+  /subscriptions/account-details:
+    get:
+      tags:
+      - Account Management
+      summary: Get partner customer details for logged-in account.
+      operationId: SubscriptionUsage_GetAllAccountDetailsForPartner
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.AccountListDto'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.AccountListDto'
+      deprecated: false
+  /subscriptions/account-usage:
+    get:
+      tags:
+      - Account Management
+      summary: Get account all usage for billing period.
+      operationId: SubscriptionUsage_GetAccountUsage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse'
+      deprecated: false
+  /subscriptions/account-usagedetails:
+    get:
+      tags:
+      - Account Management
+      summary: Get usage details for partner and partner customers
+      operationId: SubscriptionUsage_GetAccountUsageDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse'
+      deprecated: false
+  /subscriptions/actions/cancel:
+    post:
+      tags:
+      - Account Management
+      summary: Cancel an active subscription.
+      operationId: Subscription_CancelSubscription
+      responses:
+        '200':
+          description: ''
+        '202':
+          description: Accepted
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest'
+        description: "sku: Sku of the product to be removed<br /><br />\n            UniqueProductIdentifier: Identifier for the specific product to be removed"
+        required: true
+  /subscriptions/hourlyusage:
+    get:
+      tags:
+      - Account Management
+      summary: Get partners and partner customers hourly usagedetails for logged-in account.
+      operationId: SubscriptionUsage_GetHourlyUsage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.AccountHourlyUsageItem'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.AccountHourlyUsageItem'
+        '400':
+          description: Bad Request
+        '500':
+          description: Internal Server Error
+      deprecated: false
+  /usage:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve Usage records for an account.
+      operationId: Usage_GetAccountUsage
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUsageResponse'
+              example:
+              - accountId: 2
+                sku: SKU-001
+                vmId: 2079
+                quantity: 2
+                usageDate: '2018-04-04'
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUsageResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /users:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve a list of users for an account.
+      operationId: Users_GetUsers
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+              example:
+                id: 2540
+                status: disabled
+                title: ''
+                firstName: John
+                lastName: Smith
+                email: john.smith@example.com
+                phonePrimary:
+                  countryCode: 1
+                  countryIsoCode: null
+                  number: '8880000000'
+                  phoneExt: null
+                timezone: GMT Standard Time
+                culture: en-US
+                permissions:
+                - 1
+                - 2
+                lastModified: '2015-12-08T20:25:34.083'
+                passwordLastSet: '1999-01-01T00:00:00'
+                mustChangePassword: false
+                lastLogin: '2025-02-08T20:25:34.083'
+                apiKeyCount: 15
+                isPrimaryBillingNotificationUser: false
+                isPrimaryAccountNotificationUser: false
+                isPrimaryTechnicalNotificationUser: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Invite a new or existing user to an account.
+      operationId: Users_CreateAccountUser
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.CreateAccountResponse'
+              example:
+                id: 2598
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.CreateAccountResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest'
+        description: "firstName First name of the user you want to create<br /><br />\n            lastName: Last name of the user you want to create<br /><br />\n            email: Email of the user you want to create<br /><br />\n            roles: Array of roles you want to apply to the user<br /><br />"
+        required: true
+  /users/{id}:
+    get:
+      tags:
+      - Account Management
+      summary: Get details about a specific user.
+      operationId: Users_GetUser
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+              example:
+                id: 2402
+                status: disabled
+                title: ''
+                firstName: John
+                lastName: Smith
+                email: john.smith@example.com
+                phonePrimary:
+                  countryCode: 1
+                  countryIsoCode: US
+                  number: '8880000000'
+                  phoneExt: null
+                timezone: GMT Standard Time
+                culture: en-US
+                permissions:
+                - 1
+                lastModified: '2015-09-22T15:28:06.89'
+                passwordLastSet: '1999-01-01T00:00:00'
+                mustChangePassword: false
+                lastLogin: '1999-01-01T00:00:00'
+                apiKeyCount: 0
+                isPrimaryBillingNotificationUser: false
+                isPrimaryAccountNotificationUser: false
+                isPrimaryTechnicalNotificationUser: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+    put:
+      tags:
+      - Account Management
+      summary: Update the attributes of a user.
+      operationId: Users_UpdateUser
+      parameters:
+      - name: id
+        in: path
+        description: id of the user
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+              example:
+                id: 2381
+                firstName: John
+                lastName: Smith
+                title: ''
+                timezone: GMT Standard Time
+                culture: en-US
+                phonePrimary:
+                  countryCode: 1
+                  countryIsoCode: US
+                  number: '8880000000'
+                  phoneExt: null
+                accountid: 2093
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest'
+        description: "firstName: First name<br /><br />\n            lastName: Last name<br /><br />\n            status: Enabled or disabled status<br /><br />\n            phonePrimary: Phone object"
+        required: true
+  /users/{userId}/invite:
+    post:
+      tags:
+      - Account Management
+      summary: Resend email invitation for an invited user.
+      operationId: Users_ResendAccountInvite
+      parameters:
+      - name: userId
+        in: path
+        description: id of the user
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Success
+        '400':
+          description: Bad Request
+      deprecated: false
+  /users/notifications:
+    get:
+      tags:
+      - Account Management
+      summary: Get a user's notification settings. Notification settings determine the types of notifications a given user is subscribed to (e.g. Technical notifications, Ticket notifications, etc.).
+      operationId: Users_GetUserNotificationPreferences
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.UserNotificationPreferencesResponse'
+              example:
+                notificationPreferences:
+                - notificationTypeId: 7
+                  notificationType: Billing
+                  alert: true
+                  sms: false
+                  email: false
+                - notificationTypeId: 3
+                  notificationType: Ticket
+                  alert: true
+                  sms: false
+                  email: true
+                - notificationTypeId: 2
+                  notificationType: Security
+                  alert: false
+                  sms: false
+                  email: false
+                - notificationTypeId: 1
+                  notificationType: Account
+                  alert: false
+                  sms: false
+                  email: true
+                - notificationTypeId: 8
+                  notificationType: Technical
+                  alert: false
+                  sms: false
+                  email: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Persistence.UserNotificationPreferencesResponse'
+      deprecated: false
+    post:
+      tags:
+      - Account Management
+      summary: Update the notification settings for a user.
+      operationId: Users_CreateUserNotificationPreferences
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest'
+        description: "userId: id of the user<br /><br />\n            isSelfUpdate:Where the user you are updating is yourself<br /><br />\n            NotificationPreferences: Array of UserNotificationPreferences"
+        required: true
+  /users/simpleUserList:
+    get:
+      tags:
+      - Account Management
+      summary: Retrieve a simplified list of users for an account.
+      operationId: Users_GetUsersSimpleList
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Accounts.Data.Persistence.AccountUserSimple%5D'
+              example:
+                total: 10
+                page: 1
+                items:
+                - id: 2540
+                  accountId: 1
+                  isEnabled: true
+                  title: ''
+                  lastModified: '2015-12-08T20:25:34.083'
+                  lastLoginTime: '2025-02-08T20:25:34.083'
+                  firstName: null
+                  lastName: null
+                  name: John Smith
+                  email: john.smith@example.com
+                  isEmployee: false
+                  timeZoneId: GMT Standard Time
+                  culture: en-US
+                  invitationAcceptedDate: '2026-02-12T16:25:50.5025965+00:00'
+                  apiKeyCount: 15
+                  status: enabled
+                  total: null
+                  isPrimaryBillingNotificationUser: false
+                  isPrimaryAccountNotificationUser: false
+                  isPrimaryTechnicalNotificationUser: false
+                - id: 2541
+                  accountId: 1
+                  isEnabled: true
+                  title: ''
+                  lastModified: '2015-11-08T20:25:34.083'
+                  lastLoginTime: '2025-11-03T20:25:34.083'
+                  firstName: null
+                  lastName: null
+                  name: John Smith2
+                  email: john.smith2@example.com
+                  isEmployee: false
+                  timeZoneId: GMT Standard Time
+                  culture: en-US
+                  invitationAcceptedDate: '2026-02-12T16:25:50.5025965+00:00'
+                  apiKeyCount: 10
+                  status: enabled
+                  total: null
+                  isPrimaryBillingNotificationUser: false
+                  isPrimaryAccountNotificationUser: false
+                  isPrimaryTechnicalNotificationUser: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Accounts.Data.Persistence.AccountUserSimple%5D'
+      deprecated: false
+  /users/status:
+    post:
+      tags:
+      - Account Management
+      summary: Enable or disable a user on an account.
+      operationId: Users_UpdateUserStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UpdateUserStatusResponse'
+              example:
+                userId: 5718
+                isEnabled: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UpdateUserStatusResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserStatusSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserStatusSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserStatusSampleRequest'
+        description: "isEnabled: Whether the user is enabled or not<br /><br />\n            accountId: id of the account<br /><br />\n            id: Id of the user"
+        required: true
+  /usersecurity/challengephrase:
+    put:
+      tags:
+      - Account Management
+      summary: Update the user challenge phrase for a given user account.
+      operationId: UserSecurity_UpdateChallengePhrase
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+              example:
+                userId: 0
+                challengePhrase: what is your mother's maiden name?
+                challengeAnswer: maiden
+                userName: user@example.com
+                signedInUserId: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: ''
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest'
+        description: Request
+        required: true
+components:
+  schemas:
+    FireHost.Services.Http.Accounts.Models.GetUserResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        status:
+          type: string
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phonePrimary:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Phone'
+        timezone:
+          type: string
+        culture:
+          type: string
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+        lastModified:
+          format: date-time
+          type: string
+        passwordLastSet:
+          format: date-time
+          type: string
+        mustChangePassword:
+          type: boolean
+        lastLogin:
+          format: date-time
+          type: string
+        apiKeyCount:
+          format: int32
+          description: Gets or sets the Api Key Count
+          type: integer
+        isPrimaryBillingNotificationUser:
+          type: boolean
+        isPrimaryAccountNotificationUser:
+          type: boolean
+        isPrimaryTechnicalNotificationUser:
+          type: boolean
+    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        externalId:
+          type: string
+        provider:
+          type: string
+        providerAccountId:
+          type: string
+        providerAccessResource:
+          type: string
+        total:
+          format: int64
+          type: integer
+        isEnabled_Beta:
+          type: boolean
+        isEnabled_Ec2:
+          type: boolean
+        isEnabled_Log:
+          type: boolean
+        setupStatus:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService'
+    FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest:
+      type: object
+      properties:
+        modifiedBy:
+          type: string
+          readOnly: true
+      example:
+        modifiedBy: Name
+    FireHost.Services.Http.Billing.Models.InvoiceSummaryLineItem:
+      type: object
+      properties:
+        productLine:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        itemTotal:
+          format: double
+          type: number
+    FireHost.Services.Http.Accounts.Models.PermissionDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        system:
+          type: string
+        resource:
+          type: string
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionEndpoint'
+        description:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone:
+      type: object
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+          readOnly: true
+        countryIsoCode:
+          type: string
+          readOnly: true
+        number:
+          type: string
+          readOnly: true
+    FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams:
+      type: object
+      properties:
+        parameters:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+    FireHost.Services.Http.Accounts.Models.GetRolesResponse:
+      description: Role Details
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        isdefault:
+          type: boolean
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          readOnly: true
+        addressLine2:
+          type: string
+          readOnly: true
+        city:
+          type: string
+          readOnly: true
+        state:
+          type: string
+          readOnly: true
+        postalCode:
+          type: string
+          readOnly: true
+        country:
+          type: string
+          readOnly: true
+      example:
+        addressLine1: 123 street
+        addressLine2: ste 500
+        city: City
+        state: TX
+        postalCode: '75000'
+        country: US
+    FireHost.Services.Http.Accounts.Models.GetPermissionsResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionDto'
+    FireHost.Services.Http.Accounts.Models.GetUsageResponse:
+      description: Model for Usage Data
+      type: object
+      properties:
+        accountId:
+          format: int32
+          description: Account Id
+          type: integer
+        sku:
+          description: Sku
+          type: string
+        vmId:
+          format: int32
+          description: VmId
+          type: integer
+        quantity:
+          format: double
+          description: Quantity Used
+          type: number
+        usageDate:
+          description: Date of Usage
+          type: string
+    FireHost.Infrastructure.Billing.Data.Persistence.ProductList:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        currency:
+          type: string
+        salesforceId:
+          type: string
+    FireHost.Services.Common.Data.Domain.User.UserNotificationPreference:
+      type: object
+      properties:
+        notificationTypeId:
+          format: int32
+          type: integer
+        notificationType:
+          type: string
+        alert:
+          type: boolean
+        sms:
+          type: boolean
+        email:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.UserAccountDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        currency:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        parent:
+          format: int32
+          type: integer
+        products:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        accountType:
+          description: Type of Account
+          type: string
+        isSynced:
+          description: To Check Whether Account Is Qualys Account
+          type: boolean
+        isFreeTrial:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.GetRoleUser:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        added:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        roleId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Accounts.Data.Persistence.UserNotificationPreferencesResponse:
+      type: object
+      properties:
+        notificationPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Common.Data.Domain.User.UserNotificationPreference'
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
+          type: string
+          readOnly: true
+        email:
+          type: string
+          readOnly: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role'
+          readOnly: true
+      example:
+        firstName: John
+        lastName: Smith
+        email: john.smith@armor.com
+        roles:
+        - id: 1
+    FireHost.Services.Http.Accounts.Models.CreateAccountResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.RBAC.Data.Domain.RoleUser:
+      type: object
+      properties:
+        roleId:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        isEnabled:
+          type: boolean
+    FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        serviceStartDate:
+          format: date-time
+          type: string
+        serviceEndDate:
+          format: date-time
+          type: string
+        usageDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails'
+    FireHost.Services.Http.Billing.Models.InvoiceResponse:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          format: date-time
+          type: string
+        invoiceDueDate:
+          format: date-time
+          type: string
+        amount:
+          format: double
+          type: number
+        status:
+          type: string
+        remainingBalance:
+          format: double
+          type: number
+    FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest:
+      type: object
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: tag1
+    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsSummaryDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        connectorName:
+          type: string
+        provider:
+          type: string
+        connectionType:
+          type: string
+          readOnly: true
+        status:
+          type: string
+    FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Accounts.Models.PermissionEndpoint:
+      type: object
+      properties:
+        method:
+          type: string
+        route:
+          type: string
+    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          format: int32
+          type: integer
+        lastSuccessfulConnectionDate:
+          format: date-time
+          type: string
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        subServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType'
+        policy:
+          type: string
+        imageName:
+          type: string
+    FireHost.Services.Http.Billing.Models.ProductListItemModel:
+      type: object
+      properties:
+        name:
+          type: string
+        sku:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        typeCode:
+          type: string
+        storagePolicyClass:
+          type: string
+        chargeType:
+          type: string
+        price:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductItemLocationPrice'
+        priceType:
+          type: string
+        instanceSeries:
+          type: string
+        cpu:
+          format: int32
+          type: integer
+        memory:
+          format: int32
+          type: integer
+        baseDiskSize:
+          format: int32
+          type: integer
+        baseDiskTier:
+          type: string
+        operatingSystem:
+          type: string
+        tier:
+          type: string
+        min:
+          format: int32
+          type: integer
+        max:
+          format: int32
+          type: integer
+        increment:
+          format: int32
+          type: integer
+        billingOnly:
+          type: boolean
+        hasRules:
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Services.Http.Accounts.Models.UpdateUserStatusResponse:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+    FireHost.Infrastructure.Billing.Models.SubAccountDto:
+      type: object
+      properties:
+        name:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Billing.Models.InvoiceAddress:
+      type: object
+      properties:
+        name:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        vatNumber:
+          type: string
+    FireHost.Services.Http.Accounts.Models.ChildAccounts.ChildAccountSignupRequest:
+      description: Request object for Child Account Signup
+      type: object
+      properties:
+        firstName:
+          pattern: ^[a-zA-Z0-9àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ\(\)\[\]\*^%$#@!:~`,.; \-'&_+|\\?\/]{1,100}$
+          type: string
+        lastName:
+          pattern: ^[a-zA-Z0-9àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ\(\)\[\]\*^%$#@!:~`,.; \-'&_+|\\?\/]{1,100}$
+          type: string
+        companyName:
+          pattern: ^[a-zA-Z0-9àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ\(\)\[\]\*^%$#@!:~`,.; \-'&_+\\?\/]{1,50}$
+          type: string
+        title:
+          pattern: ^[a-zA-Z0-9àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ\(\)\[\]\*^%$#@!:~`,.; \-'&_+|\\?\/]{1,160}$
+          type: string
+        parentAccountId:
+          format: int32
+          type: integer
+        email:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        currency:
+          pattern: ^(USD|GBP)$
+          type: string
+        relationshipEntity:
+          pattern: ^(INC|LTD)$
+          type: string
+        productLine:
+          pattern: ^(Complete|Anywhere)$
+          type: string
+        phone:
+          type: string
+        website:
+          type: string
+        channel:
+          pattern: ^(SMB|Enterprise|Government)$
+          type: string
+        armorAnywhereLocation:
+          pattern: ^(Azure|AWS|Internal IT|CoLocation|Other)$
+          type: string
+        armorAnywhereOtherLocation:
+          type: string
+        autoAcceptUserInvite:
+          type: boolean
+        correlationId:
+          type: string
+          readOnly: true
+      example:
+        firstName: First
+        lastName: Last
+        companyName: Company Example
+        title: Title
+        parentAccountId: 1234
+        email: example@email.com
+        addressLine1: Address Line 1
+        addressLine2: Address Line 2
+        city: City
+        state: TX
+        postalCode: '12345'
+        country: US
+        currency: USD
+        relationshipEntity: INC
+        productLine: Anywhere
+        phone: 123-123-1234
+        website: https://example.com
+        channel: SMB
+        armorAnywhereLocation: Other
+        armorAnywhereOtherLocation: example location
+        autoAcceptUserInvite: true
+        correlationId: d4244c08-efcc-4283-b197-27ebff111b88
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserStatusSampleRequest:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        isEnabled:
+          type: boolean
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
+      example:
+        id: 8
+        isEnabled: true
+        accountId: 2
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
+        isSelfUpdate:
+          type: boolean
+          readOnly: true
+        notificationPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample'
+          readOnly: true
+      example:
+        userId: 2903
+        accountId: 2
+        isSelfUpdate: true
+        notificationPreferences:
+        - notificationTypeId: 2
+          alert: true
+          sms: true
+          email: true
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+          readOnly: true
+      example:
+        name: Role 1
+        permissions:
+        - 1
+        - 2
+        - 3
+    FireHost.Services.Http.Billing.Models.SubscriptionResponse:
+      type: object
+      properties:
+        uniqueProductIdentifier:
+          type: string
+        productName:
+          type: string
+        productCategory:
+          type: string
+        quantity:
+          format: double
+          type: number
+        sku:
+          type: string
+        price:
+          format: double
+          type: number
+        totalPrice:
+          format: double
+          type: number
+        ticketNumber:
+          format: int32
+          type: integer
+        contractEffectiveDate:
+          format: date-time
+          type: string
+        pendingCancellation:
+          type: boolean
+        ticketKey:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+          readOnly: true
+      example:
+        name: Admin
+        permissions:
+        - 1
+        - 2
+    FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest:
+      type: object
+      properties:
+        isPrimary:
+          type: boolean
+          readOnly: true
+      example:
+        isPrimary: true
+    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto:
+      type: object
+      properties:
+        armorAwsAccountId:
+          type: string
+          readOnly: true
+        connectionName:
+          type: string
+        description:
+          type: string
+        externalId:
+          type: string
+        providerAccessResource:
+          type: string
+        accountConnectionId:
+          format: int32
+          type: integer
+        providerTypeName:
+          type: string
+        serviceTypeName:
+          type: string
+        awsBaseJsonPolicy:
+          type: string
+          readOnly: true
+        subServiceName:
+          type: string
+      example:
+        id: 1
+        accountId: 0
+        name: AWS(Development)
+        externalId: 01a5725d-ebd1-4a52-b444-f233ba952fca
+        provider: AWS
+        providerAccountId: '345186984524'
+        total: 1
+        isEnabled_Beta: false
+        isEnabled_Ec2: false
+        isEnabled_Log: false
+        setupStatus: Completed
+        services: []
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample:
+      type: object
+      properties:
+        notificationTypeId:
+          format: int32
+          type: integer
+          readOnly: true
+        alert:
+          type: boolean
+          readOnly: true
+        sms:
+          type: boolean
+          readOnly: true
+        email:
+          type: boolean
+          readOnly: true
+    FireHost.Services.Http.Accounts.Models.ChildAccounts.MassGrantAccessRequest:
+      description: Request object for Mass Access for Parent Account Users to Child Account
+      type: object
+      properties:
+        parentAccountId:
+          format: int32
+          description: Id of the parent account
+          type: integer
+        parentAccountRoleId:
+          format: int32
+          description: Role Id of the Parent account from which users should be added to the child account
+          type: integer
+        childAccountId:
+          format: int32
+          description: Child account Id to which Parent account users should be added
+          type: integer
+        childAccountRoleId:
+          format: int32
+          description: Child account Role Id to which the Parent account users should be added to
+          type: integer
+    FireHost.Services.Http.Billing.Models.InvoiceSummary:
+      type: object
+      properties:
+        lineItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceSummaryLineItem'
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          format: date-time
+          type: string
+        billingPeriodStartDate:
+          format: date-time
+          type: string
+        billingPeriodEndDate:
+          format: date-time
+          type: string
+        paymentStatus:
+          type: string
+        subTotal:
+          format: double
+          type: number
+        lineItemDiscounts:
+          format: double
+          type: number
+        accountLevelDiscounts:
+          format: double
+          type: number
+        adjustments:
+          format: double
+          type: number
+        tax:
+          format: double
+          type: number
+        invoiceTotal:
+          format: double
+          type: number
+        billTo:
+          $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceAddress'
+        soldTo:
+          $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceAddress'
+        remitTo:
+          $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceAddress'
+        poNumber:
+          type: string
+    FireHost.Services.Http.Billing.Models.ProductItemLocationPrice:
+      type: object
+      properties:
+        location:
+          type: string
+        amount:
+          format: double
+          type: number
+        units:
+          format: double
+          type: number
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          readOnly: true
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
+          type: string
+          readOnly: true
+        phonePrimary:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone'
+          readOnly: true
+      example:
+        status: enabled
+        firstName: John
+        lastName: Smith
+        phonePrimary:
+          countryCode: 1
+          countryIsoCode: US
+          number: '8880000000'
+    FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest:
+      type: object
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: This is a note!
+    FireHost.Services.Http.Accounts.Data.Domain.AccountContacts:
+      type: object
+      properties:
+        accountExecutive:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
+        accountStrategicManager:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
+    FireHost.Infrastructure.Billing.Models.AccountListDto:
+      type: object
+      properties:
+        months:
+          type: array
+          items:
+            type: string
+        accountDtos:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.SubAccountDto'
+    FireHost.Infrastructure.Accounts.Data.Persistence.PaymentMethod:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountBillingId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        paymentMethodId:
+          type: string
+        paymentType:
+          type: string
+        achRoutingNumber:
+          type: string
+        achAccountMaskNumber:
+          type: string
+        creditCardType:
+          type: string
+        creditCardMaskNumber:
+          type: string
+        creditCardExpirationMonth:
+          format: int32
+          type: integer
+        creditCardExpirationYear:
+          format: int32
+          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
+        modifiedBy:
+          type: string
+        status:
+          type: string
+        isDeleted:
+          type: boolean
+        isPrimary:
+          type: boolean
+    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        subServiceName:
+          type: string
+        imageName:
+          type: string
+        policy:
+          type: string
+    FireHost.Infrastructure.Accounts.Data.Phone:
+      type: object
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+        countryIsoCode:
+          type: string
+        number:
+          type: string
+        phoneExt:
+          type: string
+    FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        created:
+          format: date-time
+          type: string
+        modified:
+          format: date-time
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRoleUser'
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+        default:
+          type: boolean
+    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionServiceTypesDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        subServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType'
+        policy:
+          type: string
+        imageName:
+          type: string
+    FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest:
+      type: object
+      properties: {}
+      example: {}
+    FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser:
+      type: object
+      properties:
+        accountId:
+          type: string
+        name:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        homePhone:
+          type: string
+        mobilePhone:
+          type: string
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        zipcode:
+          type: string
+        country:
+          type: string
+        salesforceId:
+          type: string
+        type:
+          type: string
+    FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails:
+      type: object
+      properties:
+        sku:
+          type: string
+        location:
+          type: string
+        quantity:
+          format: double
+          type: number
+        serviceStartDate:
+          format: date-time
+          type: string
+        serviceEndDate:
+          format: date-time
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        productLine:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        resource:
+          type: string
+        uri:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        notes:
+          type: string
+        unit:
+          type: string
+        tier:
+          type: string
+        workload:
+          type: string
+    FireHost.Infrastructure.Billing.Models.AccountHourlyUsageItem:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        coreUsageQty:
+          format: int32
+          type: integer
+        usageEndDate:
+          format: date-time
+          type: string
+        usageStartDate:
+          format: date-time
+          type: string
+    FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest:
+      type: object
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: tag1
+    FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest:
+      type: object
+      properties:
+        sku:
+          type: string
+          readOnly: true
+        uniqueProductIdentifier:
+          type: string
+          readOnly: true
+      example:
+        sku: APP-MONITORING-PRO
+        uniqueProductIdentifier: e1158c05-5090-4083-a8e1-d56bed8ee4cc
+    FireHost.Services.Http.Accounts.Models.AccountDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        accountId:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        accountSignupType:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        challengePhrase:
+          type: string
+          readOnly: true
+        challengeAnswer:
+          type: string
+          readOnly: true
+      example:
+        userId: 0
+        challengePhrase: what is your mother's maiden name?
+        challengeAnswer: maiden
+    FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        notificationTypes:
+          type: array
+          items:
+            type: string
+        accountId:
+          format: int32
+          type: integer
+      example:
+        userId: 3
+        notificationTypes:
+        - Account, Technical, Billing
+        accountId: 2
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

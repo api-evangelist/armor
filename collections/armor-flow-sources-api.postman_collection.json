@@ -1,0 +1,1112 @@
+{
+  "item": [
+    {
+      "id": "200214db-ac3c-4bcf-b88f-c6e3d90a0a1d",
+      "name": "Flow Sources",
+      "description": {
+        "content": "Operations for managing flow sources",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9d59bfd-384c-4866-a34d-92c787012982",
+          "name": "Get all flow sources",
+          "request": {
+            "name": "Get all flow sources",
+            "description": {
+              "content": "Passing `all=true` can return Flow Sources across multiple orgs given you\nhave the necessary permissions.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flows",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "all",
+                  "value": "<boolean>",
+                  "description": "Return flow sources across multiple orgs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a033fb9-2ccf-4149-a85d-8cfdbfe7db45",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "all",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollector\": {\n      \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"flowCollectorName\": null,\n      \"ipAddress\": \"string\"\n    },\n    \"port\": 514,\n    \"type\": \"ipfix\",\n    \"orgId\": null,\n    \"siemFlowSourceId\": 3762,\n    \"state\": \"Allocated\",\n    \"version\": 8058\n  },\n  {\n    \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollector\": {\n      \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n      \"flowCollectorName\": \"string\",\n      \"ipAddress\": \"string\"\n    },\n    \"port\": 514,\n    \"type\": \"ipfix\",\n    \"orgId\": null,\n    \"siemFlowSourceId\": 8391,\n    \"state\": \"Allocated\",\n    \"version\": 976\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1490583e-7f7d-4ae4-9d87-08f74c74aca0",
+          "name": "Create a flow source",
+          "request": {
+            "name": "Create a flow source",
+            "description": {
+              "content": "Adds a flow source to the pool of available flow sources.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flows",
+                "sources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"siemFlowSourceId\": \"<integer>\",\n  \"flowCollectorId\": \"<uuid>\",\n  \"port\": \"<integer>\",\n  \"type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c8e1b0d-b2b7-48f8-a48a-f16912e68a55",
+              "name": "Flow source created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siemFlowSourceId\": \"<integer>\",\n  \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"port\": 514,\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"flowCollector\": {\n    \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollectorName\": \"string\",\n    \"ipAddress\": \"string\"\n  },\n  \"port\": 514,\n  \"type\": \"sflow\",\n  \"orgId\": 3659,\n  \"siemFlowSourceId\": 2975,\n  \"state\": \"Allocated\",\n  \"version\": 6719\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b37eac44-03cb-4c68-8b80-d15a92151cd3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siemFlowSourceId\": \"<integer>\",\n  \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"port\": 514,\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b419f841-1cb6-4fb1-b5df-6291b18e24bb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"siemFlowSourceId\": \"<integer>\",\n  \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"port\": 514,\n  \"type\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95fc0c98-96ad-4386-96d1-8537244075dd",
+          "name": "Update a flow source",
+          "request": {
+            "name": "Update a flow source",
+            "description": {
+              "content": "Update the settings of the given flow source.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flows",
+                "sources",
+                ":flowSourceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "flowSourceId",
+                  "description": "(Required) The unique identifier of the flow source being updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Version header for concurrency control",
+                "key": "If-Unmodified-Since",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"flowSourceId\": \"<uuid>\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37823c8b-4008-49c8-a2f5-bdf61fdf20c4",
+              "name": "Flow source updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"flowCollector\": {\n    \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollectorName\": \"string\",\n    \"ipAddress\": \"string\"\n  },\n  \"port\": 514,\n  \"type\": \"sflow\",\n  \"orgId\": 3659,\n  \"siemFlowSourceId\": 2975,\n  \"state\": \"Allocated\",\n  \"version\": 6719\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c45b6c9e-5038-498c-9e9d-7ac7c5d158a8",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "463b2870-f348-47e8-bfd2-3f3bfe7d485d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0d9fec4-4dd3-4baf-bd24-3cc1c9f616e4",
+              "name": "Flow source not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac035982-fca3-465d-b9de-30751e7ff64b",
+              "name": "Precondition failed - entity has been modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0be79338-55dc-4ea0-985c-02a1f2bd4422",
+              "name": "Precondition required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "sources",
+                    ":flowSourceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "flowSourceId",
+                      "description": "(Required) The unique identifier of the flow source being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"flowSourceId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"version\": \"<integer>\",\n  \"siemFlowSourceId\": \"<integer,null>\",\n  \"flowCollectorId\": \"<string,null-uuid>\",\n  \"port\": \"<integer,null>\",\n  \"type\": \"<string,null>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Required",
+              "code": 428,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4225d75-65d1-4a2c-98ee-77c8f4ddc7d5",
+          "name": "Get all flow collectors",
+          "request": {
+            "name": "Get all flow collectors",
+            "description": {
+              "content": "Get a list of provisioned flow collectors.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "flows",
+                "collectors"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf72adc7-fa5f-424c-9271-d98a01e50272",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "collectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollectorName\": \"string\",\n    \"ipAddress\": \"string\"\n  },\n  {\n    \"flowCollectorId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"flowCollectorName\": null,\n    \"ipAddress\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95096ffb-ee10-46a8-88fe-b017ae44b438",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flows",
+                    "collectors"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fb40a97-5faf-44b8-af5c-c2bc32cf79cd",
+          "name": "Allocate a flow source",
+          "request": {
+            "name": "Allocate a flow source",
+            "description": {
+              "content": "Enable collection of network flow-based log sources by allocating a flow source to your account.\nIf you already have a flow source associated to your account, the API will return a 400 response.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta",
+                "flows",
+                "actions",
+                "allocate-flow-source"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bff94d9c-3fdb-4c35-93fc-e08ec14b5be2",
+              "name": "Flow source allocation already existed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "flows",
+                    "actions",
+                    "allocate-flow-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e486600-fa80-4dcc-83ac-f3d9c56c5511",
+              "name": "Flow source allocation successfully performed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "flows",
+                    "actions",
+                    "allocate-flow-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e9a8c07-44c6-4053-9e0e-857d6c74e76d",
+              "name": "Bad request - flow source already associated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "flows",
+                    "actions",
+                    "allocate-flow-source"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logs.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "52190aee-357e-4349-91b1-947571ec78e8",
+    "name": "Armor Log Management Flow Sources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with\n[Armor's Log Management Platform](https://www.armor.com/armor-log-management/).\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

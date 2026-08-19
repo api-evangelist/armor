@@ -1,0 +1,181 @@
+openapi: 3.2.0
+info:
+  title: Incident Management Trend API
+  description: 'APIs for interacting with Armor products and services for incident management.
+
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://security-detections.api.secure-dev.services
+  description: Development
+- url: https://security-detections.api.secure-stage.services
+  description: Staging
+- url: https://security-detections.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Trend
+  description: Trend AV report operations
+paths:
+  /trend/av-report:
+    get:
+      tags:
+      - Trend
+      summary: Get Details of a Trend AV report
+      description: Get the details of a Trend AV report.
+      operationId: getTrendAvReport
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: offset
+        in: query
+        description: The offset value to fetch next records.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: The value to limit the number of records fetched.
+        schema:
+          type: integer
+      - name: orderby
+        in: query
+        description: 'Sort direction. Example: `id desc`.'
+        schema:
+          type: string
+      - name: sort
+        in: query
+        description: 'Sort by column. Example: `VM Name`, `Report Date`, etc.'
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: 'Search by VM Name.
+
+          Note: Fields are case sensitive.
+
+          '
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrendAvReportResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    TrendAvReports:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: The accountId of a VM asset.
+        vmName:
+          type: string
+          description: Name of a VM asset.
+        coreInstanceId:
+          type: string
+          description: Unique identifier of a VM asset.
+        agentVersion:
+          type: string
+          description: Agent version.
+        signatureVersion:
+          type: integer
+          description: Signature version.
+        signatureUpdateDate:
+          type: string
+          format: date-time
+          description: Signature update date.
+        reportDate:
+          type: string
+          format: date-time
+          description: Report generated date.
+        manualScanDate:
+          type: string
+          format: date-time
+          description: Date of manual scan.
+        policyUpdateStatus:
+          type: string
+          description: Policy update status.
+        cleanCount:
+          type: integer
+          description: Clean count.
+        passCount:
+          type: integer
+          description: Pass count.
+        quarantineCount:
+          type: integer
+          description: Quarantine count.
+        deleteCount:
+          type: integer
+          description: Delete count.
+        denyAccessCount:
+          type: integer
+          description: Deny access count.
+        otherCount:
+          type: integer
+          description: Other count.
+        malwareStatus:
+          type: string
+          description: Malware status.
+        malwareUpdateTime:
+          type: string
+          format: date-time
+          description: Malware update time.
+        malwareMessage:
+          type: string
+          description: Malware message.
+    TrendAvReportResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Trend AV Reports list.
+          items:
+            $ref: '#/components/schemas/TrendAvReports'
+        total:
+          type: integer
+          description: Total number of reports.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

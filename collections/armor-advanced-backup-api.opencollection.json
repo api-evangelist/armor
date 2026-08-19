@@ -1,0 +1,889 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Advanced Backup API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Advanced Backup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a list of restore activity logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/activity-logs"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Returns the Rubrik agent download URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/agent-url"
+          },
+          "docs": "Returns the Rubrik agent download URL"
+        },
+        {
+          "info": {
+            "name": "Returns a list of active locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/availablelocation"
+          },
+          "docs": "Returns a list of active locations"
+        },
+        {
+          "info": {
+            "name": "Returns a list of policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/externalpolicies"
+          },
+          "docs": "Returns a list of policies"
+        },
+        {
+          "info": {
+            "name": "Returns a list of fileset snapshot files by snapshot id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/fileset/snapshot/:snapshotId/browse",
+            "params": [
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the snapshot"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "total filesets to display"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset filesets number"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "filesets path"
+              }
+            ]
+          },
+          "docs": "Returns a list of fileset snapshot files by snapshot id"
+        },
+        {
+          "info": {
+            "name": "Restores fileset snapshot files by snapshot id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/fileset/snapshot/:snapshotId/restore_file",
+            "params": [
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the snapshot"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restores fileset snapshot files by snapshot id"
+        },
+        {
+          "info": {
+            "name": "Creates a new fileset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/filesets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new fileset"
+        },
+        {
+          "info": {
+            "name": "Updates a fileset by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/backup/filesets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "HostId: id of the host<br /><br />FileSetId: id of the fileset<br /><br />PolicyId: Id of the policy"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a fileset by id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of fileset templates by page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/fileset-template"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Creates a new fileset template",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/fileset-template",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new fileset template"
+        },
+        {
+          "info": {
+            "name": "Returns a fileset template by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/fileset-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Fileset template Id"
+              }
+            ]
+          },
+          "docs": "Returns a fileset template by id"
+        },
+        {
+          "info": {
+            "name": "Updates a fileset template by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.armor.com/backup/fileset-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Fileset template Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a fileset template by id"
+        },
+        {
+          "info": {
+            "name": "Deletes a fileset template by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/backup/fileset-template/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "FileSet Template Id"
+              }
+            ]
+          },
+          "docs": "Deletes a fileset template by id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of all fileset templates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/fileset-templates"
+          },
+          "docs": "Returns a list of all fileset templates"
+        },
+        {
+          "info": {
+            "name": "Returns a list of VMs eligible for fileset protection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/hosts"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Makes a VM eligible for fileset protection by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/hosts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Makes a VM eligible for fileset protection by VM id"
+        },
+        {
+          "info": {
+            "name": "Removes a VM from fileset protection eligibility by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/backup/hosts/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "FileSet Template Id"
+              }
+            ]
+          },
+          "docs": "Removes a VM from fileset protection eligibility by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of filesets by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/hosts/:id/filesets",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rubrik Host Id"
+              }
+            ]
+          },
+          "docs": "Returns a list of filesets by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns fileset overview by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/hosts/:id/overview",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rubrik Host Id"
+              }
+            ]
+          },
+          "docs": "Returns fileset overview by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of fileset snapshots by VM id for a specific time frame",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/hosts/:id/snapshots",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Rubrik Host Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of fileset snapshots by VM id for a specific time frame"
+        },
+        {
+          "info": {
+            "name": "Refresh list of fileset snapshots by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/hosts/:id/syncsnapshots",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Host Id"
+              }
+            ]
+          },
+          "docs": "Refresh list of fileset snapshots by VM id"
+        },
+        {
+          "info": {
+            "name": "Deletes a fileset by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/backup/hosts/fileset/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Id of the Fileset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes a fileset by id"
+        },
+        {
+          "info": {
+            "name": "Returns Vm Historical Physical Usage datas for the given date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/overview/historicstorageusage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns Vm Historical Physical Usage datas for the given date range"
+        },
+        {
+          "info": {
+            "name": "Returns Vm Historical overview details for the given date range",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/overview/vms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns Vm Historical overview details for the given date range"
+        },
+        {
+          "info": {
+            "name": "Returns a list of policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/policies"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Creates a new policy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new policy"
+        },
+        {
+          "info": {
+            "name": "Returns a policy by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Policy Id"
+              }
+            ]
+          },
+          "docs": "Returns a policy by id"
+        },
+        {
+          "info": {
+            "name": "Updates a policy by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.armor.com/backup/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Policy Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a policy by id"
+        },
+        {
+          "info": {
+            "name": "Deletes a policy by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/backup/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Policy Id"
+              }
+            ]
+          },
+          "docs": "Deletes a policy by id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of default policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/policies/default"
+          },
+          "docs": "Returns a list of default policies"
+        },
+        {
+          "info": {
+            "name": "Returns a list of policy types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/policies/types"
+          },
+          "docs": "Returns a list of policy types"
+        },
+        {
+          "info": {
+            "name": "Returns the default policy by location id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/policy/default/:locationId",
+            "params": [
+              {
+                "name": "locationId",
+                "value": "",
+                "type": "path",
+                "description": "Id of a location"
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the default policy by location id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of VMs not registered with the Rubrik agent",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/unregistered-hosts"
+          },
+          "docs": "Returns a list of VMs not registered with the Rubrik agent"
+        },
+        {
+          "info": {
+            "name": "Updates a policy for a protected VM by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/backup/vm/:vmId/policy",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a policy for a protected VM by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns VM protection overview by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/vm/:vmId/protected",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              }
+            ]
+          },
+          "docs": "Returns VM protection overview by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of snapshots for a protected VM for a specific time frame",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:id/snapshots",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "VmId"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a list of snapshots for a protected VM for a specific time frame"
+        },
+        {
+          "info": {
+            "name": "Cancels a VM snapshot restore by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/cancelbackuprestore",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancels a VM snapshot restore by VM id"
+        },
+        {
+          "info": {
+            "name": "Registers VM with the Rubrik agent by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/register-agent",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Registers VM with the Rubrik agent by VM id"
+        },
+        {
+          "info": {
+            "name": "Begin a VM snapshot restore by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/restoresnapshot",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Begin a VM snapshot restore by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of VM snapshot files by snapshot id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/vms/:vmId/snapshot/:snapshotId/browse",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of a VM"
+              },
+              {
+                "name": "snapshotId",
+                "value": "",
+                "type": "path",
+                "description": "Id of a snapshot"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Number of records in page"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset number of records in page"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Location of the file"
+              }
+            ]
+          },
+          "docs": "Returns a list of VM snapshot files by snapshot id"
+        },
+        {
+          "info": {
+            "name": "Restores VM snapshot files by snapshot id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/snapshot/:snapshotid/restore_file",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              },
+              {
+                "name": "snapshotid",
+                "value": "",
+                "type": "path",
+                "description": "Id of the snapshot"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restores VM snapshot files by snapshot id"
+        },
+        {
+          "info": {
+            "name": "Commits a VM snapshot restore by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/snapshotrestoreaction",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits a VM snapshot restore by VM id"
+        },
+        {
+          "info": {
+            "name": "Get the backup details of the VM's storage (Disks)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/vms/:vmId/storage",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              }
+            ]
+          },
+          "docs": "Get the backup details of the VM's storage (Disks)"
+        },
+        {
+          "info": {
+            "name": "Update the back up details of the VM's storage (disks)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/storage",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Id of the VM"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the back up details of the VM's storage (disks)"
+        },
+        {
+          "info": {
+            "name": "Refresh list of VM snapshots by VM id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/:vmId/syncsnapshots",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "Virtual machine Id to sync the snapshots"
+              }
+            ]
+          },
+          "docs": "Refresh list of VM snapshots by VM id"
+        },
+        {
+          "info": {
+            "name": "Returns a list of unprotected VMs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/backup/vms/services"
+          },
+          "docs": "Returns a list of unprotected VMs"
+        },
+        {
+          "info": {
+            "name": "Subscribes a list of VMs to VM protection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/backup/vms/services",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribes a list of VMs to VM protection"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,196 @@
+{
+  "item": [
+    {
+      "id": "79f8f972-2cf3-4170-aac9-6f8be8056402",
+      "name": "Security Detection Events",
+      "description": {
+        "content": "Security detection event operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "81d99ece-08c6-4bb9-8d5f-1ac123ada581",
+          "name": "List Events related to a Detection",
+          "request": {
+            "name": "List Events related to a Detection",
+            "description": {
+              "content": "Get a list of events related to a security detection.\n\nIf more than 1000 events are related to the given detection, then the 1000 most recent\nevents are returned. This endpoint does not presently support paging using the `Range` header.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-detections",
+                ":detectionId",
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "detectionId",
+                  "description": "(Required) The unique identifier of the detection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1d6afc0-5510-4ada-b986-c5246411cda1",
+              "name": "Partial content - list of events",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    ":detectionId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "detectionId",
+                      "description": "(Required) The unique identifier of the detection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 7316,\n    \"category\": \"string\",\n    \"coreInstanceId\": \"5c4e4205-c082-d208-e997-5f72aa9b527a\",\n    \"destIp\": \"string\",\n    \"destPort\": null,\n    \"eventId\": \"a89c3c26-f61c-93f3-c292-fffb5d9af708\",\n    \"logSourceId\": \"8064b39e-10b7-c20b-2919-fccea13245c0\",\n    \"logSourceName\": \"string\",\n    \"name\": \"string\",\n    \"rawEvent\": \"string\",\n    \"sourceIp\": \"string\",\n    \"sourcePort\": 4558,\n    \"timestamp\": \"1976-05-28T17:05:28.165Z\",\n    \"username\": \"string\"\n  },\n  {\n    \"accountId\": 6566,\n    \"category\": \"string\",\n    \"coreInstanceId\": \"86a7aa9a-2554-dc6c-e15d-c56a601bf3ab\",\n    \"destIp\": null,\n    \"destPort\": 4349,\n    \"eventId\": \"60aba721-ddd8-227e-5ee5-cb14b5ef98b3\",\n    \"logSourceId\": \"4bc267b0-3649-abe1-02ba-77d87b9fb695\",\n    \"logSourceName\": \"string\",\n    \"name\": \"string\",\n    \"rawEvent\": \"string\",\n    \"sourceIp\": null,\n    \"sourcePort\": 3849,\n    \"timestamp\": \"1981-04-10T05:09:31.648Z\",\n    \"username\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e40d3c01-613c-48b9-a9de-82c4fab8827b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    ":detectionId",
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "detectionId",
+                      "description": "(Required) The unique identifier of the detection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://security-detections.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cdddd5ff-5b07-42cb-80ba-bae47dd62253",
+    "name": "Incident Management Security Detection Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for interacting with Armor products and services for incident management.\n\nBase URL: `https://security-detections.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

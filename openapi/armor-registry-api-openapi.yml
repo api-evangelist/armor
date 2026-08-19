@@ -1,0 +1,395 @@
+openapi: 3.2.0
+info:
+  title: Container Security Registry API
+  description: 'This API provides an interface for configuring and interacting with Armor''s container security platform.
+
+
+    To connect to this API, use the following fully-qualified domain name (FQDN):
+
+    `compliance.api.secure-prod.services/containers`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://compliance.api.secure-dev.services/containers
+  description: Development
+- url: https://compliance.api.secure-stage.services/containers
+  description: Staging
+- url: https://compliance.api.secure-prod.services/containers
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Registry
+  description: Registry management operations
+paths:
+  /registries:
+    get:
+      tags:
+      - Registry
+      summary: Get All Registries
+      description: Returns a list of all registries.
+      operationId: getAllRegistries
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ContainerRegistryResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Registry
+      summary: Create Registry
+      description: Creates a new registry.
+      operationId: createRegistry
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegistryCreateRequest'
+      responses:
+        '202':
+          description: Registry creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /registries/{id}:
+    get:
+      tags:
+      - Registry
+      summary: Get Registry Detail
+      description: Returns details for a specific registry.
+      operationId: getRegistryDetail
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/RegistryId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+      - Registry
+      summary: Delete Registry
+      description: Deletes a specific registry.
+      operationId: deleteRegistry
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/RegistryId'
+      responses:
+        '202':
+          description: Registry deletion accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistryDeleteResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /registries/vendor-types:
+    get:
+      tags:
+      - Registry
+      summary: Get Vendor Types
+      description: Returns list of public cloud container registries supported by the Armor platform.
+      operationId: getVendorTypes
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/VendorTypesResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  schemas:
+    RegistryCreateRequest:
+      type: object
+      required:
+      - registryName
+      - registryUri
+      - connectorId
+      - repositories
+      properties:
+        registryName:
+          type: string
+          description: The name for the registry
+        registryUri:
+          type: string
+          description: The registry URI
+        connectorId:
+          type: number
+          description: Connector Id
+        region:
+          type: string
+          description: Region (not required for DockerHub)
+        dockerHubOrgName:
+          type: string
+          description: Organization name if registry type is DockerHub
+        repositories:
+          type: array
+          description: Array of Repositories
+          items:
+            $ref: '#/components/schemas/RepositoryRequest'
+    VendorTypesResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Vendor Id
+        code:
+          type: string
+          description: The Vendor Code
+        name:
+          type: string
+          description: The Vendor Name
+        regions:
+          type: array
+          description: List of Region Name or URI
+          items:
+            $ref: '#/components/schemas/Region'
+    Region:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Region Code
+        name:
+          type: string
+          description: The Region Name
+        uri:
+          type: string
+          description: Registry URI
+    RepositoryRequest:
+      type: object
+      required:
+      - name
+      - tags
+      properties:
+        name:
+          type: string
+          description: Name of the repository
+        tags:
+          type: array
+          description: Tags of the images in this repository
+          items:
+            type: string
+    RegistryDeleteResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry deleted
+    RegistryCreateResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry created
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ContainerRegistryResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The ID of the registry
+        name:
+          type: string
+          description: Name of the registry
+        uuid:
+          type: string
+          description: Internal unique identifier for the registry, sharable with Armor Support upon their request
+        uri:
+          type: string
+          description: The URI for the registry in the system
+        vendorTypeId:
+          type: number
+          description: The registry type Id
+        connectorId:
+          type: number
+          description: The connector Id the registry is using
+        repoCount:
+          type: number
+          description: The number of repositories in the registry
+        totalImages:
+          type: number
+          description: The number of images in the registry
+        totalVulnerableImages:
+          type: number
+          description: The number of images with vulnerabilities
+        totalVulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        lastScanned:
+          type: string
+          description: The last time the registry was scanned
+        status:
+          type: string
+          description: The status of the registry (Accepted/Processing/Active/Error)
+        createdDate:
+          type: string
+          description: The date & time the registry was created
+        modifiedDate:
+          type: string
+          description: The date & time the registry was updated
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
+    RegistryDetailResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: The ID of the registry
+        name:
+          type: string
+          description: Name of the registry
+        uuid:
+          type: string
+          description: Internal unique identifier for the registry, sharable with Armor Support upon their request
+        uri:
+          type: string
+          description: The URI for the registry in the system
+        vendorTypeId:
+          type: number
+          description: The registry type Id
+        connectorId:
+          type: number
+          description: The connector Id the registry is using
+        repoCount:
+          type: number
+          description: The number of repositories in the registry
+        totalImages:
+          type: number
+          description: The number of images in the registry
+        totalVulnerableImages:
+          type: number
+          description: The number of images with vulnerabilities
+        totalVulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        lastScanned:
+          type: string
+          description: The last time the registry was scanned
+        status:
+          type: string
+          description: The status of the registry (Accepted/Processing/Active/Error)
+        createdDate:
+          type: string
+          description: The date & time the registry was created
+        createdBy:
+          type: string
+          description: The user who created the registry
+        modifiedBy:
+          type: string
+          description: The user who updated the registry
+        modifiedDate:
+          type: string
+          description: The date & time the registry was updated
+  parameters:
+    RegistryId:
+      name: id
+      in: path
+      required: true
+      description: Registry ID
+      schema:
+        type: integer
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

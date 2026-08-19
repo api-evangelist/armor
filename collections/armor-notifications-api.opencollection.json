@@ -1,0 +1,146 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Webhooks Notifications API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Notifications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Account Notification Configurations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://webhooks.api.secure-dev.services/security/notification",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Get a list of notification configurations for the account."
+        },
+        {
+          "info": {
+            "name": "Create a Notification Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webhooks.api.secure-dev.services/security/notification",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new Notification Configuration."
+        },
+        {
+          "info": {
+            "name": "Get Notification Configuration details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://webhooks.api.secure-dev.services/security/notification/:notification_id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "notification_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Notification Configuration."
+              }
+            ]
+          },
+          "docs": "Get a specific Notification Configuration by id."
+        },
+        {
+          "info": {
+            "name": "Update a Notification Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webhooks.api.secure-dev.services/security/notification/:notification_id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "notification_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Notification Configuration."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Notification Configuration."
+        },
+        {
+          "info": {
+            "name": "Delete a Notification Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://webhooks.api.secure-dev.services/security/notification/delete/:notification_id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "notification_id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the Notification Configuration."
+              }
+            ]
+          },
+          "docs": "Delete a Notification Configuration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

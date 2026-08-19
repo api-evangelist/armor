@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "1d5ad69f-865f-4ba5-bedc-3ccaae8dffd7",
+      "name": "Security Incidents",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5b2eec1f-e55f-4ebc-b765-1d68082c0e72",
+          "name": "Security Incidents Get Security Incidents",
+          "request": {
+            "name": "Security Incidents Get Security Incidents",
+            "description": {},
+            "url": {
+              "path": [
+                "security-incidents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "64f064de-69b3-4655-a410-d0cbfdee3c61",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-incidents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3,\n  \"page\": 1,\n  \"items\": [\n    {\n      \"ticketNumber\": \"IMS-1\",\n      \"ticketSummary\": \"Test Ticket 1\",\n      \"ticketPriority\": \"1\",\n      \"ticketStatus\": \"Waiting For Support\",\n      \"createdDate\": \"2026-02-12T16:26:00.1698072+00:00\",\n      \"enabled\": true,\n      \"ticketLink\": null\n    },\n    {\n      \"ticketNumber\": \"IMS-2\",\n      \"ticketSummary\": \"Test Ticket 2\",\n      \"ticketPriority\": \"0\",\n      \"ticketStatus\": \"Waiting For Customer Action\",\n      \"createdDate\": \"2026-02-12T16:26:00.1698072+00:00\",\n      \"enabled\": true,\n      \"ticketLink\": null\n    },\n    {\n      \"ticketNumber\": \"IMS-3\",\n      \"ticketSummary\": \"Test Ticket 3\",\n      \"ticketPriority\": \"2\",\n      \"ticketStatus\": \"Resolved\",\n      \"createdDate\": \"2026-02-12T16:26:00.1698072+00:00\",\n      \"enabled\": false,\n      \"ticketLink\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8636b0f-36b3-4ddb-bc53-c8765157fc99",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-incidents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbceb4fe-7325-4c3e-af31-67772ac2106c",
+          "name": "Security Incidents Get Security Incidents Severity Count",
+          "request": {
+            "name": "Security Incidents Get Security Incidents Severity Count",
+            "description": {},
+            "url": {
+              "path": [
+                "security-incidents",
+                "severity-count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbb6a144-e3bc-454b-b47e-26ffbfa997fa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-incidents",
+                    "severity-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCriticalStatus\": 10,\n  \"totalHighStatus\": 10,\n  \"totalMediumStatus\": 10,\n  \"totalLowStatus\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1af1c4b8-b9f2-4d3e-ab8e-3eff0735a0b6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-incidents",
+                    "severity-count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3b57891b-b23b-40af-844e-609518a37e1f",
+    "name": "Armor Services Security Incidents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

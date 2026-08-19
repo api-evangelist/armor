@@ -541,3 +541,9 @@ tools:
 - name: deleteNotificationConfiguration
   description: Delete a Notification Configuration
   source_operation: openapi/armor-webhooks-openapi-original.yml#deleteNotificationConfiguration
+deployment:
+  mode: none
+  verified: derived
+  tools: 173
+  checked: '2026-08-12'
+  source: catalog MCP census

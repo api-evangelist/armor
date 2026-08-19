@@ -1,0 +1,38 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Security Analytics API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SecurityAnalytics_SecurityAnalyticsOverview",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/security-analytics/overview"
+          }
+        },
+        {
+          "info": {
+            "name": "SecurityResource_GetSecurityResources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/security-analytics/resources"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

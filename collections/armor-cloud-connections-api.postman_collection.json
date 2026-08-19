@@ -1,0 +1,639 @@
+{
+  "item": [
+    {
+      "id": "a7a0b9ae-8c42-4c00-9d39-8967e48c076c",
+      "name": "Cloud Connections",
+      "description": {
+        "content": "Cloud connection management operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df5c3b68-25ab-4623-bd02-89c34de6644d",
+          "name": "Get cloud connections by Account Id",
+          "request": {
+            "name": "Get cloud connections by Account Id",
+            "description": {
+              "content": "Retrieve All Cloud Connections based on Account Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cloud-connections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search text to filter cloud connections."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "<integer>",
+                  "description": "Current page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Number of cloud connections to be displayed on page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortFld",
+                  "value": "<string>",
+                  "description": "Cloud connections sorting field."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "<string>",
+                  "description": "Cloud connection sort order direction (asc/desc)."
+                },
+                {
+                  "disabled": false,
+                  "key": "filterBy",
+                  "value": "<string>",
+                  "description": "Cloud connections filter by provider type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea679a3f-a880-452b-a3f3-92cae28e48be",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortFld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6148,\n  \"accountId\": 652,\n  \"name\": \"string\",\n  \"externalId\": \"string\",\n  \"provider\": \"string\",\n  \"providerAccountId\": \"string\",\n  \"providerAccessResource\": \"string\",\n  \"total\": 3851,\n  \"isEnabled_Beta\": false,\n  \"isEnabled_Ec2\": false,\n  \"isEnabled_Log\": false,\n  \"setupStatus\": \"string\",\n  \"services\": [\n    {\n      \"accountConnectionId\": 5970,\n      \"lastSuccessfulConnectionDate\": \"string\",\n      \"id\": 3216,\n      \"name\": \"string\",\n      \"subServices\": [\n        {\n          \"id\": 3667,\n          \"name\": \"string\",\n          \"subServiceName\": \"string\",\n          \"imageName\": \"string\",\n          \"policy\": \"string\"\n        },\n        {\n          \"id\": 6175,\n          \"name\": \"string\",\n          \"subServiceName\": \"string\",\n          \"imageName\": \"string\",\n          \"policy\": \"string\"\n        }\n      ],\n      \"policy\": \"string\",\n      \"imageName\": \"string\"\n    },\n    {\n      \"accountConnectionId\": 1880,\n      \"lastSuccessfulConnectionDate\": \"string\",\n      \"id\": 8619,\n      \"name\": \"string\",\n      \"subServices\": [\n        {\n          \"id\": 3662,\n          \"name\": \"string\",\n          \"subServiceName\": \"string\",\n          \"imageName\": \"string\",\n          \"policy\": \"string\"\n        },\n        {\n          \"id\": 496,\n          \"name\": \"string\",\n          \"subServiceName\": \"string\",\n          \"imageName\": \"string\",\n          \"policy\": \"string\"\n        }\n      ],\n      \"policy\": \"string\",\n      \"imageName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7dbfd5ef-8136-4f37-b1f0-fc74a69d87fb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortFld",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterBy",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8b84212-d5c0-418d-b93f-742988a50cdc",
+          "name": "Get All Connection Service Types",
+          "request": {
+            "name": "Get All Connection Service Types",
+            "description": {
+              "content": "Retrieve All Connection Service Types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cloud-connection",
+                "service-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3220560-e3e4-4af7-9758-54ea974656de",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connection",
+                    "service-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1652,\n  \"name\": \"string\",\n  \"subServices\": [\n    {\n      \"id\": 3080,\n      \"name\": \"string\",\n      \"subServiceName\": \"string\",\n      \"imageName\": \"string\",\n      \"policy\": \"string\"\n    },\n    {\n      \"id\": 1125,\n      \"name\": \"string\",\n      \"subServiceName\": \"string\",\n      \"imageName\": \"string\",\n      \"policy\": \"string\"\n    }\n  ],\n  \"policy\": \"string\",\n  \"imageName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63220f11-5eb5-4980-8741-0cfa6574fcd6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connection",
+                    "service-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38af2fef-f9bf-4960-a8f3-777a898bec39",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connection",
+                    "service-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8afd2db7-ca62-4b75-82c2-1ec705862fc5",
+          "name": "Get cloud connection detail by connection Id",
+          "request": {
+            "name": "Get cloud connection detail by connection Id",
+            "description": {
+              "content": "Retrieve cloud connection detail by connection Id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "cloud-connections",
+                ":connectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "connectionId",
+                  "description": "(Required) The unique identifier of the cloud connection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28293d64-1044-46b3-a532-d96b291b3386",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the cloud connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"providerAccountId\": 7358,\n  \"connectionName\": \"string\",\n  \"description\": \"string\",\n  \"externalId\": \"string\",\n  \"providerAccessResource\": \"string\",\n  \"accountConnectionId\": 7507,\n  \"providerTypeName\": \"string\",\n  \"serviceTypeName\": \"string\",\n  \"subServiceName\": \"string\",\n  \"awsBaseJsonPolicy\": \"string\",\n  \"armorAwsAccountId\": \"string\",\n  \"serviceTypeId\": \"string\",\n  \"policy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a4b9474-4780-43db-8979-d378732e4d24",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the cloud connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a99e1fb1-0f30-47af-bb62-ea5f24d6912e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cloud-connections",
+                    ":connectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "connectionId",
+                      "description": "(Required) The unique identifier of the cloud connection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://accounts.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "48f5455e-0079-4d9f-a598-81da316776a6",
+    "name": "Accounts Cloud Connections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with Armor's account\nmanagement functionality.\n\nBase URL: `https://accounts.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

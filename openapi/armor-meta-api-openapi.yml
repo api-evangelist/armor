@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Meta API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Meta
+  description: Meta resources and utility operations
+paths:
+  /meta/logs/sources/actions/check-unique-name:
+    post:
+      tags:
+      - Meta
+      summary: Check hostname availability
+      description: Check the availability of a log source identifier (hostname).
+      operationId: checkHostnameAvailability
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HostnameAvailabilityCheckRequest'
+      responses:
+        '200':
+          description: Availability check result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HostnameAvailabilityCheckResponse'
+  /meta/logs/log-source-types:
+    get:
+      tags:
+      - Meta
+      summary: Get log source types
+      description: Retrieve the list of log source types available, and the protocols they support.
+      operationId: getLogSourceTypes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogSourceType'
+components:
+  schemas:
+    HostnameAvailabilityCheckResponse:
+      type: object
+      required:
+      - hostname
+      - logSourceTypeId
+      - available
+      properties:
+        hostname:
+          type: string
+          description: The hostname for which availability was checked.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
+        available:
+          type: boolean
+          description: Whether or not the hostname is available for use as a unique log source identifier.
+    LogSourceType:
+      type: object
+      properties:
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type.
+        name:
+          type: string
+          description: The friendly name of the log source type.
+        logSourceProtocols:
+          type: array
+          items:
+            type: integer
+          description: A collection of protocol IDs available for the type.
+        icon:
+          type: string
+          description: The Brandkit CSS class used to specify the icon for this log source type.
+        category:
+          type: string
+          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
+        vendor:
+          type: string
+          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
+        kbLink:
+          type: string
+          description: Link to the KB article for this log source type.
+        requiresFlow:
+          type: boolean
+          description: Whether or not network flow sources need to be enabled on the org for this log source type.
+    HostnameAvailabilityCheckRequest:
+      type: object
+      required:
+      - hostname
+      - logSourceTypeId
+      properties:
+        hostname:
+          type: string
+          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

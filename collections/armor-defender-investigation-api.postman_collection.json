@@ -1,0 +1,655 @@
+{
+  "item": [
+    {
+      "id": "165e2ff8-f069-49be-975b-2a0f7af4dda9",
+      "name": "Defender - Investigation",
+      "description": {
+        "content": "Investigation package and live response operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "650da186-0299-4d72-aa01-b51f2931623d",
+          "name": "Get investigation package download URI",
+          "request": {
+            "name": "Get investigation package download URI",
+            "description": {
+              "content": "Retrieves a SAS URI to download an investigation package collected from a machine.\nShould be called after a 'collectInvestigationPackage' action has completed successfully.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "packageuri",
+                ":actionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "actionId",
+                  "description": "(Required) The action ID of the investigation package collection action"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd31712a-8c5d-44e0-8b01-2c363f9ccd7b",
+              "name": "Successfully retrieved package download URI",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "packageuri",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the investigation package collection action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": \"http://NdjmHtHspUtiMmj.orht+GBMtYCUbSEAFfpePz26nMTnRX11PzMVv8K5P\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "44c65141-b03f-4865-aee4-af0c790e2798",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "packageuri",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the investigation package collection action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "004af045-bea7-44b4-8b77-5f6eb5fa9e02",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "packageuri",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the investigation package collection action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51e169ca-3650-4369-9ce3-9ca72e0074a2",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "packageuri",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the investigation package collection action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "934928f0-0c54-4f13-9d79-30de9332ec7c",
+          "name": "Get live response result download link",
+          "request": {
+            "name": "Get live response result download link",
+            "description": {
+              "content": "Retrieves a download link for the results of a specific live response command.\nThe commandId corresponds to the index of the command in the original live response commands array.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "liveresponseresult",
+                ":actionId",
+                ":commandId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "actionId",
+                  "description": "(Required) The action ID of the live response action"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "commandId",
+                  "description": "(Required) The index of the command in the live response commands array"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0fcc1ef-84d7-4bb2-a4d8-34e70e6c81ac",
+              "name": "Successfully retrieved live response result download link",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "liveresponseresult",
+                    ":actionId",
+                    ":commandId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the live response action"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commandId",
+                      "description": "(Required) The index of the command in the live response commands array"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": \"http://NdjmHtHspUtiMmj.orht+GBMtYCUbSEAFfpePz26nMTnRX11PzMVv8K5P\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c95cad0c-7a47-4316-afde-231afaa9de40",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "liveresponseresult",
+                    ":actionId",
+                    ":commandId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the live response action"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commandId",
+                      "description": "(Required) The index of the command in the live response commands array"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3924501d-05af-4827-a8e0-601779f4d462",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "liveresponseresult",
+                    ":actionId",
+                    ":commandId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the live response action"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commandId",
+                      "description": "(Required) The index of the command in the live response commands array"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1d9faa4e-7233-4748-ada9-189ff1d0751b",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "liveresponseresult",
+                    ":actionId",
+                    ":commandId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The action ID of the live response action"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "commandId",
+                      "description": "(Required) The index of the command in the live response commands array"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 1902\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd9778eb-6f21-4f95-96b1-8be2af224903",
+    "name": "MDR Public Defender - Investigation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

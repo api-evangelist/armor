@@ -1,0 +1,337 @@
+openapi: 3.2.0
+info:
+  title: Armor User API
+  version: 2.0.0
+  contact:
+    name: Armor Support
+    url: https://armor.com
+  description: 'Operations tagged User across 2 of this provider''s published API definitions: armor-fh-auth-openapi-original.yml, armor-psk-auth-openapi-original.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://api.armor.com
+  description: Production API
+tags:
+- name: User
+  description: User profile and account information
+paths:
+  /me:
+    servers:
+    - url: https://api.armor.com
+      description: Production API
+    get:
+      operationId: getCurrentUser
+      summary: Get current user information
+      description: Returns the authenticated user's profile and associated accounts
+      tags:
+      - User
+      security:
+      - FH-AUTH: []
+      parameters:
+      - $ref: '#/components/parameters/X-Account-Context'
+      responses:
+        '200':
+          description: Current user information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '401':
+          description: Unauthorized - invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden - invalid account context
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    MeResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+    User:
+      type: object
+      properties:
+        type:
+          type: string
+          example: user
+        username:
+          type: string
+          format: email
+          example: john.doe@armor.com
+        firstName:
+          type: string
+          example: John
+        lastName:
+          type: string
+          example: Doe
+        links:
+          $ref: '#/components/schemas/UserLinks'
+        passwordExpiry:
+          type: string
+          description: Password expiry time in seconds
+          example: '2609961'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_credentials
+        error_description:
+          type: string
+          description: Human-readable error message
+          example: The provided credentials are invalid
+        status:
+          type: integer
+          description: HTTP status code
+          example: 401
+    Account:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1000
+        currency:
+          type: string
+          example: USD
+        name:
+          type: string
+          example: Armor Internal Test_AA
+        status:
+          type: string
+          enum:
+          - Claimed
+          - Pending
+          - Inactive
+          example: Claimed
+        parent:
+          type:
+          - integer
+          - 'null'
+          example: 1
+        products:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        accountType:
+          type: string
+          enum:
+          - Partner
+          - Direct
+          - Partner Customer
+          example: Partner
+        isSynced:
+          type: boolean
+          example: true
+        isFreeTrial:
+          type: boolean
+          example: false
+    UserLinks:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 4922
+  parameters:
+    X-Account-Context:
+      name: X-Account-Context
+      in: header
+      required: true
+      description: The account ID context for the request
+      schema:
+        type: string
+        example: '1000'
+  securitySchemes:
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: 'FH-AUTH token authentication.
+
+
+        ## Authentication Flow
+
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+
+        ## Security Notes
+
+
+        - Authorization codes expire in 2 minutes
+
+        - Access tokens expire in 15 minutes
+
+        - All endpoints require HTTPS
+
+        - Never log or persist tokens in plain text
+
+
+        Include the access token in the Authorization header:
+
+        ```
+
+        Authorization: FH-AUTH {access_token}
+
+        ```
+
+        '
+    ARMOR-PSK:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Pre-Shared Key (PSK) authentication using HMAC-SHA512 signatures.
+
+
+        ## Overview
+
+
+        ARMOR-PSK is a signature-based authentication method that uses API keys generated in the
+
+        Armor Management Portal (AMP). Unlike token-based authentication, ARMOR-PSK computes a
+
+        cryptographic signature for each request, eliminating the need for token refresh flows.
+
+
+        ## Authentication Flow
+
+
+        1. **Create API Key**: Generate an API Key ID and Secret Key in AMP (Account → Users → API Keys)
+
+        2. **Compute Signature**: For each request, compute an HMAC-SHA512 signature
+
+        3. **Build Header**: Construct the `Authorization: ARMOR-PSK {key_id}:{signature}:{nonce}:{timestamp}` header
+
+        4. **Make Request**: Include the Authorization header and X-Account-Context header with your API calls
+
+
+        ## Header Format
+
+
+        ```
+
+        Authorization: ARMOR-PSK {api_key_id}:{signature}:{nonce}:{timestamp}
+
+        ```
+
+
+        ## Example Header
+
+
+        ```
+
+        Authorization: ARMOR-PSK 20a37099-4a0b-432f-bf46-5fa690a0405c:8wliK5PMXBrMNQX0DmXkkpC2YD5j+QtPH2xVRZM7jaaS0hC6jhRmtxy+nKJidDnYTpFc6blsO7+4VfKqslbqzA==:8jbj872s2h:1528140529
+
+        ```
+
+
+        ## Signature Computation
+
+
+        The HMAC-SHA512 signature is computed from a concatenated string of request parameters:
+
+
+        ```
+
+        signature_data = {api_key_id} + {http_method} + {request_path} + {nonce} + {timestamp} + {request_body}
+
+        signature = base64(hmac_sha512(signature_data, secret_key))
+
+        ```
+
+
+        **Important**: The `secret_key` must be used directly as a UTF-8 encoded string when computing the HMAC.
+
+        Do not base64-decode the secret key before using it as the HMAC key.
+
+
+        ### Signature Parameters
+
+
+        | Parameter | Description |
+
+        |-----------|-------------|
+
+        | api_key_id | The Key ID generated in AMP (UUID format) |
+
+        | http_method | HTTP method in uppercase (GET, POST, PUT, DELETE) |
+
+        | request_path | URL path without host, port, or query string (e.g., `/me`) |
+
+        | nonce | Unique identifier per request (max 128 chars, no colons) |
+
+        | timestamp | Unix timestamp in seconds (must be within 5 minutes of server time) |
+
+        | request_body | Request body content (empty string for GET requests) |
+
+        | secret_key | The Secret Key generated in AMP (used as HMAC key) |
+
+
+        ## Nonce Requirements
+
+
+        - Must be unique per request
+
+        - Maximum length: 128 characters
+
+        - Cannot contain colons (`:`)
+
+        - Recommended: Use UUID without dashes
+
+
+        ## Timestamp Requirements
+
+
+        - Must be a Unix timestamp (seconds since epoch)
+
+        - Must be within 5 minutes of the server''s current time
+
+        - Requests with expired timestamps will be rejected
+
+
+        ## Security Notes
+
+
+        - API Keys do not expire but can be revoked in AMP
+
+        - Timestamps must be within 5 minutes of the server time
+
+        - Nonces should be unique per request to prevent replay attacks
+
+        - Secret Keys should never be logged or transmitted
+
+        - All endpoints require HTTPS
+
+
+        ## Restricted Endpoints
+
+
+        The following endpoints cannot be accessed using ARMOR-PSK authentication:
+
+        - User key management endpoints (`/users/{id}/keys/*`)
+
+        - Password management endpoints (`/users/resetpassword`, `/users/setpassword`)
+
+        - User security endpoints (`/usersecurity/*`)
+
+        '
+x-refined-from:
+- armor-fh-auth-openapi-original.yml
+- armor-psk-auth-openapi-original.yml

@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance CSPM Usage API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSPM Usage",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CSPM CloudConnector usage",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/usage",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start date for usage query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End date for usage query"
+              }
+            ]
+          },
+          "docs": "Get CSPM CloudConnector usage"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

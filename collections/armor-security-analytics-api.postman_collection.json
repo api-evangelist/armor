@@ -1,0 +1,230 @@
+{
+  "item": [
+    {
+      "id": "df4e3ed1-a38f-4466-9f4e-e893466e328f",
+      "name": "Security Analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad14e01c-9a39-4b12-b76b-bad4585f62ab",
+          "name": "Security Analytics Security Analytics Overview",
+          "request": {
+            "name": "Security Analytics Security Analytics Overview",
+            "description": {},
+            "url": {
+              "path": [
+                "security-analytics",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1d50c95-bbd4-44ff-841f-c335df3f8594",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-analytics",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"timestamp\": \"2026-02-12T16:26:00.0951411Z\",\n  \"overallScore\": 4,\n  \"protectionScore\": 4,\n  \"detectionScore\": 3,\n  \"responseScore\": 5,\n  \"criticalIncidentsCount\": 12,\n  \"analyzedEventsCount\": 1234,\n  \"vulnerabilities\": {\n    \"scanDate\": \"0001-01-01T00:00:00\",\n    \"criticalCount\": 1,\n    \"highCount\": 2,\n    \"mediumCount\": 3,\n    \"lowCount\": 4,\n    \"detailsUrl\": \"url\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09d45e91-258e-44dc-ae5d-c565a0c951e0",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-analytics",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e949bacc-4428-436a-933d-6e5758a40c71",
+          "name": "Security Resource Get Security Resources",
+          "request": {
+            "name": "Security Resource Get Security Resources",
+            "description": {},
+            "url": {
+              "path": [
+                "security-analytics",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6310d191-ef24-4ae4-8a13-0290df0d71c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-analytics",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9517,\n  \"title\": \"string\",\n  \"description\": \"string\",\n  \"referenceUrl\": \"string\",\n  \"imageData\": \"string\",\n  \"modifiedBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0086e21a-8976-43a4-8b4a-57e2f69600eb",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-analytics",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e8048b80-49cf-41ce-9581-371c71636089",
+    "name": "Armor Services Security Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

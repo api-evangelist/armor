@@ -1,0 +1,1191 @@
+{
+  "item": [
+    {
+      "id": "f79b26db-ecd8-4a6a-b4e6-5ed8b10ae312",
+      "name": "Notifications",
+      "description": {
+        "content": "The notification resource enables an API customer to build a webhook notification configuration.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79868ee3-c512-46c6-a382-7d42a3acabbf",
+          "name": "Get Account Notification Configurations",
+          "request": {
+            "name": "Get Account Notification Configurations",
+            "description": {
+              "content": "Get a list of notification configurations for the account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "notification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25b9c18c-771c-4c14-8fe5-107195433db8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"7854a268-bc98-478c-af0d-f65ff3d27d52\",\n    \"org_id\": 1000,\n    \"name\": \"Notification Name\",\n    \"email_for_error\": \"name@example.com\",\n    \"event_type\": [\n      \"string\",\n      \"string\"\n    ],\n    \"properties\": [\n      {\n        \"key\": \"Authorization\",\n        \"type\": \"header\",\n        \"value\": \"Splunk XXXXX-XXXXX\"\n      },\n      {\n        \"key\": \"Authorization\",\n        \"type\": \"header\",\n        \"value\": \"Splunk XXXXX-XXXXX\"\n      }\n    ]\n  },\n  {\n    \"id\": \"7854a268-bc98-478c-af0d-f65ff3d27d52\",\n    \"org_id\": 1000,\n    \"name\": \"Notification Name\",\n    \"email_for_error\": \"name@example.com\",\n    \"event_type\": [\n      \"string\",\n      \"string\"\n    ],\n    \"properties\": [\n      {\n        \"key\": \"Authorization\",\n        \"type\": \"header\",\n        \"value\": \"Splunk XXXXX-XXXXX\"\n      },\n      {\n        \"key\": \"Authorization\",\n        \"type\": \"header\",\n        \"value\": \"Splunk XXXXX-XXXXX\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af759066-39e9-4999-9b20-7e8e3f98e816",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be577f22-a971-4c0f-a080-5af90efc2037",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b93bffdd-a39a-449d-ac26-9dead8df2d99",
+          "name": "Create a Notification Configuration",
+          "request": {
+            "name": "Create a Notification Configuration",
+            "description": {
+              "content": "Create a new Notification Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "notification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email_for_error\": \"<email>\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9e440180-c4f0-438d-8d91-15713691dbe0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"New notification created True. NotificationId: 7854a268-bc98-478c-af0d-f65ff3d27d52.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fb1ecd9-13df-4779-9dcc-ec81925039c6",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "40a80cab-c839-46e8-8651-352d94146ff7",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2357d9b5-343b-441c-b020-bd7fee6c2d92",
+          "name": "Get Notification Configuration details",
+          "request": {
+            "name": "Get Notification Configuration details",
+            "description": {
+              "content": "Get a specific Notification Configuration by id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "notification",
+                ":notification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "notification_id",
+                  "description": "(Required) The id of the Notification Configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b0a760e-96ac-450e-a7ba-5b8423697e28",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"7854a268-bc98-478c-af0d-f65ff3d27d52\",\n  \"org_id\": 1000,\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"string\",\n    \"string\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a7dbb3c8-40ec-4967-9f4f-d009acfb7faf",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01a0247d-da69-4740-bc78-1cad3879b6b0",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0d54dfd9-1a29-41ae-a413-85c6262e9aa1",
+          "name": "Update a Notification Configuration",
+          "request": {
+            "name": "Update a Notification Configuration",
+            "description": {
+              "content": "Update a Notification Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "notification",
+                ":notification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "notification_id",
+                  "description": "(Required) The id of the Notification Configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"email_for_error\": \"<email>\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"type\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dab6abcd-b33d-43a4-ab88-841ec436f43e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efd6efa3-8925-4c94-ab10-fecc9eb770f7",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01f7078e-5f6d-4a00-9189-d31c6fd6ccbe",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Notification Name\",\n  \"email_for_error\": \"name@example.com\",\n  \"event_type\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"properties\": [\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    },\n    {\n      \"key\": \"Authorization\",\n      \"type\": \"header\",\n      \"value\": \"Splunk XXXXX-XXXXX\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "811898f6-9f45-4ab8-bb75-035a0ea21f0b",
+          "name": "Delete a Notification Configuration",
+          "request": {
+            "name": "Delete a Notification Configuration",
+            "description": {
+              "content": "Delete a Notification Configuration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security",
+                "notification",
+                "delete",
+                ":notification_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "notification_id",
+                  "description": "(Required) The id of the Notification Configuration."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "98a35266-5325-46a1-bc39-b96722471b6c",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    "delete",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83b4d715-8b01-4fb2-9496-f42155b2c7cc",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    "delete",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c19f4a7f-b865-452b-8ef2-f59099d2e324",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security",
+                    "notification",
+                    "delete",
+                    ":notification_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "notification_id",
+                      "description": "(Required) The id of the Notification Configuration."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://webhooks.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a55ff6a-34d1-499e-9952-b3d4bd95a556",
+    "name": "Armor Webhooks Notifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for building configurations that\nallow you to subscribe to events, detections, and incidents.\n\nBase URL: `https://webhooks.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

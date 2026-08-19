@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Defender - Machine Actions API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Defender - Machine Actions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all machine actions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/machineactions",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all machine actions executed across all machines for the specified\ncustomer account.\n"
+        },
+        {
+          "info": {
+            "name": "Get specific machine action",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/machineactions/:actionId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ],
+            "params": [
+              {
+                "name": "actionId",
+                "value": "2e9da30d-27f6-4208-81f2-9cd3d67893ba",
+                "type": "path",
+                "description": "The unique identifier of the machine action"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific machine action by its action ID"
+        },
+        {
+          "info": {
+            "name": "Execute action on machine",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdr.api.secure-prod.services/defender/machineactions/:machineId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ],
+            "params": [
+              {
+                "name": "machineId",
+                "value": "4899036531e374137f63289c3267bad772c13fef",
+                "type": "path",
+                "description": "The unique identifier of the machine to perform the action on"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a security action on a specific machine identified by machine ID.\n\nSupported actions include: isolate, unisolate, runAntiVirusScan, collectInvestigationPackage,\nrestrictCodeExecution, unrestrictCodeExecution, runliveresponse, startInvestigation,\nStopAndQuarantineFile, cancel, offboard.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

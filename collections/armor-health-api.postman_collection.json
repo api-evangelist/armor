@@ -1,0 +1,521 @@
+{
+  "item": [
+    {
+      "id": "5b5dceb8-dd39-4d4c-872f-e259658cd7f9",
+      "name": "Health",
+      "description": {
+        "content": "Service health and monitoring endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4fcc774a-8551-4714-960d-86065a96bed8",
+          "name": "AIP health check",
+          "request": {
+            "name": "AIP health check",
+            "description": {
+              "content": "Returns the health status of the AIP Middleware service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aip",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fac0a258-db5e-4902-aea2-fd7ffb53a423",
+              "name": "Service is healthy and operational",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8560c990-41a3-4473-bc2b-e7264f2dd07a",
+          "name": "Defender health check",
+          "request": {
+            "name": "Defender health check",
+            "description": {
+              "content": "Returns the health status of the Defender Middleware service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d98b0fa-7fdc-4419-90f4-63763ed05c48",
+              "name": "Service is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0ae22b3-f10e-4c12-b81b-1df572f055ed",
+          "name": "Detection rules health check",
+          "request": {
+            "name": "Detection rules health check",
+            "description": {
+              "content": "Returns the health status of the Detection Middleware service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rules",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c99ad553-1cfb-403b-8de5-edec1b74b9a2",
+              "name": "Service is healthy and operational",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rules",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6abcb464-f785-4a03-989b-c1da1743d845",
+          "name": "JSM health check",
+          "request": {
+            "name": "JSM health check",
+            "description": {
+              "content": "Returns OK if the JSM Middleware service is running",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cf4ea1f1-c171-4cea-9d0d-8b110965725f",
+              "name": "Service is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "141f3c7e-a83f-4ac5-910f-0b2fb3577dd7",
+          "name": "Reports health check",
+          "request": {
+            "name": "Reports health check",
+            "description": {
+              "content": "Returns health status of the Reports service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a25a6cea-97a0-47c8-83c9-7f70b3583337",
+              "name": "Service is healthy and operational",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3198897b-533b-45b3-a126-397ee5379d4a",
+          "name": "TI health check",
+          "request": {
+            "name": "TI health check",
+            "description": {
+              "content": "Returns the operational status of the Threat Intelligence Middleware service",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ti-middleware",
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "32a23e63-0e93-4d5f-ae5f-19a0a8523d84",
+              "name": "Service is healthy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ti-middleware",
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f622c140-e04f-4aed-a650-2eda381b01e9",
+    "name": "MDR Public Health API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

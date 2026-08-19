@@ -1,0 +1,416 @@
+openapi: 3.2.0
+info:
+  title: Agent Management Tags API
+  description: 'This API provides an interface for interacting with Armor''s agent
+
+    management functionality.
+
+
+    Base URL: `https://agent-management.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://agent-management.api.secure-dev.services
+  description: Development
+- url: https://agent-management.api.secure-stage.services
+  description: Staging
+- url: https://agent-management.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+- ApiKey: []
+- FHAuth: []
+tags:
+- name: Tags
+  description: Tag management operations
+paths:
+  /tags:
+    get:
+      tags:
+      - Tags
+      summary: Get all tags for account
+      description: Get a list of tags for your account.
+      operationId: getAllTags
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: offset
+        in: query
+        description: The offset value to fetch next records.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: The value to limit the number of records fetched.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementTagsResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/resources:
+    post:
+      tags:
+      - Tags
+      summary: Get resources by tag
+      description: Get all resources by tag.
+      operationId: getResourcesByTag
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: offset
+        in: query
+        description: The offset value to fetch next records.
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        description: The value to limit the number of records fetched.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementResourceByTag'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementResourceByTagResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/{resourceid}:
+    get:
+      tags:
+      - Tags
+      summary: Get tags by resource
+      description: Get all tags by resource.
+      operationId: getTagsByResource
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AgentManagementResourceByTagResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Tags
+      summary: Create tag
+      description: Create a tag.
+      operationId: createTag
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/lock/{resourceid}:
+    post:
+      tags:
+      - Tags
+      summary: Create locked tag
+      description: Create a locked tag.
+      operationId: createLockedTag
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/delete/lock/{resourceid}:
+    post:
+      tags:
+      - Tags
+      summary: Delete locked tag
+      description: Delete a locked tag.
+      operationId: deleteLockedTag
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/delete/resource/{resourceid}:
+    post:
+      tags:
+      - Tags
+      summary: Delete all tags by resource ID
+      description: Delete all tags by resource ID.
+      operationId: deleteAllTagsByResourceId
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tags/delete/{resourceid}:
+    post:
+      tags:
+      - Tags
+      summary: Delete a tag
+      description: Delete a tag.
+      operationId: deleteTag
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: resourceid
+        in: path
+        required: true
+        description: The id of the resource.
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentManagementTagRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  schemas:
+    AgentManagementResourceByTag:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: The type of the tag.
+        Tags:
+          type: array
+          description: The list of the tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+    AgentManagementTagRequest:
+      type: object
+      properties:
+        Tags:
+          type: array
+          description: The list of tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+    AgentManagementTagsResult:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        ResourceId:
+          type: string
+          description: The coreInstance of the Armor Agent.
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    AgentManagementResourceTag:
+      type: object
+      properties:
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
+    AgentManagementResourceByTagResult:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        Resource:
+          type: string
+          description: The Resource of the tag.
+        Tags:
+          type: array
+          description: The details of the tag.
+          items:
+            $ref: '#/components/schemas/AgentManagementResourceTag'
+    AgentManagementTag:
+      type: object
+      properties:
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+    ApiKey:
+      type: apiKey
+      description: API Key authentication
+      name: x-api-key
+      in: header
+    FHAuth:
+      type: apiKey
+      description: FH Auth authentication
+      name: Authorization
+      in: header

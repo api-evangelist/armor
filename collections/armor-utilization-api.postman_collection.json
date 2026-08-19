@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "79eca1d5-7745-4465-a304-dd6896c16f9c",
+      "name": "Utilization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ead6d1c2-633b-49ba-9dfc-ce5ec2f01ead",
+          "name": "Retrieve Utilization for an account.",
+          "request": {
+            "name": "Retrieve Utilization for an account.",
+            "description": {
+              "content": "Response Type: csv or zip file based on the report Type.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "utilization",
+                ":reportType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start Date of the report (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End Date of the report (YYYY-MM-DD)"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportType",
+                  "description": "(Required) Type of the report required. All, Detail, ByHost, ByHour"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de44d1dd-1ef1-454a-85a2-d1d3edb348a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utilization",
+                    ":reportType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportType",
+                      "description": "(Required) Type of the report required. All, Detail, ByHost, ByHour"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "780f75c1-f0f3-4b60-badb-65ca86186bb4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utilization",
+                    ":reportType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportType",
+                      "description": "(Required) Type of the report required. All, Detail, ByHost, ByHour"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "731278b7-8429-48e2-a058-14e91d7b3e05",
+          "name": "Retrieve Utilization for an account group by Core Instance.",
+          "request": {
+            "name": "Retrieve Utilization for an account group by Core Instance.",
+            "description": {
+              "content": "End Date should be later than Start Date. But not over 1 month later than Start Date.<br /><br /><strong>Get request URI contain the following query options</strong><br /><br /><strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br />",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "utilization",
+                "usage-for"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) Start Date of the report (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>",
+                  "description": "(Required) End Date of the report (YYYY-MM-DD)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e9bfe20-7163-4c4c-b25f-8d6fb1b6a1a3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utilization",
+                    "usage-for"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d055ba05-2a67-4a1b-80ea-3458f340459d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "utilization",
+                    "usage-for"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "d3e7e496-42bd-471e-82d1-e39c26102bc7",
+    "name": "Armor Services Utilization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

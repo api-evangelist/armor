@@ -1,0 +1,387 @@
+openapi: 3.2.0
+info:
+  title: MDR Public AIP - Incident Data API
+  version: 1.0.0
+  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
+
+
+    This unified API provides access to:
+
+
+    ## AI Platform (AIP)
+
+    - AI-processed incident analysis with threat indicators and recommendations
+
+    - Entity threat intelligence for security entities associated with incidents
+
+
+    ## Microsoft Defender Integration
+
+    - Machine/device management in Microsoft Defender for Endpoint
+
+    - Security action execution (isolation, scans, investigations)
+
+    - Investigation package collection and live response operations
+
+
+    ## Detection Rules Management
+
+    - Microsoft Sentinel detection rules across customer environments
+
+    - Enriched rule metadata including MITRE ATT&CK mappings
+
+    - Incident generation statistics
+
+
+    ## JSM Middleware
+
+    - Security incident management and tracking
+
+    - Metrics aggregation and reporting
+
+    - Service request management
+
+    - Organization management
+
+
+    ## Monthly Security Reports
+
+    - Access to monthly security reports (PowerPoint, JSON, PDF)
+
+    - Security metrics and performance indicators
+
+    - Data ingestion analytics
+
+
+    ## Threat Intelligence
+
+    - Threat actor intelligence data
+
+    - Customer-specific threat intelligence based on deployed products
+
+    - OpenCTI GraphQL proxy for advanced queries
+
+
+    ## Authentication
+
+    All endpoints (except health checks) require OAuth2 Bearer token authentication.
+
+
+    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
+
+    '
+  contact:
+    name: Armor Security Team
+    url: https://armor.com
+servers:
+- url: https://mdr.api.secure-prod.services
+  description: Production environment
+- url: https://mdr.api.secure-dev.services
+  description: Development environment
+security:
+- OAuth2BearerAuth: []
+- FH-AUTH: []
+tags:
+- name: AIP - Incident Data
+  description: AI-processed incident data and analytics
+paths:
+  /aip/incident/{incidentKey}:
+    get:
+      tags:
+      - AIP - Incident Data
+      summary: Get incident AIP data
+      description: 'Retrieves AI-processed incident data including triage history, analytics, threat indicators,
+
+        similar incidents, and recommended actions.
+
+
+        **Authorization**: This endpoint validates that the requesting account has permission to
+
+        view the incident by checking customer organization associations with the Jira issue.
+
+        '
+      operationId: getIncidentAipData
+      parameters:
+      - name: incidentKey
+        in: path
+        required: true
+        description: The incident identifier (e.g., SEC-2024-001)
+        schema:
+          type: string
+        example: SEC-2024-001
+      - name: x-account-context
+        in: header
+        required: true
+        description: The AMP account ID for authorization context
+        schema:
+          type: string
+        example: '12345'
+      responses:
+        '200':
+          description: Incident data retrieved successfully or no data available
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/IncidentDataResponse'
+                - $ref: '#/components/schemas/IncidentNotAvailableResponse'
+        '400':
+          description: Bad request - missing or invalid parameters
+          content:
+            text/plain:
+              schema:
+                type: string
+        '401':
+          description: Unauthorized
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Issue not found
+          content:
+            text/plain:
+              schema:
+                type: string
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    AIMetrics:
+      type: object
+      properties:
+        ai_classification:
+          type: string
+          enum:
+          - True Positive
+          - False Positive
+          - Benign Positive
+          - Unknown
+        ai_threat_level:
+          type: string
+          enum:
+          - HIGH
+          - MEDIUM
+          - LOW
+        ai_historical_similarity:
+          type: string
+        ai_community_similarity:
+          type: string
+        time_saved_by_ai:
+          type: string
+        ai_speed_percentage:
+          type: string
+        time_to_triage:
+          type: string
+        time_to_investigate:
+          type: string
+        time_to_contain:
+          type: string
+    AttackEvent:
+      type: object
+      properties:
+        Timestamp:
+          type: string
+          format: date-time
+        description:
+          type: string
+        MitreTactic:
+          type: string
+        MitreTechnique:
+          type: string
+        MitreTacticId:
+          type: string
+        MitreTechniqueId:
+          type: string
+        IncidentCreatedBy:
+          type: string
+    IncidentDataResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/IncidentData'
+    IncidentNotAvailableResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: false
+        message:
+          type: string
+        incidentKey:
+          type: string
+        data:
+          type:
+          - object
+          - 'null'
+    IncidentData:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        displayName:
+          type: string
+        status:
+          type: string
+          enum:
+          - Escalate
+          - Resolved
+          - Suppressed
+          - Benign
+          - Investigation
+        severity:
+          type: string
+          enum:
+          - High
+          - Medium
+          - Low
+        detected_on:
+          type: string
+          format: date-time
+        updated_on:
+          type: string
+          format: date-time
+        assigned_to:
+          type: string
+        customer_id:
+          type: string
+        customer_name:
+          type: string
+        detection_method:
+          type: string
+        source_product:
+          type: string
+        ai_metrics:
+          $ref: '#/components/schemas/AIMetrics'
+        ai_investigation:
+          $ref: '#/components/schemas/AIInvestigation'
+        attack_story:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttackEvent'
+        similar_incidents:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimilarIncident'
+    AIInvestigation:
+      type: object
+      properties:
+        summary:
+          type: string
+        indicators_of_compromise:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatIndicator'
+        root_cause_analysis:
+          type: string
+        recommended_actions:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        reason_for_recommeded_actions:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+    ThreatIndicator:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - IP Address
+          - Domain
+          - URL
+          - File Hash
+          - Email Address
+          - Unknown
+        value:
+          type: string
+        description:
+          type: string
+    SimilarIncident:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        severity:
+          type: string
+        detected_on:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        customer_name:
+          type: string
+  securitySchemes:
+    OAuth2BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2
+      description: 'OAuth2 Scoped Access Token authentication. An authorization header with Bearer token
+
+        must be included with every authenticated request.
+
+
+        For authentication details, see the official documentation:
+
+        https://kb.armor.com/kb/sso-authentication-with-postman
+
+        '
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: 'FH-AUTH token authentication.
+
+
+        ## Authentication Flow
+
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+
+        ## Security Notes
+
+
+        - Authorization codes expire in 2 minutes
+
+        - Access tokens expire in 15 minutes
+
+        - All endpoints require HTTPS
+
+        - Never log or persist tokens in plain text
+
+
+        Include the access token in the Authorization header:
+
+        ```
+
+        Authorization: FH-AUTH {access_token}
+
+        ```
+
+        '

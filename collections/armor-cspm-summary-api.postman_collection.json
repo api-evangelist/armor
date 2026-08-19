@@ -1,0 +1,166 @@
+{
+  "item": [
+    {
+      "id": "b0574d32-bdce-43c5-b3d4-ff07fe3faacf",
+      "name": "CSPM Summary",
+      "description": {
+        "content": "CSPM cloud connector summary",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72cf8acf-e837-4d2c-b407-a1c5bc441d8e",
+          "name": "Get CSPM CloudConnector summary",
+          "request": {
+            "name": "Get CSPM CloudConnector summary",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "65b8b4c5-3554-4816-ba51-3cd58cf511d8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalConnectors\": 55,\n  \"activeConnectors\": 2345,\n  \"totalAssets\": 4938,\n  \"byProvider\": {\n    \"key_0\": 417\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e79634a6-eac7-47ca-80da-9f62fb6aa7b3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://compliance.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.armor.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.armor.com/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "104a8689-7919-449d-bbd9-549a5d9d4d10",
+    "name": "Armor Compliance CSPM Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)\nand Vulnerability Scanning (VS) services.\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

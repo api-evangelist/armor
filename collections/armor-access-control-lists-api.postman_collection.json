@@ -1,0 +1,562 @@
+{
+  "item": [
+    {
+      "id": "05f2d610-33c7-4aed-94d0-67ec864afe06",
+      "name": "Access Control Lists",
+      "description": {
+        "content": "Operations for managing ACLs (deprecated)",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45bbc3a3-ff2f-40ac-bda9-edef51c0f7a7",
+          "name": "Get all ACLs",
+          "request": {
+            "name": "Get all ACLs",
+            "description": {
+              "content": "Get a list of Access Control Lists (ACLs) that manage access to your log endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "acls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe67141c-fe46-4760-8225-adeee913c2fc",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"allowedNetworks\": [\n      \"192.168.1.0/24\",\n      \"192.168.1.0/24\"\n    ],\n    \"maxAllowedNetworks\": 1042,\n    \"version\": 5203\n  },\n  {\n    \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"allowedNetworks\": [\n      \"192.168.1.0/24\",\n      \"192.168.1.0/24\"\n    ],\n    \"maxAllowedNetworks\": 4048,\n    \"version\": 6062\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3dff22ff-3808-4898-a8ea-16b28c522542",
+          "name": "Create an ACL",
+          "request": {
+            "name": "Create an ACL",
+            "description": {
+              "content": "Create an Access Control List (ACL) that manages access to your log endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "acls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"allowedNetworks\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28ed1bac-6790-42f1-a386-bd129e463c48",
+              "name": "ACL created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": 6297,\n  \"version\": 2155\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8214688-5012-45ab-8c2d-fe4488e953a1",
+          "name": "Update an ACL",
+          "request": {
+            "name": "Update an ACL",
+            "description": {
+              "content": "Update an Access Control List (ACL) that manages access to your log endpoints.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "acls",
+                ":aclId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "aclId",
+                  "description": "(Required) The unique identifier of the Log ACL being updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Version header for concurrency control",
+                "key": "If-Unmodified-Since",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"aclId\": \"<uuid>\",\n  \"allowedNetworks\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bd546e18-526e-40c1-b208-3bc50ef25ad1",
+              "name": "ACL updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls",
+                    ":aclId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aclId",
+                      "description": "(Required) The unique identifier of the Log ACL being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7cd14197-5680-425c-a7d7-0c72db0ee665",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls",
+                    ":aclId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aclId",
+                      "description": "(Required) The unique identifier of the Log ACL being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f8b3bfe-9d39-47a5-b7b1-1007a407ee03",
+              "name": "ACL not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls",
+                    ":aclId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aclId",
+                      "description": "(Required) The unique identifier of the Log ACL being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5ce4013-27ea-4706-993f-9ac1a58fbd3d",
+              "name": "Precondition failed - entity has been modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "acls",
+                    ":aclId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "aclId",
+                      "description": "(Required) The unique identifier of the Log ACL being updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Version header for concurrency control",
+                    "key": "If-Unmodified-Since",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"aclId\": \"550e8400-e29b-41d4-a716-446655440000\",\n  \"allowedNetworks\": [\n    \"192.168.1.0/24\",\n    \"192.168.1.0/24\"\n  ],\n  \"maxAllowedNetworks\": \"<integer>\",\n  \"version\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Precondition Failed",
+              "code": 412,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"A confirmation message or explanation.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logs.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c601c54e-95f8-4f72-979f-a5a9fc58a063",
+    "name": "Armor Log Management Access Control Lists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with\n[Armor's Log Management Platform](https://www.armor.com/armor-log-management/).\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

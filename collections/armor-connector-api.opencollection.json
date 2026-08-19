@@ -1,0 +1,134 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Container Security Connector API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Connector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get AWS Configuration Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/connectors/aws-base",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Returns values necessary for configuring AWS IAM ahead of configuring AWS ECR-specific Connectors."
+        },
+        {
+          "info": {
+            "name": "Get All Connectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/connectors",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Returns a list of all connectors."
+        },
+        {
+          "info": {
+            "name": "Create Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://compliance.api.secure-dev.services/containers/connectors",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new connector."
+        },
+        {
+          "info": {
+            "name": "Get Connector Detail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-dev.services/containers/connectors/:id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Connector ID"
+              }
+            ]
+          },
+          "docs": "Returns details for a specific connector."
+        },
+        {
+          "info": {
+            "name": "Delete Connector",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://compliance.api.secure-dev.services/containers/connectors/:id",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Connector ID"
+              }
+            ]
+          },
+          "docs": "Deletes a specific connector."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

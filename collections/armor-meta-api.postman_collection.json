@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "926d4770-0bfe-41a0-8ae2-4e9f096932fd",
+      "name": "Meta",
+      "description": {
+        "content": "Meta resources and utility operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "18904bbd-a841-4254-ae78-a32dad91f34d",
+          "name": "Check hostname availability",
+          "request": {
+            "name": "Check hostname availability",
+            "description": {
+              "content": "Check the availability of a log source identifier (hostname).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta",
+                "logs",
+                "sources",
+                "actions",
+                "check-unique-name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"hostname\": \"<string>\",\n  \"logSourceTypeId\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "addc0639-79dc-4ddd-9297-c920cc920f74",
+              "name": "Availability check result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "logs",
+                    "sources",
+                    "actions",
+                    "check-unique-name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hostname\": \"<string>\",\n  \"logSourceTypeId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"string\",\n  \"logSourceTypeId\": 2319,\n  \"available\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "efea4b19-dcfe-441b-85bb-8902c7990380",
+          "name": "Get log source types",
+          "request": {
+            "name": "Get log source types",
+            "description": {
+              "content": "Retrieve the list of log source types available, and the protocols they support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "meta",
+                "logs",
+                "log-source-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1096bcb0-dd1d-4ba9-a78e-e03fd47afbc3",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "meta",
+                    "logs",
+                    "log-source-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"logSourceTypeId\": 4407,\n    \"name\": \"string\",\n    \"logSourceProtocols\": [\n      820,\n      9102\n    ],\n    \"icon\": \"string\",\n    \"category\": \"string\",\n    \"vendor\": \"string\",\n    \"kbLink\": \"string\",\n    \"requiresFlow\": true\n  },\n  {\n    \"logSourceTypeId\": 8019,\n    \"name\": \"string\",\n    \"logSourceProtocols\": [\n      7987,\n      3409\n    ],\n    \"icon\": \"string\",\n    \"category\": \"string\",\n    \"vendor\": \"string\",\n    \"kbLink\": \"string\",\n    \"requiresFlow\": false\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logs.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ca3e29a-cb00-484c-8b6c-917c73d5186d",
+    "name": "Armor Log Management Meta API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with\n[Armor's Log Management Platform](https://www.armor.com/armor-log-management/).\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

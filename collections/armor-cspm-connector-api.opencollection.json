@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance CSPM Connector API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSPM Connector",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all CSPM CloudConnectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/connector",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Connector ID to get specific connector"
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to run the cloud connector"
+              }
+            ]
+          },
+          "docs": "List all CSPM CloudConnectors"
+        },
+        {
+          "info": {
+            "name": "Create CSPM CloudConnector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://compliance.api.secure-prod.services/cspm/connector",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create CSPM CloudConnector"
+        },
+        {
+          "info": {
+            "name": "Get CSPM CloudConnector by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/connector/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Connector ID"
+              }
+            ]
+          },
+          "docs": "Get CSPM CloudConnector by ID"
+        },
+        {
+          "info": {
+            "name": "Delete CSPM CloudConnector by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://compliance.api.secure-prod.services/cspm/connector/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Connector ID"
+              }
+            ]
+          },
+          "docs": "Delete CSPM CloudConnector by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

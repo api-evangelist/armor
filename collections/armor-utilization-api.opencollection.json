@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Utilization API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve Utilization for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/utilization/:reportType",
+            "params": [
+              {
+                "name": "reportType",
+                "value": "",
+                "type": "path",
+                "description": "Type of the report required. All, Detail, ByHost, ByHour"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start Date of the report (YYYY-MM-DD)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End Date of the report (YYYY-MM-DD)"
+              }
+            ]
+          },
+          "docs": "Response Type: csv or zip file based on the report Type."
+        },
+        {
+          "info": {
+            "name": "Retrieve Utilization for an account group by Core Instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/utilization/usage-for",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query",
+                "description": "Start Date of the report (YYYY-MM-DD)"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query",
+                "description": "End Date of the report (YYYY-MM-DD)."
+              }
+            ]
+          },
+          "docs": "End Date should be later than Start Date. But not over 1 month later than Start Date.<br /><br /><strong>Get request URI contain the following query options</strong><br /><br /><strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br />"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

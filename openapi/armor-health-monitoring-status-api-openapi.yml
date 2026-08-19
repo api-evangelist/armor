@@ -1,0 +1,128 @@
+openapi: 3.2.0
+info:
+  title: Agent Management Health Monitoring Status API
+  description: 'This API provides an interface for interacting with Armor''s agent
+
+    management functionality.
+
+
+    Base URL: `https://agent-management.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://agent-management.api.secure-dev.services
+  description: Development
+- url: https://agent-management.api.secure-stage.services
+  description: Staging
+- url: https://agent-management.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+- ApiKey: []
+- FHAuth: []
+tags:
+- name: Health Monitoring Status
+  description: Health monitoring status operations
+paths:
+  /healthmonitoringstatus:
+    get:
+      tags:
+      - Health Monitoring Status
+      summary: Get Health Monitoring Status
+      description: Get a list of health statuses for all coreInstances on your account.
+      operationId: getHealthMonitoringStatus
+      parameters:
+      - name: registered
+        in: query
+        description: Filter by registration status (true/false).
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementHealthMonitoringStatusResults'
+  /healthmonitoringstatus/{coreInstanceId}:
+    get:
+      tags:
+      - Health Monitoring Status
+      summary: Get Health Monitoring Status by CoreInstanceId
+      description: Get Health Monitoring Status details by CoreInstanceId.
+      operationId: getHealthMonitoringStatusByCoreInstanceId
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        description: The CoreInstanceId of the Armor Agent.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AgentManagementHealthMonitoringStatusResults'
+components:
+  schemas:
+    HealthMonitoringStatus:
+      type: object
+      properties:
+        SubAgentName:
+          type: string
+          description: The name of the SubAgent.
+        Version:
+          type: string
+          description: The version of the SubAgent.
+        Status:
+          type: string
+          description: The status of the SubAgent.
+        Message:
+          type: string
+          description: The status message of the SubAgent.
+        UpdateTime:
+          type: string
+          format: date-time
+          description: The last UpdateTime of the SubAgent's status.
+    AgentManagementHealthMonitoringStatusResults:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the coreInstance.
+        CoreInstance:
+          type: string
+          description: The coreInstance of the Armor Agent.
+        IsRegistered:
+          type: string
+          description: The coreInstance registered status.
+        SubAgents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthMonitoringStatus'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}
+    ApiKey:
+      type: apiKey
+      description: API Key authentication
+      name: x-api-key
+      in: header
+    FHAuth:
+      type: apiKey
+      description: FH Auth authentication
+      name: Authorization
+      in: header

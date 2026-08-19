@@ -1,0 +1,354 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Flow Sources API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Flow Sources
+  description: Operations for managing flow sources
+paths:
+  /flows/sources:
+    get:
+      tags:
+      - Flow Sources
+      summary: Get all flow sources
+      description: 'Passing `all=true` can return Flow Sources across multiple orgs given you
+
+        have the necessary permissions.
+
+        '
+      operationId: getFlowSources
+      parameters:
+      - name: all
+        in: query
+        description: Return flow sources across multiple orgs
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowSource'
+    post:
+      tags:
+      - Flow Sources
+      summary: Create a flow source
+      description: Adds a flow source to the pool of available flow sources.
+      operationId: createFlowSource
+      x-internal: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowSourceCreateRequest'
+      responses:
+        '200':
+          description: Flow source created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowSource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+  /flows/sources/{flowSourceId}:
+    patch:
+      tags:
+      - Flow Sources
+      summary: Update a flow source
+      description: 'Update the settings of the given flow source.
+
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+
+        the `version` property of the request body. If the entity has been modified since the
+
+        supplied version, a `412` response will be returned. If this header is absent from the
+
+        request a `400` response will be returned.
+
+        '
+      operationId: updateFlowSource
+      x-internal: true
+      parameters:
+      - name: flowSourceId
+        in: path
+        required: true
+        description: The unique identifier of the flow source being updated.
+        schema:
+          type: string
+          format: uuid
+      - name: If-Unmodified-Since
+        in: header
+        required: true
+        description: Version header for concurrency control
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FlowSourceEditRequest'
+      responses:
+        '200':
+          description: Flow source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FlowSource'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Flow source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '428':
+          description: Precondition required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+  /flows/collectors:
+    get:
+      tags:
+      - Flow Sources
+      summary: Get all flow collectors
+      description: Get a list of provisioned flow collectors.
+      operationId: getFlowCollectors
+      x-internal: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FlowCollector'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+  /meta/flows/actions/allocate-flow-source:
+    post:
+      tags:
+      - Flow Sources
+      summary: Allocate a flow source
+      description: 'Enable collection of network flow-based log sources by allocating a flow source to your account.
+
+        If you already have a flow source associated to your account, the API will return a 400 response.
+
+        '
+      operationId: allocateFlowSource
+      responses:
+        '200':
+          description: Flow source allocation already existed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '201':
+          description: Flow source allocation successfully performed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request - flow source already associated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+components:
+  schemas:
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    FlowSourceCreateRequest:
+      type: object
+      required:
+      - siemFlowSourceId
+      - flowCollectorId
+      - port
+      - type
+      properties:
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
+    FlowCollector:
+      type: object
+      properties:
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        flowCollectorName:
+          type:
+          - string
+          - 'null'
+          description: The friendly name of the Flow Collector.
+        ipAddress:
+          type: string
+          description: The IP address of the flow collector.
+    Message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    FlowSourceEditRequest:
+      type: object
+      required:
+      - flowSourceId
+      - version
+      properties:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        siemFlowSourceId:
+          type:
+          - integer
+          - 'null'
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          type:
+          - string
+          - 'null'
+          format: uuid
+          description: The unique identifier of the flow collector.
+        port:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 65535
+          description: The port on which this flow source will listen for network flow data.
+        type:
+          type:
+          - string
+          - 'null'
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+    IpPort:
+      type: integer
+      minimum: 1
+      maximum: 65535
+      description: A valid IP port number
+      example: 514
+    FlowSource:
+      type: object
+      properties:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        flowCollector:
+          $ref: '#/components/schemas/FlowCollector'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
+        orgId:
+          type:
+          - integer
+          - 'null'
+          description: The unique identifier of organization with which this flow source is associated.
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The state of the Flow Source.
+          enum:
+          - Allocated
+          - Unallocated
+          - Not Configured
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

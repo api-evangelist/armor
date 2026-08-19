@@ -1,0 +1,3216 @@
+{
+  "item": [
+    {
+      "id": "c49d5a3c-2056-440f-8565-0ef8f1f171c6",
+      "name": "Security",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5a92fadc-1b84-4bb8-95b3-de532a7b0e2e",
+          "name": "Retrieve anti-malware scan data for a specific host.",
+          "request": {
+            "name": "Retrieve anti-malware scan data for a specific host.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                ":coreinstanceId",
+                "security"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coreinstanceId",
+                  "description": "(Required) GUID for Agent CORE instance id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3486f28-f3ba-4d97-81ad-295ab8cbcac6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    ":coreinstanceId",
+                    "security"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreinstanceId",
+                      "description": "(Required) GUID for Agent CORE instance id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hostname\": \"WIN-3V6ETB0A47J\",\n  \"accountId\": 0,\n  \"providerRefId\": null,\n  \"lastAvamScan\": \"2015-01-06T23:33:15.47\",\n  \"lastCommunicationDate\": \"2015-01-06T23:33:15.47\",\n  \"isAvamRealtime\": true,\n  \"isFimRealtime\": true,\n  \"biosUuid\": \"00000000-0000-0000-0000-000000000000\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39aa6822-5fce-4e28-b7da-8342c3ede1ee",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    ":coreinstanceId",
+                    "security"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreinstanceId",
+                      "description": "(Required) GUID for Agent CORE instance id"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af6b8a73-806e-4c20-b264-d9bff357d9d0",
+          "name": "Retrieve list of Anti-Malware status details by host.",
+          "request": {
+            "name": "Retrieve list of Anti-Malware status details by host.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "avam"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fa2b21a2-05b1-4a86-a0ab-16c8528018d5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "avam"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"coreInstanceId\": \"e261a9b9-bd32-46bd-a5cd-7205048d768b\",\n    \"vmName\": \"VM Name\",\n    \"location\": null,\n    \"isActive\": false,\n    \"vmProvider\": \"azure\",\n    \"providerFullName\": null,\n    \"os\": \"Microsoft Windows Server 2008 R2 Datacenter\",\n    \"accountId\": 0,\n    \"lastAgentCommunicationSeverity\": 3,\n    \"lastScannedSeverity\": 3,\n    \"lastAgentCommunicationData\": null,\n    \"lastScannedData\": null,\n    \"lastAgentCommunicationDate\": \"2015-03-22T19:52:08.63\",\n    \"lastScannedDate\": \"2015-03-21T23:18:02.87\",\n    \"hostId\": 0,\n    \"overallAntiMalwareStatus\": \"OK\",\n    \"createdDate\": null,\n    \"customLocatiom\": null,\n    \"customProvider\": null,\n    \"avamRealTimeScan\": false,\n    \"biosUuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"scanStatus\": 0,\n    \"isAvamEnabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f746fd9f-8786-46c9-b196-32cfa2ac31e5",
+          "name": "Retrieve aggregate Anti-Malware status for all hosts.",
+          "request": {
+            "name": "Retrieve aggregate Anti-Malware status for all hosts.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "avam",
+                "statistics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d2f737b3-c7bf-4a00-a2dc-6781dab16b6c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "avam",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalOkStatus\": 19,\n  \"totalWarningStatus\": 2,\n  \"totalCriticalStatus\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a62d018-02b2-40b7-aa2e-feda5b1bbc05",
+          "name": "Retrieve FIM status for all hosts.",
+          "request": {
+            "name": "Retrieve FIM status for all hosts.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "fim"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1222d7f8-37cd-4c46-8586-e893c742670f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "fim"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"coreInstanceId\": \"e261a9b9-bd32-46bd-a5cd-7205048d768b\",\n    \"vmName\": \"VM 1\",\n    \"location\": null,\n    \"ipAddress\": null,\n    \"status\": 0,\n    \"fimAgentStatus\": \"ON\",\n    \"fimAgentVersion\": null,\n    \"os\": \"Microsoft Windows Server 2008 R2 Datacenter\",\n    \"fimLastCommunicationDate\": \"2015-03-22T19:52:08.63\",\n    \"fimLastCommunicationData\": null,\n    \"vmSeverity\": 3,\n    \"createdDate\": null,\n    \"vmProvider\": \"azure\",\n    \"providerFullName\": null,\n    \"customProvider\": null,\n    \"customLocation\": null,\n    \"fimRealTimeScan\": 0,\n    \"biosUuid\": \"00000000-0000-0000-0000-000000000000\",\n    \"isFimEnabled\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02f078b2-a6eb-4b08-9b3f-a430894798bf",
+          "name": "Retrieve aggregate FIM status for all hosts.",
+          "request": {
+            "name": "Retrieve aggregate FIM status for all hosts.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "fim",
+                "statistics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d8e5b85a-f2e2-4bbd-9ef3-5b3b98309a73",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "fim",
+                    "statistics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalOkStatus\": 5,\n  \"totalWarningStatus\": 0,\n  \"totalCriticalStatus\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea8bf6b8-bb91-4c8b-b4b1-668180fd3345",
+          "name": "Trigger trend manual scan start request for a server.",
+          "request": {
+            "name": "Trigger trend manual scan start request for a server.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "manual-scan",
+                ":coreInstance",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coreInstance",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94c6be2e-1c8a-42a6-a325-710dc231b5fa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "manual-scan",
+                    ":coreInstance",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstance",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40865fbe-4dfd-4fc0-a781-dd1e6679fb89",
+          "name": "Get a list of current and past malware manual scans.",
+          "request": {
+            "name": "Get a list of current and past malware manual scans.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "manual-scan",
+                "getCurrentAndPastScan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e3974d04-bf73-4bb8-8923-48a9f318f6ad",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "manual-scan",
+                    "getCurrentAndPastScan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4271168d-a689-4567-9709-a46d28beed07",
+          "name": "Retrieve OS patching status data for a specific VM.",
+          "request": {
+            "name": "Retrieve OS patching status data for a specific VM.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "packages",
+                ":coreInstanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coreInstanceId",
+                  "description": "(Required) id of the Core Instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc23313e-507e-4072-af10-6d085c10e524",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) id of the Core Instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ac60619-004c-4492-a535-47220a569e1a",
+              "name": "MovedPermanently",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) id of the Core Instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 301,\n  \"warning\": \"Deprecated API\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74de12e2-0cd4-4935-8763-47f3a31b0253",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) id of the Core Instance"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fcc345db-8fa4-4c51-acc3-419713572e49",
+          "name": "Retrieve OS patching status data for your VMs.",
+          "request": {
+            "name": "Retrieve OS patching status data for your VMs.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "packages",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34e578d9-2d69-4392-b91d-0d150e505669",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26ad6a82-51f4-4fe9-9549-62a4547dff85",
+              "name": "MovedPermanently",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Moved Permanently",
+              "code": 301,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"statusCode\": 301,\n  \"warning\": \"Deprecated API\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecfbbdd2-b675-47c4-b8fe-fd6399117e04",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "packages",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d03fa712-a4d9-4853-b2ea-771619ef100a",
+          "name": "Retrieve overall security status.",
+          "request": {
+            "name": "Retrieve overall security status.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "security-dashboard",
+                "stats",
+                "overall"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c80a5bfb-dbf2-489d-90fe-bcc53eab3117",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "security-dashboard",
+                    "stats",
+                    "overall"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalOkStatus\": 4,\n  \"totalWarningStatus\": 0,\n  \"totalCriticalStatus\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "433c275c-2e6b-43fa-ae09-5b68f039ba55",
+          "name": "Retrieve aggregate Overall, Anti-Malware, and FIM for all hosts.",
+          "request": {
+            "name": "Retrieve aggregate Overall, Anti-Malware, and FIM for all hosts.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "security-dashboard",
+                "stats",
+                "overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1cbbe1d7-c95d-47e7-af57-f66bac5e7e4a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "security-dashboard",
+                    "stats",
+                    "overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"avamOkStatus\": 4,\n  \"avamWarningStatus\": 0,\n  \"avamCriticalStatus\": 1,\n  \"fimOkStatus\": 5,\n  \"fimWarningStatus\": 0,\n  \"fimCriticalStatus\": 0,\n  \"osPatchingOkStatus\": 0,\n  \"osPatchingWarningStatus\": 0,\n  \"osPatchingCriticalStatus\": 0,\n  \"overAllOkStatus\": 4,\n  \"overAllWarningStatus\": 0,\n  \"overAllCriticalStatus\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b890d28-1986-4ec2-9272-c8bb56eb0c80",
+          "name": "Sync trend information by coreinstanceid.",
+          "request": {
+            "name": "Sync trend information by coreinstanceid.",
+            "description": {},
+            "url": {
+              "path": [
+                "core",
+                "trend-sync",
+                ":coreInstanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coreInstanceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "20db1faf-0a95-4b91-9c84-abbc324ac522",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "trend-sync",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coreInstanceId\": \"string\",\n  \"trendHostId\": 7016,\n  \"lastScanDate\": \"1990-07-30T16:48:54.031Z\",\n  \"lastAgentCommunicationDate\": \"1989-01-27T09:23:36.635Z\",\n  \"overallStatus\": \"string\",\n  \"trendOverallAntiMalwareStatus\": \"string\",\n  \"trendOverallIntegrityMonitoringStatus\": \"string\",\n  \"trendOverallIdsStatus\": \"string\",\n  \"agentStatus\": \"string\",\n  \"agentVersion\": \"string\",\n  \"avamRealTimeScanEnabled\": false,\n  \"imRealTimeScanEnabled\": true,\n  \"container\": \"string\",\n  \"lastModifiedDate\": \"1988-12-31T12:55:28.622Z\",\n  \"lastModifiedBy\": \"string\",\n  \"trendCoreInstanceStateMessage\": \"string\",\n  \"trendUrl\": \"string\",\n  \"lastDefinitionUpdatedDate\": \"1968-05-30T01:02:05.864Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebc852dc-3b0a-455a-878b-cbc37364e385",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "core",
+                    "trend-sync",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ba655c06-318e-4cb6-be6d-996cd2b90a13",
+          "name": "Retrieve OS logging details by host.",
+          "request": {
+            "name": "Retrieve OS logging details by host.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9d9dd6b0-8f75-4d18-99f4-ca5d7b75aba3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"coreInstanceId\": \"e5f680b7-df73-4a66-829a-50af5d6c21e7\",\n    \"vmName\": \"Windows Test\",\n    \"lastLogDate\": \"2015-10-05T15:49:15\",\n    \"vmProvider\": \"complete\",\n    \"vmProviderFullName\": null,\n    \"os\": \"Microsoft Windows Server 2012 R2 Standard\",\n    \"vmLocation\": \"s01\",\n    \"logRetentionPlan\": \"90 days\",\n    \"logSize\": \"7200388\",\n    \"logSeverity\": 4,\n    \"logApiUrl\": \"https://api.armor.com\",\n    \"agentStatus\": \"Offline\",\n    \"profileName\": null,\n    \"id\": 0\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62a44f5c-c009-4921-8fd8-8eb75b6f197c",
+          "name": "Activate log depot for the account",
+          "request": {
+            "name": "Activate log depot for the account",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "log-depot",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b9059aa6-79e0-4d54-93f1-5220ded63f74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-depot",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 1436,\n  \"modifiedByUserId\": 1231,\n  \"modifiedDate\": \"2008-05-04T00:21:41.639Z\",\n  \"isEnabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d18a2fdd-7142-454d-8eaf-b578ae5abb26",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-depot",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "524de85a-1ce4-432d-96b1-93c9d07a289a",
+          "name": "Deactivate Log depot for the account",
+          "request": {
+            "name": "Deactivate Log depot for the account",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "log-depot",
+                "deactivate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01402223-dc91-4735-a14d-56c95d1a6ed5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-depot",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 1436,\n  \"modifiedByUserId\": 1231,\n  \"modifiedDate\": \"2008-05-04T00:21:41.639Z\",\n  \"isEnabled\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c242557-82ea-4bae-ae93-7df79c62a322",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-depot",
+                    "deactivate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85b25874-ac3f-4c28-95eb-05f0e105a83e",
+          "name": "Retrieve log retention types",
+          "request": {
+            "name": "Retrieve log retention types",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logretentiontypes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "01c7cf0a-f245-4026-ad62-cd7c77a941e4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logretentiontypes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 40,\n    \"description\": null,\n    \"isDefault\": true,\n    \"sortOrder\": 1,\n    \"skuBss\": \"AA-LOGMGMT-USAGE-30DAY\",\n    \"title\": \"Armor Agent Logs\",\n    \"subTitle\": \"This plan includes logs from the Armor Anywhere agent that such as OS, file logging ,vulnerability scanning,intrusion detection, malware protection, and file integrity monitoring. This plan allows you to store and search all of your logs for 30 days.\",\n    \"imageList\": [],\n    \"isCurrentPlan\": true,\n    \"helpText\": \"Logs are stored for the duration of the retention period subscribed; this plan applies to sources other than each agent or OS which are already included in each agent. This plan is required for all log collection services when forwarding logs from any network device, application, or other non included source.\"\n  },\n  {\n    \"id\": 400,\n    \"description\": null,\n    \"isDefault\": false,\n    \"sortOrder\": 2,\n    \"skuBss\": \"AA-SECURITY-ANALYTICS-LOG-RETENTION\",\n    \"title\": \"13Month Extended Log Retention\",\n    \"subTitle\": \"This plan allows you to store and search all of your logs for 13 months\",\n    \"imageList\": [\n      \"pci3\",\n      \"hipaa\"\n    ],\n    \"isCurrentPlan\": false,\n    \"helpText\": \"Cost are only incurred for the month in which the data is transferred. Data is stored for the duration of the retention period subscribed. Applies to all source; agent, host or other.\"\n  },\n  {\n    \"id\": 30,\n    \"description\": null,\n    \"isDefault\": true,\n    \"sortOrder\": 3,\n    \"skuBss\": \"AA-SECURITY-ANALYTICS-LOG-CONSUMPTION\",\n    \"title\": \"Security/Analytics Consumption\",\n    \"subTitle\": \"Included with your Armor Anywhere agent licenses, this plan allows you to store and search all of your logs for 30 days.\",\n    \"imageList\": [],\n    \"isCurrentPlan\": false,\n    \"helpText\": \"Logs are stored for the duration of the retention period subscribed; this plan applies to sources other than each agent or OS which are already included in each agent. This plan is required for all log collection services when forwarding logs from any network device, application, or other non included source.\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be0c69e9-9acb-4f65-ad76-b193808f4e14",
+          "name": "Retrieve Log sources for the logged-in account.",
+          "request": {
+            "name": "Retrieve Log sources for the logged-in account.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logsources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d4490ed6-a85f-4f14-a44c-7e098ecbc980",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"providerName\": \"CloudTrail\",\n    \"title\": \"Cloud Trail\",\n    \"description\": \"AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With Armor's CloudTrail integration, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure.\",\n    \"imageName\": \"CLOUD_TRAIL.IMG\",\n    \"isConnected\": true,\n    \"category\": null,\n    \"configureUri\": null,\n    \"logSourceTypeId\": 0\n  },\n  {\n    \"providerName\": \"Fortinet\",\n    \"title\": \"Fortiweb WAF\",\n    \"description\": \"The Fortiweb WAF integrates with Armor to provide a turnkey cloud-based web application firewall solution that leverages the power of our Spartan threat prevention and response platform to protect your web applications 24/7 from common web exploits that could affect application availability, compromise security, or consume excessive resources. Help secure your web app against OWASP Top 10 attacks.\",\n    \"imageName\": \"vendors-fortiweb.svg\",\n    \"isConnected\": true,\n    \"category\": null,\n    \"configureUri\": null,\n    \"logSourceTypeId\": 0\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6f31c655-e431-441b-b38e-c57b6a9e2087",
+          "name": "Create/Connetor Request Publish to IMS ticket.",
+          "request": {
+            "name": "Create/Connetor Request Publish to IMS ticket.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logsources",
+                "connector-request"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sourceVendor",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f154eb2c-e549-4304-bc40-c5b987a7735e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "connector-request"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "2"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "userId",
+                      "value": "2002"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sourceName",
+                      "value": "EC2"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "sourceVendor",
+                      "value": "Amazon Web Services"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "87299bb6-e159-4649-942c-482f64db1561",
+          "name": "Retrieve log insight notification for the logged-in account",
+          "request": {
+            "name": "Retrieve log insight notification for the logged-in account",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logsources",
+                "log-insight",
+                "notification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b11c15d-4e7e-4745-ac56-370a31a5a763",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "log-insight",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "false",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bdf7c58-494d-44a1-9337-3b316beb43f7",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "log-insight",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dee46fc5-55c5-439b-98ed-07204f36dbd8",
+          "name": "create/update log insight notification for the logged-in account",
+          "request": {
+            "name": "create/update log insight notification for the logged-in account",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logsources",
+                "log-insight",
+                "notification"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "b"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "o"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "o"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "l"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "e"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "a"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": "n"
+                },
+                {
+                  "disabled": false,
+                  "key": "8",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9009e57a-b48e-4220-9324-f35e458d7d44",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "log-insight",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "0",
+                      "value": "<"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "1",
+                      "value": "b"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "2",
+                      "value": "o"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "3",
+                      "value": "o"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "4",
+                      "value": "l"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "5",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "6",
+                      "value": "a"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "7",
+                      "value": "n"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "8",
+                      "value": ">"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0add4069-9aba-4627-9f8c-28eff8c92fa9",
+              "name": "Invalid Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "log-insight",
+                    "notification"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "0",
+                      "value": "<"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "1",
+                      "value": "b"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "2",
+                      "value": "o"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "3",
+                      "value": "o"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "4",
+                      "value": "l"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "5",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "6",
+                      "value": "a"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "7",
+                      "value": "n"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "8",
+                      "value": ">"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2c38eea-22cc-45f0-abf6-8448f94f48ff",
+          "name": "Retrieve log insight overview for the logged-in account",
+          "request": {
+            "name": "Retrieve log insight overview for the logged-in account",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "logsources",
+                "loginsight-overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da68e485-266c-4dab-9a5b-969de5a13fcb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "logsources",
+                    "loginsight-overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalLogStorage\": 0.04,\n  \"totalLogStorageInBytes\": 40000,\n  \"totalLogStorageUnit\": \"MB\",\n  \"armorAgentLogStorage\": 0,\n  \"armorAgentLogStorageInBytes\": 0,\n  \"logsAndDataManagementLogStorage\": 0,\n  \"logsAndDataManagementLogStorageInBytes\": 0,\n  \"armorAgentLogStorageUnit\": null,\n  \"logsAndDataManagementLogStorageUnit\": null,\n  \"logRetentionDays\": 90,\n  \"connectedSources\": 3\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2b199d9-28c2-4faa-8b70-9467fed6726f",
+          "name": "Return Log Utilization for last week",
+          "request": {
+            "name": "Return Log Utilization for last week",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "log-storage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "02fd3a78-4caf-428a-b394-0fee30c92d88",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-storage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"day\": \"2026-02-12T00:00:00Z\",\n    \"logSize\": 22222,\n    \"armrorAgentLogSize\": 0,\n    \"logsAndDataManagementLogSize\": 0,\n    \"logSizeGb\": 0,\n    \"armrorAgentLogSizeGb\": 0,\n    \"logsAndDataManagementLogSizeGb\": 0\n  },\n  {\n    \"day\": \"2026-02-11T00:00:00Z\",\n    \"logSize\": 3333,\n    \"armrorAgentLogSize\": 0,\n    \"logsAndDataManagementLogSize\": 0,\n    \"logSizeGb\": 0,\n    \"armrorAgentLogSizeGb\": 0,\n    \"logsAndDataManagementLogSizeGb\": 0\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea8864a0-010c-40a6-9f38-180b31ead1de",
+          "name": "Return Log Utilization for last 6 months on monthly basis with projection",
+          "request": {
+            "name": "Return Log Utilization for last 6 months on monthly basis with projection",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "log-storage-totals"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a697810-8c5f-4493-8295-3fec192c47ef",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "log-storage-totals"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"totalLogUsage\": 114555,\n    \"usageDate\": \"0001-01-01T00:00:00\",\n    \"totalLogUsageInGb\": 0,\n    \"label\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4bfc2e4-c6ff-48b3-a4ef-99db02fd55e8",
+          "name": "Retrieve product lists for log management",
+          "request": {
+            "name": "Retrieve product lists for log management",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "products",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) id of product to retrieve product catalog details"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0a5a3c1e-0c1f-40ea-81c6-3545974752ba",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "products",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) id of product to retrieve product catalog details"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1120,\n    \"name\": \"Log Management 13-month Retention\",\n    \"description\": \"Increased log retention duration to 13 months for Armor Complete\",\n    \"planRate\": 100,\n    \"sku\": \"LOG-MGMT-COMPLIANCE\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5eddb5d0-c0e4-41f5-a005-60f309cffaef",
+          "name": "Upgrade/Downgrade OS logging retention plan for a host.\n            The initial VM created with logging set to 90 days; and can be upgraded to 13 months; or reset back.\n            LogRetentionType: Days90, Months13. Null or Invalid values will default to Months13.",
+          "request": {
+            "name": "Upgrade/Downgrade OS logging retention plan for a host.\n            The initial VM created with logging set to 90 days; and can be upgraded to 13 months; or reset back.\n            LogRetentionType: Days90, Months13. Null or Invalid values will default to Months13.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "retentionplan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "coreInstanceId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "vmId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "retentionType",
+                  "value": "<integer>",
+                  "description": "Log Retention type. Default value is 13 months since the feature initial design is for upgrade from the default 90 days."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "db875473-9af9-4f5c-bb4a-5e2565e4aaed",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "retentionplan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "coreInstanceId",
+                      "value": "57c48819-9390-4f01-9257-5fc766591c61"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "vmId",
+                      "value": "0"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Log Retention type. Default value is 13 months since the feature initial design is for upgrade from the default 90 days.",
+                        "type": "text/plain"
+                      },
+                      "key": "retentionType",
+                      "value": "1"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1a796ae-076b-4308-8449-d3b546770c90",
+          "name": "Update Retention Type for the logged-in Account User.",
+          "request": {
+            "name": "Update Retention Type for the logged-in Account User.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "update-logretentionplan"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "accountLogRetentionType",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "retainLast30DaysData",
+                  "value": "<boolean>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f6b16615-2718-48e9-9637-c8b627429d52",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "update-logretentionplan"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "accountLogRetentionType",
+                      "value": "90"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "retainLast30DaysData",
+                      "value": "true"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dd75dab3-25e4-4857-ace3-1e2857628b27",
+          "name": "Retrieve OS Logging details for a host.",
+          "request": {
+            "name": "Retrieve OS Logging details for a host.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-management",
+                "vms",
+                ":coreInstanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "coreInstanceId",
+                  "description": "(Required) GUID for agent CORE instance id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "958c8153-0c63-4165-9d4a-1923330f04b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-management",
+                    "vms",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) GUID for agent CORE instance id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"coreInstanceId\": \"e5f680b7-df73-4a66-829a-50af5d6c21e7\",\n  \"vmName\": \"Windows\",\n  \"lastLogDate\": \"2015-10-05T15:49:15\",\n  \"vmProvider\": \"Armor Complete\",\n  \"vmProviderFullName\": null,\n  \"os\": \"Microsoft Windows Server 2012 R2 Standard\",\n  \"vmLocation\": null,\n  \"logRetentionPlan\": \"90 days\",\n  \"logSize\": \"7200388\",\n  \"logSeverity\": 4,\n  \"logApiUrl\": \"https://api.armor.com\",\n  \"agentStatus\": \"Offline\",\n  \"profileName\": null,\n  \"id\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "931ba40a-8042-4bd4-94bc-9c6446c214d1",
+          "name": "Retrieve list of security log events.",
+          "request": {
+            "name": "Retrieve list of security log events.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-search",
+                "templatedsearch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "viewName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8a6236f0-74a5-4d2e-8a9c-645a928c1665",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-search",
+                    "templatedsearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "viewName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_2",
+                      "value": "{}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 154,\n  \"items\": [\n    {\n      \"id\": \"AWTp1uZU9MdXCx948D41\",\n      \"description\": \"When scanned the File had the following attributes: Permissions: user::rw- group::r-- other::r--\\\\n\",\n      \"changeType\": \"created\",\n      \"timestamp\": \"2015-01-05T00:38:23+00:00\",\n      \"filename\": \"/var/log/unattended-upgrades/unattended-upgrades.log.2.gz\"\n    }\n  ],\n  \"filterOptions\": {\n    \"change Types\": [\n      \"created\",\n      \"updated\",\n      \"deleted\",\n      \"renamed\"\n    ]\n  },\n  \"aggregations\": {\n    \"lasttimestamp\": {\n      \"value\": 1483576703000,\n      \"valueAsString\": null,\n      \"meta\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6ef58dd-0bfa-406d-b852-bf4da06157f1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-search",
+                    "templatedsearch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "viewName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_2",
+                      "value": "{}"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fa3fa0c-a7c2-4fd0-b84a-616ae31f4477",
+          "name": "Deprecated Retrieve list of security log events.",
+          "request": {
+            "name": "Deprecated Retrieve list of security log events.",
+            "description": {},
+            "url": {
+              "path": [
+                "log-search",
+                "templatedsearch",
+                "deprecated"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "viewName",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "{}"
+                },
+                {
+                  "disabled": false,
+                  "key": "key_1",
+                  "value": "{}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bd22bfd4-dda5-4f32-9902-4cec74d9158e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-search",
+                    "templatedsearch",
+                    "deprecated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "viewName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_2",
+                      "value": "{}"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 154,\n  \"items\": [\n    {\n      \"id\": \"AWTp1uZU9MdXCx948D41\",\n      \"description\": \"When scanned the File had the following attributes: Permissions: user::rw- group::r-- other::r--\\\\n\",\n      \"changeType\": \"created\",\n      \"timestamp\": \"2015-01-05T00:38:23+00:00\",\n      \"filename\": \"/var/log/unattended-upgrades/unattended-upgrades.log.2.gz\"\n    }\n  ],\n  \"filterOptions\": {\n    \"change Types\": [\n      \"created\",\n      \"updated\",\n      \"deleted\",\n      \"renamed\"\n    ]\n  },\n  \"aggregations\": {\n    \"lasttimestamp\": {\n      \"value\": 1483576703000,\n      \"valueAsString\": null,\n      \"meta\": {}\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e9e9924-ee82-4dd5-b9b8-c0c6ec2c22f3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "log-search",
+                    "templatedsearch",
+                    "deprecated"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "viewName",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_0",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_1",
+                      "value": "{}"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "key_2",
+                      "value": "{}"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6dac2b95-75d2-4145-958a-5199362f7d42",
+          "name": "Time Series Get Data Points Async",
+          "request": {
+            "name": "Time Series Get Data Points Async",
+            "description": {},
+            "url": {
+              "path": [
+                "stats",
+                "security",
+                "time-series"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "series",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "series",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "useCache",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dc6e1d82-2c66-4a4c-bd2c-9c885e0c343f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "security",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "useCache",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"time_Series_1\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 6.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 8.5\n    }\n  ],\n  \"time_Series_2\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 7.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 9.5\n    }\n  ],\n  \"time_Series_3\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 8.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 10.5\n    }\n  ],\n  \"time_Series_4\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 9.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 11.5\n    }\n  ],\n  \"time_Series_5\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 10.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 12.5\n    }\n  ],\n  \"time_Series_6\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 11.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 13.5\n    }\n  ],\n  \"time_Series_7\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 12.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 14.5\n    }\n  ],\n  \"time_Series_8\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 13.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 15.5\n    }\n  ],\n  \"time_Series_9\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 14.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 16.5\n    }\n  ],\n  \"time_Series_10\": [\n    {\n      \"t\": \"2017-09-01T00:00:00\",\n      \"v\": 15.5\n    },\n    {\n      \"t\": \"2017-09-02T00:00:00\",\n      \"v\": 17.5\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a74d63d-f6c5-46b8-8789-fc9ae5eb2ce1",
+              "name": "Time Series name is null or empty",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "security",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "useCache",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2d3a56a-026c-487f-b90b-ce53cf2a6d93",
+              "name": "Request failed due to server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats",
+                    "security",
+                    "time-series"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "series",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "useCache",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "27287b83-59d1-4b0d-829e-13c5ec251b31",
+    "name": "Armor Services Security API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

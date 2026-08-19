@@ -1,0 +1,103 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Security Incidents API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Security Incidents
+paths:
+  /security-incidents:
+    get:
+      tags:
+      - Security Incidents
+      operationId: SecurityIncidents_GetSecurityIncidents
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.SecurityIncidents.Models.SecurityIncident%5D'
+              example:
+                total: 3
+                page: 1
+                items:
+                - ticketNumber: IMS-1
+                  ticketSummary: Test Ticket 1
+                  ticketPriority: '1'
+                  ticketStatus: Waiting For Support
+                  createdDate: '2026-02-12T16:26:00.1698072+00:00'
+                  enabled: true
+                  ticketLink: null
+                - ticketNumber: IMS-2
+                  ticketSummary: Test Ticket 2
+                  ticketPriority: '0'
+                  ticketStatus: Waiting For Customer Action
+                  createdDate: '2026-02-12T16:26:00.1698072+00:00'
+                  enabled: true
+                  ticketLink: null
+                - ticketNumber: IMS-3
+                  ticketSummary: Test Ticket 3
+                  ticketPriority: '2'
+                  ticketStatus: Resolved
+                  createdDate: '2026-02-12T16:26:00.1698072+00:00'
+                  enabled: false
+                  ticketLink: null
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.SecurityIncidents.Models.SecurityIncident%5D'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /security-incidents/severity-count:
+    get:
+      tags:
+      - Security Incidents
+      operationId: SecurityIncidents_GetSecurityIncidentsSeverityCount
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityIncidents.Models.OpenSecurityIncidentStats'
+              example:
+                totalCriticalStatus: 10
+                totalHighStatus: 10
+                totalMediumStatus: 10
+                totalLowStatus: 10
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityIncidents.Models.OpenSecurityIncidentStats'
+        '400':
+          description: Bad Request
+      deprecated: false
+components:
+  schemas:
+    FireHost.Infrastructure.SecurityIncidents.Models.OpenSecurityIncidentStats:
+      type: object
+      properties:
+        totalCriticalStatus:
+          format: int32
+          type: integer
+        totalHighStatus:
+          format: int32
+          type: integer
+        totalMediumStatus:
+          format: int32
+          type: integer
+        totalLowStatus:
+          format: int32
+          type: integer
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

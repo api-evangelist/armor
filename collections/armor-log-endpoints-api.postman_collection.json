@@ -1,0 +1,245 @@
+{
+  "item": [
+    {
+      "id": "47900285-1b13-493f-9e42-c3e7f1c645a4",
+      "name": "Log Endpoints",
+      "description": {
+        "content": "Operations for managing log endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bfb90360-612c-44b5-863a-a65bf271b244",
+          "name": "Get all log endpoints",
+          "request": {
+            "name": "Get all log endpoints",
+            "description": {
+              "content": "Get a list of log endpoints.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "endpoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93651a4f-d29b-426e-aca6-dbf333f60d8d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "endpoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"endpointId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"hostname\": \"string\",\n    \"publicIp\": \"string\",\n    \"privateIp\": null,\n    \"softwareVersion\": \"string\",\n    \"state\": \"Online\",\n    \"version\": 6315,\n    \"lastEventDate\": null,\n    \"createdDate\": \"1947-03-31T10:57:52.512Z\",\n    \"createdByUserId\": 9624,\n    \"modifiedDate\": \"2024-12-30T11:11:26.486Z\",\n    \"modifiedByUserId\": 2275\n  },\n  {\n    \"endpointId\": \"550e8400-e29b-41d4-a716-446655440000\",\n    \"hostname\": \"string\",\n    \"publicIp\": \"string\",\n    \"privateIp\": \"string\",\n    \"softwareVersion\": \"string\",\n    \"state\": \"Deleting\",\n    \"version\": 9966,\n    \"lastEventDate\": \"1950-11-25T04:25:39.033Z\",\n    \"createdDate\": \"1951-07-07T10:50:46.724Z\",\n    \"createdByUserId\": 3973,\n    \"modifiedDate\": \"1953-04-14T10:45:15.381Z\",\n    \"modifiedByUserId\": 2912\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "344aea8b-a56a-4c04-ae10-f5582421a064",
+          "name": "Allocate an endpoint",
+          "request": {
+            "name": "Allocate an endpoint",
+            "description": {
+              "content": "Request allocation of an Armor-managed endpoint.\n\nThis action assigns an Armor-managed endpoint and port range that can be used to send logs\nthat need to be collected. The endpoint will be assigned to the org specified in the bearer token.\n\nA response of 200 means the allocation already existed and no action was taken.\nA response of 201 means the allocation was successfully performed.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "logs",
+                "endpoints",
+                "actions",
+                "allocate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ba0c0c6-8a0e-41ef-a714-b3385fa4aaa3",
+              "name": "Allocation already existed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "endpoints",
+                    "actions",
+                    "allocate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c103f260-86f5-401b-90a9-2241b89b7e57",
+              "name": "Allocation successfully performed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "logs",
+                    "endpoints",
+                    "actions",
+                    "allocate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.logs.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b49dc21-3986-42dc-b008-34d8e6c6b958",
+    "name": "Armor Log Management Log Endpoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for configuring and interacting with\n[Armor's Log Management Platform](https://www.armor.com/armor-log-management/).\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

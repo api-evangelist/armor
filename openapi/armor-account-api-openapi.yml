@@ -1,0 +1,147 @@
+openapi: 3.2.0
+info:
+  title: Container Security Account API
+  description: 'This API provides an interface for configuring and interacting with Armor''s container security platform.
+
+
+    To connect to this API, use the following fully-qualified domain name (FQDN):
+
+    `compliance.api.secure-prod.services/containers`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://compliance.api.secure-dev.services/containers
+  description: Development
+- url: https://compliance.api.secure-stage.services/containers
+  description: Staging
+- url: https://compliance.api.secure-prod.services/containers
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Account
+  description: Account management operations
+paths:
+  /accounts:
+    get:
+      tags:
+      - Account
+      summary: Get Account-Specific Installation Details
+      description: Returns metadata used for managing your container security subscription.
+      operationId: getAccountDetails
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountDetailsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Account
+      summary: Create Subscription
+      description: Newly-subscribe your account to begin using container security.
+      operationId: createSubscription
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '202':
+          description: Subscription creation accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContainerSecurityAccountCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  schemas:
+    AccountDetailsResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
+        customerId:
+          type: string
+          description: Account-specific unique identifier, auto-generated based on your subscription
+        activationId:
+          type: string
+          description: Activation Id for the container sensor, auto-generated based on your subscription. This value is like a password and should not be shared
+        platformUrl:
+          type: string
+          description: URL used to install the container sensor within Docker Hub. Not used for other supported container registry vendors
+        sensorFile:
+          type: string
+          description: URL for downloading the most-current container sensor installation package
+        status:
+          type: string
+          description: Status of the account (Processing/Active/Error)
+        supportTicketNo:
+          type: string
+          description: Reference to Armor Ticketing System (ATS) issue used to track container security subscription setup to completion
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ContainerSecurityAccountCreateResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

@@ -1,0 +1,2856 @@
+{
+  "item": [
+    {
+      "id": "e16a7836-5bbb-439d-acb7-58421a687e89",
+      "name": "Support",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "945b1ed9-15f4-4517-8216-f4e2066d2eb1",
+          "name": "Get ticket comments for given issueKeyId",
+          "request": {
+            "name": "Get ticket comments for given issueKeyId",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":issueKeyId",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>",
+                  "description": "Start Index of the comment"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "No of record need to returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Result will be sorted based on this column"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOrder",
+                  "value": "<string>",
+                  "description": "Sort order: ASC-Ascending, DESC- Descending"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKeyId",
+                  "description": "(Required) Ticket number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbd7fc93-deee-45a5-b666-cfe06c957958",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) Ticket number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"creator\": null,\n  \"comment\": null,\n  \"createdDate\": \"0001-01-01T00:00:00\",\n  \"visibility\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "09d54a3b-8953-4a2c-8ce4-fa65faad8696",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOrder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) Ticket number"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8f2d46f-b2e5-4ec3-9167-7309de05d84f",
+          "name": "Add comment to a JSD ticket",
+          "request": {
+            "name": "Add comment to a JSD ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":issueKeyId",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKeyId",
+                  "description": "(Required) ID of ticket e.g ATS-123"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            }
+          },
+          "response": [
+            {
+              "id": "191e5494-bd52-4ae9-b35a-97fd23866fc8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of ticket e.g ATS-123"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "comment",
+                      "value": "sample comment text"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPublic",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "issueKeyId",
+                      "value": "ATS-360"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c6779b05-345f-4b64-abb4-70665d50fda4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of ticket e.g ATS-123"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "comment",
+                      "value": "sample comment text"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "isPublic",
+                      "value": "false"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "issueKeyId",
+                      "value": "ATS-360"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "02f5b882-836a-4c2d-a03a-a441a226b78d",
+          "name": "Get Ticket Details",
+          "request": {
+            "name": "Get Ticket Details",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":issueKeyId",
+                "details"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKeyId",
+                  "description": "(Required) ID of the ticket, e.g. ATS-123"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57fd3ba5-c096-47d0-a3dd-491ff4a8fc74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"issueKeyId\": \"ATS-1234\",\n  \"summary\": \"Example ticket summery\",\n  \"description\": \"Example Description\",\n  \"assignee\": {\n    \"displayName\": \"Assignee L.\"\n  },\n  \"reporter\": {\n    \"displayName\": \"Reporter L.\"\n  },\n  \"participants\": [\n    {\n      \"displayName\": \"First L.\"\n    },\n    {\n      \"displayName\": \"User2 L.\"\n    }\n  ],\n  \"organizations\": [\n    {\n      \"id\": 1234,\n      \"name\": \"Org Name\"\n    },\n    {\n      \"id\": 4567,\n      \"name\": \"Org2 Name\"\n    }\n  ],\n  \"currentStatus\": {\n    \"name\": \"Pending\",\n    \"id\": 1234\n  },\n  \"requestType\": {\n    \"id\": 123,\n    \"name\": \"Example RequestType\",\n    \"description\": \"Example Description\"\n  },\n  \"createdDate\": \"2026-02-12T16:26:01.006512+00:00\",\n  \"transitions\": [\n    {\n      \"fromStatusId\": \"10000\",\n      \"fromStatusString\": \"Pending\",\n      \"toStatusId\": \"3\",\n      \"toStatusString\": \"Pending\",\n      \"statusDate\": \"2026-02-12T16:26:01.006512+00:00\"\n    },\n    {\n      \"fromStatusId\": \"10001\",\n      \"fromStatusString\": \"Waiting for support\",\n      \"toStatusId\": \"3\",\n      \"toStatusString\": \"In Progress\",\n      \"statusDate\": \"2026-02-12T16:26:01.006512+00:00\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b92b16c9-636f-48f6-98c2-d370b4febc97",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5da23a9-bf93-4d7d-8c8a-b87037f4e5c0",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "details"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58e508aa-71bc-428a-bece-065c53f9937a",
+          "name": "Gets Available transition statuses for given ticket",
+          "request": {
+            "name": "Gets Available transition statuses for given ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":issueKeyId",
+                "transition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKeyId",
+                  "description": "(Required) ID of the ticket, e.g. ATS-123"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88444e72-15bc-493e-b93c-ef60bbc4644f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "transition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 123,\n    \"name\": \"Pending\"\n  },\n  {\n    \"id\": 456,\n    \"name\": \"Escalate\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "883631be-db57-4948-a72b-4bc375a365cb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "transition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c872b07-e8ed-4000-845a-61e873401971",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "transition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2287aa51-3255-4773-9175-ca2d45fa5f69",
+          "name": "Transition status for ticket in question and add optional comment",
+          "request": {
+            "name": "Transition status for ticket in question and add optional comment",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":issueKeyId",
+                "transition"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKeyId",
+                  "description": "(Required) ID of the ticket, e.g. ATS-123"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "ticketNumber",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "comment",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1a67b7f5-25ab-42b5-90bb-1abe92bc4c67",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "transition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "ticketNumber",
+                      "value": "ATS-123"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "comment",
+                      "value": "Optional Comment"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "62b3650d-2b03-473d-8ab1-7aada8546514",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":issueKeyId",
+                    "transition"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKeyId",
+                      "description": "(Required) ID of the ticket, e.g. ATS-123"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "ticketNumber",
+                      "value": "ATS-123"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "comment",
+                      "value": "Optional Comment"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42f51d25-a115-43be-8528-f90dc31f2837",
+          "name": "(Archive Only) Retrieve the details for a given ticket.",
+          "request": {
+            "name": "(Archive Only) Retrieve the details for a given ticket.",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":ticketNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticketNumber",
+                  "description": "(Required) Ticket number"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fa6df4f-20ac-4210-b04f-ebea3fd5ff7b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticketNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketNumber",
+                      "description": "(Required) Ticket number"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tags\": [\n    \"Tag\"\n  ],\n  \"comments\": [\n    {\n      \"id\": \"152b0e33-f7a6-418f-8185-0a11c3ff11af\",\n      \"text\": \"Please check the VM\",\n      \"commentorId\": \"f9153914-9e29-42f0-9101-9b31fa4df6eb\",\n      \"commentorDisplayName\": \"Jason S.\",\n      \"isArmor\": true,\n      \"date\": \"2015-01-06T22:33:27.683\",\n      \"isPublic\": true,\n      \"attachments\": [],\n      \"feedback\": 0,\n      \"reason\": 0,\n      \"read\": false\n    }\n  ],\n  \"recipients\": [\n    {\n      \"id\": 2369,\n      \"firstName\": \"John\",\n      \"lastName\": \"Smith\",\n      \"emailAddress\": \"john.smith@armor.com\",\n      \"account\": false,\n      \"billing\": false,\n      \"technical\": false,\n      \"partner\": false\n    }\n  ],\n  \"relatedServers\": [],\n  \"relatedTickets\": [],\n  \"ticketNumber\": 1475,\n  \"title\": \"Ticket\",\n  \"type\": \"ticket\",\n  \"status\": \"Open\",\n  \"isClosed\": false,\n  \"priority\": 0,\n  \"sensitivity\": null,\n  \"dateCreated\": \"2015-01-06T22:33:27.4\",\n  \"dateModified\": \"2015-01-06T22:33:27.4\",\n  \"createdByUserId\": 2369,\n  \"lastResponderName\": \"Jason Smith\",\n  \"lastResponderDisplayName\": \"Jason Smith\",\n  \"isArmor\": false,\n  \"lastResponderExcerpt\": \"Please check this VM\",\n  \"lastResponseDate\": \"2015-01-06T22:33:27.683\",\n  \"starred\": false,\n  \"read\": false,\n  \"userRating\": 0,\n  \"requestType\": null,\n  \"device\": null,\n  \"account\": null,\n  \"tactics\": null,\n  \"techniques\": null,\n  \"reporter\": null,\n  \"issueKey\": null,\n  \"customerTicketUrl\": null,\n  \"jiraServerApiIssueUrl\": null,\n  \"jiraServiceDeskApiIssueUrl\": null,\n  \"queue\": null,\n  \"description\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b6e5c7f-945e-4853-bc98-f27dbbf3e8d3",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticketNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketNumber",
+                      "description": "(Required) Ticket number"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f76c8cb-e53d-484c-8531-8ac273168d4f",
+          "name": "(Archive Only) Return an attachment associated with ticket.",
+          "request": {
+            "name": "(Archive Only) Return an attachment associated with ticket.",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                ":ticketNumber",
+                "attachments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "ticketNumber",
+                  "description": "(Required) Ticket number"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fe5a6ab-3473-4ab0-bf63-e0b0f979e08e",
+              "name": "Downloads the attachment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    ":ticketNumber",
+                    "attachments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "ticketNumber",
+                      "description": "(Required) Ticket number"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75e92349-e489-4daf-b83d-05aa3d6ca609",
+          "name": "(Archive Only) Return the count of all the tickets on the account.",
+          "request": {
+            "name": "(Archive Only) Return the count of all the tickets on the account.",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "count"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5fc73f6c-c430-4737-a73a-168d2abcafaf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "count"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "6021",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4da4dc9-ab71-43e5-90ea-3d2adef9c087",
+          "name": "(Archive Only) Return a list of support tickets entries.",
+          "request": {
+            "name": "(Archive Only) Return a list of support tickets entries.",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "entries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "<integer>",
+                  "description": "Pagination parameter combined with pageSize will allow for paging results"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>",
+                  "description": "Max of results per query String required"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Query string to filter text server side"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortField",
+                  "value": "<string>",
+                  "description": "Query string to sort by field server side [DateModified]"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "<string>",
+                  "description": "Query string to sort direction server side"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterStatus",
+                  "value": "<string>",
+                  "description": "Query string to filter status server side"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterStarred",
+                  "value": "<string>",
+                  "description": "Query string to filter starred server side"
+                },
+                {
+                  "disabled": false,
+                  "key": "filterType",
+                  "value": "<string>",
+                  "description": "Query string to filter type server side"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d07a2958-fed8-44ce-b74d-6ae88437100d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterStarred",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1,\n  \"ticketsList\": [\n    {\n      \"ticketNumber\": 1475,\n      \"title\": \"Ticket\",\n      \"type\": \"ticket\",\n      \"status\": \"Open\",\n      \"isClosed\": false,\n      \"priority\": 0,\n      \"sensitivity\": null,\n      \"dateCreated\": \"2015-01-06T22:33:27.4\",\n      \"dateModified\": \"2015-01-06T22:33:27.4\",\n      \"createdByUserId\": 0,\n      \"lastResponderName\": \"Jason Smith\",\n      \"lastResponderDisplayName\": \"Jason Smith\",\n      \"isArmor\": false,\n      \"lastResponderExcerpt\": \"Please review VM\",\n      \"lastResponseDate\": null,\n      \"starred\": false,\n      \"read\": true,\n      \"userRating\": 0,\n      \"requestType\": null,\n      \"device\": null,\n      \"account\": null,\n      \"tactics\": null,\n      \"techniques\": null,\n      \"reporter\": null,\n      \"issueKey\": null,\n      \"customerTicketUrl\": null,\n      \"jiraServerApiIssueUrl\": null,\n      \"jiraServiceDeskApiIssueUrl\": null,\n      \"queue\": null,\n      \"description\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b061b27c-63c6-4d66-ac83-b02b48ff37a2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "entries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "searchText",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortField",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterStarred",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "filterType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d67c9304-dcb9-441c-826f-786531e777de",
+          "name": "Return ticketing organizations for an individual account",
+          "request": {
+            "name": "Return ticketing organizations for an individual account",
+            "description": {
+              "content": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=admin<br /><br /><strong>$orderby (optional):</strong> order by column name (Name, NoOfMembers, Modified). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=Name%20desc",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tickets",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8e8f93c-774d-4eca-84cf-5ad7f53e6017",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2,\n  \"page\": 1,\n  \"items\": [\n    {\n      \"id\": 41081,\n      \"name\": \"Administrative\",\n      \"noOfMembers\": 5,\n      \"modified\": \"2019-01-06T22:33:27.4\",\n      \"organizationId\": 15\n    },\n    {\n      \"id\": 41103,\n      \"name\": \"Billing\",\n      \"noOfMembers\": 7,\n      \"modified\": \"2018-01-08T22:33:23.4\",\n      \"organizationId\": 38\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8580668c-c70d-41e7-97c1-0e327407ae39",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07c6f2b3-1ed3-4308-a796-ce6bb762eb4c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "247d39c0-df19-4c5e-9836-210ffb865986",
+          "name": "Remove individual user from a specific ticketing organization",
+          "request": {
+            "name": "Remove individual user from a specific ticketing organization",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "groups",
+                ":id",
+                "member",
+                ":userId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of ticket group"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "userId",
+                  "description": "(Required) User ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4562f862-6f69-4d6d-8ab4-d85941d90829",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "member",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of ticket group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "true",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6b92c81-ff77-47f5-9944-eea4076bdd6b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "member",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of ticket group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db5b6a18-7eb4-4a3e-99d2-74a400e63b32",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "member",
+                    ":userId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of ticket group"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "userId",
+                      "description": "(Required) User ID"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "099e15d5-dfdd-4fa5-8769-5040687ec734",
+          "name": "Return members of a specific ticketing organization",
+          "request": {
+            "name": "Return members of a specific ticketing organization",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "groups",
+                ":id",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) ID of Ticket Group"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12397bf6-b6e9-4d2e-a32f-0d94bfe4b1cd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of Ticket Group"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"ticketGroupId\": 5851,\n    \"userId\": 2,\n    \"organizationId\": 4137,\n    \"firstname\": \"Addison\",\n    \"lastName\": \"Smith\",\n    \"email\": \"addison.smith@armor.com\",\n    \"createdBy\": \"system\",\n    \"createdDate\": \"2018-01-01T00:00:00\",\n    \"ticketingOrganizationName\": \"Security\"\n  },\n  {\n    \"id\": 2,\n    \"ticketGroupId\": 5851,\n    \"userId\": 3,\n    \"organizationId\": 4137,\n    \"firstname\": \"Robert\",\n    \"lastName\": \"Smith\",\n    \"email\": \"robert.smith@armor.com\",\n    \"createdBy\": \"system\",\n    \"createdDate\": \"2018-02-01T00:00:00\",\n    \"ticketingOrganizationName\": \"Technical\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f33314b-4f75-439e-9f52-ca545ec33844",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of Ticket Group"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7ef31149-cc75-41dd-a016-d83649442ffc",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    ":id",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) ID of Ticket Group"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b22f9a9-2da7-488c-a4ab-e80313b49e40",
+          "name": "Add individual user to a specific ticketing organization",
+          "request": {
+            "name": "Add individual user to a specific ticketing organization",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "groups",
+                "member"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "ticketGroupId",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "userId",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "52545209-9254-48dd-9aa3-16396ad85d9f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ticketGroupId",
+                      "value": "3"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "userId",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 7,\n  \"ticketGroupId\": 28,\n  \"userId\": 2,\n  \"organizationId\": 300,\n  \"firstname\": \"Sample firstname\",\n  \"lastName\": \"Sample lastname\",\n  \"email\": \"sample.name@xyz.com\",\n  \"createdBy\": \"Sample user\",\n  \"createdDate\": \"2019-01-06T22:33:27.4\",\n  \"ticketingOrganizationName\": \"Sample organization (1) - Billing\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f0d3624-2d1c-4c44-82be-974a793b8e04",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ticketGroupId",
+                      "value": "3"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "userId",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1f916223-03a1-41d1-8d82-599a9dcd8dc2",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "groups",
+                    "member"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "accountId",
+                      "value": "1"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "ticketGroupId",
+                      "value": "3"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "userId",
+                      "value": "2"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5e05478-f478-4613-b8d7-d36177fce82e",
+          "name": "Returns all tickets accessible by the calling user",
+          "request": {
+            "name": "Returns all tickets accessible by the calling user",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestType",
+                  "value": "<string>",
+                  "description": "Limit results based on specified customer request type"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Fields to order by, i.e. key, status, or summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "<string>",
+                  "description": "The token for a page to fetch that is not the first page. The nextPageToken will be null for the first page. Use the nextPageToken to fetch the next page of issues"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderByDirection",
+                  "value": "<integer>",
+                  "description": "Order by direction enum, i.e. Ascending / Asc (0) or Descending / Desc (1)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a26abad-dff7-4897-9931-ed2c1ecfdb78",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": null,\n  \"maxResults\": 0,\n  \"total\": 2,\n  \"items\": [\n    {\n      \"issueKeyId\": \"ATS-1234\",\n      \"summary\": \"Summary 1\",\n      \"currentStatus\": \"In Progress\",\n      \"requestType\": {\n        \"id\": 123,\n        \"name\": \"Example name\",\n        \"description\": \"example description\"\n      },\n      \"reporter\": null,\n      \"assignee\": null\n    },\n    {\n      \"issueKeyId\": \"ATS-5678\",\n      \"summary\": \"Summary 2\",\n      \"currentStatus\": \"Closed\",\n      \"requestType\": {\n        \"id\": 456,\n        \"name\": \"Example2 name\",\n        \"description\": \"example2 description\"\n      },\n      \"reporter\": null,\n      \"assignee\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4fcd520-70f6-4a18-9edc-94f929ef9946",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "61e5e367-d21e-43da-8b39-c890abd1df97",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b3265c6-c880-47d3-bc66-143028912318",
+          "name": "Returns all tickets regardless of the calling user",
+          "request": {
+            "name": "Returns all tickets regardless of the calling user",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "list-all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "requestType",
+                  "value": "<string>",
+                  "description": "Limit results based on specified customer request type"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxResults",
+                  "value": "<integer>",
+                  "description": "Maximum number of results to return per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderBy",
+                  "value": "<string>",
+                  "description": "Fields to order by, i.e. key, status, or summary"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextPageToken",
+                  "value": "<string>",
+                  "description": "The token for a page to fetch that is not the first page. The nextPageToken will be null for the first page. Use the nextPageToken to fetch the next page of issues"
+                },
+                {
+                  "disabled": false,
+                  "key": "orderByDirection",
+                  "value": "<integer>",
+                  "description": "Order by direction enum, i.e. Ascending / Asc (0) or Descending / Desc (1)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da1ddcee-afca-4318-8229-553c22d77bec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"nextPageToken\": null,\n  \"maxResults\": 0,\n  \"total\": 2,\n  \"items\": [\n    {\n      \"issueKeyId\": \"ATS-1234\",\n      \"summary\": \"Summary 1\",\n      \"currentStatus\": \"In Progress\",\n      \"requestType\": {\n        \"id\": 123,\n        \"name\": \"Example name\",\n        \"description\": \"example description\"\n      },\n      \"reporter\": null,\n      \"assignee\": null\n    },\n    {\n      \"issueKeyId\": \"ATS-5678\",\n      \"summary\": \"Summary 2\",\n      \"currentStatus\": \"Closed\",\n      \"requestType\": {\n        \"id\": 456,\n        \"name\": \"Example2 name\",\n        \"description\": \"example2 description\"\n      },\n      \"reporter\": null,\n      \"assignee\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13e29903-c32a-4f5c-b4fd-7b33afa46844",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e226e286-3e28-471f-b1bd-d6dd2fb74296",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "list-all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "requestType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxResults",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderBy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "nextPageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderByDirection",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "187f3740-ac3a-4160-8248-257d55dc67c4",
+          "name": "Return ticketing organizations for an individual user",
+          "request": {
+            "name": "Return ticketing organizations for an individual user",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "members",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0b4f408-c683-425e-9fef-0ed44aecea68",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "members",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"userId\": 91,\n    \"accountId\": 20,\n    \"ticketGroupTypeName\": \"Administrative\",\n    \"ticketGroupMemberId\": 31,\n    \"organizationId\": 2825\n  },\n  {\n    \"userId\": 91,\n    \"accountId\": 20,\n    \"ticketGroupTypeName\": \"Technical\",\n    \"ticketGroupMemberId\": 55,\n    \"organizationId\": 4853\n  },\n  {\n    \"userId\": 91,\n    \"accountId\": 20,\n    \"ticketGroupTypeName\": \"Billing\",\n    \"ticketGroupMemberId\": 81,\n    \"organizationId\": 2309\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10c18557-f485-427f-9515-4cb2347b55a6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "members",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3b94171a-6c51-455b-9789-f59b1ec662e7",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "members",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fbd2c88-dff6-4df9-8bea-3d7f733012a2",
+          "name": "(Archive Only) Return ticket meta-data for a list of tickets.",
+          "request": {
+            "name": "(Archive Only) Return ticket meta-data for a list of tickets.",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "meta-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3a5fcd54-8e15-4fc7-8e8f-5f5de9e486b9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "meta-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recipients\": [\n    {\n      \"id\": 2369,\n      \"firstName\": \"John\",\n      \"lastName\": \"Smith\",\n      \"emailAddress\": \"john.smith@armor.com\",\n      \"account\": false,\n      \"billing\": false,\n      \"technical\": false,\n      \"partner\": false\n    }\n  ],\n  \"tickets\": [\n    {\n      \"ticketNumber\": 1475,\n      \"title\": \"Ticket\"\n    }\n  ],\n  \"servers\": [\n    {\n      \"id\": 10297,\n      \"name\": \"sp-Ubuntu\",\n      \"hostName\": \"sp-Ubuntu\",\n      \"correlationId\": null\n    },\n    {\n      \"id\": 10298,\n      \"name\": \"sp-CentOS 6\",\n      \"hostName\": \"sp-CentOS 6\",\n      \"correlationId\": null\n    }\n  ],\n  \"tags\": [\n    \"Tag\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4badbee-3a67-4819-ba57-39cffb596839",
+          "name": "Return list of users with permissions to Armor ticketing",
+          "request": {
+            "name": "Return list of users with permissions to Armor ticketing",
+            "description": {},
+            "url": {
+              "path": [
+                "tickets",
+                "users"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "196e5e22-7bff-43d7-9d3a-9465520fbb03",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1,\n    \"accountId\": 1,\n    \"isEnabled\": true,\n    \"firstName\": \"Example FirstName1\",\n    \"lastName\": \"Example LastName1\",\n    \"email\": \"example.abc1@example.com\",\n    \"isEmployee\": false\n  },\n  {\n    \"id\": 2,\n    \"accountId\": 1,\n    \"isEnabled\": true,\n    \"firstName\": \"Example FirstName2\",\n    \"lastName\": \"Example LastName2\",\n    \"email\": \"example.abc2@example.com\",\n    \"isEmployee\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38efe070-c5ef-4cd2-be5c-c9402905b7d9",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17321b21-b151-418d-9ab9-a84e9d72bb00",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tickets",
+                    "users"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "832b0e5b-6e58-47f6-9602-de0f4c65e334",
+    "name": "Armor Services Support API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

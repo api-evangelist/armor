@@ -1,0 +1,41 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Active Response API
+servers:
+- url: https://api.armor.com
+tags:
+- name: ActiveResponse
+paths:
+  /security-analytics/active-response:
+    get:
+      tags:
+      - ActiveResponse
+      operationId: ActiveResponse_GetActiveResponse
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+components:
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

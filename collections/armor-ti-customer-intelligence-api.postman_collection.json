@@ -1,0 +1,288 @@
+{
+  "item": [
+    {
+      "id": "ad967d41-17ca-4fd4-b555-eeca178ba9b2",
+      "name": "TI - Customer Intelligence",
+      "description": {
+        "content": "Customer-specific threat intelligence",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "383d05a5-8d5b-4866-bead-054262af7714",
+          "name": "Get customer-specific threat intelligence",
+          "request": {
+            "name": "Get customer-specific threat intelligence",
+            "description": {
+              "content": "Retrieves threat intelligence tailored to a specific customer based on their\ndeployed products and vendors. Maps rules to products and queries OpenCTI for\nrelevant vulnerabilities and reports.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ti",
+                "customer-ti",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) AMP Account ID for customer identification",
+                "key": "x-account-context",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "929849c1-f0c8-4c97-9bdd-4208c90edbf6",
+              "name": "Successfully retrieved customer threat intelligence",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ti",
+                    "customer-ti",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) AMP Account ID for customer identification",
+                    "key": "x-account-context",
+                    "value": "12345-67890-abcde"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"string\",\n  \"productsAndVendors\": [\n    {\n      \"productName\": \"string\",\n      \"productVendor\": \"string\"\n    },\n    {\n      \"productName\": \"string\",\n      \"productVendor\": \"string\"\n    }\n  ],\n  \"threatIntelligence\": {\n    \"vulnerabilities\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created\": \"1972-11-26T02:58:06.989Z\",\n        \"modified\": \"1973-09-11T10:29:33.372Z\",\n        \"x_opencti_cvss_base_score\": 1.2480624933277829,\n        \"x_opencti_cvss_base_severity\": \"HIGH\"\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created\": \"1956-09-13T08:22:33.745Z\",\n        \"modified\": \"1991-11-18T07:01:10.208Z\",\n        \"x_opencti_cvss_base_score\": 8.272907042716955,\n        \"x_opencti_cvss_base_severity\": \"CRITICAL\"\n      }\n    ],\n    \"reports\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created\": \"2003-01-11T16:35:02.652Z\",\n        \"modified\": \"2008-12-02T19:12:24.752Z\",\n        \"published\": \"2023-06-01T01:56:12.003Z\",\n        \"report_types\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"description\": \"string\",\n        \"created\": \"1962-11-15T05:18:36.029Z\",\n        \"modified\": \"1953-04-17T05:33:07.301Z\",\n        \"published\": \"1991-03-25T21:20:08.494Z\",\n        \"report_types\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ]\n  },\n  \"customerName\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf27ec29-929f-4f91-aa81-4e7393fe477f",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ti",
+                    "customer-ti",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) AMP Account ID for customer identification",
+                    "key": "x-account-context",
+                    "value": "12345-67890-abcde"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7514\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6827558-bace-4220-9425-f3fa3ed93b45",
+              "name": "Customer not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ti",
+                    "customer-ti",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) AMP Account ID for customer identification",
+                    "key": "x-account-context",
+                    "value": "12345-67890-abcde"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7514\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5095921c-d67d-492e-84cc-4ec95229b6b9",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ti",
+                    "customer-ti",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) AMP Account ID for customer identification",
+                    "key": "x-account-context",
+                    "value": "12345-67890-abcde"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7514\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "105e1bf6-da5a-4a7a-9592-1964d33eb869",
+    "name": "MDR Public TI - Customer Intelligence API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

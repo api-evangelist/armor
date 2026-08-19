@@ -1,0 +1,260 @@
+openapi: 3.2.0
+info:
+  title: Armor FH-AUTH Security Authentication API
+  description: 'Armor Security Platform Authentication API using FH-AUTH flow.
+
+    '
+  version: 2.0.0
+  contact:
+    name: Armor Support
+    url: https://armor.com
+servers:
+- url: https://api.armor.com
+  description: Production API
+tags:
+- name: Authentication
+  description: 'FH-AUTH authentication flow endpoints.
+
+
+    ## Flow Overview
+
+    1. POST `/auth/authorize` with credentials → receive authorization code
+
+    2. POST `/auth/token` with code → receive access token
+
+    3. Use `Authorization: FH-AUTH {token}` header for API calls
+
+    4. POST `/auth/token/reissue` to refresh expired tokens
+
+    '
+paths:
+  /auth/authorize:
+    post:
+      operationId: authorize
+      summary: Get authorization code
+      description: 'Authenticates user credentials and returns an authorization code.
+
+        The code must be exchanged for an access token within 2 minutes.
+
+        '
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuthorizeRequest'
+      responses:
+        '200':
+          description: Authorization code issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthorizeResponse'
+        '401':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many authentication attempts
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /auth/token:
+    post:
+      operationId: exchangeToken
+      summary: Exchange authorization code for access token
+      description: 'Exchanges an authorization code for an access token and ID token.
+
+        The authorization code must be used within 2 minutes of issuance.
+
+        Access tokens are valid for 15 minutes.
+
+        '
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRequest'
+      responses:
+        '200':
+          description: Tokens issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Invalid or expired authorization code
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /auth/token/reissue:
+    post:
+      operationId: refreshToken
+      summary: Refresh an access token
+      description: 'Exchanges an existing access token for a new one.
+
+        Use this endpoint when the current token is about to expire or has expired.
+
+        '
+      tags:
+      - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshRequest'
+      responses:
+        '200':
+          description: New token issued successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '401':
+          description: Invalid or expired token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Access token for API calls (valid for 15 minutes)
+          example: eyJhbGciOiJSUzI1NiIs...
+        id_token:
+          type: string
+          description: ID token containing user identity claims
+          example: eyJhbGciOiJSUzI1NiIs...
+        token_type:
+          type: string
+          description: Token type (always "FH-AUTH")
+          example: FH-AUTH
+        expires_in:
+          type: integer
+          description: Seconds until access token expires
+          example: 900
+    TokenRequest:
+      type: object
+      required:
+      - code
+      - grant_type
+      properties:
+        code:
+          type: string
+          description: Authorization code from /auth/authorize
+          example: abc123xyz...
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          description: Must be "authorization_code"
+          example: authorization_code
+    AuthorizeRequest:
+      type: object
+      required:
+      - username
+      - password
+      properties:
+        username:
+          type: string
+          format: email
+          description: User's email address
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          description: User's password
+          writeOnly: true
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_credentials
+        error_description:
+          type: string
+          description: Human-readable error message
+          example: The provided credentials are invalid
+        status:
+          type: integer
+          description: HTTP status code
+          example: 401
+    AuthorizeResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Authorization code valid for 2 minutes
+          example: abc123xyz...
+        expiresIn:
+          type: integer
+          description: Seconds until code expires
+          example: 120
+    RefreshRequest:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+          description: Current access token to refresh
+          example: eyJhbGciOiJSUzI1NiIs...
+  securitySchemes:
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: 'FH-AUTH token authentication.
+
+
+        ## Authentication Flow
+
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+
+        ## Security Notes
+
+
+        - Authorization codes expire in 2 minutes
+
+        - Access tokens expire in 15 minutes
+
+        - All endpoints require HTTPS
+
+        - Never log or persist tokens in plain text
+
+
+        Include the access token in the Authorization header:
+
+        ```
+
+        Authorization: FH-AUTH {access_token}
+
+        ```
+
+        '

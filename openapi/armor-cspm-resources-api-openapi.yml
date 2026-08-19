@@ -1,0 +1,188 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Resources API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Resources
+  description: CSPM resource management
+paths:
+  /cspm/resources:
+    get:
+      tags:
+      - CSPM Resources
+      summary: Get list of CSPM resources
+      operationId: listCspmResources
+      parameters:
+      - name: provider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+        description: Provider type filter
+      - name: cloudAccountId
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Cloud account ID filter
+      - name: resourceType
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Resource type filter
+      - name: top
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Number of records to return
+      - name: skip
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: Number of records to skip
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResultSet'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+  /cspm/resources/{id}:
+    get:
+      tags:
+      - CSPM Resources
+      summary: Get resource details
+      operationId: getCspmResourceById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Resource ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ResourceDetailDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    CspmResourceListDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        accountId:
+          type: integer
+          description: Account ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        cloudAccountId:
+          type: string
+          description: Cloud account ID
+        region:
+          type: string
+          description: Region
+        provider:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Provider
+        dateDiscovered:
+          type: string
+          format: date-time
+          description: Date discovered
+        dateLastFound:
+          type: string
+          format: date-time
+          description: Date last found
+        resourceEvaluation:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceEvaluationDto'
+    ResourceEvaluationDto:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        status:
+          type: string
+          description: Evaluation status
+        evaluatedOn:
+          type: string
+          format: date-time
+          description: Evaluation date
+    ResourceDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        details:
+          type: object
+          additionalProperties: true
+          description: Resource details
+    PagedResultSet:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmResourceListDto'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

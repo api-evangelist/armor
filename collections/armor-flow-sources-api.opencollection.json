@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Log Management Flow Sources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.armor.com/auth/authorize",
+      "accessTokenUrl": "https://api.armor.com/auth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flow Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all flow sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/flows/sources",
+            "params": [
+              {
+                "name": "all",
+                "value": "",
+                "type": "query",
+                "description": "Return flow sources across multiple orgs"
+              }
+            ]
+          },
+          "docs": "Passing `all=true` can return Flow Sources across multiple orgs given you\nhave the necessary permissions.\n"
+        },
+        {
+          "info": {
+            "name": "Create a flow source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logs.armor.com/flows/sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a flow source to the pool of available flow sources."
+        },
+        {
+          "info": {
+            "name": "Update a flow source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.logs.armor.com/flows/sources/:flowSourceId",
+            "headers": [
+              {
+                "name": "If-Unmodified-Since",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "flowSourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the flow source being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the settings of the given flow source.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get all flow collectors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/flows/collectors"
+          },
+          "docs": "Get a list of provisioned flow collectors."
+        },
+        {
+          "info": {
+            "name": "Allocate a flow source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logs.armor.com/meta/flows/actions/allocate-flow-source"
+          },
+          "docs": "Enable collection of network flow-based log sources by allocating a flow source to your account.\nIf you already have a flow source associated to your account, the API will return a 400 response.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

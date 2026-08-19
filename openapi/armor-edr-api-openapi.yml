@@ -1,0 +1,466 @@
+openapi: 3.2.0
+info:
+  title: Incident Management EDR API
+  description: 'APIs for interacting with Armor products and services for incident management.
+
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://security-detections.api.secure-dev.services
+  description: Development
+- url: https://security-detections.api.secure-stage.services
+  description: Staging
+- url: https://security-detections.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: EDR
+  description: Endpoint Detection and Response operations
+paths:
+  /edr/uninstall-code/{cid}:
+    get:
+      tags:
+      - EDR
+      summary: Get EDR uninstall code
+      description: Get EDR uninstall code for a core instance.
+      operationId: getEdrUninstallCode
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: cid
+        in: path
+        required: true
+        description: The coreInstance of the Armor Agent.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /edr/sign-up:
+    get:
+      tags:
+      - EDR
+      summary: Get EDR sign-up details
+      description: Get EDR sign-up details. You can see ticket and provision status.
+      operationId: getEdrSignUp
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEdrSignUp'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - EDR
+      summary: Create EDR sign-up details
+      description: Create EDR sign-up details. You can choose EDR plan and number of licenses.
+      operationId: createEdrSignUp
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostEdrSignUp'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /edr/configuration:
+    get:
+      tags:
+      - EDR
+      summary: Get EDR configuration details
+      description: Get EDR configuration details. You can see the configuration required to setup organization in Carbon Black Cloud.
+      operationId: getEdrConfiguration
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetEdrConfiguration'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - EDR
+      summary: Create EDR configuration details
+      description: Create EDR configuration details. You can setup EDR configuration in Carbon Black Cloud for an organization.
+      operationId: createEdrConfiguration
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostEdrConfiguration'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /edr/event-forwarder:
+    get:
+      tags:
+      - EDR
+      summary: Get EDR Event Forwarder details
+      description: Get EDR event forwarder details. You can see the list of event forwarders configured in Carbon Black Cloud for an organization.
+      operationId: getEdrEventForwarder
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetEdrEventForwarder'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /edr/usage:
+    get:
+      tags:
+      - EDR
+      summary: Get EDR usage details
+      description: Get EDR usage details. You can see the list of EDR usage.
+      operationId: getEdrUsage
+      parameters:
+      - name: limit
+        in: query
+        description: Total number of records to return.
+        schema:
+          type: integer
+      - name: offset
+        in: query
+        description: Total number of records to skip.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GetEdrUsage'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  schemas:
+    GetEdrConfiguration:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        companyCode:
+          type: string
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+    GetEdrUsage:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        count:
+          type: string
+          description: Total number of VMs with EDR agents installed.
+    PostEdrConfiguration:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+        superAdminApiId:
+          type: string
+          description: ApiId used with Carbon Black User APIs.
+        superAdminApiSecretKey:
+          type: string
+          description: SecretKey used with Carbon Black User APIs.
+    PostEdrSignUp:
+      type: object
+      properties:
+        companyName:
+          type: string
+          description: Company Name.
+        companyEmail:
+          type: string
+          description: Company email address.
+        phoneNumber:
+          type: string
+          description: Phone number.
+        address:
+          type: string
+          description: Company address.
+        numberOfLicense:
+          type: integer
+          description: Number of licenses.
+        edrSku:
+          type: string
+          description: EDR SKU name (from `edrServices` in GET /edr/sign-up).
+        adminUser:
+          $ref: '#/components/schemas/AdminUser'
+    GetEdrSignUp:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        userId:
+          type: string
+          description: EDR user Id.
+        companyName:
+          type: string
+          description: Company Name.
+        companyEmail:
+          type: string
+          description: Company email address.
+        phoneNumber:
+          type: string
+          description: Phone number.
+        address:
+          type: string
+          description: Company address.
+        numberOfLicense:
+          type: integer
+          description: Number of licenses.
+        ticketNumber:
+          type: string
+          description: Ticket number.
+        dateCreated:
+          type: string
+          format: date-time
+          description: Date EDR record created.
+        dateModified:
+          type: string
+          format: date-time
+          description: Modified date.
+        orgKey:
+          type: string
+          description: EDR organization key.
+        companyCode:
+          type: string
+          description: EDR company code.
+        provisionCompleted:
+          type: boolean
+          description: Status of EDR provision.
+        edrSku:
+          type: string
+          description: EDR SKU name.
+        planName:
+          type: string
+          description: EDR plan name.
+        edrServices:
+          type: array
+          description: Available EDR services.
+          items:
+            $ref: '#/components/schemas/EdrServices'
+        contactInfo:
+          type: object
+          description: Contact information.
+        mainTo:
+          type: object
+          description: Mail To information.
+        adminUser:
+          $ref: '#/components/schemas/AdminUser'
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of admin user.
+        email:
+          type: string
+          description: Admin user email id.
+        firstName:
+          type: string
+          description: Admin user first name.
+        lastName:
+          type: string
+          description: Admin user last name.
+    EdrServices:
+      type: object
+      properties:
+        skuMappingId:
+          type: integer
+          description: Unique identifier of mapping id.
+        sku:
+          type: string
+          description: EDR SKU name.
+        accountType:
+          type: string
+          description: Type of account.
+        accountProduct:
+          type: string
+          description: Account Product.
+        name:
+          type: string
+          description: EDR service name.
+        description:
+          type: string
+          description: EDR service description.
+        features:
+          type: array
+          description: EDR features.
+          items:
+            type: string
+    GetEdrEventForwarder:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique Id of an event forwarder.
+        org_key:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        name:
+          type: string
+          description: Name of an event forwarder.
+        enabled:
+          type: boolean
+          description: Flag to denote if an event forwarder is enabled or not.
+        s3_bucket_name:
+          type: string
+          description: Name of the AWS S3 bucket configured.
+        s3_prefix:
+          type: string
+          description: Prefix text used for event forwarder logs.
+        type:
+          type: string
+          description: Type of the event forwarder log whether Alert or Event.
+        create_time:
+          type: string
+          format: date-time
+          description: Date and Time when the event forwarder is setup.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

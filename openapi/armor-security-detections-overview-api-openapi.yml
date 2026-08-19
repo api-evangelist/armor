@@ -1,0 +1,152 @@
+openapi: 3.2.0
+info:
+  title: Incident Management Security Detections Overview API
+  description: 'APIs for interacting with Armor products and services for incident management.
+
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://security-detections.api.secure-dev.services
+  description: Development
+- url: https://security-detections.api.secure-stage.services
+  description: Staging
+- url: https://security-detections.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Security Detections Overview
+  description: Security detections overview operations
+paths:
+  /security-detections-overview:
+    get:
+      tags:
+      - Security Detections Overview
+      summary: Security Detections Overview
+      description: Get security detections overview.
+      operationId: getSecurityDetectionsOverview
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: filter
+        in: query
+        description: OData filter parameter.
+        schema:
+          type: string
+      - name: search
+        in: query
+        description: Search parameter.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecurityDetectionOverview'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    Category:
+      type: object
+      properties:
+        categoryName:
+          type: string
+          description: The category associated with the incident/detection.
+        categoryCount:
+          type: integer
+          description: The number of incidents/detections for the category.
+        categoryPercentage:
+          type: string
+          description: The percentage of incidents/detections for the category.
+    SecurityDetectionOverview:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        offenseId:
+          type: integer
+          description: The same value as the customer Account identifier.
+        incidentCount:
+          type: integer
+          description: The number of incidents.
+        detectionCount:
+          type: integer
+          description: The number of detections.
+        severityLevels:
+          type: array
+          description: The severity levels for the incidents and detections.
+          items:
+            $ref: '#/components/schemas/SeverityLevel'
+        categories:
+          type: array
+          description: The categories that are associated with the incidents and detections.
+          items:
+            $ref: '#/components/schemas/Category'
+        descriptions:
+          type: array
+          description: The descriptions that are associated with the incidents and detections.
+          items:
+            $ref: '#/components/schemas/Description'
+        lastUpdatedTime:
+          type: string
+          format: date-time
+          description: The date and time the recent security overview report was updated.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    Description:
+      type: object
+      properties:
+        descriptionName:
+          type: string
+          description: The description associated with the incident/detection.
+        descriptionCount:
+          type: integer
+          description: The number of incidents/detections for the description.
+        descriptionPercentage:
+          type: string
+          description: The percentage of incidents/detections for the description.
+    SeverityLevel:
+      type: object
+      properties:
+        severityName:
+          type: string
+          description: The severity associated with the incident/detection.
+        severityCount:
+          type: integer
+          description: The number of incidents/detections for the severity.
+        severityPercentage:
+          type: string
+          description: The percentage of incidents/detections for the severity.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

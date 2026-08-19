@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Reports - MSR API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports - MSR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available MSR files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/msr/",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all available Monthly Security Report files for the authenticated\ncustomer's account.\n"
+        },
+        {
+          "info": {
+            "name": "Download a specific MSR file",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/msr/:fileName/",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345"
+              }
+            ],
+            "params": [
+              {
+                "name": "fileName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the MSR file to retrieve"
+              }
+            ]
+          },
+          "docs": "Retrieves and downloads a specific Monthly Security Report file from S3 storage.\nThe file is streamed back to the client with appropriate content type and disposition headers.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

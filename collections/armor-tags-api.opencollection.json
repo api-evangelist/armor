@@ -1,0 +1,261 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agent Management Tags API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tags",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all tags for account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/tags",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset value to fetch next records."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The value to limit the number of records fetched."
+              }
+            ]
+          },
+          "docs": "Get a list of tags for your account."
+        },
+        {
+          "info": {
+            "name": "Get resources by tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/resources",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "The offset value to fetch next records."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The value to limit the number of records fetched."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Get all resources by tag."
+        },
+        {
+          "info": {
+            "name": "Get tags by resource",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/tags/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ]
+          },
+          "docs": "Get all tags by resource."
+        },
+        {
+          "info": {
+            "name": "Create tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a tag."
+        },
+        {
+          "info": {
+            "name": "Create locked tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/lock/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a locked tag."
+        },
+        {
+          "info": {
+            "name": "Delete locked tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/delete/lock/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a locked tag."
+        },
+        {
+          "info": {
+            "name": "Delete all tags by resource ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/delete/resource/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ]
+          },
+          "docs": "Delete all tags by resource ID."
+        },
+        {
+          "info": {
+            "name": "Delete a tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/tags/delete/:resourceid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "resourceid",
+                "value": "",
+                "type": "path",
+                "description": "The id of the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a tag."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

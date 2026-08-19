@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "a147270b-11de-44f2-afca-88df307dfce1",
+      "name": "JSM - Service Requests",
+      "description": {
+        "content": "Service request management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "117301f0-e6ba-49d7-9f5b-bc5cae89b96d",
+          "name": "List service requests",
+          "request": {
+            "name": "List service requests",
+            "description": {
+              "content": "Retrieve a paginated list of service requests from JSM with filtering and sorting options.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "service-requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "id",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "desc",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "textSearch",
+                  "value": "<string>",
+                  "description": "Text search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "startAt",
+                  "value": "0",
+                  "description": "Pagination start index"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Comma-separated list of statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<string>",
+                  "description": "Comma-separated list of priority levels"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "Comma-separated list of organization IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57a52975-9e3c-4fb5-9e42-d2e7160eda82",
+              "name": "Successfully retrieved service requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRows\": 204,\n  \"issues\": [\n    {\n      \"id\": \"string\",\n      \"summary\": \"string\",\n      \"status\": \"string\",\n      \"priority\": \"string\",\n      \"created\": \"2007-11-11T02:35:57.275Z\",\n      \"updated\": \"1987-08-14T01:19:04.677Z\",\n      \"assignee\": \"string\",\n      \"orgs\": [\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        },\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"summary\": \"string\",\n      \"status\": \"string\",\n      \"priority\": \"string\",\n      \"created\": \"1999-04-30T05:33:35.856Z\",\n      \"updated\": \"1975-01-13T02:08:18.430Z\",\n      \"assignee\": null,\n      \"orgs\": [\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        },\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"approvedOrgs\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2d90d10-11e1-4c5f-adb9-e71344a7d991",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b78b00-f1dc-437e-b379-43d3dddd970d",
+              "name": "No organizations found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "service-requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3745f99c-bacd-4ab3-8ed2-51e42ef4d4ca",
+    "name": "MDR Public JSM - Service Requests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

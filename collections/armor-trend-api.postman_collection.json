@@ -1,0 +1,331 @@
+{
+  "item": [
+    {
+      "id": "36810a66-9859-4df6-a631-d8d423b0e47f",
+      "name": "Trend",
+      "description": {
+        "content": "Trend AV report operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1e23203-ae26-47f0-964a-eec04ddf53e6",
+          "name": "Get Details of a Trend AV report",
+          "request": {
+            "name": "Get Details of a Trend AV report",
+            "description": {
+              "content": "Get the details of a Trend AV report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "trend",
+                "av-report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "The offset value to fetch next records."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "The value to limit the number of records fetched."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort direction. Example: `id desc`."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort by column. Example: `VM Name`, `Report Date`, etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by VM Name.\nNote: Fields are case sensitive.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1b1dc603-f35b-4bdc-8ad9-45fe535c5190",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trend",
+                    "av-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"accountId\": 7872,\n      \"vmName\": \"string\",\n      \"coreInstanceId\": \"string\",\n      \"agentVersion\": \"string\",\n      \"signatureVersion\": 4008,\n      \"signatureUpdateDate\": \"1972-04-28T10:28:20.609Z\",\n      \"reportDate\": \"1998-01-05T21:11:02.130Z\",\n      \"manualScanDate\": \"2010-08-23T09:53:06.982Z\",\n      \"policyUpdateStatus\": \"string\",\n      \"cleanCount\": 1793,\n      \"passCount\": 6760,\n      \"quarantineCount\": 3794,\n      \"deleteCount\": 2345,\n      \"denyAccessCount\": 8462,\n      \"otherCount\": 4034,\n      \"malwareStatus\": \"string\",\n      \"malwareUpdateTime\": \"1986-06-07T03:33:12.309Z\",\n      \"malwareMessage\": \"string\"\n    },\n    {\n      \"accountId\": 1759,\n      \"vmName\": \"string\",\n      \"coreInstanceId\": \"string\",\n      \"agentVersion\": \"string\",\n      \"signatureVersion\": 5927,\n      \"signatureUpdateDate\": \"2007-09-17T11:38:10.541Z\",\n      \"reportDate\": \"1985-06-28T15:44:49.207Z\",\n      \"manualScanDate\": \"2018-06-08T00:50:08.331Z\",\n      \"policyUpdateStatus\": \"string\",\n      \"cleanCount\": 4345,\n      \"passCount\": 9990,\n      \"quarantineCount\": 1654,\n      \"deleteCount\": 3800,\n      \"denyAccessCount\": 436,\n      \"otherCount\": 318,\n      \"malwareStatus\": \"string\",\n      \"malwareUpdateTime\": \"2001-04-06T23:05:24.335Z\",\n      \"malwareMessage\": \"string\"\n    }\n  ],\n  \"total\": 9730\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a32237f4-bd17-45ca-ba27-f3852e394bf9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trend",
+                    "av-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "465801c5-6bc9-4d69-9453-48ee2159441d",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "trend",
+                    "av-report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://security-detections.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42c4af2c-8fd7-4dd8-b5d6-3cce293fd15a",
+    "name": "Incident Management Trend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for interacting with Armor products and services for incident management.\n\nBase URL: `https://security-detections.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,399 @@
+openapi: 3.2.0
+info:
+  title: MDR Public Defender - Machine Actions API
+  version: 1.0.0
+  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
+
+
+    This unified API provides access to:
+
+
+    ## AI Platform (AIP)
+
+    - AI-processed incident analysis with threat indicators and recommendations
+
+    - Entity threat intelligence for security entities associated with incidents
+
+
+    ## Microsoft Defender Integration
+
+    - Machine/device management in Microsoft Defender for Endpoint
+
+    - Security action execution (isolation, scans, investigations)
+
+    - Investigation package collection and live response operations
+
+
+    ## Detection Rules Management
+
+    - Microsoft Sentinel detection rules across customer environments
+
+    - Enriched rule metadata including MITRE ATT&CK mappings
+
+    - Incident generation statistics
+
+
+    ## JSM Middleware
+
+    - Security incident management and tracking
+
+    - Metrics aggregation and reporting
+
+    - Service request management
+
+    - Organization management
+
+
+    ## Monthly Security Reports
+
+    - Access to monthly security reports (PowerPoint, JSON, PDF)
+
+    - Security metrics and performance indicators
+
+    - Data ingestion analytics
+
+
+    ## Threat Intelligence
+
+    - Threat actor intelligence data
+
+    - Customer-specific threat intelligence based on deployed products
+
+    - OpenCTI GraphQL proxy for advanced queries
+
+
+    ## Authentication
+
+    All endpoints (except health checks) require OAuth2 Bearer token authentication.
+
+
+    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
+
+    '
+  contact:
+    name: Armor Security Team
+    url: https://armor.com
+servers:
+- url: https://mdr.api.secure-prod.services
+  description: Production environment
+- url: https://mdr.api.secure-dev.services
+  description: Development environment
+security:
+- OAuth2BearerAuth: []
+- FH-AUTH: []
+tags:
+- name: Defender - Machine Actions
+  description: Execute and manage actions on Microsoft Defender machines
+paths:
+  /defender/machineactions:
+    get:
+      tags:
+      - Defender - Machine Actions
+      summary: List all machine actions
+      description: 'Retrieves a list of all machine actions executed across all machines for the specified
+
+        customer account.
+
+        '
+      operationId: getMachineActions
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successfully retrieved list of machine actions
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineActionsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /defender/machineactions/{actionId}:
+    get:
+      tags:
+      - Defender - Machine Actions
+      summary: Get specific machine action
+      description: Retrieves detailed information about a specific machine action by its action ID
+      operationId: getMachineAction
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: actionId
+        in: path
+        required: true
+        description: The unique identifier of the machine action
+        schema:
+          type: string
+          format: uuid
+        example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+      responses:
+        '200':
+          description: Successfully retrieved machine action details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineAction'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /defender/machineactions/{machineId}:
+    post:
+      tags:
+      - Defender - Machine Actions
+      summary: Execute action on machine
+      description: 'Executes a security action on a specific machine identified by machine ID.
+
+
+        Supported actions include: isolate, unisolate, runAntiVirusScan, collectInvestigationPackage,
+
+        restrictCodeExecution, unrestrictCodeExecution, runliveresponse, startInvestigation,
+
+        StopAndQuarantineFile, cancel, offboard.
+
+        '
+      operationId: executeMachineAction
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: machineId
+        in: path
+        required: true
+        description: The unique identifier of the machine to perform the action on
+        schema:
+          type: string
+        example: 4899036531e374137f63289c3267bad772c13fef
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MachineActionRequest'
+      responses:
+        '200':
+          description: Action successfully initiated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MachineAction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  responses:
+    BadRequest:
+      description: Bad Request - Invalid parameters or malformed request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    MachineAction:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - Isolate
+          - Unisolate
+          - RunAntiVirusScan
+          - CollectInvestigationPackage
+          - RestrictCodeExecution
+          - UnrestrictCodeExecution
+          - RunLiveResponse
+          - StartInvestigation
+          - StopAndQuarantineFile
+          - CancelAction
+          - Offboard
+        requestor:
+          type: string
+        requestorComment:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - InProgress
+          - Succeeded
+          - Failed
+          - TimeOut
+          - Cancelled
+        machineId:
+          type: string
+        computerDnsName:
+          type: string
+        creationDateTimeUtc:
+          type: string
+          format: date-time
+        lastUpdateDateTimeUtc:
+          type: string
+          format: date-time
+        relatedFileInfo:
+          type: object
+          properties:
+            fileIdentifier:
+              type: string
+            fileIdentifierType:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+    MachineActionRequest:
+      type: object
+      required:
+      - action
+      - comment
+      properties:
+        action:
+          type: string
+          enum:
+          - isolate
+          - unisolate
+          - runAntiVirusScan
+          - collectInvestigationPackage
+          - restrictCodeExecution
+          - unrestrictCodeExecution
+          - runliveresponse
+          - startInvestigation
+          - StopAndQuarantineFile
+          - cancel
+          - offboard
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        type:
+          type: string
+          enum:
+          - Quick
+          - Full
+        commands:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              params:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string
+        sha1:
+          type: string
+          pattern: ^[a-fA-F0-9]{40}$
+    MachineActionsResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineAction'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
+  securitySchemes:
+    OAuth2BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2
+      description: 'OAuth2 Scoped Access Token authentication. An authorization header with Bearer token
+
+        must be included with every authenticated request.
+
+
+        For authentication details, see the official documentation:
+
+        https://kb.armor.com/kb/sso-authentication-with-postman
+
+        '
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: 'FH-AUTH token authentication.
+
+
+        ## Authentication Flow
+
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+
+        ## Security Notes
+
+
+        - Authorization codes expire in 2 minutes
+
+        - Access tokens expire in 15 minutes
+
+        - All endpoints require HTTPS
+
+        - Never log or persist tokens in plain text
+
+
+        Include the access token in the Authorization header:
+
+        ```
+
+        Authorization: FH-AUTH {access_token}
+
+        ```
+
+        '

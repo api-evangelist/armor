@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Account Primary Billing API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AccountPrimaryBilling",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "(Deprecated) Get the Account Primary Billing User",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/accounts/:accountId/primary-billing",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "account id"
+              }
+            ]
+          },
+          "docs": "(Deprecated) Get the Account Primary Billing User"
+        },
+        {
+          "info": {
+            "name": "(Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/accounts/:accountId/primary-billing",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "account id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "(Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,304 @@
+openapi: 3.2.0
+info:
+  title: Accounts Cloud Connections API
+  description: 'This API provides an interface for configuring and interacting with Armor''s account
+
+    management functionality.
+
+
+    Base URL: `https://accounts.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://accounts.api.secure-dev.services
+  description: Development
+- url: https://accounts.api.secure-stage.services
+  description: Staging
+- url: https://accounts.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Cloud Connections
+  description: Cloud connection management operations
+paths:
+  /cloud-connections:
+    post:
+      tags:
+      - Cloud Connections
+      summary: Get cloud connections by Account Id
+      description: Retrieve All Cloud Connections based on Account Id.
+      operationId: getCloudConnectionsByAccountId
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: searchText
+        in: query
+        description: Search text to filter cloud connections.
+        schema:
+          type: string
+      - name: pageNumber
+        in: query
+        description: Current page number.
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        description: Number of cloud connections to be displayed on page.
+        schema:
+          type: integer
+      - name: sortFld
+        in: query
+        description: Cloud connections sorting field.
+        schema:
+          type: string
+      - name: sortDir
+        in: query
+        description: Cloud connection sort order direction (asc/desc).
+        schema:
+          type: string
+      - name: filterBy
+        in: query
+        description: Cloud connections filter by provider type.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionResourceResult'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /cloud-connection/service-types:
+    get:
+      tags:
+      - Cloud Connections
+      summary: Get All Connection Service Types
+      description: Retrieve All Connection Service Types.
+      operationId: getConnectionServiceTypes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionServiceTypesResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+  /cloud-connections/{connectionId}:
+    get:
+      tags:
+      - Cloud Connections
+      summary: Get cloud connection detail by connection Id
+      description: Retrieve cloud connection detail by connection Id.
+      operationId: getCloudConnectionDetail
+      parameters:
+      - name: connectionId
+        in: path
+        required: true
+        description: The unique identifier of the cloud connection.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectionDetailResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  schemas:
+    ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Cloud connection sub service type id.
+        name:
+          type: string
+          description: Cloud connection sub service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection provider sub service type name.
+        imageName:
+          type: string
+          description: Cloud connection provider sub service type image name.
+        policy:
+          type: string
+          description: Cloud connection provider sub service type policy.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    CloudConnectionResourceResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cloud connection.
+        accountId:
+          type: integer
+          description: The accountId of the cloud connection.
+        name:
+          type: string
+          description: The Name of the cloud connection.
+        externalId:
+          type: string
+          description: The ExternalId of the cloud connection.
+        provider:
+          type: string
+          description: The Name of the cloud provider.
+        providerAccountId:
+          type: string
+          description: The accountId of the cloud provider.
+        providerAccessResource:
+          type: string
+          description: The Name of the cloud provider access resource.
+        total:
+          type: integer
+          description: The cloud connections count.
+        isEnabled_Beta:
+          type: boolean
+          description: Flag indicating if beta is enabled.
+        isEnabled_Ec2:
+          type: boolean
+          description: Flag indicating if EC2 is enabled.
+        isEnabled_Log:
+          type: boolean
+          description: States log enabled or not.
+        setupStatus:
+          type: string
+          description: Cloud connection setup status.
+        services:
+          type: array
+          description: Cloud Connection Services.
+          items:
+            $ref: '#/components/schemas/ConnectionService'
+    ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          type: integer
+          description: Account cloud connection id.
+        lastSuccessfulConnectionDate:
+          type: string
+          description: Last successful connection date.
+        id:
+          type: integer
+          description: Cloud connection service id.
+        name:
+          type: string
+          description: Cloud connection service name.
+        subServices:
+          type: array
+          description: Cloud connection sub service type.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+        imageName:
+          type: string
+          description: Cloud connection provider service image name.
+    CloudConnectionServiceTypesResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cloud connection service type.
+        name:
+          type: string
+          description: The name of the service type.
+        subServices:
+          type: array
+          description: Cloud connection sub services.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection service type policy.
+        imageName:
+          type: string
+          description: The image name of the service type.
+    CloudConnectionDetailResult:
+      type: object
+      properties:
+        providerAccountId:
+          type: integer
+          description: Armor AWS account id.
+        connectionName:
+          type: string
+          description: Cloud connection name.
+        description:
+          type: string
+          description: Cloud connection description.
+        externalId:
+          type: string
+          description: Cloud connection externalId.
+        providerAccessResource:
+          type: string
+          description: Cloud connection provider access resource.
+        accountConnectionId:
+          type: integer
+          description: Account connection id.
+        providerTypeName:
+          type: string
+          description: Cloud connection provider type name.
+        serviceTypeName:
+          type: string
+          description: Cloud connection service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection sub service name.
+        awsBaseJsonPolicy:
+          type: string
+          description: AWS Base JSON Policy.
+        armorAwsAccountId:
+          type: string
+          description: Armor AWS account id.
+        serviceTypeId:
+          type: string
+          description: Cloud connection service type id.
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

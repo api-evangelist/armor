@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public TI - GraphQL API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TI - GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OpenCTI GraphQL proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdr.api.secure-prod.services/ti/graphql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Proxies GraphQL queries to the OpenCTI platform. This endpoint automatically\ninjects the required OpenCTI Bearer token before forwarding requests.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

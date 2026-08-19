@@ -1,0 +1,280 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Connector API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Connector
+  description: Cloud Security Posture Management cloud connectors
+paths:
+  /cspm/connector:
+    get:
+      tags:
+      - CSPM Connector
+      summary: List all CSPM CloudConnectors
+      operationId: listCloudConnectors
+      parameters:
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Connector ID to get specific connector
+      - name: refresh
+        in: query
+        required: false
+        schema:
+          type: boolean
+        description: Set to true to run the cloud connector
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectors'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+      - CSPM Connector
+      summary: Create CSPM CloudConnector
+      operationId: createCloudConnector
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudConnectorRequestDto'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+  /cspm/connector/{id}:
+    get:
+      tags:
+      - CSPM Connector
+      summary: Get CSPM CloudConnector by ID
+      operationId: getCloudConnectorById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Connector ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudConnectorDetails'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+      - CSPM Connector
+      summary: Delete CSPM CloudConnector by ID
+      operationId: deleteCloudConnector
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Connector ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    CloudConnectorRequestDto:
+      type: object
+      required:
+      - accountId
+      - name
+      - provider
+      properties:
+        accountId:
+          type: integer
+          description: Account ID
+        arn:
+          type: string
+          description: ARN (for AWS)
+        name:
+          type: string
+          description: Connector Name
+        description:
+          type: string
+          description: Description
+        provider:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Provider Type
+        externalId:
+          type: string
+          description: External ID
+        isChinaRegion:
+          type: boolean
+          description: Is China Region
+        isGovCloud:
+          type: boolean
+          description: Is Government Cloud
+        isPortalConnector:
+          type: boolean
+          description: Is Portal Connector
+        httpMethod:
+          type: string
+          description: HTTP Method
+        applicationId:
+          type: string
+          description: Azure Application ID
+        directoryId:
+          type: string
+          description: Azure Directory ID
+        subscriptionId:
+          type: string
+          description: Azure Subscription ID
+        authenticationKey:
+          type: string
+          description: Authentication Key
+        projectId:
+          type: string
+          description: GCP Project ID
+        gcpConfigJson:
+          type: string
+          description: GCP Config JSON
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+    CloudConnectorDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Internal ID
+        connectorId:
+          type: string
+          description: Connector ID
+        arn:
+          type: string
+          description: ARN
+        externalId:
+          type: string
+          description: External ID
+        baseAccountId:
+          type: integer
+          description: Base Account ID
+        awsAccountId:
+          type: string
+          description: AWS Account ID
+        state:
+          type: string
+          description: State of connector
+        totalAssets:
+          type: string
+          description: Total assets count
+        name:
+          type: string
+          description: Connector name
+        description:
+          type: string
+          description: Description
+        provider:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Provider type
+        isChinaRegion:
+          type: boolean
+          description: Is China Region
+        isGovCloud:
+          type: boolean
+          description: Is Government Cloud
+        isPortalConnector:
+          type: boolean
+          description: Is Portal Connector
+        error:
+          type: string
+          description: Error code
+        error_message:
+          type: string
+          description: Error message
+        lastSyncedOn:
+          type: string
+          format: date-time
+          description: Last sync date
+        dateCreated:
+          type: string
+          format: date-time
+          description: Creation date
+        groups:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorByIdGroups'
+    CloudConnectors:
+      type: object
+      properties:
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorDetails'
+    CloudConnectorByIdGroups:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group ID
+        groupName:
+          type: string
+          description: Group name
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

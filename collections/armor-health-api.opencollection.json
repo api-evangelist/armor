@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Health API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "AIP health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/aip/health"
+          },
+          "docs": "Returns the health status of the AIP Middleware service"
+        },
+        {
+          "info": {
+            "name": "Defender health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/health"
+          },
+          "docs": "Returns the health status of the Defender Middleware service"
+        },
+        {
+          "info": {
+            "name": "Detection rules health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/rules/health"
+          },
+          "docs": "Returns the health status of the Detection Middleware service"
+        },
+        {
+          "info": {
+            "name": "JSM health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/incidents/health"
+          },
+          "docs": "Returns OK if the JSM Middleware service is running"
+        },
+        {
+          "info": {
+            "name": "Reports health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/report/health"
+          },
+          "docs": "Returns health status of the Reports service"
+        },
+        {
+          "info": {
+            "name": "TI health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/ti-middleware/health"
+          },
+          "docs": "Returns the operational status of the Threat Intelligence Middleware service"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

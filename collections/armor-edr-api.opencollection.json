@@ -1,0 +1,172 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Incident Management EDR API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "EDR",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get EDR uninstall code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/edr/uninstall-code/:cid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "params": [
+              {
+                "name": "cid",
+                "value": "",
+                "type": "path",
+                "description": "The coreInstance of the Armor Agent."
+              }
+            ]
+          },
+          "docs": "Get EDR uninstall code for a core instance."
+        },
+        {
+          "info": {
+            "name": "Get EDR sign-up details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/edr/sign-up",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Get EDR sign-up details. You can see ticket and provision status."
+        },
+        {
+          "info": {
+            "name": "Create EDR sign-up details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://security-detections.api.secure-dev.services/edr/sign-up",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create EDR sign-up details. You can choose EDR plan and number of licenses."
+        },
+        {
+          "info": {
+            "name": "Get EDR configuration details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/edr/configuration",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Get EDR configuration details. You can see the configuration required to setup organization in Carbon Black Cloud."
+        },
+        {
+          "info": {
+            "name": "Create EDR configuration details",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://security-detections.api.secure-dev.services/edr/configuration",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create EDR configuration details. You can setup EDR configuration in Carbon Black Cloud for an organization."
+        },
+        {
+          "info": {
+            "name": "Get EDR Event Forwarder details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/edr/event-forwarder",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Get EDR event forwarder details. You can see the list of event forwarders configured in Carbon Black Cloud for an organization."
+        },
+        {
+          "info": {
+            "name": "Get EDR usage details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/edr/usage",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Total number of records to return."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Total number of records to skip."
+              }
+            ]
+          },
+          "docs": "Get EDR usage details. You can see the list of EDR usage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

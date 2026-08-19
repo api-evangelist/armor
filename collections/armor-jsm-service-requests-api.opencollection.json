@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public JSM - Service Requests API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JSM - Service Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List service requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/service-requests",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "textSearch",
+                "value": "",
+                "type": "query",
+                "description": "Text search query"
+              },
+              {
+                "name": "startAt",
+                "value": "",
+                "type": "query",
+                "description": "Pagination start index"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of statuses"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of priority levels"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of organization IDs"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of service requests from JSM with filtering and sorting options.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

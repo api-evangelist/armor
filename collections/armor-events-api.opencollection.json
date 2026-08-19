@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Webhooks Events API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the Event Types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://webhooks.api.secure-dev.services/security/detection/event-type",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              }
+            ]
+          },
+          "docs": "Gets the list of Event Types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

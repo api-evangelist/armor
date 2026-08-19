@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public JSM - Organizations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JSM - Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get organizations by user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/jsm-orgs/"
+          },
+          "docs": "Retrieve all JSM organizations that the authenticated user has access to"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

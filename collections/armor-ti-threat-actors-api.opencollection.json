@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public TI - Threat Actors API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TI - Threat Actors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all threat actors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/ti/threat-actors"
+          },
+          "docs": "Retrieves a comprehensive list of all threat actors from DynamoDB.\nReturns the latest threat actor intelligence data including profiles and capabilities.\n"
+        },
+        {
+          "info": {
+            "name": "Get threat actors grouped by country",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/ti/threat-actors-by-country"
+          },
+          "docs": "Retrieves threat actors organized by their country of origin or operation.\nProvides a geographical view of threat actor distribution.\n"
+        },
+        {
+          "info": {
+            "name": "Get specific threat actor by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/ti/threat-actors/:threatActorId",
+            "params": [
+              {
+                "name": "threatActorId",
+                "value": "threat-actor-001",
+                "type": "path",
+                "description": "Unique identifier of the threat actor"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a specific threat actor using their unique identifier.\nReturns comprehensive profile data including TTPs and historical activity.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

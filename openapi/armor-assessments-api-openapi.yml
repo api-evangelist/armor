@@ -1,0 +1,169 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance Assessments API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: Assessments
+  description: Assessment account management
+paths:
+  /assessments/accounts:
+    get:
+      tags:
+      - Assessments
+      summary: Retrieve list of assessment accounts
+      operationId: getAssessmentAccounts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssessmentAccountResponse'
+        '403':
+          description: Forbidden
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+    post:
+      tags:
+      - Assessments
+      summary: Create assessment account
+      operationId: createAssessmentAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssessmentCreateAccountRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+  /assessments/accounts/{id}:
+    put:
+      tags:
+      - Assessments
+      summary: Update assessment account
+      operationId: updateAssessmentAccount
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assessment account ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssessmentUpdateAccountRequest'
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+      - Assessments
+      summary: Cancel assessment account
+      operationId: deleteAssessmentAccount
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: Assessment account ID
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssessmentAccountResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    AssessmentUpdateAccountRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Updated assessment status
+        scanTargetStatus:
+          type: string
+          description: Updated scan target status
+    AssessmentAccountResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Coalfire account identifier
+        sku:
+          type: string
+          description: Billing reference
+        accountId:
+          type: integer
+          description: Armor Account ID
+        status:
+          type: string
+          description: Assessment status
+        scanTargetStatus:
+          type: string
+          description: Scan Target status
+    AssessmentCreateAccountRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Armor Account ID
+        sku:
+          type: string
+          description: Billing reference
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

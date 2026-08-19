@@ -1,0 +1,78 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Usage API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Usage
+  description: CSPM cloud connector usage
+paths:
+  /cspm/usage:
+    get:
+      tags:
+      - CSPM Usage
+      summary: Get CSPM CloudConnector usage
+      operationId: getCspmUsage
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Start date for usage query
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: End date for usage query
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmUsageDto'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    CspmUsageDto:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          description: Usage date
+        assetsCount:
+          type: integer
+          description: Assets count
+        connectorsCount:
+          type: integer
+          description: Connectors count
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

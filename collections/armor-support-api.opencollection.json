@@ -1,0 +1,444 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Support API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Support",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ticket comments for given issueKeyId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/:issueKeyId/comments",
+            "params": [
+              {
+                "name": "issueKeyId",
+                "value": "",
+                "type": "path",
+                "description": "Ticket number"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Start Index of the comment"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "No of record need to returned"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Result will be sorted based on this column"
+              },
+              {
+                "name": "sortOrder",
+                "value": "",
+                "type": "query",
+                "description": "Sort order: ASC-Ascending, DESC- Descending"
+              }
+            ]
+          },
+          "docs": "Get ticket comments for given issueKeyId"
+        },
+        {
+          "info": {
+            "name": "Add comment to a JSD ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/tickets/:issueKeyId/comments",
+            "params": [
+              {
+                "name": "issueKeyId",
+                "value": "",
+                "type": "path",
+                "description": "ID of ticket e.g ATS-123"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add comment to a JSD ticket"
+        },
+        {
+          "info": {
+            "name": "Get Ticket Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/:issueKeyId/details",
+            "params": [
+              {
+                "name": "issueKeyId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ticket, e.g. ATS-123"
+              }
+            ]
+          },
+          "docs": "Get Ticket Details"
+        },
+        {
+          "info": {
+            "name": "Gets Available transition statuses for given ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/:issueKeyId/transition",
+            "params": [
+              {
+                "name": "issueKeyId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ticket, e.g. ATS-123"
+              }
+            ]
+          },
+          "docs": "Gets Available transition statuses for given ticket"
+        },
+        {
+          "info": {
+            "name": "Transition status for ticket in question and add optional comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/tickets/:issueKeyId/transition",
+            "params": [
+              {
+                "name": "issueKeyId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the ticket, e.g. ATS-123"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Transition status for ticket in question and add optional comment"
+        },
+        {
+          "info": {
+            "name": "(Archive Only) Retrieve the details for a given ticket.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/:ticketNumber",
+            "params": [
+              {
+                "name": "ticketNumber",
+                "value": "",
+                "type": "path",
+                "description": "Ticket number"
+              }
+            ]
+          },
+          "docs": "(Archive Only) Retrieve the details for a given ticket."
+        },
+        {
+          "info": {
+            "name": "(Archive Only) Return an attachment associated with ticket.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/:ticketNumber/attachments",
+            "params": [
+              {
+                "name": "ticketNumber",
+                "value": "",
+                "type": "path",
+                "description": "Ticket number"
+              }
+            ]
+          },
+          "docs": "(Archive Only) Return an attachment associated with ticket."
+        },
+        {
+          "info": {
+            "name": "(Archive Only) Return the count of all the tickets on the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/count"
+          },
+          "docs": "(Archive Only) Return the count of all the tickets on the account."
+        },
+        {
+          "info": {
+            "name": "(Archive Only) Return a list of support tickets entries.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/entries",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "Pagination parameter combined with pageSize will allow for paging results"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Max of results per query String required"
+              },
+              {
+                "name": "searchText",
+                "value": "",
+                "type": "query",
+                "description": "Query string to filter text server side"
+              },
+              {
+                "name": "sortField",
+                "value": "",
+                "type": "query",
+                "description": "Query string to sort by field server side [DateModified]"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Query string to sort direction server side"
+              },
+              {
+                "name": "filterStatus",
+                "value": "",
+                "type": "query",
+                "description": "Query string to filter status server side"
+              },
+              {
+                "name": "filterStarred",
+                "value": "",
+                "type": "query",
+                "description": "Query string to filter starred server side"
+              },
+              {
+                "name": "filterType",
+                "value": "",
+                "type": "query",
+                "description": "Query string to filter type server side"
+              }
+            ]
+          },
+          "docs": "(Archive Only) Return a list of support tickets entries."
+        },
+        {
+          "info": {
+            "name": "Return ticketing organizations for an individual account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/groups"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Exampl"
+        },
+        {
+          "info": {
+            "name": "Remove individual user from a specific ticketing organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/tickets/groups/:id/member/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of ticket group"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Remove individual user from a specific ticketing organization"
+        },
+        {
+          "info": {
+            "name": "Return members of a specific ticketing organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/groups/:id/members",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of Ticket Group"
+              }
+            ]
+          },
+          "docs": "Return members of a specific ticketing organization"
+        },
+        {
+          "info": {
+            "name": "Add individual user to a specific ticketing organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/tickets/groups/member",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add individual user to a specific ticketing organization"
+        },
+        {
+          "info": {
+            "name": "Returns all tickets accessible by the calling user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/list",
+            "params": [
+              {
+                "name": "requestType",
+                "value": "",
+                "type": "query",
+                "description": "Limit results based on specified customer request type"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Fields to order by, i.e. key, status, or summary"
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "The token for a page to fetch that is not the first page. The nextPageToken will be null for the first page. Use the nextPageToken to fetch the next page of issues"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Order by direction enum, i.e. Ascending / Asc (0) or Descending / Desc (1)"
+              }
+            ]
+          },
+          "docs": "Returns all tickets accessible by the calling user"
+        },
+        {
+          "info": {
+            "name": "Returns all tickets regardless of the calling user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/list-all",
+            "params": [
+              {
+                "name": "requestType",
+                "value": "",
+                "type": "query",
+                "description": "Limit results based on specified customer request type"
+              },
+              {
+                "name": "maxResults",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return per page"
+              },
+              {
+                "name": "orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Fields to order by, i.e. key, status, or summary"
+              },
+              {
+                "name": "nextPageToken",
+                "value": "",
+                "type": "query",
+                "description": "The token for a page to fetch that is not the first page. The nextPageToken will be null for the first page. Use the nextPageToken to fetch the next page of issues"
+              },
+              {
+                "name": "orderByDirection",
+                "value": "",
+                "type": "query",
+                "description": "Order by direction enum, i.e. Ascending / Asc (0) or Descending / Desc (1)"
+              }
+            ]
+          },
+          "docs": "Returns all tickets regardless of the calling user"
+        },
+        {
+          "info": {
+            "name": "Return ticketing organizations for an individual user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/members/groups"
+          },
+          "docs": "Return ticketing organizations for an individual user"
+        },
+        {
+          "info": {
+            "name": "(Archive Only) Return ticket meta-data for a list of tickets.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/meta-data"
+          },
+          "docs": "(Archive Only) Return ticket meta-data for a list of tickets."
+        },
+        {
+          "info": {
+            "name": "Return list of users with permissions to Armor ticketing",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/tickets/users"
+          },
+          "docs": "Return list of users with permissions to Armor ticketing"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

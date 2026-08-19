@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Defender - Machines API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Defender - Machines",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all machines",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/machines",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of all machines/devices registered in Microsoft Defender for Endpoint\nfor the specified customer account.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

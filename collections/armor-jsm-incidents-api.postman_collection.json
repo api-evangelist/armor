@@ -1,0 +1,1037 @@
+{
+  "item": [
+    {
+      "id": "3127bf53-042b-43c9-a68c-c7e71c1f3965",
+      "name": "JSM - Incidents",
+      "description": {
+        "content": "Security incident management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a20c4766-7844-4e2d-a9be-6c1a5645d9d0",
+          "name": "List incidents",
+          "request": {
+            "name": "List incidents",
+            "description": {
+              "content": "Retrieve a paginated list of security incidents from JSM with filtering and sorting options.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sortBy",
+                  "value": "id",
+                  "description": "Field to sort by"
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDirection",
+                  "value": "desc",
+                  "description": "Sort direction"
+                },
+                {
+                  "disabled": false,
+                  "key": "textSearch",
+                  "value": "<string>",
+                  "description": "Text search query"
+                },
+                {
+                  "disabled": false,
+                  "key": "startAt",
+                  "value": "0",
+                  "description": "Pagination start index"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "20",
+                  "description": "Number of items per page"
+                },
+                {
+                  "disabled": false,
+                  "key": "priority",
+                  "value": "<string>",
+                  "description": "Comma-separated list of priorities"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>",
+                  "description": "Comma-separated list of statuses"
+                },
+                {
+                  "disabled": false,
+                  "key": "tactic",
+                  "value": "<string>",
+                  "description": "Comma-separated list of MITRE ATT&CK tactics"
+                },
+                {
+                  "disabled": false,
+                  "key": "organization",
+                  "value": "<string>",
+                  "description": "Comma-separated list of organization IDs"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6cb7991-4597-472b-9358-2b27e7ec492b",
+              "name": "Successfully retrieved incidents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tactic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRows\": 1480,\n  \"issues\": [\n    {\n      \"id\": \"string\",\n      \"summary\": \"string\",\n      \"status\": \"string\",\n      \"priority\": \"string\",\n      \"created\": \"2014-11-27T05:47:46.024Z\",\n      \"updated\": \"1989-08-22T21:19:00.167Z\",\n      \"assignee\": \"string\",\n      \"orgs\": [\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        },\n        {\n          \"orgId\": \"string\",\n          \"orgName\": \"string\"\n        }\n      ],\n      \"tactics\": [\n        {\n          \"name\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"summary\": \"string\",\n      \"status\": \"string\",\n      \"priority\": \"string\",\n      \"created\": \"1954-07-04T12:17:30.721Z\",\n      \"updated\": \"2011-12-05T03:32:26.690Z\",\n      \"assignee\": \"string\",\n      \"orgs\": null,\n      \"tactics\": [\n        {\n          \"name\": \"string\",\n          \"id\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"id\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"approvedOrgs\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d94f7eb5-1e3d-483f-ad36-5a5bd99a86b1",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tactic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0409654-dfe4-46b6-9336-f07fe8cbcaae",
+              "name": "No organizations found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sortBy",
+                      "value": "id"
+                    },
+                    {
+                      "key": "sortDirection",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "textSearch",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startAt",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "20"
+                    },
+                    {
+                      "key": "priority",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tactic",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Payment Required",
+              "code": 402,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faa1b484-d7b4-4dfd-a3fb-acef3f45ba80",
+          "name": "Get incident details",
+          "request": {
+            "name": "Get incident details",
+            "description": {
+              "content": "Retrieve detailed information about a specific security incident including metadata,\nalerts, evidence, impacted assets, comments, and AI-powered insights.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents",
+                ":issueKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKey",
+                  "description": "(Required) JSM issue key (e.g., SEC-1234)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e4869d1b-ab59-4b70-8654-4afde0fb34c8",
+              "name": "Successfully retrieved incident details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key (e.g., SEC-1234)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"tenantId\": \"string\",\n  \"incidentId\": null,\n  \"displayName\": null,\n  \"status\": \"string\",\n  \"createdDateTime\": null,\n  \"lastUpdateDateTime\": \"1988-01-17T02:10:24.220Z\",\n  \"timeToFirstResponse\": null,\n  \"timeToResolution\": null,\n  \"severity\": \"string\",\n  \"mitreTactics\": [\n    \"string\",\n    \"string\"\n  ],\n  \"source\": [\n    \"string\",\n    \"string\"\n  ],\n  \"detectionSource\": \"string\",\n  \"assignee\": null,\n  \"ticketUpdatedDateTime\": \"1998-09-25T04:22:36.911Z\",\n  \"ticketCreatedDateTime\": \"2017-12-29T04:34:43.950Z\",\n  \"ticketDescription\": \"string\",\n  \"ticketSummary\": \"string\",\n  \"incidentLink\": \"string\",\n  \"orgs\": null,\n  \"comments\": [\n    {\n      \"id\": \"string\",\n      \"authorDisplayName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"body\": \"string\",\n      \"created\": \"1998-04-28T18:40:53.602Z\",\n      \"updated\": \"2019-10-03T06:39:11.148Z\",\n      \"isPublic\": true\n    },\n    {\n      \"id\": \"string\",\n      \"authorDisplayName\": \"string\",\n      \"authorEmail\": \"string\",\n      \"body\": \"string\",\n      \"created\": \"2018-07-15T04:48:28.581Z\",\n      \"updated\": \"1955-05-22T00:15:37.398Z\",\n      \"isPublic\": false\n    }\n  ],\n  \"aipStatus\": \"string\",\n  \"aipSummary\": \"string\",\n  \"aipShortSummary\": \"string\",\n  \"aipEnrichmentUpdateTime\": \"string\",\n  \"aipConfidenceScore\": 7882.600359729328,\n  \"aipClassification\": null,\n  \"threatScore\": 5462,\n  \"aipDescription\": \"string\",\n  \"aipInvestigation\": \"string\",\n  \"aipContainmentAndRecovery\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "530d0188-0562-42cc-906a-3dad65f1f0d3",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key (e.g., SEC-1234)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8dc77b60-ecd1-45a2-ac5f-4a98ac642a5c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key (e.g., SEC-1234)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cdb88cbe-9e8a-4ec9-be69-4c8a361c0d3e",
+          "name": "Add comment to incident",
+          "request": {
+            "name": "Add comment to incident",
+            "description": {
+              "content": "Add a comment to an incident with optional file attachments",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents",
+                ":issueKey",
+                "comments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKey",
+                  "description": "(Required) JSM issue key"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "comment",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "(Required) "
+                },
+                {
+                  "key": "files",
+                  "value": "[\"<binary>\",\"<binary>\"]",
+                  "type": "text",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "415d5a08-30bc-41c2-99ad-6d61da78cfcf",
+              "name": "Comment added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9a42a0f4-0434-46d0-a130-7dcda740f06a",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "50374c64-9c3d-4170-a54c-f6f4e3f7f6b7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey",
+                    "comments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "comment",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "files",
+                      "value": "[\"<binary>\",\"<binary>\"]",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a61d663-0ad6-4ccf-9ab4-ebe0f6b319a8",
+          "name": "Get comment attachments",
+          "request": {
+            "name": "Get comment attachments",
+            "description": {
+              "content": "Retrieve all attachments for a specific comment",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "incidents",
+                ":issueKey",
+                "comment",
+                ":commentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "issueKey",
+                  "description": "(Required) JSM issue key"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "commentId",
+                  "description": "(Required) Comment ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "multipart/mixed"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "028ace61-fff0-4856-85dd-0026cfd68bb1",
+              "name": "Successfully retrieved attachments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey",
+                    "comment",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commentId",
+                      "description": "(Required) Comment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "multipart/mixed"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "multipart/mixed"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ac346e6-0dc9-4700-bc86-9b76de2f1289",
+              "name": "Error retrieving attachments",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "incidents",
+                    ":issueKey",
+                    "comment",
+                    ":commentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "issueKey",
+                      "description": "(Required) JSM issue key"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "commentId",
+                      "description": "(Required) Comment ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c5a6c71-980a-4b6c-a76c-80c4cbc491d5",
+    "name": "MDR Public JSM - Incidents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

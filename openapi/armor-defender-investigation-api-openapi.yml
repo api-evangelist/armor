@@ -1,0 +1,276 @@
+openapi: 3.2.0
+info:
+  title: MDR Public Defender - Investigation API
+  version: 1.0.0
+  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
+
+
+    This unified API provides access to:
+
+
+    ## AI Platform (AIP)
+
+    - AI-processed incident analysis with threat indicators and recommendations
+
+    - Entity threat intelligence for security entities associated with incidents
+
+
+    ## Microsoft Defender Integration
+
+    - Machine/device management in Microsoft Defender for Endpoint
+
+    - Security action execution (isolation, scans, investigations)
+
+    - Investigation package collection and live response operations
+
+
+    ## Detection Rules Management
+
+    - Microsoft Sentinel detection rules across customer environments
+
+    - Enriched rule metadata including MITRE ATT&CK mappings
+
+    - Incident generation statistics
+
+
+    ## JSM Middleware
+
+    - Security incident management and tracking
+
+    - Metrics aggregation and reporting
+
+    - Service request management
+
+    - Organization management
+
+
+    ## Monthly Security Reports
+
+    - Access to monthly security reports (PowerPoint, JSON, PDF)
+
+    - Security metrics and performance indicators
+
+    - Data ingestion analytics
+
+
+    ## Threat Intelligence
+
+    - Threat actor intelligence data
+
+    - Customer-specific threat intelligence based on deployed products
+
+    - OpenCTI GraphQL proxy for advanced queries
+
+
+    ## Authentication
+
+    All endpoints (except health checks) require OAuth2 Bearer token authentication.
+
+
+    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
+
+    '
+  contact:
+    name: Armor Security Team
+    url: https://armor.com
+servers:
+- url: https://mdr.api.secure-prod.services
+  description: Production environment
+- url: https://mdr.api.secure-dev.services
+  description: Development environment
+security:
+- OAuth2BearerAuth: []
+- FH-AUTH: []
+tags:
+- name: Defender - Investigation
+  description: Investigation package and live response operations
+paths:
+  /defender/packageuri/{actionId}:
+    get:
+      tags:
+      - Defender - Investigation
+      summary: Get investigation package download URI
+      description: 'Retrieves a SAS URI to download an investigation package collected from a machine.
+
+        Should be called after a ''collectInvestigationPackage'' action has completed successfully.
+
+        '
+      operationId: getPackageUri
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: actionId
+        in: path
+        required: true
+        description: The action ID of the investigation package collection action
+        schema:
+          type: string
+          format: uuid
+        example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+      responses:
+        '200':
+          description: Successfully retrieved package download URI
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUriResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /defender/liveresponseresult/{actionId}/{commandId}:
+    get:
+      tags:
+      - Defender - Investigation
+      summary: Get live response result download link
+      description: 'Retrieves a download link for the results of a specific live response command.
+
+        The commandId corresponds to the index of the command in the original live response commands array.
+
+        '
+      operationId: getLiveResponseResult
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: actionId
+        in: path
+        required: true
+        description: The action ID of the live response action
+        schema:
+          type: string
+          format: uuid
+        example: 2e9da30d-27f6-4208-81f2-9cd3d67893ba
+      - name: commandId
+        in: path
+        required: true
+        description: The index of the command in the live response commands array
+        schema:
+          type: integer
+          minimum: 0
+        example: 0
+      responses:
+        '200':
+          description: Successfully retrieved live response result download link
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LiveResponseResultResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/CustomerNotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    PackageUriResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
+    LiveResponseResultResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
+  securitySchemes:
+    OAuth2BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth2
+      description: 'OAuth2 Scoped Access Token authentication. An authorization header with Bearer token
+
+        must be included with every authenticated request.
+
+
+        For authentication details, see the official documentation:
+
+        https://kb.armor.com/kb/sso-authentication-with-postman
+
+        '
+    FH-AUTH:
+      type: http
+      scheme: bearer
+      bearerFormat: FH-AUTH
+      description: 'FH-AUTH token authentication.
+
+
+        ## Authentication Flow
+
+
+        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
+
+        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
+
+        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
+
+        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
+
+
+        ## Security Notes
+
+
+        - Authorization codes expire in 2 minutes
+
+        - Access tokens expire in 15 minutes
+
+        - All endpoints require HTTPS
+
+        - Never log or persist tokens in plain text
+
+
+        Include the access token in the Authorization header:
+
+        ```
+
+        Authorization: FH-AUTH {access_token}
+
+        ```
+
+        '

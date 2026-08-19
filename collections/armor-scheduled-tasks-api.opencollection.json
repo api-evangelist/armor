@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Agent Management Scheduled Tasks API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scheduled Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CLI Results for CoreInstanceId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/scheduled-tasks/details/:cid",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              },
+              {
+                "name": "x-pagination-token",
+                "value": ""
+              },
+              {
+                "name": "x-pagesize",
+                "value": "10"
+              }
+            ],
+            "params": [
+              {
+                "name": "cid",
+                "value": "",
+                "type": "path",
+                "description": "Core instance id."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of CLI command results history by core instance id."
+        },
+        {
+          "info": {
+            "name": "Get Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/products"
+          },
+          "docs": "Get a list of agent products and their commands."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/scheduled-tasks"
+          },
+          "docs": "Get a list of scheduled tasks, including completed ones."
+        },
+        {
+          "info": {
+            "name": "Schedule a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/scheduled-tasks",
+            "params": [
+              {
+                "name": "dryrun",
+                "value": "",
+                "type": "query",
+                "description": "Set to true to validate coreInstanceIds belong to the current account or any of its child accounts.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Schedule a task to be picked-up by the agent and run on VMs."
+        },
+        {
+          "info": {
+            "name": "Get Scheduled Tasks with Pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/v2/scheduled-tasks",
+            "params": [
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum records for request."
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Offset position."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "Available filters like Products, Status, Account."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Free text to search Task Name, etc."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction. Example: id desc."
+              }
+            ]
+          },
+          "docs": "Get a paginated list of scheduled tasks, including completed ones."
+        },
+        {
+          "info": {
+            "name": "Get Task Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://agent-management.api.secure-dev.services/scheduled-tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the scheduled task."
+              }
+            ]
+          },
+          "docs": "Get a specific scheduled task by id."
+        },
+        {
+          "info": {
+            "name": "Update a Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://agent-management.api.secure-dev.services/scheduled-tasks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The id of the scheduled task."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the state of a given task. This is how you would cancel a task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,692 @@
+{
+  "item": [
+    {
+      "id": "f726619f-38fe-4604-ab00-5d609c278d4d",
+      "name": "VS Exclusions",
+      "description": {
+        "content": "Vulnerability scan exclusions management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "03fa2dec-6724-47d6-960f-03f59cab71e9",
+          "name": "List vulnerability scan exclusions",
+          "request": {
+            "name": "List vulnerability scan exclusions",
+            "description": {},
+            "url": {
+              "path": [
+                "vulnerability-scan",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4669d80a-2ca9-4e37-8b54-79cc2a6627f8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"exclusionId\": \"string\",\n    \"vulnerabilityId\": \"string\",\n    \"vulnerabilityName\": \"string\",\n    \"excludeAllAssets\": true,\n    \"comment\": \"string\",\n    \"exclusionReason\": \"string\",\n    \"expireDate\": \"1950-07-11T20:44:32.413Z\",\n    \"createdBy\": \"string\",\n    \"createdDate\": \"1966-08-19T12:50:54.093Z\"\n  },\n  {\n    \"exclusionId\": \"string\",\n    \"vulnerabilityId\": \"string\",\n    \"vulnerabilityName\": \"string\",\n    \"excludeAllAssets\": true,\n    \"comment\": \"string\",\n    \"exclusionReason\": \"string\",\n    \"expireDate\": \"1989-10-28T17:40:50.605Z\",\n    \"createdBy\": \"string\",\n    \"createdDate\": \"2018-07-22T13:06:49.699Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2766c382-b9fa-4a7b-8e05-8e9795a4f82d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35889295-1f4e-4009-a1a9-689aa3957171",
+          "name": "Create vulnerability scan exclusion",
+          "request": {
+            "name": "Create vulnerability scan exclusion",
+            "description": {},
+            "url": {
+              "path": [
+                "vulnerability-scan",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"vulnerabilityId\": \"<string>\",\n  \"vulnerabilityName\": \"<string>\",\n  \"excludeAllAssets\": \"<boolean>\",\n  \"excludedAssets\": [\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    }\n  ],\n  \"comment\": \"<string>\",\n  \"exclusionReason\": \"<string>\",\n  \"expireDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "80b0556e-dcd7-4235-82fe-41eb67da0b3f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerabilityId\": \"<string>\",\n  \"vulnerabilityName\": \"<string>\",\n  \"excludeAllAssets\": \"<boolean>\",\n  \"excludedAssets\": [\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    }\n  ],\n  \"comment\": \"<string>\",\n  \"exclusionReason\": \"<string>\",\n  \"expireDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ada65a98-6ac6-4f47-9ba5-025f1ca48dcd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerabilityId\": \"<string>\",\n  \"vulnerabilityName\": \"<string>\",\n  \"excludeAllAssets\": \"<boolean>\",\n  \"excludedAssets\": [\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    }\n  ],\n  \"comment\": \"<string>\",\n  \"exclusionReason\": \"<string>\",\n  \"expireDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eac1d566-7934-4be2-baff-777f07980ae0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"vulnerabilityId\": \"<string>\",\n  \"vulnerabilityName\": \"<string>\",\n  \"excludeAllAssets\": \"<boolean>\",\n  \"excludedAssets\": [\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    },\n    {\n      \"assetId\": \"<uuid>\",\n      \"assetName\": \"<string>\"\n    }\n  ],\n  \"comment\": \"<string>\",\n  \"exclusionReason\": \"<string>\",\n  \"expireDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "96b84fec-1945-4534-8caa-b85aa765ed8a",
+          "name": "Delete vulnerability scan exclusion",
+          "request": {
+            "name": "Delete vulnerability scan exclusion",
+            "description": {},
+            "url": {
+              "path": [
+                "vulnerability-scan",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "48e9b048-a155-4b64-a1bd-3b5a75037dd8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd163760-25ff-41fa-870f-c4466885a5bd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cd6a1ce9-e244-4373-8305-cadfe0fa0f96",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8027aff0-e800-4fff-a965-6544c12ac62c",
+          "name": "List excluded assets for an exclusion",
+          "request": {
+            "name": "List excluded assets for an exclusion",
+            "description": {},
+            "url": {
+              "path": [
+                "vulnerability-scan",
+                "exclusions",
+                ":exclusionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exclusionId",
+                  "description": "(Required) Exclusion ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fffdf6aa-358e-4905-987b-0a7ba523a2cf",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions",
+                    ":exclusionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exclusionId",
+                      "description": "(Required) Exclusion ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"assetId\": \"<uuid>\",\n    \"assetName\": \"<string>\"\n  },\n  {\n    \"assetId\": \"<uuid>\",\n    \"assetName\": \"<string>\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e659ff93-1ef5-4ace-be79-c2c324706557",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions",
+                    ":exclusionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exclusionId",
+                      "description": "(Required) Exclusion ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "07e76fec-50c1-492b-9fe5-d3e87b742f73",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vulnerability-scan",
+                    "exclusions",
+                    ":exclusionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exclusionId",
+                      "description": "(Required) Exclusion ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://compliance.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.armor.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.armor.com/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1a8efa5-506c-4307-b894-1b2c6d120ca0",
+    "name": "Armor Compliance VS Exclusions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)\nand Vulnerability Scanning (VS) services.\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

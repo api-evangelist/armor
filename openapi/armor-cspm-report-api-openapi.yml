@@ -1,0 +1,278 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Report API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Report
+  description: CSPM report operations
+paths:
+  /cspm/report/list:
+    get:
+      tags:
+      - CSPM Report
+      summary: Get list of CSPM reports
+      operationId: listCspmReports
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmReportListDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+  /cspm/report/run:
+    post:
+      tags:
+      - CSPM Report
+      summary: Run CSPM report configuration by ID
+      operationId: runCspmReport
+      parameters:
+      - name: reportConfigId
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Report configuration ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+  /cspm/report/{id}:
+    get:
+      tags:
+      - CSPM Report
+      summary: Get CSPM report details by ID
+      operationId: getCspmReportById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CspmReportDetailsDto'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+      - CSPM Report
+      summary: Delete CSPM report configuration by ID
+      operationId: deleteCspmReport
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Report ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+  /cspm/report/{id}/control/{controlId}/resources:
+    get:
+      tags:
+      - CSPM Report
+      summary: Get report control resources by report and control ID
+      operationId: getCspmReportControlResources
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Report ID
+      - name: controlId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Control ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmResourceDetails'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    CspmReportRequirementDetails:
+      type: object
+      properties:
+        requirementId:
+          type: string
+          description: Requirement ID
+        requirementName:
+          type: string
+          description: Requirement name
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
+    CspmReportListDto:
+      type: object
+      properties:
+        reportId:
+          type: string
+          description: Report ID
+        title:
+          type: string
+          description: Report title
+        cloudType:
+          type: string
+          description: Cloud type
+        reportType:
+          type: string
+          description: Report type
+        lastRunDate:
+          type: string
+          format: date-time
+          description: Last run date
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+    CspmReportDetailsDto:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Report title
+        reportId:
+          type: string
+          description: Report ID
+        accountId:
+          type: integer
+          description: Account ID
+        mandatesCount:
+          type: integer
+          description: Mandates count
+        requirementsCount:
+          type: integer
+          description: Requirements count
+        controlsCount:
+          type: integer
+          description: Controls count
+        totalEvaluationsCount:
+          type: integer
+          description: Total evaluations count
+        policiesCount:
+          type: integer
+          description: Policies count
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
+        passPercent:
+          type: number
+          format: float
+          description: Pass percentage
+        failPercent:
+          type: number
+          format: float
+          description: Fail percentage
+        cloudType:
+          type: string
+          description: Cloud type
+        reportType:
+          type: string
+          description: Report type
+        mandateName:
+          type: string
+          description: Mandate name
+        lastRunDate:
+          type: string
+          format: date-time
+          description: Last run date
+        dataLakeSearchUrl:
+          type: string
+          description: Data lake search URL
+        requirements:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmReportRequirementDetails'
+    CspmResourceDetails:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        region:
+          type: string
+          description: Region
+        status:
+          type: string
+          description: Status
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

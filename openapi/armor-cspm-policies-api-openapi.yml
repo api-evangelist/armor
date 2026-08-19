@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Policies API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Policies
+  description: CSPM policy management
+paths:
+  /cspm/policies:
+    get:
+      tags:
+      - CSPM Policies
+      summary: Get CSPM policies
+      operationId: getCspmPolicies
+      parameters:
+      - name: provider
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+        description: Provider type filter
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmPolicy'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    CspmPolicy:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Policy ID
+        name:
+          type: string
+          description: Policy name
+        description:
+          type: string
+          description: Policy description
+        provider:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Provider type
+        controlsCount:
+          type: integer
+          description: Number of controls
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

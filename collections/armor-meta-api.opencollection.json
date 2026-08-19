@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Log Management Meta API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.armor.com/auth/authorize",
+      "accessTokenUrl": "https://api.armor.com/auth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Meta",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check hostname availability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logs.armor.com/meta/logs/sources/actions/check-unique-name",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check the availability of a log source identifier (hostname)."
+        },
+        {
+          "info": {
+            "name": "Get log source types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/meta/logs/log-source-types"
+          },
+          "docs": "Retrieve the list of log source types available, and the protocols they support."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public JSM - Incidents API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JSM - Incidents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List incidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/incidents",
+            "params": [
+              {
+                "name": "sortBy",
+                "value": "",
+                "type": "query",
+                "description": "Field to sort by"
+              },
+              {
+                "name": "sortDirection",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction"
+              },
+              {
+                "name": "textSearch",
+                "value": "",
+                "type": "query",
+                "description": "Text search query"
+              },
+              {
+                "name": "startAt",
+                "value": "",
+                "type": "query",
+                "description": "Pagination start index"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page"
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of priorities"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of statuses"
+              },
+              {
+                "name": "tactic",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of MITRE ATT&CK tactics"
+              },
+              {
+                "name": "organization",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of organization IDs"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of security incidents from JSM with filtering and sorting options.\n"
+        },
+        {
+          "info": {
+            "name": "Get incident details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/incidents/:issueKey",
+            "params": [
+              {
+                "name": "issueKey",
+                "value": "",
+                "type": "path",
+                "description": "JSM issue key (e.g., SEC-1234)"
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a specific security incident including metadata,\nalerts, evidence, impacted assets, comments, and AI-powered insights.\n"
+        },
+        {
+          "info": {
+            "name": "Add comment to incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://mdr.api.secure-prod.services/incidents/:issueKey/comments",
+            "params": [
+              {
+                "name": "issueKey",
+                "value": "",
+                "type": "path",
+                "description": "JSM issue key"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "comment",
+                  "type": "text",
+                  "value": ""
+                },
+                {
+                  "name": "files",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Add a comment to an incident with optional file attachments"
+        },
+        {
+          "info": {
+            "name": "Get comment attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/incidents/:issueKey/comment/:commentId",
+            "params": [
+              {
+                "name": "issueKey",
+                "value": "",
+                "type": "path",
+                "description": "JSM issue key"
+              },
+              {
+                "name": "commentId",
+                "value": "",
+                "type": "path",
+                "description": "Comment ID"
+              }
+            ]
+          },
+          "docs": "Retrieve all attachments for a specific comment"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

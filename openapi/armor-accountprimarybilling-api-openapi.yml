@@ -1,0 +1,184 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Account Primary Billing API
+servers:
+- url: https://api.armor.com
+tags:
+- name: AccountPrimaryBilling
+paths:
+  /accounts/{accountId}/primary-billing:
+    get:
+      tags:
+      - AccountPrimaryBilling
+      summary: (Deprecated) Get the Account Primary Billing User
+      operationId: AccountPrimaryBilling_GetAccountPrimaryBillingContact
+      parameters:
+      - name: accountId
+        in: path
+        description: account id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+              example:
+                id: 2402
+                status: disabled
+                title: ''
+                firstName: John
+                lastName: Smith
+                email: john.smith@example.com
+                phonePrimary:
+                  countryCode: 1
+                  countryIsoCode: US
+                  number: '8880000000'
+                  phoneExt: null
+                timezone: GMT Standard Time
+                culture: en-US
+                permissions:
+                - 1
+                lastModified: '2015-09-22T15:28:06.89'
+                passwordLastSet: '1999-01-01T00:00:00'
+                mustChangePassword: false
+                lastLogin: '1999-01-01T00:00:00'
+                apiKeyCount: 0
+                isPrimaryBillingNotificationUser: false
+                isPrimaryAccountNotificationUser: false
+                isPrimaryTechnicalNotificationUser: false
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetUserResponse'
+      deprecated: false
+    put:
+      tags:
+      - AccountPrimaryBilling
+      summary: (Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality
+      operationId: AccountPrimaryBilling_UpdateAccountPrimaryBillingContact
+      parameters:
+      - name: accountId
+        in: path
+        description: account id
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.Requests.UpdateAccountPrimaryBillingContactRequest'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.Requests.UpdateAccountPrimaryBillingContactRequest'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              format: int32
+              type: integer
+          text/json:
+            schema:
+              format: int32
+              type: integer
+          application/x-www-form-urlencoded:
+            schema:
+              format: int32
+              type: integer
+        description: user id
+        required: true
+components:
+  schemas:
+    FireHost.Services.Http.Accounts.Models.GetUserResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        status:
+          type: string
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phonePrimary:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Phone'
+        timezone:
+          type: string
+        culture:
+          type: string
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+        lastModified:
+          format: date-time
+          type: string
+        passwordLastSet:
+          format: date-time
+          type: string
+        mustChangePassword:
+          type: boolean
+        lastLogin:
+          format: date-time
+          type: string
+        apiKeyCount:
+          format: int32
+          description: Gets or sets the Api Key Count
+          type: integer
+        isPrimaryBillingNotificationUser:
+          type: boolean
+        isPrimaryAccountNotificationUser:
+          type: boolean
+        isPrimaryTechnicalNotificationUser:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.Requests.UpdateAccountPrimaryBillingContactRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
+    FireHost.Infrastructure.Accounts.Data.Phone:
+      type: object
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+        countryIsoCode:
+          type: string
+        number:
+          type: string
+        phoneExt:
+          type: string
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

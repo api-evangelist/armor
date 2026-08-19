@@ -1,0 +1,787 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Network Services API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Network Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get information about firewall groups in your account. These groups define the individual IPs, IP ranges, and/or subnets to be used as sources and destinations in firewall rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/groups",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              }
+            ]
+          },
+          "docs": "Get information about firewall groups in your account. These groups define the individual IPs, IP ranges, and/or subnets to be used as sources and destinations in firewall rules."
+        },
+        {
+          "info": {
+            "name": "Create a firewall group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/firewall/:ovdcId/groups",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a firewall group."
+        },
+        {
+          "info": {
+            "name": "Get details for a specific firewall group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/groups/:id",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the firewall group"
+              }
+            ]
+          },
+          "docs": "Get details for a specific firewall group."
+        },
+        {
+          "info": {
+            "name": "Update details for a specific firewall group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/firewall/:ovdcId/groups/:id",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the firewall group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update details for a specific firewall group."
+        },
+        {
+          "info": {
+            "name": "Delete a firewall group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/firewall/:ovdcId/groups/:id",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the firewall group to delete"
+              }
+            ]
+          },
+          "docs": "Delete a firewall group."
+        },
+        {
+          "info": {
+            "name": "Creates an individual firewall rule for a given device.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/firewall/:ovdcId/rule",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to create rule for"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an individual firewall rule for a given device."
+        },
+        {
+          "info": {
+            "name": "Firewall_GetFirewallRuleById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/rule/:ruleId",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Update/Retry an individual firewall rule based on rule id for a given device.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/firewall/:ovdcId/rule/:ruleId",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id of the device to update rules"
+              },
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "rule id for which rule needs to be updated"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update/Retry an individual firewall rule based on rule id for a given device."
+        },
+        {
+          "info": {
+            "name": "Retrieve firewall rules for a orginaztion Vdc.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/rules",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              }
+            ]
+          },
+          "docs": "Retrieve firewall rules for a orginaztion Vdc."
+        },
+        {
+          "info": {
+            "name": "Retrieve firewall rules for a orginaztion Vdc for csv export.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/rules/export",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              }
+            ]
+          },
+          "docs": "Retrieve firewall rules for a orginaztion Vdc for csv export."
+        },
+        {
+          "info": {
+            "name": "Get information about firewall services in your account. These services define the ports and protocols to be used as service groups in firewall rules, to determine the type of traffic being allowed or blocked.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/services",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to retrieve rules"
+              }
+            ]
+          },
+          "docs": "Get information about firewall services in your account. These services define the ports and protocols to be used as service groups in firewall rules, to determine the type of traffic being allowed or blocked."
+        },
+        {
+          "info": {
+            "name": "Create firewall service groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/firewall/:ovdcId/services",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to under which service needs to be created"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Protocol must be entered in lower-case letters"
+        },
+        {
+          "info": {
+            "name": "Get details about a specific firewall service group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewall/:ovdcId/services/:serviceGroupId",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "Device ID"
+              },
+              {
+                "name": "serviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "Firewall Service Group ID"
+              }
+            ]
+          },
+          "docs": "Get details about a specific firewall service group."
+        },
+        {
+          "info": {
+            "name": "Update the details for a firewall service group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/firewall/:ovdcId/services/:serviceGroupId",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to update service for"
+              },
+              {
+                "name": "serviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "id of the service group"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details for a firewall service group."
+        },
+        {
+          "info": {
+            "name": "Delete a firewall service group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/firewall/:ovdcId/services/:serviceGroupId",
+            "params": [
+              {
+                "name": "ovdcId",
+                "value": "",
+                "type": "path",
+                "description": "id for the device to delete services for"
+              },
+              {
+                "name": "serviceGroupId",
+                "value": "",
+                "type": "path",
+                "description": "id of the service group"
+              }
+            ]
+          },
+          "docs": "Delete a firewall service group."
+        },
+        {
+          "info": {
+            "name": "Enables/Disables a firewall rule.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/firewall/rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique firewall ruleId"
+              },
+              {
+                "name": "disabled",
+                "value": "",
+                "type": "query",
+                "description": "Boolean value indicating if rule needs to be disabled or enabled as a query string parameter"
+              }
+            ]
+          },
+          "docs": "Enables/Disables a firewall rule."
+        },
+        {
+          "info": {
+            "name": "Deletes a firewall rule with specified ruleid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/firewall/rules/:ruleId",
+            "params": [
+              {
+                "name": "ruleId",
+                "value": "",
+                "type": "path",
+                "description": "firewall rule Id which needs to be deleted"
+              }
+            ]
+          },
+          "docs": "Deletes a firewall rule with specified ruleid."
+        },
+        {
+          "info": {
+            "name": "Get information about firewall devices in your account environments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/firewalls"
+          },
+          "docs": "Get information about firewall devices in your account environments."
+        },
+        {
+          "info": {
+            "name": "Return a list of IP addresses allocated to the account and how they are assigned.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/ips",
+            "params": [
+              {
+                "name": "vcdOrgVdcId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Enum of private4, public4"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Enum of Routed, Reserved, Assigned"
+              }
+            ]
+          },
+          "docs": "Return a list of IP addresses allocated to the account and how they are assigned."
+        },
+        {
+          "info": {
+            "name": "Assigns an IP to a VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Assigns an IP to a VM."
+        },
+        {
+          "info": {
+            "name": "Un-assign an IP from a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/ips",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Un-assign an IP from a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Allocate more public IPs to your Account for a location.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/ips/publicIps/quantity/:quantity",
+            "params": [
+              {
+                "name": "quantity",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allocate more public IPs to your Account for a location."
+        },
+        {
+          "info": {
+            "name": "Return a list of L2L (IPSec) tunnels.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/l2l"
+          },
+          "docs": "Return a list of L2L (IPSec) tunnels."
+        },
+        {
+          "info": {
+            "name": "Create a new L2L tunnel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/l2l",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new L2L tunnel."
+        },
+        {
+          "info": {
+            "name": "Get L2L tunnel by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/l2l/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the l2l tunnel"
+              }
+            ]
+          },
+          "docs": "Get L2L tunnel by id."
+        },
+        {
+          "info": {
+            "name": "Delete a specific L2L tunnel.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/l2l/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the l2l tunnel"
+              }
+            ]
+          },
+          "docs": "Delete a specific L2L tunnel."
+        },
+        {
+          "info": {
+            "name": "L2L_CheckEsgLimit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/l2l/:id/esglimit/check",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of NATs that are associated to your account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/nats",
+            "params": [
+              {
+                "name": "locationName",
+                "value": "",
+                "type": "query",
+                "description": "The datacenter"
+              },
+              {
+                "name": "zone",
+                "value": "",
+                "type": "query",
+                "description": "The zone in the datacenter"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of nat"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of NATs that are associated to your account."
+        },
+        {
+          "info": {
+            "name": "Create NATs associated to a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/nats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create NATs associated to a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Add/Delete NATs associated to a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/nats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add/Delete NATs associated to a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Delete NATs associated to a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/nats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete NATs associated to a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of NATs that are associated to a virtual machine.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/nats/vm/:vmId",
+            "params": [
+              {
+                "name": "vmId",
+                "value": "",
+                "type": "path",
+                "description": "id of the virtual machine"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of NATs that are associated to a virtual machine."
+        },
+        {
+          "info": {
+            "name": "Returns a list of users with their SSL VPN access to various environments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/ssl-certificates"
+          },
+          "docs": "Returns a list of users with their SSL VPN access to various environments."
+        },
+        {
+          "info": {
+            "name": "Update SSL-Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/ssl-certificates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update SSL-Certificate"
+        },
+        {
+          "info": {
+            "name": "Cancel SSL-Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/ssl-certificates/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel SSL-Certificate"
+        },
+        {
+          "info": {
+            "name": "Returns a list of users with their SSL VPN access to various environments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/sslvpn"
+          },
+          "docs": "Returns a list of users with their SSL VPN access to various environments."
+        },
+        {
+          "info": {
+            "name": "SslVpn_GetSslVpnConfigDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/sslvpn/client-config"
+          }
+        },
+        {
+          "info": {
+            "name": "Enable a user for SSL VPN access to one or more environments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/sslvpn/enable",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable a user for SSL VPN access to one or more environments."
+        },
+        {
+          "info": {
+            "name": "Returns a list of users with their SSL VPN access to various environments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/sslvpn/members"
+          },
+          "docs": "Returns a list of users with their SSL VPN access to various environments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

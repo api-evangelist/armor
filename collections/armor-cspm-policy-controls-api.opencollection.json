@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance CSPM Policy Controls API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSPM Policy Controls",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get CSPM policy controls by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/policy/:id/controls",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Policy ID"
+              }
+            ]
+          },
+          "docs": "Get CSPM policy controls by ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

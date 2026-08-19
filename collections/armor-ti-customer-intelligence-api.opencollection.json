@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public TI - Customer Intelligence API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TI - Customer Intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get customer-specific threat intelligence",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/ti/customer-ti/",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345-67890-abcde"
+              }
+            ]
+          },
+          "docs": "Retrieves threat intelligence tailored to a specific customer based on their\ndeployed products and vendors. Maps rules to products and queries OpenCTI for\nrelevant vulnerabilities and reports.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

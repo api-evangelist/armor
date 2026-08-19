@@ -1,0 +1,290 @@
+openapi: 3.2.0
+info:
+  title: Container Security Image API
+  description: 'This API provides an interface for configuring and interacting with Armor''s container security platform.
+
+
+    To connect to this API, use the following fully-qualified domain name (FQDN):
+
+    `compliance.api.secure-prod.services/containers`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://compliance.api.secure-dev.services/containers
+  description: Development
+- url: https://compliance.api.secure-stage.services/containers
+  description: Staging
+- url: https://compliance.api.secure-prod.services/containers
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Image
+  description: Image management operations
+paths:
+  /images:
+    get:
+      tags:
+      - Image
+      summary: Get All Images
+      description: Returns a list of all images.
+      operationId: getAllImages
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ViewAllImagesResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /images/{id}:
+    get:
+      tags:
+      - Image
+      summary: Get Image Detail
+      description: Returns details for a specific image.
+      operationId: getImageDetail
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - $ref: '#/components/parameters/ImageId'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ImageDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    SoftwareInfo:
+      type: object
+      properties:
+        fixVersion:
+          type: string
+          description: The fix version of the software
+        name:
+          type: string
+          description: Name of the software
+        version:
+          type: string
+          description: The version of the software
+    LayerInfo:
+      type: object
+      properties:
+        size:
+          type: number
+          description: The size in bytes
+        tags:
+          type: string
+          description: The tags applied to the layer
+        layerCreatedDate:
+          type: string
+          description: The date on which layer is created
+        layerCreatedBy:
+          type: string
+          description: Program details regarding layer creation
+    ImageDetailResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the Image
+        imageUniqueId:
+          type: string
+          description: The unique hash value for the image
+        repositoryId:
+          type: number
+          description: Repository Id that the image is associated with
+        repositoryName:
+          type: string
+          description: Friendly name of the associated repository
+        registryId:
+          type: number
+          description: Registry Id that the image is associated with
+        registryName:
+          type: string
+          description: Friendly name of the associated registry
+        tags:
+          type: string
+          description: Image tags as defined in the associated repository
+        sha:
+          type: string
+          description: Unique identifier for the image, as reported by the parent registry vendor
+        size:
+          type: number
+          description: Image size, as reported by the parent registry vendor
+        operatingSystem:
+          type: string
+          description: Operating system leveraged by the image software
+        dockerVersion:
+          type: string
+          description: The docker host version reported by the sensor
+        architecture:
+          type: string
+          description: The targeted host architecture
+        lastScanned:
+          type: string
+          description: Datetime when image was most-recently scanned for vulnerabilities
+        layers:
+          type: array
+          description: The image's layer information
+          items:
+            $ref: '#/components/schemas/LayerInfo'
+        software:
+          type: array
+          description: The image's software information
+          items:
+            $ref: '#/components/schemas/SoftwareInfo'
+        labels:
+          type: array
+          description: The image's label information
+          items:
+            $ref: '#/components/schemas/LabelInfo'
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        status:
+          type: string
+          description: Image's scanning state. "Unavailable" indicates the image may no longer be available within the parent registry
+        imageCreatedDate:
+          type: string
+          description: Datetime on which the image was created
+        imageModifiedDate:
+          type: string
+          description: Datetime on which the image was updated
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    LabelInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the label
+        value:
+          type: string
+          description: Corresponding value of the label
+    ViewAllImagesResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id of the Image
+        repositoryId:
+          type: number
+          description: Id of the repository which the image is associated with
+        repositoryName:
+          type: string
+          description: Friendly name of the associated registry
+        registryId:
+          type: number
+          description: Id of the registry which the repository is associated with
+        registryName:
+          type: string
+          description: Friendly name of the associated registry
+        imageUniqueId:
+          type: string
+          description: The unique hash value for the image
+        tags:
+          type: string
+          description: Tags applied to the image
+        sha:
+          type: string
+          description: Unique identifier for the image, as reported by the parent registry vendor
+        size:
+          type: number
+          description: Image size, as reported by the parent registry vendor
+        operatingSystem:
+          type: string
+          description: Operating system leveraged by the image software
+        lastScanned:
+          type: string
+          description: Datetime when image was most-recently scanned for vulnerabilities
+        vulnerabilities:
+          $ref: '#/components/schemas/VulnerabilitiesResponse'
+        status:
+          type: string
+          description: Image's scanning state. "Unavailable" indicates the image may no longer be available within the parent registry
+        imageCreatedDate:
+          type: string
+          description: The date on which the image is created
+        imageModifiedDate:
+          type: string
+          description: The date on which the image is modified
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+    ImageId:
+      name: id
+      in: path
+      required: true
+      description: Image ID
+      schema:
+        type: integer
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

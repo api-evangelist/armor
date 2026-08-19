@@ -1,0 +1,38 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Security Incidents API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Incidents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "SecurityIncidents_GetSecurityIncidents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/security-incidents"
+          }
+        },
+        {
+          "info": {
+            "name": "SecurityIncidents_GetSecurityIncidentsSeverityCount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/security-incidents/severity-count"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

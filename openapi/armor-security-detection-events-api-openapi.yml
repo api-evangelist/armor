@@ -1,0 +1,138 @@
+openapi: 3.2.0
+info:
+  title: Incident Management Security Detection Events API
+  description: 'APIs for interacting with Armor products and services for incident management.
+
+
+    Base URL: `https://security-detections.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://security-detections.api.secure-dev.services
+  description: Development
+- url: https://security-detections.api.secure-stage.services
+  description: Staging
+- url: https://security-detections.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Security Detection Events
+  description: Security detection event operations
+paths:
+  /security-detections/{detectionId}/events:
+    get:
+      tags:
+      - Security Detection Events
+      summary: List Events related to a Detection
+      description: 'Get a list of events related to a security detection.
+
+
+        If more than 1000 events are related to the given detection, then the 1000 most recent
+
+        events are returned. This endpoint does not presently support paging using the `Range` header.
+
+        '
+      operationId: listDetectionEvents
+      parameters:
+      - name: detectionId
+        in: path
+        required: true
+        description: The unique identifier of the detection.
+        schema:
+          type: integer
+      responses:
+        '206':
+          description: Partial content - list of events
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SecurityDetectionEvent'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    SecurityDetectionEvent:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Customer Account identifier.
+        category:
+          type: string
+          description: The category of the event.
+        coreInstanceId:
+          type: string
+          format: uuid
+          description: The unique identifier of the instance.
+        destIp:
+          type:
+          - string
+          - 'null'
+          description: The IP address targeted by this event.
+        destPort:
+          type:
+          - integer
+          - 'null'
+          description: The IP port targeted by this event.
+        eventId:
+          type: string
+          format: uuid
+          description: The unique identifier of the event.
+        logSourceId:
+          type: string
+          format: uuid
+          description: The unique identifier of the log source from which the event originated.
+        logSourceName:
+          type: string
+          description: The name of the log source from which the event originated.
+        name:
+          type: string
+          description: The name of the event - describes the event type.
+        rawEvent:
+          type:
+          - string
+          - 'null'
+          description: The payload associated with this event.
+        sourceIp:
+          type:
+          - string
+          - 'null'
+          description: The IP address from which this event originated.
+        sourcePort:
+          type:
+          - integer
+          - 'null'
+          description: The IP port from which this event originated.
+        timestamp:
+          type: string
+          format: date-time
+          description: The date and time this event was received.
+        username:
+          type:
+          - string
+          - 'null'
+          description: The username associated with this event.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

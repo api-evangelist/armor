@@ -1,0 +1,111 @@
+openapi: 3.2.0
+info:
+  title: Accounts Tours API
+  description: 'This API provides an interface for configuring and interacting with Armor''s account
+
+    management functionality.
+
+
+    Base URL: `https://accounts.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://accounts.api.secure-dev.services
+  description: Development
+- url: https://accounts.api.secure-stage.services
+  description: Staging
+- url: https://accounts.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Tours
+  description: 'The tours resource describes a list of UI tours that help users learn about features in the ARMOR Management Portal.
+
+    The preferences stored in this resource aid the portal in determining which tours should be displayed to the currently logged-in user.
+
+    '
+paths:
+  /users/{userId}/tours:
+    get:
+      tags:
+      - Tours
+      summary: Get tour preferences
+      description: Get the tour preferences for the specified user.
+      operationId: getTourPreferences
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The identifier of the user for which tour preferences are being requested.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourPreference'
+    put:
+      tags:
+      - Tours
+      summary: Update tour preferences
+      description: Update the tour preferences of the specified user.
+      operationId: updateTourPreferences
+      parameters:
+      - name: userId
+        in: path
+        required: true
+        description: The identifier of the user for which tour preferences are being updated.
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TourPreference'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TourPreference'
+components:
+  schemas:
+    TourPreference:
+      type: object
+      required:
+      - tourId
+      - displayCount
+      - dismissed
+      properties:
+        tourId:
+          type: integer
+          description: The numeric identifier of the page tour.
+          example: 1
+        displayCount:
+          type: integer
+          description: The number of times this tour has been displayed to the currently logged-in user.
+          example: 1
+        dismissed:
+          type: boolean
+          description: Whether or not the tour has been dismissed by the currently logged-in user.
+          example: false
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

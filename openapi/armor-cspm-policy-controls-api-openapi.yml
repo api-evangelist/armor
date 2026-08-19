@@ -1,0 +1,77 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Policy Controls API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Policy Controls
+  description: CSPM policy controls management
+paths:
+  /cspm/policy/{id}/controls:
+    get:
+      tags:
+      - CSPM Policy Controls
+      summary: Get CSPM policy controls by ID
+      operationId: getCspmPolicyControls
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Policy ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CspmPolicyControl'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+        '500':
+          description: Internal Server Error
+components:
+  schemas:
+    CspmPolicyControl:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        controlName:
+          type: string
+          description: Control name
+        description:
+          type: string
+          description: Control description
+        severity:
+          type: string
+          description: Control severity
+        remediationAvailable:
+          type: boolean
+          description: Whether remediation is available
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

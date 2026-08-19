@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public JSM - Metrics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JSM - Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get incident summary metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/metrics/incidents"
+          },
+          "docs": "Retrieve aggregated incident metrics including event-to-incident ratio trends,\nincident statistics, and summary data over time.\n"
+        },
+        {
+          "info": {
+            "name": "Get threat intelligence updates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/metrics/ti-updates"
+          },
+          "docs": "Retrieve threat intelligence updates from various sources including threat feeds,\ndevice ingestion, identity ingestion, and vulnerability summaries.\n"
+        },
+        {
+          "info": {
+            "name": "Get data ingestion metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/metrics/data-ingestion"
+          },
+          "docs": "Retrieve data ingestion metrics from DynamoDB for the authenticated customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

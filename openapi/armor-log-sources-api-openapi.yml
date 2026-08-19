@@ -1,0 +1,335 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Log Sources API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Log Sources
+  description: Operations for managing log sources
+paths:
+  /logs/sources:
+    get:
+      tags:
+      - Log Sources
+      summary: Get all log sources
+      description: Get a list of all configured log sources.
+      operationId: getLogSources
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogSource'
+    post:
+      tags:
+      - Log Sources
+      summary: Create a log source
+      description: Create a log source with the provided configuration options.
+      operationId: createLogSource
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogSourceCreateRequest'
+      responses:
+        '200':
+          description: Log source created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogSource'
+  /logs/sources/{sourceId}:
+    delete:
+      tags:
+      - Log Sources
+      summary: Delete a log source
+      description: 'Soft-delete a log source. The log source will be deprovisioned but the entity record will be
+
+        retained and state set to "Deleted". Only log sources with state `Online` may be deleted. You
+
+        can enumerate deleted log sources by appending the `?deleted=true` query string to a `GET`
+
+        request.
+
+        '
+      operationId: deleteLogSource
+      deprecated: true
+      parameters:
+      - name: sourceId
+        in: path
+        required: true
+        description: The unique identifier of the log source being deleted.
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Log source deleted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Log source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+    patch:
+      tags:
+      - Log Sources
+      summary: Update a log source
+      description: 'Update a log source with the provided configuration options.
+
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+
+        the `version` property of the request body. If the entity has been modified since the
+
+        supplied version, a `412` response will be returned. If this header is absent from the
+
+        request a `400` response will be returned.
+
+        '
+      operationId: updateLogSource
+      deprecated: true
+      parameters:
+      - name: sourceId
+        in: path
+        required: true
+        description: The unique identifier of the log source being updated.
+        schema:
+          type: integer
+      - name: If-Unmodified-Since
+        in: header
+        required: true
+        description: Version header for concurrency control
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogSourceUpdateRequest'
+      responses:
+        '200':
+          description: Log source updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogSourceUpdateRequest'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: Log source not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '428':
+          description: Precondition required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+components:
+  schemas:
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    LogSourceType:
+      type: object
+      properties:
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type.
+        name:
+          type: string
+          description: The friendly name of the log source type.
+        logSourceProtocols:
+          type: array
+          items:
+            type: integer
+          description: A collection of protocol IDs available for the type.
+        icon:
+          type: string
+          description: The Brandkit CSS class used to specify the icon for this log source type.
+        category:
+          type: string
+          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
+        vendor:
+          type: string
+          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
+        kbLink:
+          type: string
+          description: Link to the KB article for this log source type.
+        requiresFlow:
+          type: boolean
+          description: Whether or not network flow sources need to be enabled on the org for this log source type.
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+      - tcp
+      - udp
+      example: tcp
+    Message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    LogSourceUpdateRequest:
+      type: object
+      required:
+      - logSourceId
+      - options
+      - version
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+    LogSourceCreateRequest:
+      type: object
+      required:
+      - hostname
+      - endpointId
+      - logSourceTypeId
+      - logSourceProtocolId
+      properties:
+        hostname:
+          type: string
+          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
+        endpointId:
+          $ref: '#/components/schemas/Guid'
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type this log source will be provisioned as.
+        logSourceProtocolId:
+          type: integer
+          description: The unique identifier of the log source protocol this log source will use.
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+    LogSource:
+      type: object
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        hostname:
+          type: string
+          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
+        endpoint:
+          type: string
+          description: The hostname of the endpoint to which logs are sent.
+        protocol:
+          $ref: '#/components/schemas/IpProtocol'
+        port:
+          type:
+          - integer
+          - 'null'
+          minimum: 1
+          maximum: 65535
+          description: The IP port to which logs are sent.
+        state:
+          type: string
+          description: The state of the log source.
+          enum:
+          - Pending
+          - Provisioning
+          - Online
+          - Deleting
+          - Deleted
+          - Error
+        type:
+          $ref: '#/components/schemas/LogSourceType'
+        logSourceProtocolId:
+          type: integer
+          description: The unique identifier of the log source protocol this log source uses.
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+        lastEventDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The timestamp of the last log this source received.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date and time this log source was created.
+        createdByUserId:
+          type: integer
+          description: The unique identifier of the user that created this log source.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date and time this log source was last updated.
+        modifiedByUserId:
+          type: integer
+          description: The unique identifier of the user that last updated this log source.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

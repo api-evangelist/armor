@@ -1,0 +1,106 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Keys API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "/Returns list of api keys for a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/users/:id/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "/Returns list of api keys for a user"
+        },
+        {
+          "info": {
+            "name": "Method to create Api Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/users/:id/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Method to create Api Key"
+        },
+        {
+          "info": {
+            "name": "Rename Api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/users/:id/keys",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rename Api key"
+        },
+        {
+          "info": {
+            "name": "Deletes api key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/users/:id/keys/:key",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "User Id"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "path",
+                "description": "Key Id"
+              }
+            ]
+          },
+          "docs": "Deletes api key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

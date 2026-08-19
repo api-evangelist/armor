@@ -1,0 +1,137 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Log Endpoints API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Log Endpoints
+  description: Operations for managing log endpoints
+paths:
+  /logs/endpoints:
+    get:
+      tags:
+      - Log Endpoints
+      summary: Get all log endpoints
+      description: Get a list of log endpoints.
+      operationId: getLogEndpoints
+      deprecated: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogEndpoint'
+  /logs/endpoints/actions/allocate:
+    post:
+      tags:
+      - Log Endpoints
+      summary: Allocate an endpoint
+      description: 'Request allocation of an Armor-managed endpoint.
+
+
+        This action assigns an Armor-managed endpoint and port range that can be used to send logs
+
+        that need to be collected. The endpoint will be assigned to the org specified in the bearer token.
+
+
+        A response of 200 means the allocation already existed and no action was taken.
+
+        A response of 201 means the allocation was successfully performed.
+
+        '
+      operationId: allocateLogEndpoint
+      deprecated: true
+      responses:
+        '200':
+          description: Allocation already existed
+        '201':
+          description: Allocation successfully performed
+components:
+  schemas:
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    LogEndpoint:
+      type: object
+      properties:
+        endpointId:
+          $ref: '#/components/schemas/Guid'
+        hostname:
+          type: string
+          description: The fully-qualified domain name of the log endpoint.
+        publicIp:
+          type: string
+          description: The public IP address of the log endpoint.
+        privateIp:
+          type:
+          - string
+          - 'null'
+          description: The private IP address of the log endpoint.
+        softwareVersion:
+          type: string
+          description: The software version the endpoint is running.
+        state:
+          type: string
+          description: The state of the log endpoint.
+          enum:
+          - Pending
+          - Provisioning
+          - Online
+          - Deleting
+          - Deleted
+          - Error
+        version:
+          type: integer
+          description: The version of this log endpoint (used for concurrency checking). Pass this value with any subsequent update request.
+        lastEventDate:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          description: The timestamp of the last log this endpoint received.
+        createdDate:
+          type: string
+          format: date-time
+          description: The date and time this log endpoint was created.
+        createdByUserId:
+          type: integer
+          description: The unique identifier of the user that created this log endpoint.
+        modifiedDate:
+          type: string
+          format: date-time
+          description: The date and time this log endpoint was last updated.
+        modifiedByUserId:
+          type: integer
+          description: The unique identifier of the user that last updated this log endpoint.
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

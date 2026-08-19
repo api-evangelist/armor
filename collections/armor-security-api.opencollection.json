@@ -1,0 +1,439 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Security API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve anti-malware scan data for a specific host.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/:coreinstanceId/security",
+            "params": [
+              {
+                "name": "coreinstanceId",
+                "value": "",
+                "type": "path",
+                "description": "GUID for Agent CORE instance id"
+              }
+            ]
+          },
+          "docs": "Retrieve anti-malware scan data for a specific host."
+        },
+        {
+          "info": {
+            "name": "Retrieve list of Anti-Malware status details by host.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/avam"
+          },
+          "docs": "Retrieve list of Anti-Malware status details by host."
+        },
+        {
+          "info": {
+            "name": "Retrieve aggregate Anti-Malware status for all hosts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/avam/statistics"
+          },
+          "docs": "Retrieve aggregate Anti-Malware status for all hosts."
+        },
+        {
+          "info": {
+            "name": "Retrieve FIM status for all hosts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/fim"
+          },
+          "docs": "Retrieve FIM status for all hosts."
+        },
+        {
+          "info": {
+            "name": "Retrieve aggregate FIM status for all hosts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/fim/statistics"
+          },
+          "docs": "Retrieve aggregate FIM status for all hosts."
+        },
+        {
+          "info": {
+            "name": "Trigger trend manual scan start request for a server.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/core/manual-scan/:coreInstance/start",
+            "params": [
+              {
+                "name": "coreInstance",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Trigger trend manual scan start request for a server."
+        },
+        {
+          "info": {
+            "name": "Get a list of current and past malware manual scans.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/manual-scan/getCurrentAndPastScan"
+          },
+          "docs": "Get a list of current and past malware manual scans."
+        },
+        {
+          "info": {
+            "name": "Retrieve OS patching status data for a specific VM.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/packages/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "id of the Core Instance"
+              }
+            ]
+          },
+          "docs": "Retrieve OS patching status data for a specific VM."
+        },
+        {
+          "info": {
+            "name": "Retrieve OS patching status data for your VMs.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/packages/status"
+          },
+          "docs": "Retrieve OS patching status data for your VMs."
+        },
+        {
+          "info": {
+            "name": "Retrieve overall security status.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/security-dashboard/stats/overall"
+          },
+          "docs": "Retrieve overall security status."
+        },
+        {
+          "info": {
+            "name": "Retrieve aggregate Overall, Anti-Malware, and FIM for all hosts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/security-dashboard/stats/overview"
+          },
+          "docs": "Retrieve aggregate Overall, Anti-Malware, and FIM for all hosts."
+        },
+        {
+          "info": {
+            "name": "Sync trend information by coreinstanceid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/core/trend-sync/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Sync trend information by coreinstanceid."
+        },
+        {
+          "info": {
+            "name": "Retrieve OS logging details by host.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management"
+          },
+          "docs": "Retrieve OS logging details by host."
+        },
+        {
+          "info": {
+            "name": "Activate log depot for the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/log-depot/activate"
+          },
+          "docs": "Activate log depot for the account"
+        },
+        {
+          "info": {
+            "name": "Deactivate Log depot for the account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/log-depot/deactivate"
+          },
+          "docs": "Deactivate Log depot for the account"
+        },
+        {
+          "info": {
+            "name": "Retrieve log retention types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/logretentiontypes"
+          },
+          "docs": "Retrieve log retention types"
+        },
+        {
+          "info": {
+            "name": "Retrieve Log sources for the logged-in account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/logsources"
+          },
+          "docs": "Retrieve Log sources for the logged-in account."
+        },
+        {
+          "info": {
+            "name": "Create/Connetor Request Publish to IMS ticket.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/logsources/connector-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create/Connetor Request Publish to IMS ticket."
+        },
+        {
+          "info": {
+            "name": "Retrieve log insight notification for the logged-in account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/logsources/log-insight/notification"
+          },
+          "docs": "Retrieve log insight notification for the logged-in account"
+        },
+        {
+          "info": {
+            "name": "create/update log insight notification for the logged-in account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/logsources/log-insight/notification",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "create/update log insight notification for the logged-in account"
+        },
+        {
+          "info": {
+            "name": "Retrieve log insight overview for the logged-in account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/logsources/loginsight-overview"
+          },
+          "docs": "Retrieve log insight overview for the logged-in account"
+        },
+        {
+          "info": {
+            "name": "Return Log Utilization for last week",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/log-storage"
+          },
+          "docs": "Return Log Utilization for last week"
+        },
+        {
+          "info": {
+            "name": "Return Log Utilization for last 6 months on monthly basis with projection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/log-storage-totals"
+          },
+          "docs": "Return Log Utilization for last 6 months on monthly basis with projection"
+        },
+        {
+          "info": {
+            "name": "Retrieve product lists for log management",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of product to retrieve product catalog details"
+              }
+            ]
+          },
+          "docs": "Retrieve product lists for log management"
+        },
+        {
+          "info": {
+            "name": "Upgrade/Downgrade OS logging retention plan for a host.\n            The initial VM created with logging set to 90 days; and can be upgraded to 13 months; or reset back.\n            LogRetentionType: Days90, Months13. Null or Invalid values will default to Months13.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/retentionplan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upgrade/Downgrade OS logging retention plan for a host.\n            The initial VM created with logging set to 90 days; and can be upgraded to 13 months; or reset back.\n            LogRetentionType: Days90, Months13. Null or Invalid values will default to Months13."
+        },
+        {
+          "info": {
+            "name": "Update Retention Type for the logged-in Account User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-management/update-logretentionplan",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Retention Type for the logged-in Account User."
+        },
+        {
+          "info": {
+            "name": "Retrieve OS Logging details for a host.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/log-management/vms/:coreInstanceId",
+            "params": [
+              {
+                "name": "coreInstanceId",
+                "value": "",
+                "type": "path",
+                "description": "GUID for agent CORE instance id"
+              }
+            ]
+          },
+          "docs": "Retrieve OS Logging details for a host."
+        },
+        {
+          "info": {
+            "name": "Retrieve list of security log events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-search/templatedsearch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve list of security log events."
+        },
+        {
+          "info": {
+            "name": "Deprecated Retrieve list of security log events.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/log-search/templatedsearch/deprecated",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deprecated Retrieve list of security log events."
+        },
+        {
+          "info": {
+            "name": "TimeSeries_GetDataPointsAsync",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/stats/security/time-series",
+            "params": [
+              {
+                "name": "series",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "useCache",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

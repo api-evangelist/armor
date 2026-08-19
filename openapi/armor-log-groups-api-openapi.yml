@@ -1,0 +1,76 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Log Groups API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Log Groups
+  description: Operations for managing log groups
+paths:
+  /logs/groups:
+    get:
+      tags:
+      - Log Groups
+      summary: Get all log groups
+      description: Get a list of log groups.
+      operationId: getLogGroups
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogGroup'
+components:
+  schemas:
+    LogGroup:
+      type: object
+      properties:
+        logGroupId:
+          $ref: '#/components/schemas/Guid'
+        name:
+          type: string
+          description: The friendly name of this log group.
+        retentionDays:
+          type: integer
+          description: The number of days log events recorded for this group will be retained.
+        analysisEnabled:
+          type: boolean
+          description: Determines if log events recorded for this group should be analyzed or just stored.
+        apiToken:
+          type: string
+          description: The apiToken used to configure a log source to belong to this log group.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

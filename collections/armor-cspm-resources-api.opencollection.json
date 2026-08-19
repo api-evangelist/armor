@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Compliance CSPM Resources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://auth.armor.com/authorize",
+      "accessTokenUrl": "https://auth.armor.com/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CSPM Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list of CSPM resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/resources",
+            "params": [
+              {
+                "name": "provider",
+                "value": "",
+                "type": "query",
+                "description": "Provider type filter"
+              },
+              {
+                "name": "cloudAccountId",
+                "value": "",
+                "type": "query",
+                "description": "Cloud account ID filter"
+              },
+              {
+                "name": "resourceType",
+                "value": "",
+                "type": "query",
+                "description": "Resource type filter"
+              },
+              {
+                "name": "top",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to return"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip"
+              }
+            ]
+          },
+          "docs": "Get list of CSPM resources"
+        },
+        {
+          "info": {
+            "name": "Get resource details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://compliance.api.secure-prod.services/cspm/resources/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Resource ID"
+              }
+            ]
+          },
+          "docs": "Get resource details"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

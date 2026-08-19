@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public AIP - Entity Intelligence API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AIP - Entity Intelligence",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch entity threat intelligence for an incident",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/aip/incident/:incidentId/entity/:value",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345"
+              }
+            ],
+            "params": [
+              {
+                "name": "incidentId",
+                "value": "SEC-2024-001",
+                "type": "path",
+                "description": "The incident identifier"
+              },
+              {
+                "name": "value",
+                "value": "192.168.1.100",
+                "type": "path",
+                "description": "The entity value to look up"
+              }
+            ]
+          },
+          "docs": "Retrieves threat intelligence data for a security entity (IP address, domain, hash, email, or URL)\nthat is associated with a specific incident.\n\n**Authorization**: Validates that the requesting account has permission to view the incident\nand that the entity belongs to the incident.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

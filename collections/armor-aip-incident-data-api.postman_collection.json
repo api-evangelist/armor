@@ -1,0 +1,387 @@
+{
+  "item": [
+    {
+      "id": "29fcb1ac-d8af-44ff-9a8b-c962cad296cb",
+      "name": "AIP - Incident Data",
+      "description": {
+        "content": "AI-processed incident data and analytics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e6ee0d1a-bc1e-4e19-8549-9f1166c325e5",
+          "name": "Get incident AIP data",
+          "request": {
+            "name": "Get incident AIP data",
+            "description": {
+              "content": "Retrieves AI-processed incident data including triage history, analytics, threat indicators,\nsimilar incidents, and recommended actions.\n\n**Authorization**: This endpoint validates that the requesting account has permission to\nview the incident by checking customer organization associations with the Jira issue.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "aip",
+                "incident",
+                ":incidentKey"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "incidentKey",
+                  "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID for authorization context",
+                "key": "x-account-context",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a4eac48c-8269-4ba2-9a99-66aebd77f732",
+              "name": "Incident data retrieved successfully or no data available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "incident",
+                    ":incidentKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "incidentKey",
+                      "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID for authorization context",
+                    "key": "x-account-context",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"available\": true,\n  \"data\": {\n    \"incidentId\": \"string\",\n    \"displayName\": \"string\",\n    \"status\": \"Benign\",\n    \"severity\": \"High\",\n    \"detected_on\": \"1966-01-09T07:16:33.129Z\",\n    \"updated_on\": \"2024-04-02T16:53:14.243Z\",\n    \"assigned_to\": \"string\",\n    \"customer_id\": \"string\",\n    \"customer_name\": \"string\",\n    \"detection_method\": \"string\",\n    \"source_product\": \"string\",\n    \"ai_metrics\": {\n      \"ai_classification\": \"Benign Positive\",\n      \"ai_threat_level\": \"LOW\",\n      \"ai_historical_similarity\": \"string\",\n      \"ai_community_similarity\": \"string\",\n      \"time_saved_by_ai\": \"string\",\n      \"ai_speed_percentage\": \"string\",\n      \"time_to_triage\": \"string\",\n      \"time_to_investigate\": \"string\",\n      \"time_to_contain\": \"string\"\n    },\n    \"ai_investigation\": {\n      \"summary\": \"string\",\n      \"indicators_of_compromise\": [\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"description\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"root_cause_analysis\": \"string\",\n      \"recommended_actions\": [\n        {\n          \"key_0\": \"string\"\n        },\n        {\n          \"key_0\": \"string\"\n        }\n      ],\n      \"reason_for_recommeded_actions\": \"string\"\n    },\n    \"attack_story\": [\n      {\n        \"Timestamp\": \"1997-05-26T13:24:49.563Z\",\n        \"description\": \"string\",\n        \"MitreTactic\": \"string\",\n        \"MitreTechnique\": \"string\",\n        \"MitreTacticId\": \"string\",\n        \"MitreTechniqueId\": \"string\",\n        \"IncidentCreatedBy\": \"string\"\n      },\n      {\n        \"Timestamp\": \"2025-07-01T11:48:26.701Z\",\n        \"description\": \"string\",\n        \"MitreTactic\": \"string\",\n        \"MitreTechnique\": \"string\",\n        \"MitreTacticId\": \"string\",\n        \"MitreTechniqueId\": \"string\",\n        \"IncidentCreatedBy\": \"string\"\n      }\n    ],\n    \"similar_incidents\": [\n      {\n        \"incidentId\": \"string\",\n        \"severity\": \"string\",\n        \"detected_on\": \"1983-09-25T02:13:19.831Z\",\n        \"displayName\": \"string\",\n        \"customer_name\": \"string\"\n      },\n      {\n        \"incidentId\": \"string\",\n        \"severity\": \"string\",\n        \"detected_on\": \"2022-07-11T22:27:42.701Z\",\n        \"displayName\": \"string\",\n        \"customer_name\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a4ec8f0-ba17-4c63-8c5a-da4c55950a66",
+              "name": "Bad request - missing or invalid parameters",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "incident",
+                    ":incidentKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "incidentKey",
+                      "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID for authorization context",
+                    "key": "x-account-context",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e88b61cd-36f2-4a98-8b40-21f3c7156040",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "incident",
+                    ":incidentKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "incidentKey",
+                      "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID for authorization context",
+                    "key": "x-account-context",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6fa485bc-36b2-42e6-8acf-51e78770f5c3",
+              "name": "Issue not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "incident",
+                    ":incidentKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "incidentKey",
+                      "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID for authorization context",
+                    "key": "x-account-context",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d000fb9-6f2e-45ce-9d2e-7e8a4342aaab",
+              "name": "Internal server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "aip",
+                    "incident",
+                    ":incidentKey"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "incidentKey",
+                      "description": "(Required) The incident identifier (e.g., SEC-2024-001)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID for authorization context",
+                    "key": "x-account-context",
+                    "value": "12345"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 3882\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fdc9e8d5-a381-45b9-a019-3b9f84295ee5",
+    "name": "MDR Public AIP - Incident Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

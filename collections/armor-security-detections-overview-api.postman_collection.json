@@ -1,0 +1,215 @@
+{
+  "item": [
+    {
+      "id": "f7843d59-28e2-46e0-87b6-dea7b7868d6c",
+      "name": "Security Detections Overview",
+      "description": {
+        "content": "Security detections overview operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fc96f47f-63dc-4d70-bb12-43d1f2d0edb5",
+          "name": "Security Detections Overview",
+          "request": {
+            "name": "Security Detections Overview",
+            "description": {
+              "content": "Get security detections overview.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-detections-overview"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "OData filter parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search parameter."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6726f67a-356e-47e0-92ff-8fa312dea69a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections-overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 723,\n  \"offenseId\": 9906,\n  \"incidentCount\": 6201,\n  \"detectionCount\": 8955,\n  \"severityLevels\": [\n    {\n      \"severityName\": \"string\",\n      \"severityCount\": 5627,\n      \"severityPercentage\": \"string\"\n    },\n    {\n      \"severityName\": \"string\",\n      \"severityCount\": 4318,\n      \"severityPercentage\": \"string\"\n    }\n  ],\n  \"categories\": [\n    {\n      \"categoryName\": \"string\",\n      \"categoryCount\": 7214,\n      \"categoryPercentage\": \"string\"\n    },\n    {\n      \"categoryName\": \"string\",\n      \"categoryCount\": 7600,\n      \"categoryPercentage\": \"string\"\n    }\n  ],\n  \"descriptions\": [\n    {\n      \"descriptionName\": \"string\",\n      \"descriptionCount\": 5875,\n      \"descriptionPercentage\": \"string\"\n    },\n    {\n      \"descriptionName\": \"string\",\n      \"descriptionCount\": 9605,\n      \"descriptionPercentage\": \"string\"\n    }\n  ],\n  \"lastUpdatedTime\": \"1961-05-28T16:00:40.430Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "156b316c-8cad-408a-9ca2-ac21521fcb3b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections-overview"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://security-detections.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3e7356fe-70c8-4ccb-91ae-c71f6c6f52cc",
+    "name": "Incident Management Security Detections Overview API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for interacting with Armor products and services for incident management.\n\nBase URL: `https://security-detections.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

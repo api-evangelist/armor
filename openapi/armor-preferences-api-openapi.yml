@@ -1,0 +1,164 @@
+openapi: 3.2.0
+info:
+  title: Notifications Preferences API
+  description: 'This API provides an interface for configuring and interacting with Armor''s notifications platform.
+
+
+    Base URL: `https://notifications.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://notifications.api.secure-dev.services
+  description: Development
+- url: https://notifications.api.secure-stage.services
+  description: Staging
+- url: https://notifications.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Preferences
+  description: 'The Preferences resource describes a list of user-level preferences.
+
+    '
+paths:
+  /preferences/{type}:
+    get:
+      tags:
+      - Preferences
+      summary: Get User Preferences
+      description: Get the user preferences of the given type for the currently logged-in user.
+      operationId: getUserPreferences
+      parameters:
+      - name: type
+        in: path
+        required: true
+        description: Filter by notification type.
+        schema:
+          type: string
+          enum:
+          - tours
+          - offenses
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preference'
+    put:
+      tags:
+      - Preferences
+      summary: Create or Update User Preferences
+      description: Create or update a notification preference of the given type for the currently logged-in user.
+      operationId: createOrUpdateUserPreferences
+      parameters:
+      - name: type
+        in: path
+        required: true
+        description: The notification type.
+        schema:
+          type: string
+          enum:
+          - tours
+          - offenses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Preference'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preference'
+  /preferences/actions/list-for-org:
+    post:
+      tags:
+      - Preferences
+      summary: List Preferences for Organization
+      description: Return a list of all users and their preferences for a given organization ID.
+      operationId: listPreferencesForOrg
+      x-internal: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PreferenceListRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preference'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+components:
+  schemas:
+    Preference:
+      type: object
+      required:
+      - orgId
+      - userId
+      - type
+      - preference
+      properties:
+        orgId:
+          type: integer
+          description: The unique identifier of organization.
+        userId:
+          type: integer
+          description: The unique identifier of user who has preference configured.
+        type:
+          type: string
+          description: The type of preference.
+          enum:
+          - tours
+          - offenses
+        preference:
+          type: object
+          description: An object map of preferences - the object properties depend on the preference type.
+    PreferenceListRequest:
+      type: object
+      required:
+      - orgId
+      - type
+      properties:
+        orgId:
+          type: integer
+          description: The unique identifier of organization.
+        type:
+          type: string
+          description: The type of preference.
+          enum:
+          - tours
+          - offenses
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication with scopes
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

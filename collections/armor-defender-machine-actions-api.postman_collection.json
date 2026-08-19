@@ -1,0 +1,969 @@
+{
+  "item": [
+    {
+      "id": "28d98f0d-7bad-4410-b501-fb83adc68227",
+      "name": "Defender - Machine Actions",
+      "description": {
+        "content": "Execute and manage actions on Microsoft Defender machines",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd331fe3-758b-49f1-8dc0-ca1ef23e3604",
+          "name": "List all machine actions",
+          "request": {
+            "name": "List all machine actions",
+            "description": {
+              "content": "Retrieves a list of all machine actions executed across all machines for the specified\ncustomer account.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "machineactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38f03089-a4b2-4e2c-a037-b8b412aae267",
+              "name": "Successfully retrieved list of machine actions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": [\n    {\n      \"id\": \"9c93a019-b9f8-9974-412d-8740acbb3ecd\",\n      \"type\": \"CollectInvestigationPackage\",\n      \"requestor\": \"string\",\n      \"requestorComment\": \"string\",\n      \"status\": \"Pending\",\n      \"machineId\": \"string\",\n      \"computerDnsName\": \"string\",\n      \"creationDateTimeUtc\": \"1951-02-13T01:48:47.752Z\",\n      \"lastUpdateDateTimeUtc\": \"1953-01-28T21:49:26.129Z\",\n      \"relatedFileInfo\": {\n        \"fileIdentifier\": \"string\",\n        \"fileIdentifierType\": \"string\"\n      }\n    },\n    {\n      \"id\": \"a98f540a-140e-6114-8829-f6fc7781857c\",\n      \"type\": \"Isolate\",\n      \"requestor\": \"string\",\n      \"requestorComment\": \"string\",\n      \"status\": \"Cancelled\",\n      \"machineId\": \"string\",\n      \"computerDnsName\": \"string\",\n      \"creationDateTimeUtc\": \"2018-01-06T06:56:13.805Z\",\n      \"lastUpdateDateTimeUtc\": \"2015-03-13T19:18:51.232Z\",\n      \"relatedFileInfo\": {\n        \"fileIdentifier\": \"string\",\n        \"fileIdentifierType\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "924cd1c6-97e2-4bc8-8de1-acd05fa5bf5f",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b340b2b9-f83b-4e70-b86b-346d1a9487b8",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "42263af7-8cf1-407e-b2f5-9557976f222b",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "53899858-cba8-4428-93bb-0bb5801159fa",
+          "name": "Get specific machine action",
+          "request": {
+            "name": "Get specific machine action",
+            "description": {
+              "content": "Retrieves detailed information about a specific machine action by its action ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "machineactions",
+                ":actionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "actionId",
+                  "description": "(Required) The unique identifier of the machine action"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "76f3e814-3f22-4953-9b99-acd74be6f5cd",
+              "name": "Successfully retrieved machine action details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The unique identifier of the machine action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1809ef7f-7b71-dae8-6454-871fc9f139b5\",\n  \"type\": \"RunAntiVirusScan\",\n  \"requestor\": \"string\",\n  \"requestorComment\": \"string\",\n  \"status\": \"Pending\",\n  \"machineId\": \"string\",\n  \"computerDnsName\": \"string\",\n  \"creationDateTimeUtc\": \"1983-07-07T19:46:20.267Z\",\n  \"lastUpdateDateTimeUtc\": \"1968-06-03T02:23:13.088Z\",\n  \"relatedFileInfo\": {\n    \"fileIdentifier\": \"string\",\n    \"fileIdentifierType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e30826e-0f4f-4324-8856-32ea8f1b68fa",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The unique identifier of the machine action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9d8c5b0-49a5-416a-8292-85c2477959a3",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The unique identifier of the machine action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0313500-bd04-4a2c-bace-2bf2f6da5af7",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":actionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "actionId",
+                      "description": "(Required) The unique identifier of the machine action"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8748e92e-41ec-4b36-bf72-4657970336c1",
+          "name": "Execute action on machine",
+          "request": {
+            "name": "Execute action on machine",
+            "description": {
+              "content": "Executes a security action on a specific machine identified by machine ID.\n\nSupported actions include: isolate, unisolate, runAntiVirusScan, collectInvestigationPackage,\nrestrictCodeExecution, unrestrictCodeExecution, runliveresponse, startInvestigation,\nStopAndQuarantineFile, cancel, offboard.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "machineactions",
+                ":machineId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "machineId",
+                  "description": "(Required) The unique identifier of the machine to perform the action on"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f435c4b3-62d7-4a1f-8ade-a41586ef7a97",
+              "name": "Action successfully initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":machineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machineId",
+                      "description": "(Required) The unique identifier of the machine to perform the action on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"1809ef7f-7b71-dae8-6454-871fc9f139b5\",\n  \"type\": \"RunAntiVirusScan\",\n  \"requestor\": \"string\",\n  \"requestorComment\": \"string\",\n  \"status\": \"Pending\",\n  \"machineId\": \"string\",\n  \"computerDnsName\": \"string\",\n  \"creationDateTimeUtc\": \"1983-07-07T19:46:20.267Z\",\n  \"lastUpdateDateTimeUtc\": \"1968-06-03T02:23:13.088Z\",\n  \"relatedFileInfo\": {\n    \"fileIdentifier\": \"string\",\n    \"fileIdentifierType\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ec04836-8e08-4c5d-b0b2-16d680c482d9",
+              "name": "Bad Request - Invalid parameters or malformed request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":machineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machineId",
+                      "description": "(Required) The unique identifier of the machine to perform the action on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f82052aa-8434-4495-a76f-2ed4df43c6e9",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":machineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machineId",
+                      "description": "(Required) The unique identifier of the machine to perform the action on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "991fe947-fcde-4ceb-9d1a-9d0626cc8bff",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":machineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machineId",
+                      "description": "(Required) The unique identifier of the machine to perform the action on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "501b1eab-9679-49e4-b287-feda2db66233",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machineactions",
+                    ":machineId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "machineId",
+                      "description": "(Required) The unique identifier of the machine to perform the action on"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"action\": \"<string>\",\n  \"comment\": \"<string>\",\n  \"type\": \"<string>\",\n  \"commands\": [\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"type\": \"<string>\",\n      \"params\": [\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        {\n          \"key\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"sha1\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 7044\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "771e6a1f-38a6-4859-bdf2-55be93cc5692",
+    "name": "MDR Public Defender - Machine Actions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,397 @@
+{
+  "item": [
+    {
+      "id": "2fc6adab-33f0-4a78-95fb-08c25cd57d41",
+      "name": "AccountPrimaryBilling",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7cfeab05-7051-4bee-bee9-8f14a19d3240",
+          "name": "(Deprecated) Get the Account Primary Billing User",
+          "request": {
+            "name": "(Deprecated) Get the Account Primary Billing User",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "primary-billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1fad7927-878c-4813-a31e-82d3d272ac3d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "primary-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2402,\n  \"status\": \"disabled\",\n  \"title\": \"\",\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john.smith@example.com\",\n  \"phonePrimary\": {\n    \"countryCode\": 1,\n    \"countryIsoCode\": \"US\",\n    \"number\": \"8880000000\",\n    \"phoneExt\": null\n  },\n  \"timezone\": \"GMT Standard Time\",\n  \"culture\": \"en-US\",\n  \"permissions\": [\n    1\n  ],\n  \"lastModified\": \"2015-09-22T15:28:06.89\",\n  \"passwordLastSet\": \"1999-01-01T00:00:00\",\n  \"mustChangePassword\": false,\n  \"lastLogin\": \"1999-01-01T00:00:00\",\n  \"apiKeyCount\": 0,\n  \"isPrimaryBillingNotificationUser\": false,\n  \"isPrimaryAccountNotificationUser\": false,\n  \"isPrimaryTechnicalNotificationUser\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4fa43361-084a-4c0d-b232-018b8e27ae97",
+          "name": "(Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality",
+          "request": {
+            "name": "(Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality",
+            "description": {},
+            "url": {
+              "path": [
+                "accounts",
+                ":accountId",
+                "primary-billing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) account id"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "0",
+                  "value": "<"
+                },
+                {
+                  "disabled": false,
+                  "key": "1",
+                  "value": "i"
+                },
+                {
+                  "disabled": false,
+                  "key": "2",
+                  "value": "n"
+                },
+                {
+                  "disabled": false,
+                  "key": "3",
+                  "value": "t"
+                },
+                {
+                  "disabled": false,
+                  "key": "4",
+                  "value": "e"
+                },
+                {
+                  "disabled": false,
+                  "key": "5",
+                  "value": "g"
+                },
+                {
+                  "disabled": false,
+                  "key": "6",
+                  "value": "e"
+                },
+                {
+                  "disabled": false,
+                  "key": "7",
+                  "value": "r"
+                },
+                {
+                  "disabled": false,
+                  "key": "8",
+                  "value": ">"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ee7b1a7-242f-4a45-a9e6-12305a184d0b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "primary-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) account id"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "0",
+                      "value": "<"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "1",
+                      "value": "i"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "2",
+                      "value": "n"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "3",
+                      "value": "t"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "4",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "5",
+                      "value": "g"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "6",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "7",
+                      "value": "r"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "8",
+                      "value": ">"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"userId\": 7883,\n  \"accountId\": 6389\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0db62090-870f-4b9e-b9fb-acd3ac60765e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":accountId",
+                    "primary-billing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) account id"
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "0",
+                      "value": "<"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "1",
+                      "value": "i"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "2",
+                      "value": "n"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "3",
+                      "value": "t"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "4",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "5",
+                      "value": "g"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "6",
+                      "value": "e"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "7",
+                      "value": "r"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "8",
+                      "value": ">"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "853ca39a-ef89-42ad-8f4d-3612df9eb810",
+    "name": "Armor Services Account Primary Billing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

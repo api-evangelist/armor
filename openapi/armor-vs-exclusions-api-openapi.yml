@@ -1,0 +1,176 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance VS Exclusions API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: VS Exclusions
+  description: Vulnerability scan exclusions management
+paths:
+  /vulnerability-scan/exclusions:
+    get:
+      tags:
+      - VS Exclusions
+      summary: List vulnerability scan exclusions
+      operationId: listVsExclusions
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExclusionList'
+        '403':
+          description: Forbidden
+    post:
+      tags:
+      - VS Exclusions
+      summary: Create vulnerability scan exclusion
+      operationId: createVsExclusion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddExclusion'
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    delete:
+      tags:
+      - VS Exclusions
+      summary: Delete vulnerability scan exclusion
+      operationId: deleteVsExclusion
+      responses:
+        '200':
+          description: Successful response
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+  /vulnerability-scan/exclusions/{exclusionId}:
+    get:
+      tags:
+      - VS Exclusions
+      summary: List excluded assets for an exclusion
+      operationId: getExcludedAssets
+      parameters:
+      - name: exclusionId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Exclusion ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AssetInfo'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    ExclusionList:
+      type: object
+      properties:
+        exclusionId:
+          type: string
+          description: Exclusion ID
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets flag
+        comment:
+          type: string
+          description: Exclusion comment
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+        createdBy:
+          type: string
+          description: Created by user
+        createdDate:
+          type: string
+          format: date-time
+          description: Creation date
+    AddExclusion:
+      type: object
+      required:
+      - vulnerabilityId
+      - vulnerabilityName
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets
+        excludedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          description: Specific excluded assets
+        comment:
+          type: string
+          description: Exclusion details
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+    AssetInfo:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset ID
+        assetName:
+          type: string
+          description: Asset name
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

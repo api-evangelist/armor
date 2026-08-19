@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public AIP - Incident Data API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AIP - Incident Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get incident AIP data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/aip/incident/:incidentKey",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345"
+              }
+            ],
+            "params": [
+              {
+                "name": "incidentKey",
+                "value": "SEC-2024-001",
+                "type": "path",
+                "description": "The incident identifier (e.g., SEC-2024-001)"
+              }
+            ]
+          },
+          "docs": "Retrieves AI-processed incident data including triage history, analytics, threat indicators,\nsimilar incidents, and recommended actions.\n\n**Authorization**: This endpoint validates that the requesting account has permission to\nview the incident by checking customer organization associations with the Jira issue.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

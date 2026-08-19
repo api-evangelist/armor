@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Defender - Investigation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Defender - Investigation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get investigation package download URI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/packageuri/:actionId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ],
+            "params": [
+              {
+                "name": "actionId",
+                "value": "2e9da30d-27f6-4208-81f2-9cd3d67893ba",
+                "type": "path",
+                "description": "The action ID of the investigation package collection action"
+              }
+            ]
+          },
+          "docs": "Retrieves a SAS URI to download an investigation package collected from a machine.\nShould be called after a 'collectInvestigationPackage' action has completed successfully.\n"
+        },
+        {
+          "info": {
+            "name": "Get live response result download link",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/defender/liveresponseresult/:actionId/:commandId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+              }
+            ],
+            "params": [
+              {
+                "name": "actionId",
+                "value": "2e9da30d-27f6-4208-81f2-9cd3d67893ba",
+                "type": "path",
+                "description": "The action ID of the live response action"
+              },
+              {
+                "name": "commandId",
+                "value": "0",
+                "type": "path",
+                "description": "The index of the command in the live response commands array"
+              }
+            ]
+          },
+          "docs": "Retrieves a download link for the results of a specific live response command.\nThe commandId corresponds to the index of the command in the original live response commands array.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,189 @@
+openapi: 3.2.0
+info:
+  title: Armor Log Management Access Control Lists API
+  description: 'This API provides an interface for configuring and interacting with
+
+    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com
+servers:
+- url: https://api.logs.armor.com
+  description: Production server
+- url: https://logs.api.secure-prod.services
+  description: Production services
+- url: https://logs.api.secure-stage.services
+  description: Staging services
+- url: https://logs.api.secure-dev.services
+  description: Development services
+security:
+- oauth2: []
+tags:
+- name: Access Control Lists
+  description: Operations for managing ACLs (deprecated)
+paths:
+  /logs/acls:
+    get:
+      tags:
+      - Access Control Lists
+      summary: Get all ACLs
+      description: Get a list of Access Control Lists (ACLs) that manage access to your log endpoints.
+      operationId: getLogAcls
+      deprecated: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LogAcl'
+    post:
+      tags:
+      - Access Control Lists
+      summary: Create an ACL
+      description: Create an Access Control List (ACL) that manages access to your log endpoints.
+      operationId: createLogAcl
+      deprecated: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogAclCreateRequest'
+      responses:
+        '200':
+          description: ACL created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogAcl'
+  /logs/acls/{aclId}:
+    put:
+      tags:
+      - Access Control Lists
+      summary: Update an ACL
+      description: 'Update an Access Control List (ACL) that manages access to your log endpoints.
+
+
+        This update action requires an `If-Unmodified-Since` precondition header which must match
+
+        the `version` property of the request body. If the entity has been modified since the
+
+        supplied version, a `412` response will be returned. If this header is absent from the
+
+        request a `400` response will be returned.
+
+        '
+      operationId: updateLogAcl
+      deprecated: true
+      parameters:
+      - name: aclId
+        in: path
+        required: true
+        description: The unique identifier of the Log ACL being updated.
+        schema:
+          type: string
+          format: uuid
+      - name: If-Unmodified-Since
+        in: header
+        required: true
+        description: Version header for concurrency control
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LogAcl'
+      responses:
+        '200':
+          description: ACL updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogAcl'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '404':
+          description: ACL not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '412':
+          description: Precondition failed - entity has been modified
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+components:
+  schemas:
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    Message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    LogAclCreateRequest:
+      type: object
+      required:
+      - allowedNetworks
+      properties:
+        allowedNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CIDR'
+          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
+    LogAcl:
+      type: object
+      required:
+      - aclId
+      - allowedNetworks
+      - maxAllowedNetworks
+      - version
+      properties:
+        aclId:
+          $ref: '#/components/schemas/Guid'
+        allowedNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CIDR'
+          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
+        maxAllowedNetworks:
+          type: integer
+          description: The maximum number of IPv4 network subnets allowed to be specified in the `allowedNetworks` property of this ACL. (Default = 5).
+        version:
+          type: integer
+          description: The version of this log ACL (used for concurrency checking). Pass this value with any subsequent update request.
+    CIDR:
+      type: string
+      description: An IPv4 network subnet in CIDR notation
+      pattern: ^([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}$
+      example: 192.168.1.0/24
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth2 authentication with scoped access
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.armor.com/auth/authorize
+          tokenUrl: https://api.armor.com/auth/token
+          scopes: {}

@@ -1,0 +1,130 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Report Configuration API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Report Configuration
+  description: CSPM report configuration management
+paths:
+  /cspm/report/configuration:
+    get:
+      tags:
+      - CSPM Report Configuration
+      summary: Get report configuration by provider
+      operationId: getCspmReportConfiguration
+      parameters:
+      - name: provider
+        in: query
+        required: true
+        schema:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+        description: Provider type
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportConfigurationResponse'
+        '400':
+          description: Bad Request
+        '403':
+          description: Forbidden
+    post:
+      tags:
+      - CSPM Report Configuration
+      summary: Create CSPM report configuration
+      operationId: createCspmReportConfiguration
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CspmReportConfiguration'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+    CspmReportConfiguration:
+      type: object
+      required:
+      - title
+      - cloudtype
+      properties:
+        title:
+          type: string
+          description: Report Title
+        description:
+          type: string
+          description: Description
+        format:
+          type: string
+          description: Format details
+        type:
+          type: string
+          description: Report Type
+        cloudtype:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Cloud Type
+        mandateId:
+          type: integer
+          description: Mandate ID
+        connectorIds:
+          type: array
+          items:
+            type: integer
+          description: Array of connector IDs
+        policies:
+          type: array
+          items:
+            type: string
+          description: Array of policies
+    ReportConfigurationResponse:
+      type: object
+      properties:
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmReportConfiguration'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

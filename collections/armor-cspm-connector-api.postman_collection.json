@@ -1,0 +1,876 @@
+{
+  "item": [
+    {
+      "id": "626419db-f24b-4ecf-8e62-ad9a2ff2ed75",
+      "name": "CSPM Connector",
+      "description": {
+        "content": "Cloud Security Posture Management cloud connectors",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "57f86fe0-4609-4c58-ada5-6313934382d6",
+          "name": "List all CSPM CloudConnectors",
+          "request": {
+            "name": "List all CSPM CloudConnectors",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "connector"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Connector ID to get specific connector"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh",
+                  "value": "<boolean>",
+                  "description": "Set to true to run the cloud connector"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04b1fd24-bca2-4895-9cb2-5b53a58f25e1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"connectors\": [\n    {\n      \"id\": 1702,\n      \"connectorId\": \"string\",\n      \"arn\": \"string\",\n      \"externalId\": \"string\",\n      \"baseAccountId\": 3646,\n      \"awsAccountId\": \"string\",\n      \"state\": \"string\",\n      \"totalAssets\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"provider\": \"Azure\",\n      \"isChinaRegion\": false,\n      \"isGovCloud\": true,\n      \"isPortalConnector\": true,\n      \"error\": \"string\",\n      \"error_message\": \"string\",\n      \"lastSyncedOn\": \"1958-06-20T22:11:27.582Z\",\n      \"dateCreated\": \"1975-08-30T01:52:18.347Z\",\n      \"groups\": [\n        {\n          \"groupId\": \"string\",\n          \"groupName\": \"string\"\n        },\n        {\n          \"groupId\": \"string\",\n          \"groupName\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 3488,\n      \"connectorId\": \"string\",\n      \"arn\": \"string\",\n      \"externalId\": \"string\",\n      \"baseAccountId\": 7230,\n      \"awsAccountId\": \"string\",\n      \"state\": \"string\",\n      \"totalAssets\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"provider\": \"GCP\",\n      \"isChinaRegion\": false,\n      \"isGovCloud\": false,\n      \"isPortalConnector\": false,\n      \"error\": \"string\",\n      \"error_message\": \"string\",\n      \"lastSyncedOn\": \"2020-12-18T12:59:52.973Z\",\n      \"dateCreated\": \"1973-05-11T00:41:04.925Z\",\n      \"groups\": [\n        {\n          \"groupId\": \"string\",\n          \"groupName\": \"string\"\n        },\n        {\n          \"groupId\": \"string\",\n          \"groupName\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "109778ad-8001-4ee5-a8a2-fc906a0bed35",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c4b5bc02-3af0-444e-9ad7-ef7c7036810a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5bc08ad-af03-4926-9b18-debe2dedd690",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ed643767-6683-44b4-89f4-ab59fded9177",
+          "name": "Create CSPM CloudConnector",
+          "request": {
+            "name": "Create CSPM CloudConnector",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "connector"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"isChinaRegion\": \"<boolean>\",\n  \"isGovCloud\": \"<boolean>\",\n  \"isPortalConnector\": \"<boolean>\",\n  \"httpMethod\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"directoryId\": \"<string>\",\n  \"subscriptionId\": \"<string>\",\n  \"authenticationKey\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"gcpConfigJson\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8beaf20-3b51-4874-b028-1f5c1cbe15fe",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"isChinaRegion\": \"<boolean>\",\n  \"isGovCloud\": \"<boolean>\",\n  \"isPortalConnector\": \"<boolean>\",\n  \"httpMethod\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"directoryId\": \"<string>\",\n  \"subscriptionId\": \"<string>\",\n  \"authenticationKey\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"gcpConfigJson\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67a5f855-6150-4fef-81bb-6d89413b34bf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"name\": \"<string>\",\n  \"provider\": \"<string>\",\n  \"arn\": \"<string>\",\n  \"description\": \"<string>\",\n  \"externalId\": \"<string>\",\n  \"isChinaRegion\": \"<boolean>\",\n  \"isGovCloud\": \"<boolean>\",\n  \"isPortalConnector\": \"<boolean>\",\n  \"httpMethod\": \"<string>\",\n  \"applicationId\": \"<string>\",\n  \"directoryId\": \"<string>\",\n  \"subscriptionId\": \"<string>\",\n  \"authenticationKey\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"gcpConfigJson\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5a03262-82e2-407a-9953-c393b36ca675",
+          "name": "Get CSPM CloudConnector by ID",
+          "request": {
+            "name": "Get CSPM CloudConnector by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "connector",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Connector ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "58926804-a48b-4152-a48d-b7b0e6b1eee2",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 3345,\n  \"connectorId\": \"string\",\n  \"arn\": \"string\",\n  \"externalId\": \"string\",\n  \"baseAccountId\": 7175,\n  \"awsAccountId\": \"string\",\n  \"state\": \"string\",\n  \"totalAssets\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"provider\": \"AWS\",\n  \"isChinaRegion\": false,\n  \"isGovCloud\": false,\n  \"isPortalConnector\": false,\n  \"error\": \"string\",\n  \"error_message\": \"string\",\n  \"lastSyncedOn\": \"1991-04-05T16:56:08.244Z\",\n  \"dateCreated\": \"1978-03-27T19:36:54.591Z\",\n  \"groups\": [\n    {\n      \"groupId\": \"string\",\n      \"groupName\": \"string\"\n    },\n    {\n      \"groupId\": \"string\",\n      \"groupName\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe9a2cb7-5b18-4a8b-97d7-fb3d4547eecf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ee9c65c3-a127-4c9e-a788-d4c109ce34e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4576e13f-151b-4322-9f8a-dea97de64f39",
+          "name": "Delete CSPM CloudConnector by ID",
+          "request": {
+            "name": "Delete CSPM CloudConnector by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "connector",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Connector ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9ee54721-e777-418e-9d28-8353e73300bd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efe1e996-2e7e-4a94-ae61-18e760348c2b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eae8c6ee-46ce-4409-8369-e43aff5a3c08",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2a3ada9b-08f6-4478-ade0-a685f12f10d5",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "connector",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Connector ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://compliance.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.armor.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.armor.com/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5798b285-e81e-4ac3-bca9-af58a5b23c44",
+    "name": "Armor Compliance CSPM Connector API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)\nand Vulnerability Scanning (VS) services.\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

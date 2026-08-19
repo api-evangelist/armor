@@ -1,0 +1,101 @@
+{
+  "item": [
+    {
+      "id": "b04cbbb0-7ba8-4976-bc77-d87c7b4bb476",
+      "name": "ActiveResponse",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a589220a-6741-430a-839d-550d9061df20",
+          "name": "Active Response Get Active Response",
+          "request": {
+            "name": "Active Response Get Active Response",
+            "description": {},
+            "url": {
+              "path": [
+                "security-analytics",
+                "active-response"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2908c060-82d7-4568-a9e4-d3b24edc8f60",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-analytics",
+                    "active-response"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "891105e0-fba4-44dd-bbf8-5830f441d41b",
+    "name": "Armor Services Active Response API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

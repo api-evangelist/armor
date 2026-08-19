@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor FH-AUTH Security Authentication API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get authorization code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/auth/authorize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Authenticates user credentials and returns an authorization code.\nThe code must be exchanged for an access token within 2 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Exchange authorization code for access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges an authorization code for an access token and ID token.\nThe authorization code must be used within 2 minutes of issuance.\nAccess tokens are valid for 15 minutes.\n"
+        },
+        {
+          "info": {
+            "name": "Refresh an access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/auth/token/reissue",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exchanges an existing access token for a new one.\nUse this endpoint when the current token is about to expire or has expired.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "72ec0035-23f9-44f8-b260-c5c952dff24e",
+      "name": "Toolbox",
+      "description": {
+        "content": "Infrastructure management toolbox operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d742c93-8930-448c-97f1-9c8b3db10c32",
+          "name": "Get Virtual Machines",
+          "request": {
+            "name": "Get Virtual Machines",
+            "description": {
+              "content": "Get a list of virtual machines, including completed ones.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "virtual-machines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "top",
+                  "value": "<integer>",
+                  "description": "Maximum records for request."
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Offset position."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Available filters like Products, Status, Account."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Free text to search Task Name, etc."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "<string>",
+                  "description": "Sort direction. Example: id desc."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8805d8f2-d256-44a4-8a9e-5413ae2bfb93",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "virtual-machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"page\": 6495,\n  \"total\": 6042,\n  \"countPerPage\": 9349,\n  \"filters\": {},\n  \"items\": [\n    {\n      \"coreInstanceId\": \"818ab34d-c851-40c2-6907-92ac196c88d8\",\n      \"hostName\": \"string\",\n      \"operatingSystem\": \"string\"\n    },\n    {\n      \"coreInstanceId\": \"4dc38404-b8a6-9c47-2be2-4278fc5e4288\",\n      \"hostName\": \"string\",\n      \"operatingSystem\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "776e94cd-344a-441a-af69-d82466820662",
+          "name": "Get Operating Systems",
+          "request": {
+            "name": "Get Operating Systems",
+            "description": {
+              "content": "Get operating systems.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "operating-systems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74126d9b-cbdb-47e9-8aac-24189c60f707",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "operating-systems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"operatingSystem\": \"string\"\n  },\n  {\n    \"operatingSystem\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://infrastructure.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2030f805-4e42-4637-9519-35acb1da80ce",
+    "name": "Infrastructure Management Toolbox API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for interacting with Armor Infrastructure\nmanagement functionality.\n\nBase URL: `https://infrastructure.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

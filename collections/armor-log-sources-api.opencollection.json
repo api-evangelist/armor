@@ -1,0 +1,104 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Log Management Log Sources API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.armor.com/auth/authorize",
+      "accessTokenUrl": "https://api.armor.com/auth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Log Sources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all log sources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/logs/sources"
+          },
+          "docs": "Get a list of all configured log sources."
+        },
+        {
+          "info": {
+            "name": "Create a log source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.logs.armor.com/logs/sources",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a log source with the provided configuration options."
+        },
+        {
+          "info": {
+            "name": "Update a log source",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.logs.armor.com/logs/sources/:sourceId",
+            "headers": [
+              {
+                "name": "If-Unmodified-Since",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the log source being updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a log source with the provided configuration options.\n\nThis update action requires an `If-Unmodified-Since` precondition header which must match\nthe `version` property of the request body. If the entity has been modified since the\nsupplied version, a `412` response will be returned. If this header is absent from the\nrequest a `400` response will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a log source",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.logs.armor.com/logs/sources/:sourceId",
+            "params": [
+              {
+                "name": "sourceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the log source being deleted."
+              }
+            ]
+          },
+          "docs": "Soft-delete a log source. The log source will be deprovisioned but the entity record will be\nretained and state set to \"Deleted\". Only log sources with state `Online` may be deleted. You\ncan enumerate deleted log sources by appending the `?deleted=true` query string to a `GET`\nrequest.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

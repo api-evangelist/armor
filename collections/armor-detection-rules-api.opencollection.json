@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "MDR Public Detection Rules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Detection Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve detection rules for a customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://mdr.api.secure-prod.services/rules",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "12345678-abcd-1234-abcd-123456789abc"
+              }
+            ]
+          },
+          "docs": "Retrieves all Microsoft Sentinel detection rules deployed across a customer's\nAzure subscriptions and workspaces, including enriched metadata.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

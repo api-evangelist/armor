@@ -1,0 +1,493 @@
+{
+  "item": [
+    {
+      "id": "7038b19f-1779-46f5-b6b1-a4db5b05a028",
+      "name": "CSPM Resources",
+      "description": {
+        "content": "CSPM resource management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fe2b2fbc-1229-42dd-baaa-abb0a89e3165",
+          "name": "Get list of CSPM resources",
+          "request": {
+            "name": "Get list of CSPM resources",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "provider",
+                  "value": "<string>",
+                  "description": "Provider type filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "cloudAccountId",
+                  "value": "<string>",
+                  "description": "Cloud account ID filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "resourceType",
+                  "value": "<string>",
+                  "description": "Resource type filter"
+                },
+                {
+                  "disabled": false,
+                  "key": "top",
+                  "value": "<integer>",
+                  "description": "Number of records to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Number of records to skip"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d115b4b5-205f-4032-88ba-f9831abce1bf",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloudAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3441,\n  \"data\": [\n    {\n      \"id\": 9096,\n      \"accountId\": 6632,\n      \"resourceName\": \"string\",\n      \"resourceType\": \"string\",\n      \"cloudAccountId\": \"string\",\n      \"region\": \"string\",\n      \"provider\": \"GCP\",\n      \"dateDiscovered\": \"1949-09-02T23:35:12.240Z\",\n      \"dateLastFound\": \"1949-10-11T16:38:17.261Z\",\n      \"resourceEvaluation\": [\n        {\n          \"controlId\": \"string\",\n          \"status\": \"string\",\n          \"evaluatedOn\": \"1947-03-20T08:50:28.176Z\"\n        },\n        {\n          \"controlId\": \"string\",\n          \"status\": \"string\",\n          \"evaluatedOn\": \"1959-08-16T22:10:12.685Z\"\n        }\n      ]\n    },\n    {\n      \"id\": 5529,\n      \"accountId\": 8201,\n      \"resourceName\": \"string\",\n      \"resourceType\": \"string\",\n      \"cloudAccountId\": \"string\",\n      \"region\": \"string\",\n      \"provider\": \"Azure\",\n      \"dateDiscovered\": \"2010-04-14T06:38:26.350Z\",\n      \"dateLastFound\": \"1999-10-17T19:03:33.633Z\",\n      \"resourceEvaluation\": [\n        {\n          \"controlId\": \"string\",\n          \"status\": \"string\",\n          \"evaluatedOn\": \"1960-05-28T19:27:40.509Z\"\n        },\n        {\n          \"controlId\": \"string\",\n          \"status\": \"string\",\n          \"evaluatedOn\": \"1971-02-25T22:36:46.556Z\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "43bb0998-cd6f-489a-b434-15fb8a8fda17",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloudAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4a50c90c-9f91-4698-b916-2ede38438089",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "provider",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cloudAccountId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "resourceType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3e6e7241-4d34-446f-b810-7d4897ce4033",
+          "name": "Get resource details",
+          "request": {
+            "name": "Get resource details",
+            "description": {},
+            "url": {
+              "path": [
+                "cspm",
+                "resources",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Resource ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "429c385e-c7f6-4e97-9089-2efdfbf139e8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 584,\n    \"resourceName\": \"string\",\n    \"resourceType\": \"string\",\n    \"details\": {\n      \"key_0\": \"string\"\n    }\n  },\n  {\n    \"id\": 6261,\n    \"resourceName\": \"string\",\n    \"resourceType\": \"string\",\n    \"details\": {\n      \"key_0\": false,\n      \"key_1\": \"string\",\n      \"key_2\": \"string\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "980bae43-504c-4427-8105-232999c9d41f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4463fce8-59e0-4a4e-9357-21167662ddc3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "cspm",
+                    "resources",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Resource ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://compliance.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://auth.armor.com/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://auth.armor.com/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4a678e76-2155-4c2f-862c-5c75dd68ea37",
+    "name": "Armor Compliance CSPM Resources API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)\nand Vulnerability Scanning (VS) services.\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

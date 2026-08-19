@@ -1,0 +1,114 @@
+openapi: 3.2.0
+info:
+  title: Container Security Sensor API
+  description: 'This API provides an interface for configuring and interacting with Armor''s container security platform.
+
+
+    To connect to this API, use the following fully-qualified domain name (FQDN):
+
+    `compliance.api.secure-prod.services/containers`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://compliance.api.secure-dev.services/containers
+  description: Development
+- url: https://compliance.api.secure-stage.services/containers
+  description: Staging
+- url: https://compliance.api.secure-prod.services/containers
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Sensor
+  description: Sensor management operations
+paths:
+  /sensors:
+    get:
+      tags:
+      - Sensor
+      summary: Get All Sensors
+      description: Returns list of currently-installed container sensors.
+      operationId: getAllSensors
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SensorDetailsResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    SensorDetailsResponse:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier of the sensor
+        name:
+          type: string
+          description: Name of the sensor, as defined when installing it
+        sensorType:
+          type: string
+          description: 'Type of the sensor. Possible values: REGISTRY'
+        sensorVersion:
+          type: string
+          description: Version of the sensor
+        status:
+          type: string
+          description: 'Status of the sensor. Possible values: Running, Unknown'
+        hostName:
+          type: string
+          description: Name of the container host where sensor is installed
+        ipv4:
+          type: string
+          description: IPv4 address of the container host where sensor is installed
+        createdDate:
+          type: string
+          description: Date on which sensor is installed
+        lastReportedIn:
+          type: string
+          description: Datetime when sensor was last communicated with by the Armor platform
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

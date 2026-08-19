@@ -1,0 +1,1625 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Security API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Security
+paths:
+  /core/{coreinstanceId}/security:
+    get:
+      tags:
+      - Security
+      summary: Retrieve anti-malware scan data for a specific host.
+      operationId: Trend_GetCoreInstanceTrendSecurityDetails
+      parameters:
+      - name: coreinstanceId
+        in: path
+        description: GUID for Agent CORE instance id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.CoreInstanceTrendSecurityDetails'
+              example:
+                hostname: WIN-3V6ETB0A47J
+                accountId: 0
+                providerRefId: null
+                lastAvamScan: '2015-01-06T23:33:15.47'
+                lastCommunicationDate: '2015-01-06T23:33:15.47'
+                isAvamRealtime: true
+                isFimRealtime: true
+                biosUuid: 00000000-0000-0000-0000-000000000000
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.CoreInstanceTrendSecurityDetails'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /core/avam:
+    get:
+      tags:
+      - Security
+      summary: Retrieve list of Anti-Malware status details by host.
+      operationId: Trend_GetAvamScanResults
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.AvamGridDto'
+              example:
+              - coreInstanceId: e261a9b9-bd32-46bd-a5cd-7205048d768b
+                vmName: VM Name
+                location: null
+                isActive: false
+                vmProvider: azure
+                providerFullName: null
+                os: Microsoft Windows Server 2008 R2 Datacenter
+                accountId: 0
+                lastAgentCommunicationSeverity: 3
+                lastScannedSeverity: 3
+                lastAgentCommunicationData: null
+                lastScannedData: null
+                lastAgentCommunicationDate: '2015-03-22T19:52:08.63'
+                lastScannedDate: '2015-03-21T23:18:02.87'
+                hostId: 0
+                overallAntiMalwareStatus: OK
+                createdDate: null
+                customLocatiom: null
+                customProvider: null
+                avamRealTimeScan: false
+                biosUuid: 00000000-0000-0000-0000-000000000000
+                scanStatus: 0
+                isAvamEnabled: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.AvamGridDto'
+      deprecated: false
+  /core/avam/statistics:
+    get:
+      tags:
+      - Security
+      summary: Retrieve aggregate Anti-Malware status for all hosts.
+      operationId: Trend_GetAvamOverAllStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.AvamVmOverAllStatus'
+              example:
+                totalOkStatus: 19
+                totalWarningStatus: 2
+                totalCriticalStatus: 1
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.AvamVmOverAllStatus'
+      deprecated: false
+  /core/fim:
+    get:
+      tags:
+      - Security
+      summary: Retrieve FIM status for all hosts.
+      operationId: Trend_GetFimResults
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.FimGridDto'
+              example:
+              - coreInstanceId: e261a9b9-bd32-46bd-a5cd-7205048d768b
+                vmName: VM 1
+                location: null
+                ipAddress: null
+                status: 0
+                fimAgentStatus: 'ON'
+                fimAgentVersion: null
+                os: Microsoft Windows Server 2008 R2 Datacenter
+                fimLastCommunicationDate: '2015-03-22T19:52:08.63'
+                fimLastCommunicationData: null
+                vmSeverity: 3
+                createdDate: null
+                vmProvider: azure
+                providerFullName: null
+                customProvider: null
+                customLocation: null
+                fimRealTimeScan: 0
+                biosUuid: 00000000-0000-0000-0000-000000000000
+                isFimEnabled: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.FimGridDto'
+      deprecated: false
+  /core/fim/statistics:
+    get:
+      tags:
+      - Security
+      summary: Retrieve aggregate FIM status for all hosts.
+      operationId: Trend_GetFimOverAllStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.FimOverAllStatusDto'
+              example:
+                totalOkStatus: 5
+                totalWarningStatus: 0
+                totalCriticalStatus: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.FimOverAllStatusDto'
+      deprecated: false
+  /core/manual-scan/{coreInstance}/start:
+    post:
+      tags:
+      - Security
+      summary: Trigger trend manual scan start request for a server.
+      operationId: TrendManualScan_StartManualScan
+      parameters:
+      - name: coreInstance
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+  /core/manual-scan/getCurrentAndPastScan:
+    get:
+      tags:
+      - Security
+      summary: Get a list of current and past malware manual scans.
+      operationId: TrendManualScan_GetCurrentAndPastScan
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+  /core/packages/{coreInstanceId}:
+    get:
+      tags:
+      - Security
+      summary: Retrieve OS patching status data for a specific VM.
+      operationId: Packages_GetDevicePackages
+      parameters:
+      - name: coreInstanceId
+        in: path
+        description: id of the Core Instance
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '301':
+          description: MovedPermanently
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse'
+              example:
+                statusCode: 301
+                warning: Deprecated API
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /core/packages/status:
+    get:
+      tags:
+      - Security
+      summary: Retrieve OS patching status data for your VMs.
+      operationId: Packages_GetStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+        '301':
+          description: MovedPermanently
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse'
+              example:
+                statusCode: 301
+                warning: Deprecated API
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /core/security-dashboard/stats/overall:
+    get:
+      tags:
+      - Security
+      summary: Retrieve overall security status.
+      operationId: Trend_GetSecurityDashboardOverAllStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.SecurityOverAllStatusDto'
+              example:
+                totalOkStatus: 4
+                totalWarningStatus: 0
+                totalCriticalStatus: 1
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.SecurityOverAllStatusDto'
+      deprecated: false
+  /core/security-dashboard/stats/overview:
+    get:
+      tags:
+      - Security
+      summary: Retrieve aggregate Overall, Anti-Malware, and FIM for all hosts.
+      operationId: Trend_GetSecurityDashboardStatus
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.SecurityStatusDto'
+              example:
+                avamOkStatus: 4
+                avamWarningStatus: 0
+                avamCriticalStatus: 1
+                fimOkStatus: 5
+                fimWarningStatus: 0
+                fimCriticalStatus: 0
+                osPatchingOkStatus: 0
+                osPatchingWarningStatus: 0
+                osPatchingCriticalStatus: 0
+                overAllOkStatus: 4
+                overAllWarningStatus: 0
+                overAllCriticalStatus: 1
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.SecurityStatusDto'
+      deprecated: false
+  /core/trend-sync/{coreInstanceId}:
+    get:
+      tags:
+      - Security
+      summary: Sync trend information by coreinstanceid.
+      operationId: Trend_GetTrendSyncDetails
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.TrendCoreInstanceState'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Trend.Models.TrendCoreInstanceState'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /log-management:
+    get:
+      tags:
+      - Security
+      summary: Retrieve OS logging details by host.
+      operationId: VmLog_VmLogDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.VmLogDetails'
+              example:
+              - coreInstanceId: e5f680b7-df73-4a66-829a-50af5d6c21e7
+                vmName: Windows Test
+                lastLogDate: '2015-10-05T15:49:15'
+                vmProvider: complete
+                vmProviderFullName: null
+                os: Microsoft Windows Server 2012 R2 Standard
+                vmLocation: s01
+                logRetentionPlan: 90 days
+                logSize: '7200388'
+                logSeverity: 4
+                logApiUrl: https://api.armor.com
+                agentStatus: Offline
+                profileName: null
+                id: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.VmLogDetails'
+      deprecated: false
+  /log-management/log-depot/activate:
+    post:
+      tags:
+      - Security
+      summary: Activate log depot for the account
+      operationId: VmLog_ActivateLogDepot
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /log-management/log-depot/deactivate:
+    post:
+      tags:
+      - Security
+      summary: Deactivate Log depot for the account
+      operationId: VmLog_DeactivateLogDepot
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /log-management/logretentiontypes:
+    get:
+      tags:
+      - Security
+      summary: Retrieve log retention types
+      operationId: AccountLogRetention_LogRetentionTypes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.RetentionPlanTypesDto'
+              example:
+              - id: 40
+                description: null
+                isDefault: true
+                sortOrder: 1
+                skuBss: AA-LOGMGMT-USAGE-30DAY
+                title: Armor Agent Logs
+                subTitle: This plan includes logs from the Armor Anywhere agent that such as OS, file logging ,vulnerability scanning,intrusion detection, malware protection, and file integrity monitoring. This plan allows you to store and search all of your logs for 30 days.
+                imageList: []
+                isCurrentPlan: true
+                helpText: Logs are stored for the duration of the retention period subscribed; this plan applies to sources other than each agent or OS which are already included in each agent. This plan is required for all log collection services when forwarding logs from any network device, application, or other non included source.
+              - id: 400
+                description: null
+                isDefault: false
+                sortOrder: 2
+                skuBss: AA-SECURITY-ANALYTICS-LOG-RETENTION
+                title: 13Month Extended Log Retention
+                subTitle: This plan allows you to store and search all of your logs for 13 months
+                imageList:
+                - pci3
+                - hipaa
+                isCurrentPlan: false
+                helpText: Cost are only incurred for the month in which the data is transferred. Data is stored for the duration of the retention period subscribed. Applies to all source; agent, host or other.
+              - id: 30
+                description: null
+                isDefault: true
+                sortOrder: 3
+                skuBss: AA-SECURITY-ANALYTICS-LOG-CONSUMPTION
+                title: Security/Analytics Consumption
+                subTitle: Included with your Armor Anywhere agent licenses, this plan allows you to store and search all of your logs for 30 days.
+                imageList: []
+                isCurrentPlan: false
+                helpText: Logs are stored for the duration of the retention period subscribed; this plan applies to sources other than each agent or OS which are already included in each agent. This plan is required for all log collection services when forwarding logs from any network device, application, or other non included source.
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.RetentionPlanTypesDto'
+      deprecated: false
+  /log-management/logsources:
+    get:
+      tags:
+      - Security
+      summary: Retrieve Log sources for the logged-in account.
+      operationId: LogSource_LogSourceDetails
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogSourceDetails'
+              example:
+              - providerName: CloudTrail
+                title: Cloud Trail
+                description: AWS CloudTrail is a service that enables governance, compliance, operational auditing, and risk auditing of your AWS account. With Armor's CloudTrail integration, you can log, continuously monitor, and retain account activity related to actions across your AWS infrastructure.
+                imageName: CLOUD_TRAIL.IMG
+                isConnected: true
+                category: null
+                configureUri: null
+                logSourceTypeId: 0
+              - providerName: Fortinet
+                title: Fortiweb WAF
+                description: The Fortiweb WAF integrates with Armor to provide a turnkey cloud-based web application firewall solution that leverages the power of our Spartan threat prevention and response platform to protect your web applications 24/7 from common web exploits that could affect application availability, compromise security, or consume excessive resources. Help secure your web app against OWASP Top 10 attacks.
+                imageName: vendors-fortiweb.svg
+                isConnected: true
+                category: null
+                configureUri: null
+                logSourceTypeId: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogSourceDetails'
+      deprecated: false
+  /log-management/logsources/connector-request:
+    post:
+      tags:
+      - Security
+      summary: Create/Connetor Request Publish to IMS ticket.
+      operationId: LogSource_RequestConnector
+      responses:
+        '200':
+          description: Success
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.ConnectorRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.ConnectorRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.ConnectorRequest'
+        required: true
+  /log-management/logsources/log-insight/notification:
+    get:
+      tags:
+      - Security
+      summary: Retrieve log insight notification for the logged-in account
+      operationId: LogSource_DisplayLogInsightNotification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Invalid Request
+      deprecated: false
+    post:
+      tags:
+      - Security
+      summary: create/update log insight notification for the logged-in account
+      operationId: LogSource_UpdateLogInsightNotification
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Invalid Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: boolean
+          text/json:
+            schema:
+              type: boolean
+          application/x-www-form-urlencoded:
+            schema:
+              type: boolean
+        required: true
+  /log-management/logsources/loginsight-overview:
+    get:
+      tags:
+      - Security
+      summary: Retrieve log insight overview for the logged-in account
+      operationId: LogSource_LogInsightOverview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogInsightOverviewResponse'
+              example:
+                totalLogStorage: 0.04
+                totalLogStorageInBytes: 40000
+                totalLogStorageUnit: MB
+                armorAgentLogStorage: 0
+                armorAgentLogStorageInBytes: 0
+                logsAndDataManagementLogStorage: 0
+                logsAndDataManagementLogStorageInBytes: 0
+                armorAgentLogStorageUnit: null
+                logsAndDataManagementLogStorageUnit: null
+                logRetentionDays: 90
+                connectedSources: 3
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogInsightOverviewResponse'
+      deprecated: false
+  /log-management/log-storage:
+    get:
+      tags:
+      - Security
+      summary: Return Log Utilization for last week
+      operationId: AccountLogRetention_GetLogStorageUtilized
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.AccountLogStorageUtilizedDto'
+              example:
+              - day: '2026-02-12T00:00:00Z'
+                logSize: 22222
+                armrorAgentLogSize: 0
+                logsAndDataManagementLogSize: 0
+                logSizeGb: 0
+                armrorAgentLogSizeGb: 0
+                logsAndDataManagementLogSizeGb: 0
+              - day: '2026-02-11T00:00:00Z'
+                logSize: 3333
+                armrorAgentLogSize: 0
+                logsAndDataManagementLogSize: 0
+                logSizeGb: 0
+                armrorAgentLogSizeGb: 0
+                logsAndDataManagementLogSizeGb: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.AccountLogStorageUtilizedDto'
+      deprecated: false
+  /log-management/log-storage-totals:
+    get:
+      tags:
+      - Security
+      summary: Return Log Utilization for last 6 months on monthly basis with projection
+      operationId: AccountLogRetention_GetLogUtilizationTotals
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.AccountLogUtilizationTotals'
+              example:
+              - totalLogUsage: 114555
+                usageDate: '0001-01-01T00:00:00'
+                totalLogUsageInGb: 0
+                label: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.AccountLogUtilizationTotals'
+      deprecated: false
+  /log-management/products/{id}:
+    get:
+      tags:
+      - Security
+      summary: Retrieve product lists for log management
+      operationId: VmLog_GetServiceTypes
+      parameters:
+      - name: id
+        in: path
+        description: id of product to retrieve product catalog details
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogServiceTypeResponse'
+              example:
+              - id: 1120
+                name: Log Management 13-month Retention
+                description: Increased log retention duration to 13 months for Armor Complete
+                planRate: 100
+                sku: LOG-MGMT-COMPLIANCE
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.LogServiceTypeResponse'
+      deprecated: false
+  /log-management/retentionplan:
+    post:
+      tags:
+      - Security
+      summary: "Upgrade/Downgrade OS logging retention plan for a host.\n            The initial VM created with logging set to 90 days; and can be upgraded to 13 months; or reset back.\n            LogRetentionType: Days90, Months13. Null or Invalid values will default to Months13."
+      operationId: VmLog_UpgradeLogRetentionPlan
+      responses:
+        '200':
+          description: Success
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest'
+        required: true
+  /log-management/update-logretentionplan:
+    post:
+      tags:
+      - Security
+      summary: Update Retention Type for the logged-in Account User.
+      operationId: AccountLogRetention_UpgradeRetentionPlan
+      responses:
+        '200':
+          description: Success
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest'
+        required: true
+  /log-management/vms/{coreInstanceId}:
+    get:
+      tags:
+      - Security
+      summary: Retrieve OS Logging details for a host.
+      operationId: VmLog_GetVmLogStats
+      parameters:
+      - name: coreInstanceId
+        in: path
+        description: GUID for agent CORE instance id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.VmLogDetails'
+              example:
+                coreInstanceId: e5f680b7-df73-4a66-829a-50af5d6c21e7
+                vmName: Windows
+                lastLogDate: '2015-10-05T15:49:15'
+                vmProvider: Armor Complete
+                vmProviderFullName: null
+                os: Microsoft Windows Server 2012 R2 Standard
+                vmLocation: null
+                logRetentionPlan: 90 days
+                logSize: '7200388'
+                logSeverity: 4
+                logApiUrl: https://api.armor.com
+                agentStatus: Offline
+                profileName: null
+                id: 0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogManagement.Models.VmLogDetails'
+      deprecated: false
+  /log-search/templatedsearch:
+    post:
+      tags:
+      - Security
+      summary: Retrieve list of security log events.
+      operationId: LogSearch_GetLogs
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteChaosSearchTemplateResult'
+              example:
+                total: 154
+                items:
+                - id: AWTp1uZU9MdXCx948D41
+                  description: 'When scanned the File had the following attributes: Permissions: user::rw- group::r-- other::r--\n'
+                  changeType: created
+                  timestamp: '2015-01-05T00:38:23+00:00'
+                  filename: /var/log/unattended-upgrades/unattended-upgrades.log.2.gz
+                filterOptions:
+                  change Types:
+                  - created
+                  - updated
+                  - deleted
+                  - renamed
+                aggregations:
+                  lasttimestamp:
+                    value: 1483576703000
+                    valueAsString: null
+                    meta: {}
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteChaosSearchTemplateResult'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+        required: true
+  /log-search/templatedsearch/deprecated:
+    post:
+      tags:
+      - Security
+      summary: Deprecated Retrieve list of security log events.
+      operationId: LogSearch_GetLogsDeprecated
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateResult'
+              example:
+                total: 154
+                items:
+                - id: AWTp1uZU9MdXCx948D41
+                  description: 'When scanned the File had the following attributes: Permissions: user::rw- group::r-- other::r--\n'
+                  changeType: created
+                  timestamp: '2015-01-05T00:38:23+00:00'
+                  filename: /var/log/unattended-upgrades/unattended-upgrades.log.2.gz
+                filterOptions:
+                  change Types:
+                  - created
+                  - updated
+                  - deleted
+                  - renamed
+                aggregations:
+                  lasttimestamp:
+                    value: 1483576703000
+                    valueAsString: null
+                    meta: {}
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateResult'
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest'
+        required: true
+  /stats/security/time-series:
+    get:
+      tags:
+      - Security
+      operationId: TimeSeries_GetDataPointsAsync
+      parameters:
+      - name: series
+        in: query
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: startDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date-time
+      - name: useCache
+        in: query
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FireHost.Services.Http.TimeSeries.Models.TimeSeriesDataPointResponseDto'
+              example:
+                time_Series_1:
+                - t: '2017-09-01T00:00:00'
+                  v: 6.5
+                - t: '2017-09-02T00:00:00'
+                  v: 8.5
+                time_Series_2:
+                - t: '2017-09-01T00:00:00'
+                  v: 7.5
+                - t: '2017-09-02T00:00:00'
+                  v: 9.5
+                time_Series_3:
+                - t: '2017-09-01T00:00:00'
+                  v: 8.5
+                - t: '2017-09-02T00:00:00'
+                  v: 10.5
+                time_Series_4:
+                - t: '2017-09-01T00:00:00'
+                  v: 9.5
+                - t: '2017-09-02T00:00:00'
+                  v: 11.5
+                time_Series_5:
+                - t: '2017-09-01T00:00:00'
+                  v: 10.5
+                - t: '2017-09-02T00:00:00'
+                  v: 12.5
+                time_Series_6:
+                - t: '2017-09-01T00:00:00'
+                  v: 11.5
+                - t: '2017-09-02T00:00:00'
+                  v: 13.5
+                time_Series_7:
+                - t: '2017-09-01T00:00:00'
+                  v: 12.5
+                - t: '2017-09-02T00:00:00'
+                  v: 14.5
+                time_Series_8:
+                - t: '2017-09-01T00:00:00'
+                  v: 13.5
+                - t: '2017-09-02T00:00:00'
+                  v: 15.5
+                time_Series_9:
+                - t: '2017-09-01T00:00:00'
+                  v: 14.5
+                - t: '2017-09-02T00:00:00'
+                  v: 16.5
+                time_Series_10:
+                - t: '2017-09-01T00:00:00'
+                  v: 15.5
+                - t: '2017-09-02T00:00:00'
+                  v: 17.5
+            text/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/FireHost.Services.Http.TimeSeries.Models.TimeSeriesDataPointResponseDto'
+        '400':
+          description: Time Series name is null or empty
+        '500':
+          description: Request failed due to server error
+      deprecated: false
+components:
+  schemas:
+    FireHost.Infrastructure.Trend.Models.FimGridDto:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        vmName:
+          type: string
+        location:
+          type: string
+        ipAddress:
+          type: string
+        status:
+          format: int32
+          type: integer
+        fimAgentStatus:
+          type: string
+        fimAgentVersion:
+          type: string
+        os:
+          type: string
+        fimLastCommunicationDate:
+          format: date-time
+          type: string
+        fimLastCommunicationData:
+          type: string
+        vmSeverity:
+          format: int32
+          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        vmProvider:
+          type: string
+        providerFullName:
+          type: string
+        customProvider:
+          type: string
+        customLocation:
+          type: string
+        fimRealTimeScan:
+          format: int32
+          type: integer
+        biosUuid:
+          type: string
+        isFimEnabled:
+          type: boolean
+    FireHost.Infrastructure.LogManagement.Models.AccountLogUtilizationTotals:
+      type: object
+      properties:
+        totalLogUsage:
+          format: double
+          type: number
+        usageDate:
+          format: date-time
+          type: string
+        totalLogUsageInGb:
+          format: double
+          type: number
+          readOnly: true
+        label:
+          type: string
+    FireHost.Infrastructure.Trend.Models.SecurityOverAllStatusDto:
+      type: object
+      properties:
+        totalOkStatus:
+          format: int32
+          type: integer
+        totalWarningStatus:
+          format: int32
+          type: integer
+        totalCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.LogManagement.Models.AccountLogStorageUtilizedDto:
+      type: object
+      properties:
+        day:
+          format: date-time
+          type: string
+        logSize:
+          format: double
+          type: number
+        armrorAgentLogSize:
+          format: double
+          type: number
+        logsAndDataManagementLogSize:
+          format: double
+          type: number
+        logSizeGb:
+          format: double
+          type: number
+          readOnly: true
+        armrorAgentLogSizeGb:
+          format: double
+          type: number
+          readOnly: true
+        logsAndDataManagementLogSizeGb:
+          format: double
+          type: number
+          readOnly: true
+    FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        modifiedByUserId:
+          format: int32
+          type: integer
+        modifiedDate:
+          format: date-time
+          type: string
+        isEnabled:
+          type: boolean
+    FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse:
+      type: object
+      properties:
+        statusCode:
+          format: int32
+          type: integer
+        warning:
+          type: string
+    FireHost.Infrastructure.Trend.Models.TrendCoreInstanceState:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        trendHostId:
+          format: int32
+          type: integer
+        lastScanDate:
+          format: date-time
+          type: string
+        lastAgentCommunicationDate:
+          format: date-time
+          type: string
+        overallStatus:
+          type: string
+        trendOverallAntiMalwareStatus:
+          type: string
+        trendOverallIntegrityMonitoringStatus:
+          type: string
+        trendOverallIdsStatus:
+          type: string
+        agentStatus:
+          type: string
+        agentVersion:
+          type: string
+        avamRealTimeScanEnabled:
+          type: boolean
+        imRealTimeScanEnabled:
+          type: boolean
+        container:
+          type: string
+        lastModifiedDate:
+          format: date-time
+          type: string
+        lastModifiedBy:
+          type: string
+        trendCoreInstanceStateMessage:
+          type: string
+        trendUrl:
+          type: string
+        lastDefinitionUpdatedDate:
+          format: date-time
+          type: string
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Infrastructure.LogManagement.Models.VmLogDetails:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        vmName:
+          type: string
+        lastLogDate:
+          format: date-time
+          type: string
+        vmProvider:
+          type: string
+        vmProviderFullName:
+          type: string
+        os:
+          type: string
+        vmLocation:
+          type: string
+        logRetentionPlan:
+          type: string
+        logSize:
+          type: string
+        logSeverity:
+          format: int32
+          type: integer
+        logApiUrl:
+          type: string
+        agentStatus:
+          type: string
+        profileName:
+          type: string
+        id:
+          format: int32
+          type: integer
+    FireHost.Services.Http.TimeSeries.Models.TimeSeriesDataPointResponseDto:
+      type: object
+      properties:
+        t:
+          format: date-time
+          type: string
+        v:
+          format: double
+          type: number
+    FireHost.Infrastructure.LogManagement.Models.LogSourceDetails:
+      type: object
+      properties:
+        providerName:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        imageName:
+          type: string
+        isConnected:
+          type: boolean
+        category:
+          type: string
+        configureUri:
+          type: string
+        logSourceTypeId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.LogManagement.Models.RetentionPlanTypesDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        description:
+          type: string
+        isDefault:
+          type: boolean
+        sortOrder:
+          format: int32
+          type: integer
+        skuBss:
+          type: string
+        title:
+          type: string
+        subTitle:
+          type: string
+        imageList:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        isCurrentPlan:
+          type: boolean
+        helpText:
+          type: string
+    FireHost.Infrastructure.LogManagement.Models.LogServiceTypeResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        planRate:
+          format: double
+          type: number
+        sku:
+          type: string
+    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateResult:
+      type: object
+      properties:
+        total:
+          format: int64
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/System.Object'
+        filterOptions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        aggregations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Nest.IAggregate'
+    Nest.IAggregate:
+      type: object
+      properties:
+        meta:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+          readOnly: true
+    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest:
+      type: object
+      properties:
+        viewName:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+      example:
+        viewName: Trend FIM List
+        parameters:
+          coreinstance_id: b7939804-3190-494e-933f-f837fe545c3a
+          size: 10
+          from: 0
+          include_filteroptions: true
+          include_aggregations: true
+    FireHost.Infrastructure.Trend.Models.SecurityStatusDto:
+      type: object
+      properties:
+        avamOkStatus:
+          format: int32
+          type: integer
+        avamWarningStatus:
+          format: int32
+          type: integer
+        avamCriticalStatus:
+          format: int32
+          type: integer
+        fimOkStatus:
+          format: int32
+          type: integer
+        fimWarningStatus:
+          format: int32
+          type: integer
+        fimCriticalStatus:
+          format: int32
+          type: integer
+        osPatchingOkStatus:
+          format: int32
+          type: integer
+        osPatchingWarningStatus:
+          format: int32
+          type: integer
+        osPatchingCriticalStatus:
+          format: int32
+          type: integer
+        overAllOkStatus:
+          format: int32
+          type: integer
+        overAllWarningStatus:
+          format: int32
+          type: integer
+        overAllCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.LogSearch.Models.ExecuteChaosSearchTemplateResult:
+      type: object
+      properties:
+        total:
+          format: int64
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/System.Object'
+        filterOptions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        aggregations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+    FireHost.Infrastructure.Trend.Models.FimOverAllStatusDto:
+      type: object
+      properties:
+        totalOkStatus:
+          format: int32
+          type: integer
+        totalWarningStatus:
+          format: int32
+          type: integer
+        totalCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Trend.Models.AvamVmOverAllStatus:
+      type: object
+      properties:
+        totalOkStatus:
+          format: int32
+          type: integer
+        totalWarningStatus:
+          format: int32
+          type: integer
+        totalCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Trend.Models.AvamGridDto:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        vmName:
+          type: string
+        location:
+          type: string
+        isActive:
+          type: boolean
+        vmProvider:
+          type: string
+        providerFullName:
+          type: string
+        os:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        lastAgentCommunicationSeverity:
+          format: int32
+          type: integer
+        lastScannedSeverity:
+          format: int32
+          type: integer
+        lastAgentCommunicationData:
+          type: string
+        lastScannedData:
+          type: string
+        lastAgentCommunicationDate:
+          format: date-time
+          type: string
+        lastScannedDate:
+          format: date-time
+          type: string
+        hostId:
+          format: int32
+          type: integer
+        overallAntiMalwareStatus:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        customLocatiom:
+          type: string
+        customProvider:
+          type: string
+        avamRealTimeScan:
+          type: boolean
+        biosUuid:
+          type: string
+        scanStatus:
+          format: int32
+          type: integer
+        isAvamEnabled:
+          type: boolean
+    FireHost.Infrastructure.LogManagement.Models.ConnectorRequest:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        userId:
+          format: int32
+          type: integer
+        sourceName:
+          type: string
+        sourceVendor:
+          type: string
+      example:
+        accountId: 2
+        userId: 2002
+        sourceName: EC2
+        sourceVendor: Amazon Web Services
+    FireHost.Infrastructure.LogManagement.Models.LogInsightOverviewResponse:
+      type: object
+      properties:
+        totalLogStorage:
+          format: double
+          type: number
+        totalLogStorageInBytes:
+          format: int64
+          type: integer
+        totalLogStorageUnit:
+          type: string
+        armorAgentLogStorage:
+          format: double
+          type: number
+        armorAgentLogStorageInBytes:
+          format: int64
+          type: integer
+        logsAndDataManagementLogStorage:
+          format: double
+          type: number
+        logsAndDataManagementLogStorageInBytes:
+          format: int64
+          type: integer
+        armorAgentLogStorageUnit:
+          type: string
+        logsAndDataManagementLogStorageUnit:
+          type: string
+        logRetentionDays:
+          format: int32
+          type: integer
+        connectedSources:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Trend.Models.CoreInstanceTrendSecurityDetails:
+      type: object
+      properties:
+        hostname:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        providerRefId:
+          type: string
+        lastAvamScan:
+          format: date-time
+          type: string
+        lastCommunicationDate:
+          format: date-time
+          type: string
+        isAvamRealtime:
+          type: boolean
+        isFimRealtime:
+          type: boolean
+        biosUuid:
+          type: string
+    FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        retentionType:
+          format: int32
+          description: Log Retention type. Default value is 13 months since the feature initial design is for upgrade from the default 90 days.
+          enum:
+          - 0
+          - 1
+          type: integer
+      example:
+        coreInstanceId: 57c48819-9390-4f01-9257-5fc766591c61
+        vmId: 0
+        retentionType: 1
+    FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest:
+      type: object
+      properties:
+        accountLogRetentionType:
+          format: int32
+          enum:
+          - 30
+          - 90
+          - 400
+          type: integer
+        retainLast30DaysData:
+          type: boolean
+      example:
+        accountLogRetentionType: 90
+        retainLast30DaysData: true
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

@@ -1,0 +1,1055 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Services Account Management API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Management",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return notes for a given entity type and id. Notes provide a free text field that can be used to storage additional information about a given entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/:entityType/:entityId/notes",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type (apps)"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ]
+          },
+          "docs": "Return notes for a given entity type and id. Notes provide a free text field that can be used to storage additional information about a given entity."
+        },
+        {
+          "info": {
+            "name": "Add or update notes for a given entity type and id. A free text field that can be used to store additional information about a given entity.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/:entityType/:entityId/notes",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type (apps)"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add or update notes for a given entity type and id. A free text field that can be used to store additional information about a given entity."
+        },
+        {
+          "info": {
+            "name": "Delete notes for a given entity type and id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/:entityType/:entityId/notes",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete notes for a given entity type and id."
+        },
+        {
+          "info": {
+            "name": "Return tags for entity type and id. Tags are custom meta-data attributes that can be leveraged when searching for a given entity type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/:entityType/:entityId/tags",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type (apps)"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ]
+          },
+          "docs": "Return tags for entity type and id. Tags are custom meta-data attributes that can be leveraged when searching for a given entity type."
+        },
+        {
+          "info": {
+            "name": "Add tags for a given entity type and id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/:entityType/:entityId/tags",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type (apps)"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Add tags for a given entity type and id."
+        },
+        {
+          "info": {
+            "name": "Delete tags for a given entity type and id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/:entityType/:entityId/tags",
+            "params": [
+              {
+                "name": "entityType",
+                "value": "",
+                "type": "path",
+                "description": "Entity Type (apps)"
+              },
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path",
+                "description": "Entity ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete tags for a given entity type and id."
+        },
+        {
+          "info": {
+            "name": "Retrieve list of Account Activity for your account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/account/activity/history"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (required):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Returns a list of child accounts associated to the parent account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/account/children"
+          },
+          "docs": "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</st"
+        },
+        {
+          "info": {
+            "name": "Creates a child account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/account/children",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a child account"
+        },
+        {
+          "info": {
+            "name": "Give mass access for Parent Account Users to Child Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/account/children/massgrantaccess",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Give mass access for Parent Account Users to Child Account"
+        },
+        {
+          "info": {
+            "name": "This will return the list of Armor Contacts for the given Armor Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/account/contacts"
+          },
+          "docs": "This will return the list of Armor Contacts for the given Armor Account."
+        },
+        {
+          "info": {
+            "name": "AccountSkuPricing_GetAccountPrice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/account/pricing/:sku",
+            "params": [
+              {
+                "name": "sku",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          }
+        },
+        {
+          "info": {
+            "name": "Set Primary User for one or more notification types",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/account/primary-user",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set Primary User for one or more notification types"
+        },
+        {
+          "info": {
+            "name": "Return a list of accounts and the products related to the account id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/accounts"
+          },
+          "docs": "Return a list of accounts and the products related to the account id."
+        },
+        {
+          "info": {
+            "name": "Update the Account information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/accounts",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the Account information."
+        },
+        {
+          "info": {
+            "name": "Get the Account information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/accounts/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Armor account id"
+              }
+            ]
+          },
+          "docs": "Get the Account information."
+        },
+        {
+          "info": {
+            "name": "Get the users of an account and their roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/accounts/:accountId/accountusersandrole",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Armor account id"
+              }
+            ]
+          },
+          "docs": "Get the users of an account and their roles"
+        },
+        {
+          "info": {
+            "name": "Get the Roles of an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/accounts/:accountId/roles",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Armor account id"
+              }
+            ]
+          },
+          "docs": "Get the Roles of an account"
+        },
+        {
+          "info": {
+            "name": "Retrieve All Cloud Connections based on Account Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/cloud-connections",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Retrieve All Cloud Connections based on Account Id."
+        },
+        {
+          "info": {
+            "name": "Retrieve cloud connection detail by connection Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/cloud-connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Cloud connection Id to get the cloud connection details"
+              }
+            ]
+          },
+          "docs": "Retrieve cloud connection detail by connection Id"
+        },
+        {
+          "info": {
+            "name": "Soft Delete Cloud Connection by Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/cloud-connections/:connectionId",
+            "params": [
+              {
+                "name": "connectionId",
+                "value": "",
+                "type": "path",
+                "description": "Cloud connection Id to delete the cloud connection data"
+              }
+            ]
+          },
+          "docs": "Soft Delete Cloud Connection by Id."
+        },
+        {
+          "info": {
+            "name": "Check whether any enabled cloud connections exist.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/cloud-connections/connections/isEnabled"
+          },
+          "docs": "Check whether any enabled cloud connections exist."
+        },
+        {
+          "info": {
+            "name": "Save cloud connection details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/cloud-connections/savecloudconnection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Save cloud connection details."
+        },
+        {
+          "info": {
+            "name": "Retrieve All Connection Service Types.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/cloud-connections/servicetypes"
+          },
+          "docs": "Retrieve All Connection Service Types."
+        },
+        {
+          "info": {
+            "name": "Cloud connectiion summary dto used by ngx-portal\n            Returns cloud connection list for security hub",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/cloud-connections/summary"
+          },
+          "docs": "Cloud connectiion summary dto used by ngx-portal\n            Returns cloud connection list for security hub"
+        },
+        {
+          "info": {
+            "name": "Get AWS SecurityHub audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/internal/awssecurityhub/audits"
+          },
+          "docs": "Get AWS SecurityHub audit logs"
+        },
+        {
+          "info": {
+            "name": "Get AWS SecurityHub payload by Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/internal/awssecurityhub/audits/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get AWS SecurityHub payload by Id"
+        },
+        {
+          "info": {
+            "name": "Retrieve invoices for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/invoices"
+          },
+          "docs": "Retrieve invoices for an account."
+        },
+        {
+          "info": {
+            "name": "Retrieve the invoice summary for an invoice.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/invoices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the requested invoice"
+              }
+            ]
+          },
+          "docs": "Response Type: application/json or application/pdf - depends on Accept header on request"
+        },
+        {
+          "info": {
+            "name": "Retrieve invoice export detail for an invoice.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/invoices/:id/detail",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the requested invoice"
+              }
+            ]
+          },
+          "docs": "Response Type: application/json or text/csv - depends on Accept header on request"
+        },
+        {
+          "info": {
+            "name": "Retrieve payment methods for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/paymentmethods"
+          },
+          "docs": "Retrieve payment methods for an account."
+        },
+        {
+          "info": {
+            "name": "Update payment method on an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.armor.com/paymentmethods/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the payment method that you want to delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update payment method on an account."
+        },
+        {
+          "info": {
+            "name": "Delete payment method from an account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/paymentmethods/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the payment method that you want to delete"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Primary payment method cannot be deleted"
+        },
+        {
+          "info": {
+            "name": "Get a list of all permissions available on the account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/permissions"
+          },
+          "docs": "Get a list of all permissions available on the account."
+        },
+        {
+          "info": {
+            "name": "Retrieve any product lists that are associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/products"
+          },
+          "docs": "Retrieve any product lists that are associated to your Account."
+        },
+        {
+          "info": {
+            "name": "Retrieve a specific product list that is associated to your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/products/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the product list of the desired products"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific product list that is associated to your Account."
+        },
+        {
+          "info": {
+            "name": "Retrieve a filtered list of products specific to a category within a given product list on your Account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/products/:id/:category",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the product list of the desired products"
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "path",
+                "description": "Category of the desired products in the product list"
+              }
+            ]
+          },
+          "docs": "Retrieve a filtered list of products specific to a category within a given product list on your Account."
+        },
+        {
+          "info": {
+            "name": "Retrieve a resizable list of products specific to a instance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/products/:id/resizeinstance",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id for the product list of the desired products"
+              }
+            ]
+          },
+          "docs": "Retrieve a resizable list of products specific to a instance."
+        },
+        {
+          "info": {
+            "name": "Get a list of all roles on an account, including the associated permissions and assigned users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/roles"
+          },
+          "docs": "Get a list of all roles on an account, including the associated permissions and assigned users."
+        },
+        {
+          "info": {
+            "name": "Create a role with a group of permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/roles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a role with a group of permissions."
+        },
+        {
+          "info": {
+            "name": "GET a role by the role id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Role ID"
+              }
+            ]
+          },
+          "docs": "GET a role by the role id."
+        },
+        {
+          "info": {
+            "name": "Update the name and/or permissions assigned to a role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Role ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the name and/or permissions assigned to a role."
+        },
+        {
+          "info": {
+            "name": "Delete a role by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/roles/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Role ID"
+              }
+            ]
+          },
+          "docs": "Delete a role by id."
+        },
+        {
+          "info": {
+            "name": "Add a user to a role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/roles/:id/members/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Role ID"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Add a user to a role."
+        },
+        {
+          "info": {
+            "name": "Delete a user from a role.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.armor.com/roles/:id/members/:userId",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Role ID"
+              },
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "User ID"
+              }
+            ]
+          },
+          "docs": "Delete a user from a role."
+        },
+        {
+          "info": {
+            "name": "Retrieve subscriptions for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/subscriptions"
+          },
+          "docs": "Retrieve subscriptions for an account."
+        },
+        {
+          "info": {
+            "name": "Get partner customer details for logged-in account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/subscriptions/account-details"
+          },
+          "docs": "Get partner customer details for logged-in account."
+        },
+        {
+          "info": {
+            "name": "Get account all usage for billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/subscriptions/account-usage"
+          },
+          "docs": "Get account all usage for billing period."
+        },
+        {
+          "info": {
+            "name": "Get usage details for partner and partner customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/subscriptions/account-usagedetails"
+          },
+          "docs": "Get usage details for partner and partner customers"
+        },
+        {
+          "info": {
+            "name": "Cancel an active subscription.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/subscriptions/actions/cancel",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Cancel an active subscription."
+        },
+        {
+          "info": {
+            "name": "Get partners and partner customers hourly usagedetails for logged-in account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/subscriptions/hourlyusage"
+          },
+          "docs": "Get partners and partner customers hourly usagedetails for logged-in account."
+        },
+        {
+          "info": {
+            "name": "Retrieve Usage records for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/usage"
+          },
+          "docs": "Retrieve Usage records for an account."
+        },
+        {
+          "info": {
+            "name": "Retrieve a list of users for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/users"
+          },
+          "docs": "Retrieve a list of users for an account."
+        },
+        {
+          "info": {
+            "name": "Invite a new or existing user to an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Invite a new or existing user to an account."
+        },
+        {
+          "info": {
+            "name": "Get details about a specific user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the user"
+              }
+            ]
+          },
+          "docs": "Get details about a specific user."
+        },
+        {
+          "info": {
+            "name": "Update the attributes of a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/users/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "id of the user"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the attributes of a user."
+        },
+        {
+          "info": {
+            "name": "Resend email invitation for an invited user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/users/:userId/invite",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path",
+                "description": "id of the user"
+              }
+            ]
+          },
+          "docs": "Resend email invitation for an invited user."
+        },
+        {
+          "info": {
+            "name": "Get a user's notification settings. Notification settings determine the types of notifications a given user is subscribed to (e.g. Technical notifications, Ticket notifications, etc.).",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/users/notifications"
+          },
+          "docs": "Get a user's notification settings. Notification settings determine the types of notifications a given user is subscribed to (e.g. Technical notifications, Ticket notifications, etc.)."
+        },
+        {
+          "info": {
+            "name": "Update the notification settings for a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/users/notifications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the notification settings for a user."
+        },
+        {
+          "info": {
+            "name": "Retrieve a simplified list of users for an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.armor.com/users/simpleUserList"
+          },
+          "docs": "Retrieve a simplified list of users for an account."
+        },
+        {
+          "info": {
+            "name": "Enable or disable a user on an account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.armor.com/users/status",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Enable or disable a user on an account."
+        },
+        {
+          "info": {
+            "name": "Update the user challenge phrase for a given user account.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.armor.com/usersecurity/challengephrase",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the user challenge phrase for a given user account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

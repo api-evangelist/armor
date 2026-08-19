@@ -1,0 +1,490 @@
+{
+  "item": [
+    {
+      "id": "cd199f7d-5eca-44c2-9f8b-9f37d8858ac3",
+      "name": "Authentication",
+      "description": {
+        "content": "FH-AUTH authentication flow endpoints.\n\n## Flow Overview\n1. POST `/auth/authorize` with credentials → receive authorization code\n2. POST `/auth/token` with code → receive access token\n3. Use `Authorization: FH-AUTH {token}` header for API calls\n4. POST `/auth/token/reissue` to refresh expired tokens\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1804b791-2abe-4c70-b047-bb3a846c587d",
+          "name": "Get authorization code",
+          "request": {
+            "name": "Get authorization code",
+            "description": {
+              "content": "Authenticates user credentials and returns an authorization code.\nThe code must be exchanged for an access token within 2 minutes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "authorize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"<email>\",\n  \"password\": \"<password>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f012943b-2919-4143-afd1-b89aacd1dbb6",
+              "name": "Authorization code issued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"user@example.com\",\n  \"password\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"abc123xyz...\",\n  \"expiresIn\": 120\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e277993f-b2b8-4ae0-b532-84c0744b9996",
+              "name": "Invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"user@example.com\",\n  \"password\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2716d891-455d-4a38-9e95-e5c4b755bd2c",
+              "name": "Too many authentication attempts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "authorize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"user@example.com\",\n  \"password\": \"<password>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f240799c-f8f8-496d-8da9-239f3c9c3716",
+          "name": "Exchange authorization code for access token",
+          "request": {
+            "name": "Exchange authorization code for access token",
+            "description": {
+              "content": "Exchanges an authorization code for an access token and ID token.\nThe authorization code must be used within 2 minutes of issuance.\nAccess tokens are valid for 15 minutes.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"grant_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bbf9b980-9cd3-48f9-abfa-754163154649",
+              "name": "Tokens issued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"abc123xyz...\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"eyJhbGciOiJSUzI1NiIs...\",\n  \"id_token\": \"eyJhbGciOiJSUzI1NiIs...\",\n  \"token_type\": \"FH-AUTH\",\n  \"expires_in\": 900\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "428e4131-7af1-4294-9460-240590d960b2",
+              "name": "Invalid or expired authorization code",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"abc123xyz...\",\n  \"grant_type\": \"authorization_code\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c2278a6-adf2-4134-b2b4-4fdf03a7c65b",
+          "name": "Refresh an access token",
+          "request": {
+            "name": "Refresh an access token",
+            "description": {
+              "content": "Exchanges an existing access token for a new one.\nUse this endpoint when the current token is about to expire or has expired.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "auth",
+                "token",
+                "reissue"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a54cc9d5-9ce5-45d3-9751-fd17de479ec1",
+              "name": "New token issued successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    "reissue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJSUzI1NiIs...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"eyJhbGciOiJSUzI1NiIs...\",\n  \"id_token\": \"eyJhbGciOiJSUzI1NiIs...\",\n  \"token_type\": \"FH-AUTH\",\n  \"expires_in\": 900\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60d47b11-521c-4af3-bf95-6eaa59e2b635",
+              "name": "Invalid or expired token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "auth",
+                    "token",
+                    "reissue"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"eyJhbGciOiJSUzI1NiIs...\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"invalid_credentials\",\n  \"error_description\": \"The provided credentials are invalid\",\n  \"status\": 401\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.armor.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "722df954-d847-42af-a01d-fed80951f349",
+    "name": "Armor FH-AUTH Security Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Armor Security Platform Authentication API using FH-AUTH flow.\n\n\nContact Support:\n Name: Armor Support",
+      "type": "text/plain"
+    }
+  }
+}

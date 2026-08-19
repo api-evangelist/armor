@@ -1,0 +1,231 @@
+{
+  "item": [
+    {
+      "id": "ff36f67b-10f7-4fa9-b04a-cf0b58bb7781",
+      "name": "Health Monitoring Status",
+      "description": {
+        "content": "Health monitoring status operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c54ca1fd-1516-4ba3-bbf4-65f9e32c10df",
+          "name": "Get Health Monitoring Status",
+          "request": {
+            "name": "Get Health Monitoring Status",
+            "description": {
+              "content": "Get a list of health statuses for all coreInstances on your account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "healthmonitoringstatus"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "registered",
+                  "value": "<boolean>",
+                  "description": "Filter by registration status (true/false)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "578d5d94-acc1-4078-90f3-676304970f2e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthmonitoringstatus"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "registered",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"AccountId\": 2901,\n    \"CoreInstance\": \"string\",\n    \"IsRegistered\": \"string\",\n    \"SubAgents\": [\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2010-05-22T16:39:53.867Z\"\n      },\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2010-11-30T12:02:15.401Z\"\n      }\n    ]\n  },\n  {\n    \"AccountId\": 233,\n    \"CoreInstance\": \"string\",\n    \"IsRegistered\": \"string\",\n    \"SubAgents\": [\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2026-02-04T13:49:46.100Z\"\n      },\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2009-03-18T10:00:55.431Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e942a18-1a05-4e5a-9db7-928780922a06",
+          "name": "Get Health Monitoring Status by CoreInstanceId",
+          "request": {
+            "name": "Get Health Monitoring Status by CoreInstanceId",
+            "description": {
+              "content": "Get Health Monitoring Status details by CoreInstanceId.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "healthmonitoringstatus",
+                ":coreInstanceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "coreInstanceId",
+                  "description": "(Required) The CoreInstanceId of the Armor Agent."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57d49e8a-3d86-4b3d-b2d1-190c9858e905",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "healthmonitoringstatus",
+                    ":coreInstanceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "coreInstanceId",
+                      "description": "(Required) The CoreInstanceId of the Armor Agent."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"AccountId\": 403,\n    \"CoreInstance\": \"string\",\n    \"IsRegistered\": \"string\",\n    \"SubAgents\": [\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2018-02-26T21:26:08.561Z\"\n      },\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"1983-10-26T03:16:35.799Z\"\n      }\n    ]\n  },\n  {\n    \"AccountId\": 6275,\n    \"CoreInstance\": \"string\",\n    \"IsRegistered\": \"string\",\n    \"SubAgents\": [\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"1981-10-11T18:11:08.244Z\"\n      },\n      {\n        \"SubAgentName\": \"string\",\n        \"Version\": \"string\",\n        \"Status\": \"string\",\n        \"Message\": \"string\",\n        \"UpdateTime\": \"2011-06-08T02:20:16.199Z\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://agent-management.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0769611c-6c78-476a-b719-9b85e540cb64",
+    "name": "Agent Management Health Monitoring Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides an interface for interacting with Armor's agent\nmanagement functionality.\n\nBase URL: `https://agent-management.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

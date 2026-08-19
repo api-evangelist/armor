@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Armor Log Management Log Groups API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://api.armor.com/auth/authorize",
+      "accessTokenUrl": "https://api.armor.com/auth/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Log Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all log groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.logs.armor.com/logs/groups"
+          },
+          "docs": "Get a list of log groups."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,216 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Incident Management Security Detections API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://api.armor.com/auth/authorize",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Security Detections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Details of a Detection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/security-detections/:detectionId",
+            "params": [
+              {
+                "name": "detectionId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID for detection."
+              }
+            ]
+          },
+          "docs": "Get the details of a specific security detection or incident."
+        },
+        {
+          "info": {
+            "name": "List Detections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/security-detections",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              },
+              {
+                "name": "Range",
+                "value": ""
+              },
+              {
+                "name": "x-pagination-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+              }
+            ]
+          },
+          "docs": "Get a list of all security detections and incidents."
+        },
+        {
+          "info": {
+            "name": "List Detections with Pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/v2/security-detections",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              },
+              {
+                "name": "x-range",
+                "value": ""
+              },
+              {
+                "name": "x-pagination-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New+lookBackInDays+eq+1`\nUsing lookBackInDays filter, you can filter data based on lastUpdatedTime. Min: 1, Max: 395 days.\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+              }
+            ]
+          },
+          "docs": "Get a list of all security detections and incidents with pagination support."
+        },
+        {
+          "info": {
+            "name": "List Parent Customer Security Detections",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/security-detections/accounts/:accountId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              },
+              {
+                "name": "Range",
+                "value": ""
+              },
+              {
+                "name": "x-pagination-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The accountId."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+              }
+            ]
+          },
+          "docs": "Get a list of all security detections and incidents with delivery receiptIds."
+        },
+        {
+          "info": {
+            "name": "List Parent Customer Security Detections with Pagination",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://security-detections.api.secure-dev.services/v2/security-detections/accounts/:accountId",
+            "headers": [
+              {
+                "name": "x-account-context",
+                "value": "4"
+              },
+              {
+                "name": "Range",
+                "value": ""
+              },
+              {
+                "name": "x-pagination-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The accountId."
+              },
+              {
+                "name": "filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+              }
+            ]
+          },
+          "docs": "Get a list of all security detections and incidents with delivery receiptIds."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

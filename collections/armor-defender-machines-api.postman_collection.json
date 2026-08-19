@@ -1,0 +1,283 @@
+{
+  "item": [
+    {
+      "id": "4ef1d097-4949-4c62-b045-5a885f55d9b1",
+      "name": "Defender - Machines",
+      "description": {
+        "content": "Microsoft Defender machine/device management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7697652e-56d9-46ec-b77d-a9e71c8a001d",
+          "name": "List all machines",
+          "request": {
+            "name": "List all machines",
+            "description": {
+              "content": "Retrieves a list of all machines/devices registered in Microsoft Defender for Endpoint\nfor the specified customer account.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "defender",
+                "machines"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The AMP account ID that identifies the customer account",
+                "key": "x-account-context",
+                "value": "<uuid>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3693a105-4ec8-47b8-984b-d9ec01ba8687",
+              "name": "Successfully retrieved list of machines",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@odata.context\": \"string\",\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"computerDnsName\": \"string\",\n      \"firstSeen\": \"1971-06-01T06:18:30.790Z\",\n      \"lastSeen\": \"1970-04-27T16:20:40.787Z\",\n      \"osPlatform\": \"string\",\n      \"osVersion\": \"string\",\n      \"osProcessor\": \"string\",\n      \"lastIpAddress\": \"string\",\n      \"lastExternalIpAddress\": \"string\",\n      \"healthStatus\": \"Active\",\n      \"rbacGroupName\": \"string\",\n      \"riskScore\": \"Medium\",\n      \"exposureLevel\": \"Medium\",\n      \"isAadJoined\": true,\n      \"aadDeviceId\": \"55206a73-5553-af69-31b3-500b8f7e4eb0\",\n      \"machineTags\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"computerDnsName\": \"string\",\n      \"firstSeen\": \"1996-04-19T06:38:53.925Z\",\n      \"lastSeen\": \"1981-09-14T03:00:45.722Z\",\n      \"osPlatform\": \"string\",\n      \"osVersion\": \"string\",\n      \"osProcessor\": \"string\",\n      \"lastIpAddress\": \"string\",\n      \"lastExternalIpAddress\": \"string\",\n      \"healthStatus\": \"ImpairedCommunication\",\n      \"rbacGroupName\": \"string\",\n      \"riskScore\": \"Low\",\n      \"exposureLevel\": \"Low\",\n      \"isAadJoined\": true,\n      \"aadDeviceId\": \"a61f8473-4d90-b469-6fe1-7f8e24a7c344\",\n      \"machineTags\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17ef4a6d-f4e3-4420-bf48-ea049505997a",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 8356\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6cc99fc1-bb9f-4b1f-b18a-db119b8b5573",
+              "name": "Unable to retrieve customer records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 8356\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99e3af6d-bf67-4c46-96c2-41acb3027fc4",
+              "name": "Internal server error occurred while processing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "defender",
+                    "machines"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The AMP account ID that identifies the customer account",
+                    "key": "x-account-context",
+                    "value": "81ece7fb-ff8e-411c-8787-9ea4639545be"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\",\n  \"detail\": \"string\",\n  \"message\": \"string\",\n  \"statusCode\": 8356\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://mdr.api.secure-prod.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9b77ed8a-1bc2-4cd2-ba55-a4426d502ff7",
+    "name": "MDR Public Defender - Machines API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.\n\nThis unified API provides access to:\n\n## AI Platform (AIP)\n- AI-processed incident analysis with threat indicators and recommendations\n- Entity threat intelligence for security entities associated with incidents\n\n## Microsoft Defender Integration\n- Machine/device management in Microsoft Defender for Endpoint\n- Security action execution (isolation, scans, investigations)\n- Investigation package collection and live response operations\n\n## Detection Rules Management\n- Microsoft Sentinel detection rules across customer environments\n- Enriched rule metadata including MITRE ATT&CK mappings\n- Incident generation statistics\n\n## JSM Middleware\n- Security incident management and tracking\n- Metrics aggregation and reporting\n- Service request management\n- Organization management\n\n## Monthly Security Reports\n- Access to monthly security reports (PowerPoint, JSON, PDF)\n- Security metrics and performance indicators\n- Data ingestion analytics\n\n## Threat Intelligence\n- Threat actor intelligence data\n- Customer-specific threat intelligence based on deployed products\n- OpenCTI GraphQL proxy for advanced queries\n\n## Authentication\nAll endpoints (except health checks) require OAuth2 Bearer token authentication.\n\nFor authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman\n\n\nContact Support:\n Name: Armor Security Team",
+      "type": "text/plain"
+    }
+  }
+}

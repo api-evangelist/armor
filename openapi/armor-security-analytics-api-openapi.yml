@@ -1,0 +1,136 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Security Analytics API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Security Analytics
+paths:
+  /security-analytics/overview:
+    get:
+      tags:
+      - Security Analytics
+      operationId: SecurityAnalytics_SecurityAnalyticsOverview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse'
+              example:
+                timestamp: '2026-02-12T16:26:00.0951411Z'
+                overallScore: 4
+                protectionScore: 4
+                detectionScore: 3
+                responseScore: 5
+                criticalIncidentsCount: 12
+                analyzedEventsCount: 1234
+                vulnerabilities:
+                  scanDate: '0001-01-01T00:00:00'
+                  criticalCount: 1
+                  highCount: 2
+                  mediumCount: 3
+                  lowCount: 4
+                  detailsUrl: url
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /security-analytics/resources:
+    get:
+      tags:
+      - Security Analytics
+      operationId: SecurityResource_GetSecurityResources
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto'
+        '400':
+          description: Invalid Request
+      deprecated: false
+components:
+  schemas:
+    FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse:
+      type: object
+      properties:
+        timestamp:
+          format: date-time
+          type: string
+        overallScore:
+          format: int32
+          type: integer
+          readOnly: true
+        protectionScore:
+          format: int32
+          type: integer
+        detectionScore:
+          format: int32
+          type: integer
+        responseScore:
+          format: int32
+          type: integer
+        criticalIncidentsCount:
+          format: int32
+          type: integer
+        analyzedEventsCount:
+          format: int32
+          type: integer
+        vulnerabilities:
+          $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse'
+    FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        referenceUrl:
+          type: string
+        imageData:
+          type: string
+        modifiedBy:
+          type: string
+    FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse:
+      type: object
+      properties:
+        scanDate:
+          format: date-time
+          type: string
+        criticalCount:
+          format: int32
+          type: integer
+        highCount:
+          format: int32
+          type: integer
+        mediumCount:
+          format: int32
+          type: integer
+        lowCount:
+          format: int32
+          type: integer
+        detailsUrl:
+          type: string
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

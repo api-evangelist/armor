@@ -1,0 +1,1154 @@
+{
+  "item": [
+    {
+      "id": "db2b4be7-0310-48c6-b4cd-35e78ee357d4",
+      "name": "Security Detections",
+      "description": {
+        "content": "Security detection operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4272c867-6358-4041-9ce9-e2163086a033",
+          "name": "Get Details of a Detection",
+          "request": {
+            "name": "Get Details of a Detection",
+            "description": {
+              "content": "Get the details of a specific security detection or incident.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-detections",
+                ":detectionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "detectionId",
+                  "description": "(Required) The unique ID for detection."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99c3f3be-065c-4fc2-92a0-0e74ac2f1edf",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    ":detectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "detectionId",
+                      "description": "(Required) The unique ID for detection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 8701,\n  \"detectionId\": 1986,\n  \"description\": \"string\",\n  \"categories\": [\n    \"string\",\n    \"string\"\n  ],\n  \"severity\": 5,\n  \"ticketStatus\": \"string\",\n  \"status\": \"Open\",\n  \"detectionType\": \"Detection\",\n  \"eventCount\": 235,\n  \"startTime\": \"1968-03-03T13:40:48.462Z\",\n  \"lastUpdatedTime\": \"1988-01-09T21:58:55.854Z\",\n  \"ticketId\": \"string\",\n  \"ticketUrl\": \"string\",\n  \"deliveryReceipts\": [\n    {\n      \"receiptId\": \"string\",\n      \"dateTime\": \"1998-07-20T17:48:45.593Z\",\n      \"status\": \"string\"\n    },\n    {\n      \"receiptId\": \"string\",\n      \"dateTime\": \"1994-10-11T06:37:17.934Z\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e2d34b5-0f90-4b8f-bc59-d1d3654377d0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    ":detectionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "detectionId",
+                      "description": "(Required) The unique ID for detection."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f302835c-c8d8-44cc-9517-4fb875ff9d06",
+          "name": "List Detections",
+          "request": {
+            "name": "List Detections",
+            "description": {
+              "content": "Get a list of all security detections and incidents.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-detections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                "key": "Range",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Pagination token from previous response header.",
+                "key": "x-pagination-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4ec3be71-3a50-410c-95e9-a15d76f872a0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 7216,\n    \"detectionId\": 8628,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 4,\n    \"ticketStatus\": null,\n    \"status\": \"Completed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 6641,\n    \"startTime\": \"1965-10-28T10:59:27.708Z\",\n    \"lastUpdatedTime\": \"1998-03-14T20:00:45.403Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1948-08-12T09:42:14.131Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"2012-06-30T06:03:21.486Z\",\n        \"status\": \"string\"\n      }\n    ]\n  },\n  {\n    \"accountId\": 7966,\n    \"detectionId\": 7182,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 3,\n    \"ticketStatus\": null,\n    \"status\": \"Closed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 1271,\n    \"startTime\": \"2005-01-11T12:22:53.139Z\",\n    \"lastUpdatedTime\": \"2023-07-20T19:43:34.063Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1977-05-03T08:21:40.335Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1988-10-23T13:20:04.892Z\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a639bab9-5362-43c9-8cc3-451ce50272a2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "964c3c95-dd5d-4260-a5d9-9f7f247f90b2",
+          "name": "List Detections with Pagination",
+          "request": {
+            "name": "List Detections with Pagination",
+            "description": {
+              "content": "Get a list of all security detections and incidents with pagination support.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "security-detections"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New+lookBackInDays+eq+1`\nUsing lookBackInDays filter, you can filter data based on lastUpdatedTime. Min: 1, Max: 395 days.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                "key": "x-range",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Pagination token from previous response header.",
+                "key": "x-pagination-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "443baf5d-2af0-48f9-9864-22db523c625c",
+              "name": "Successful response - all results returned",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "security-detections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "x-range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"after\": \"string\",\n    \"before\": \"string\"\n  },\n  \"data\": [\n    {\n      \"accountId\": 3336,\n      \"detectionId\": 4317,\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": 8,\n      \"ticketStatus\": \"string\",\n      \"status\": \"In Progress\",\n      \"detectionType\": \"Incident\",\n      \"eventCount\": 5181,\n      \"startTime\": \"1979-07-03T18:03:07.892Z\",\n      \"lastUpdatedTime\": \"1967-07-16T15:34:44.635Z\",\n      \"ticketId\": \"string\",\n      \"ticketUrl\": null,\n      \"deliveryReceipts\": [\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1950-04-27T06:57:18.888Z\",\n          \"status\": \"string\"\n        },\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1986-03-24T08:18:00.605Z\",\n          \"status\": \"string\"\n        }\n      ]\n    },\n    {\n      \"accountId\": 1508,\n      \"detectionId\": 8872,\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": 4,\n      \"ticketStatus\": \"string\",\n      \"status\": \"In Progress\",\n      \"detectionType\": \"Incident\",\n      \"eventCount\": 9142,\n      \"startTime\": \"2018-07-09T20:49:42.878Z\",\n      \"lastUpdatedTime\": \"1986-01-04T03:48:40.857Z\",\n      \"ticketId\": null,\n      \"ticketUrl\": \"string\",\n      \"deliveryReceipts\": [\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1976-11-05T13:48:26.757Z\",\n          \"status\": \"string\"\n        },\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1957-04-19T06:57:22.756Z\",\n          \"status\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "104d65fd-2eb1-4de9-b700-7245efc764b1",
+              "name": "Partial content - more results available",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "security-detections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "x-range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Partial Content",
+              "code": 206,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paging\": {\n    \"after\": \"string\",\n    \"before\": \"string\"\n  },\n  \"data\": [\n    {\n      \"accountId\": 6060,\n      \"detectionId\": 4597,\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": 2,\n      \"ticketStatus\": \"string\",\n      \"status\": \"Pending Customer\",\n      \"detectionType\": \"Detection\",\n      \"eventCount\": 3366,\n      \"startTime\": \"1967-12-04T03:32:32.007Z\",\n      \"lastUpdatedTime\": \"1963-08-22T11:54:53.022Z\",\n      \"ticketId\": \"string\",\n      \"ticketUrl\": null,\n      \"deliveryReceipts\": [\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1951-06-26T09:26:13.891Z\",\n          \"status\": \"string\"\n        },\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1948-12-12T00:40:31.436Z\",\n          \"status\": \"string\"\n        }\n      ]\n    },\n    {\n      \"accountId\": 4405,\n      \"detectionId\": 4389,\n      \"description\": \"string\",\n      \"categories\": [\n        \"string\",\n        \"string\"\n      ],\n      \"severity\": 5,\n      \"ticketStatus\": \"string\",\n      \"status\": \"Open\",\n      \"detectionType\": \"Incident\",\n      \"eventCount\": 6560,\n      \"startTime\": \"2019-11-19T07:07:38.407Z\",\n      \"lastUpdatedTime\": \"1996-09-19T14:06:03.309Z\",\n      \"ticketId\": \"string\",\n      \"ticketUrl\": \"string\",\n      \"deliveryReceipts\": [\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"1969-07-09T20:04:59.483Z\",\n          \"status\": \"string\"\n        },\n        {\n          \"receiptId\": \"string\",\n          \"dateTime\": \"2011-06-30T08:13:39.325Z\",\n          \"status\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "06121e69-078a-40a5-a0ce-5142fd004ef4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "security-detections"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "x-range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b602a75-e3a6-4a15-839e-8feb19af86a8",
+          "name": "List Parent Customer Security Detections",
+          "request": {
+            "name": "List Parent Customer Security Detections",
+            "description": {
+              "content": "Get a list of all security detections and incidents with delivery receiptIds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "security-detections",
+                "accounts",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) The accountId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                "key": "Range",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Pagination token from previous response header.",
+                "key": "x-pagination-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "25d76d01-7c8a-48d0-9baa-778f80306c99",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The accountId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 7216,\n    \"detectionId\": 8628,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 4,\n    \"ticketStatus\": null,\n    \"status\": \"Completed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 6641,\n    \"startTime\": \"1965-10-28T10:59:27.708Z\",\n    \"lastUpdatedTime\": \"1998-03-14T20:00:45.403Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1948-08-12T09:42:14.131Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"2012-06-30T06:03:21.486Z\",\n        \"status\": \"string\"\n      }\n    ]\n  },\n  {\n    \"accountId\": 7966,\n    \"detectionId\": 7182,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 3,\n    \"ticketStatus\": null,\n    \"status\": \"Closed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 1271,\n    \"startTime\": \"2005-01-11T12:22:53.139Z\",\n    \"lastUpdatedTime\": \"2023-07-20T19:43:34.063Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1977-05-03T08:21:40.335Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1988-10-23T13:20:04.892Z\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc10aea0-7cec-4305-a323-f9427fe05f5f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "security-detections",
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The accountId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "259f23a9-4711-4341-b2e6-1340a246691d",
+          "name": "List Parent Customer Security Detections with Pagination",
+          "request": {
+            "name": "List Parent Customer Security Detections with Pagination",
+            "description": {
+              "content": "Get a list of all security detections and incidents with delivery receiptIds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "security-detections",
+                "accounts",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "OData filter parameter.\nExample: `*+like+IR19432+and+severity+eq+Low+and+detectionType+eq+Incident+and+status+eq+New`\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Search by Description, Id, etc.\nNote: Fields are case sensitive.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "accountId",
+                  "description": "(Required) The accountId."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Account context identifier",
+                "key": "x-account-context",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                "key": "Range",
+                "value": "<string>"
+              },
+              {
+                "disabled": false,
+                "description": "Pagination token from previous response header.",
+                "key": "x-pagination-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ed8cf36-3d8b-47f0-b756-750af30dfbe0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "security-detections",
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The accountId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 7216,\n    \"detectionId\": 8628,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 4,\n    \"ticketStatus\": null,\n    \"status\": \"Completed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 6641,\n    \"startTime\": \"1965-10-28T10:59:27.708Z\",\n    \"lastUpdatedTime\": \"1998-03-14T20:00:45.403Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1948-08-12T09:42:14.131Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"2012-06-30T06:03:21.486Z\",\n        \"status\": \"string\"\n      }\n    ]\n  },\n  {\n    \"accountId\": 7966,\n    \"detectionId\": 7182,\n    \"description\": \"string\",\n    \"categories\": [\n      \"string\",\n      \"string\"\n    ],\n    \"severity\": 3,\n    \"ticketStatus\": null,\n    \"status\": \"Closed\",\n    \"detectionType\": \"Detection\",\n    \"eventCount\": 1271,\n    \"startTime\": \"2005-01-11T12:22:53.139Z\",\n    \"lastUpdatedTime\": \"2023-07-20T19:43:34.063Z\",\n    \"ticketId\": \"string\",\n    \"ticketUrl\": \"string\",\n    \"deliveryReceipts\": [\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1977-05-03T08:21:40.335Z\",\n        \"status\": \"string\"\n      },\n      {\n        \"receiptId\": \"string\",\n        \"dateTime\": \"1988-10-23T13:20:04.892Z\",\n        \"status\": \"string\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9637c98-73ce-4f94-ae1a-546cda10b5d7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "security-detections",
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "accountId",
+                      "description": "(Required) The accountId."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Account context identifier",
+                    "key": "x-account-context",
+                    "value": "4"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Range header for pagination. Example: `entities=0-10; max=10`",
+                    "key": "Range",
+                    "value": "<string>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Pagination token from previous response header.",
+                    "key": "x-pagination-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://security-detections.api.secure-dev.services",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "accessTokenUrl",
+        "value": "https://api.armor.com/auth/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9d16f31-0079-4a8e-8079-5c8cb615f168",
+    "name": "Incident Management Security Detections API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "APIs for interacting with Armor products and services for incident management.\n\nBase URL: `https://security-detections.api.secure-prod.services/`\n",
+      "type": "text/plain"
+    }
+  }
+}

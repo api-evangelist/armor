@@ -1,0 +1,289 @@
+openapi: 3.2.0
+info:
+  title: Armor Webhooks Notifications API
+  description: 'This API provides an interface for building configurations that
+
+    allow you to subscribe to events, detections, and incidents.
+
+
+    Base URL: `https://webhooks.api.secure-prod.services/`
+
+    '
+  version: 1.0.0
+servers:
+- url: https://webhooks.api.secure-dev.services
+  description: Development
+- url: https://webhooks.api.secure-stage.services
+  description: Staging
+- url: https://webhooks.api.secure-prod.services
+  description: Production
+security:
+- OAuth2: []
+tags:
+- name: Notifications
+  description: 'The notification resource enables an API customer to build a webhook notification configuration.
+
+    '
+paths:
+  /security/notification:
+    get:
+      tags:
+      - Notifications
+      summary: Get Account Notification Configurations
+      description: Get a list of notification configurations for the account.
+      operationId: getNotificationConfigurations
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Notifications
+      summary: Create a Notification Configuration
+      description: Create a new Notification Configuration.
+      operationId: createNotificationConfiguration
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+              example:
+                message: 'New notification created True. NotificationId: 7854a268-bc98-478c-af0d-f65ff3d27d52.'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /security/notification/{notification_id}:
+    get:
+      tags:
+      - Notifications
+      summary: Get Notification Configuration details
+      description: Get a specific Notification Configuration by id.
+      operationId: getNotificationConfigurationById
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: notification_id
+        in: path
+        required: true
+        description: The id of the Notification Configuration.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    post:
+      tags:
+      - Notifications
+      summary: Update a Notification Configuration
+      description: Update a Notification Configuration.
+      operationId: updateNotificationConfiguration
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: notification_id
+        in: path
+        required: true
+        description: The id of the Notification Configuration.
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationRequest'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: boolean
+              example: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /security/notification/delete/{notification_id}:
+    post:
+      tags:
+      - Notifications
+      summary: Delete a Notification Configuration
+      description: Delete a Notification Configuration.
+      operationId: deleteNotificationConfiguration
+      parameters:
+      - $ref: '#/components/parameters/AccountContext'
+      - name: notification_id
+        in: path
+        required: true
+        description: The id of the Notification Configuration.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: boolean
+              example: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  schemas:
+    NotificationRequest:
+      type: object
+      required:
+      - name
+      - email_for_error
+      - event_type
+      properties:
+        name:
+          type: string
+          description: The name of the Notification Configuration.
+          example: Notification Name
+        email_for_error:
+          type: string
+          format: email
+          description: The email for notification errors.
+          example: name@example.com
+        event_type:
+          type: array
+          description: The list of events.
+          items:
+            type: string
+        properties:
+          type: array
+          description: The list of headers and URI properties.
+          items:
+            $ref: '#/components/schemas/NotificationProperties'
+    NotificationResponse:
+      type: object
+      required:
+      - id
+      - org_id
+      - name
+      - email_for_error
+      - event_type
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: The Id of the Notification Configuration.
+          example: 7854a268-bc98-478c-af0d-f65ff3d27d52
+        org_id:
+          type: integer
+          description: The Id of the Account.
+          example: 1000
+        name:
+          type: string
+          description: The name of the Notification Configuration.
+          example: Notification Name
+        email_for_error:
+          type: string
+          format: email
+          description: The email for notification errors.
+          example: name@example.com
+        event_type:
+          type: array
+          description: The list of events.
+          items:
+            type: string
+        properties:
+          type: array
+          description: The list of headers and URI properties.
+          items:
+            $ref: '#/components/schemas/NotificationProperties'
+    NotificationProperties:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key name of the property.
+          example: Authorization
+        type:
+          type: string
+          description: The type of the property.
+          enum:
+          - uri
+          - header
+          example: header
+        value:
+          type: string
+          description: The value of the property.
+          example: Splunk XXXXX-XXXXX
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Informational message
+    ErrorMessage:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          description: Error message description
+  responses:
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: string
+          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.armor.com/auth/authorize
+          scopes: {}

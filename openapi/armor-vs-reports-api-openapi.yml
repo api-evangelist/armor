@@ -1,0 +1,144 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance VS Reports API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: VS Reports
+  description: Vulnerability scan reports
+paths:
+  /vulnerability-scan/vulnerability-import-scan:
+    put:
+      tags:
+      - VS Reports
+      summary: Generate new vulnerability report
+      operationId: generateVulnerabilityReport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateReportRequest'
+      responses:
+        '202':
+          description: Accepted
+        '403':
+          description: Forbidden
+  /vulnerability-scan/summary-reports:
+    get:
+      tags:
+      - VS Reports
+      summary: List vulnerability scan summary reports
+      operationId: listVsSummaryReports
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SummaryReport'
+        '403':
+          description: Forbidden
+  /vulnerability-scan/generate-report:
+    post:
+      tags:
+      - VS Reports
+      summary: Generate detailed vulnerabilities report
+      operationId: generateDetailedVsReport
+      responses:
+        '200':
+          description: Successful response
+        '403':
+          description: Forbidden
+  /vulnerability-scan/get-export-data:
+    get:
+      tags:
+      - VS Reports
+      summary: Get detailed vulnerabilities report for CSV export
+      operationId: getVsExportData
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedVSReportForExport'
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    DetailedVSReportForExport:
+      type: object
+      properties:
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Export data rows
+    SummaryReport:
+      type: object
+      properties:
+        reportId:
+          type: string
+          description: Report ID
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        totalVulnerabilities:
+          type: integer
+          description: Total vulnerabilities
+        criticalCount:
+          type: integer
+          description: Critical count
+        highCount:
+          type: integer
+          description: High count
+        mediumCount:
+          type: integer
+          description: Medium count
+        lowCount:
+          type: integer
+          description: Low count
+        informationalCount:
+          type: integer
+          description: Informational count
+        assetsScanned:
+          type: integer
+          description: Assets scanned count
+    GenerateReportRequest:
+      type: object
+      properties:
+        reportType:
+          type: string
+          description: Report type
+        format:
+          type: string
+          description: Report format
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}

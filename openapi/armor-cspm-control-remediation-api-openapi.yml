@@ -1,0 +1,61 @@
+openapi: 3.2.0
+info:
+  title: Armor Compliance CSPM Control Remediation API
+  description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
+
+    and Vulnerability Scanning (VS) services.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Armor Support
+    url: https://www.armor.com/support
+servers:
+- url: https://compliance.api.secure-prod.services
+  description: Production server
+security:
+- OAuth2: []
+tags:
+- name: CSPM Control Remediation
+  description: CSPM control remediation information
+paths:
+  /cspm/control/{controlId}/remediation:
+    get:
+      tags:
+      - CSPM Control Remediation
+      summary: Get CSPM control remediation
+      operationId: getCspmControlRemediation
+      parameters:
+      - name: controlId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Control ID
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Message'
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+components:
+  schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://auth.armor.com/authorize
+          tokenUrl: https://auth.armor.com/token
+          scopes: {}
