@@ -1353,6 +1353,8 @@ apis:
   humanURL: https://developer.armor.com/
   baseURL: https://api.armor.com
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -2170,6 +2172,8 @@ apis:
   humanURL: https://developer.armor.com/
   baseURL: https://api.armor.com
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
