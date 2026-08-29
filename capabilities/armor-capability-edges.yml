@@ -1,0 +1,246 @@
+slug: armor
+provider: Armor
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 23
+edges:
+- tag: Vulnerability Scanning
+  spec_file: armor-vulnerability-scanning-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.95
+  evidence: GET /vulnerability-scan/current "Get list of current vulnerabilities"; GET /vulnerability-scan/{scanId}/vulnerabilities
+    "List of vulnerabilities by scan report ID"; schemas AssetVulnerability, VulnerabilityDetail
+  reason: Operations enumerate scanned assets and their vulnerabilities — the core of vulnerability scanning/remediation
+    management.
+- tag: VS Reports
+  spec_file: armor-vs-reports-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.93
+  evidence: PUT /vulnerability-scan/vulnerability-import-scan generateVulnerabilityReport "Generate new
+    vulnerability report"; GET /vulnerability-scan/summary-reports "List vulnerability scan summary reports"
+  reason: Generation and export of vulnerability scan reports is squarely vulnerability management.
+- tag: AIP - Entity Intelligence
+  spec_file: armor-aip-entity-intelligence-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: GET /aip/incident/{incidentId}/entity/{value}  fetchEntityForIncident  Fetch entity threat
+    intelligence for an incident
+  reason: Managed Detection and Response platform returning threat intelligence for entities in security
+    incidents — threat detection and response.
+- tag: AIP - Incident Data
+  spec_file: armor-aip-incident-data-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: GET /aip/incident/{incidentKey}  Get incident AIP data; schemas ThreatIndicator, AIInvestigation,
+    AttackEvent
+  reason: Security incident analysis with threat indicators and AI investigation data from an MDR platform
+    — SOC/incident response capability.
+- tag: Defender - Investigation
+  spec_file: armor-defender-investigation-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: GET /defender/packageuri/{actionId} "Get investigation package download URI"; "Investigation
+    package collection and live response operations"
+  reason: Retrieval of forensic investigation packages and live-response results from Microsoft Defender
+    for Endpoint is squarely SOC threat detection and incident response.
+- tag: Defender - Machine Actions
+  spec_file: armor-defender-machine-actions-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: POST /defender/machineactions/{machineId} "Execute action on machine"; "Security action execution
+    (isolation, scans, investigations)"
+  reason: Executing containment/scan actions on endpoints is response activity within threat detection
+    and response operations.
+- tag: Detection Rules
+  spec_file: armor-detection-rules-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.9
+  evidence: GET /rules "Retrieve detection rules for a customer"; "Microsoft Sentinel detection rules
+    ... MITRE ATT&CK mappings"
+  reason: Management of SIEM detection rules and their incident-generation statistics is core SOC/SIEM
+    threat detection capability.
+- tag: Security Detections
+  spec_file: armor-security-detections-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.88
+  evidence: getDetectionDetail  Get Details of a Detection; listDetections  List Detections; schema SecurityDetection
+  reason: Listing and retrieving security detections is core managed detection and response work, mapping
+    to SOC/threat detection and response.
+- tag: VS Exclusions
+  spec_file: armor-vs-exclusions-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.88
+  evidence: POST /vulnerability-scan/exclusions createVsExclusion "Create vulnerability scan exclusion";
+    GET /vulnerability-scan/exclusions/{exclusionId} "List excluded assets for an exclusion"
+  reason: Configures scope exclusions for vulnerability scanning — a vulnerability management administration
+    surface.
+- tag: Security Incidents
+  spec_file: armor-security-incidents-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.83
+  evidence: SecurityIncidents_GetSecurityIncidentsSeverityCount; schema FireHost.Infrastructure.SecurityIncidents.Models.OpenSecurityIncidentStats
+  reason: Security incident retrieval and open-incident severity statistics are security incident response
+    operations, not IT service incidents or business complaints.
+- tag: Security Detection Events
+  spec_file: armor-security-detection-events-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.82
+  evidence: GET /security-detections/{detectionId}/events  listDetectionEvents  List Events related to
+    a Detection; schema SecurityDetectionEvent
+  reason: Operations expose security detection events from Armor's managed detection and response platform
+    — SOC-style threat detection telemetry, i.e. Threat Detection & Response, not any business-domain
+    event stream.
+- tag: Security Detections Overview
+  spec_file: armor-security-detections-overview-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.82
+  evidence: getSecurityDetectionsOverview  Security Detections Overview; schemas Category, SeverityLevel,
+    SecurityDetectionOverview
+  reason: Aggregated view of security detections by category and severity is threat-detection reporting
+    within the MDR/SOC capability.
+- tag: TI - Threat Actors
+  spec_file: armor-ti-threat-actors-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.82
+  evidence: getAllThreatActors  Get all threat actors; getThreatActorsByCountry; schema ThreatActorDetail
+  reason: Threat actor intelligence catalogue supports SOC threat detection and response activity within
+    cybersecurity management.
+- tag: CSPM Resources
+  spec_file: armor-cspm-resources-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.8
+  evidence: '"Cloud Security Posture Management (CSPM)"; GET /cspm/resources "Get list of CSPM resources";
+    schema ResourceEvaluationDto'
+  reason: Operations expose cloud resources and their security-posture evaluations, i.e. cybersecurity
+    control assessment of cloud assets. L1 Cybersecurity Management is clear; whether this is closest
+    to security governance or vulnerability management is ambiguous, so no L2.
+- tag: Infrastructure
+  spec_file: armor-infrastructure-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.8
+  evidence: '"Retrieve any workloads that are associated to your Account"; "Create a new tier on a workload,
+    to serve as a logical grouping of servers"; schemas "FireHost.Infrastructure.Compute.Models.VmDetail",
+    "...VirtualMachines.Storage.VmStorageDto"'
+  reason: Manages virtual machines, storage, workloads and tiers in Armor's managed cloud — compute/storage
+    infrastructure management.
+- tag: Image
+  spec_file: armor-image-api-openapi.yml
+  capability_id: BC-620.40
+  capability_id_l1: BC-620
+  capability_name: Vulnerability Management
+  confidence: 0.78
+  evidence: '"Container Security Image API ... Armor''s container security platform"; schemas "VulnerabilitiesResponse",
+    "SoftwareInfo", "LayerInfo"'
+  reason: Lists container images with vulnerability and software inventory detail — container image vulnerability
+    scanning, i.e. vulnerability management within cybersecurity.
+- tag: TI - Customer Intelligence
+  spec_file: armor-ti-customer-intelligence-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.78
+  evidence: GET /ti/customer-ti/  getCustomerTI  Get customer-specific threat intelligence; schemas OpenCTIReport,
+    OpenCTIVulnerability
+  reason: Customer-specific threat intelligence feeds SOC detection and response; vulnerability report
+    schemas add a slight vulnerability-management overlap, so not maximal confidence.
+- tag: EDR
+  spec_file: armor-edr-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.75
+  evidence: GET /edr/uninstall-code/{cid}, "Get EDR configuration details", "Get EDR Event Forwarder details",
+    schema EdrServices
+  reason: Endpoint Detection and Response service enrolment, configuration and event forwarding belongs
+    to threat detection and response; part of the surface is service sign-up/usage administration, so
+    confidence is moderate.
+- tag: JSM - Incidents
+  spec_file: armor-jsm-incidents-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.75
+  evidence: '"JSM Middleware - Security incident management and tracking"; operations "List incidents",
+    "Add comment to incident"'
+  reason: Security incident listing, detail and commentary for an MDR/SOC service — threat detection and
+    incident response. Some ambiguity because the underlying system is a service-desk (JSM), but the spec
+    explicitly frames these as security incidents.
+- tag: Security
+  spec_file: armor-security-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.72
+  evidence: '"Retrieve anti-malware scan data for a specific host.", "Retrieve FIM status for all hosts.",
+    "Retrieve overall security status."'
+  reason: Aggregates anti-malware, file-integrity-monitoring and OS patching status for managed hosts
+    — clearly cybersecurity operations, but spans detection/response, vulnerability and reporting so no
+    single sub-capability is named.
+- tag: Access Control Lists
+  spec_file: armor-access-control-lists-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: POST /logs/acls  createLogAcl  Create an ACL; schemas CIDR, LogAcl
+  reason: Manages CIDR-based access control lists governing access to the log management platform — access
+    management, though it is arguably network configuration for a logging service.
+- tag: CSPM Summary
+  spec_file: armor-cspm-summary-api-openapi.yml
+  capability_id: BC-620
+  capability_id_l1: BC-620
+  capability_name: Cybersecurity Management
+  confidence: 0.7
+  evidence: GET /cspm/summary "Get CSPM CloudConnector summary" — "endpoints for Cloud Security Posture
+    Management (CSPM) and Vulnerability Scanning (VS) services"
+  reason: Summary rollup of cloud security posture findings; clearly within cybersecurity management,
+    but a single summary endpoint gives thin evidence for a specific sub-capability.
+- tag: Defender - Machines
+  spec_file: armor-defender-machines-api-openapi.yml
+  capability_id: BC-620.30
+  capability_id_l1: BC-620
+  capability_name: Threat Detection & Response Management
+  confidence: 0.7
+  evidence: GET /defender/machines "List all machines"; "Machine/device management in Microsoft Defender
+    for Endpoint"
+  reason: Lists endpoints onboarded to Defender for Endpoint as part of the MDR platform; clearly cybersecurity,
+    though a read-only device inventory only weakly pins the detection-and-response sub-capability.

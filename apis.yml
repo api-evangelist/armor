@@ -3444,6 +3444,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/armor-capability-edges.yml
+  name: Armor Business Capability Map
 - type: MCPServer
   url: mcp/armor-mcp.yml
 - type: Overlay
