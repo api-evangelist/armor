@@ -454,6 +454,8 @@ apis:
   humanURL: https://developer.armor.com/
   baseURL: https://api.armor.com
   tags:
+  - Assessment
+  tags_raw:
   - Assessments
   properties:
   - type: OpenAPI
