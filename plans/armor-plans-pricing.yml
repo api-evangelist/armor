@@ -1,0 +1,41 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.armor.com/solutions/pricing
+sources:
+- https://www.armor.com/solutions/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: usage-other
+published: true
+note: Endpoint-based pricing; MDR is a starting price and AEC is quote-only.
+plan_count: 4
+currency: USD
+plans:
+- name: Armor Agent Free Tier
+  price_text: $0
+  price: 0
+  currency: USD
+  period: month
+  unit: per endpoint
+  included_quota: up to 5 endpoints
+- name: Armor Agent Premium Tier
+  price_text: $99
+  price: 99
+  currency: USD
+  period: month
+  unit: per endpoint
+  included_quota: no endpoint limit
+- name: Armor Managed Detection and Response (MDR)
+  price_text: starts at $4,380/month for 500 endpoints
+  price: 4380
+  currency: USD
+  period: month
+  unit: 500 endpoints
+  included_quota: 500 endpoints
+- name: Armor Enterprise Cloud (AEC)
+  price_text: Pricing depends on scope; request a quote or demo to learn more.
+  period: none
