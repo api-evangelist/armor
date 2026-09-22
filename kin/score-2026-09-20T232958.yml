@@ -1,32 +1,30 @@
-# Kin Score artifact — armor — 2026-08-20T165047
+# Kin Score artifact — armor — 2026-09-20T232958
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: armor
-  schema_version: 0.12.0
-  scored_at: '2026-08-20'
-  run_ts: 2026-08-20T165047
-  composite: 47.9
-  band: developing
+  schema_version: 0.22.0
+  scored_at: '2026-09-20'
+  run_ts: 2026-09-20T232958
+  composite: 57.4
+  band: strong
   facets:
     discoverability: 75.9
-    contract_quality: 66.1
-    governance: 30.3
-    operational_transparency: 10.5
+    contract_quality: 63.6
+    contract_governance: 18.2
+    operational_transparency: 18.4
     developer_ergonomics: 54.2
-    commercial_clarity: 39.5
-    contract_governance: 30.3
-    access_clarity: 39.5
+    access_clarity: 71.1
   agent_readiness:
-    score: 50.6
+    score: 40.4
     band: agent-ready
     band_gated_from: agent-native
     dimensions:
       spec_presence: true
       agentic_access: derived
-      reversibility_documented: verified
+      reversibility_documented: documented
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: negotiable
       idempotency: false
       error_semantics: verified
       openapi_examples: partial
@@ -37,6 +35,10 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: true
+      delegated_identity: documented
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   provenance:
     mcp: derived
     skills: derived
