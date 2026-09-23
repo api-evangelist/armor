@@ -6,9 +6,7 @@ info:
 
     To connect to this API, use the following fully-qualified domain name (FQDN):
 
-    `compliance.api.secure-prod.services/containers`
-
-    '
+    `compliance.api.secure-prod.services/containers`'
   version: 1.0.0
 servers:
 - url: https://compliance.api.secure-dev.services/containers
@@ -47,6 +45,12 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     SensorDetailsResponse:
       type: object
       properties:
@@ -77,12 +81,6 @@ components:
         lastReportedIn:
           type: string
           description: Datetime when sensor was last communicated with by the Armor platform
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
   parameters:
     AccountContext:
       name: x-account-context

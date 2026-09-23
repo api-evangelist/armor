@@ -2,74 +2,7 @@ openapi: 3.2.0
 info:
   title: MDR Public Defender - Investigation API
   version: 1.0.0
-  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
-
-
-    This unified API provides access to:
-
-
-    ## AI Platform (AIP)
-
-    - AI-processed incident analysis with threat indicators and recommendations
-
-    - Entity threat intelligence for security entities associated with incidents
-
-
-    ## Microsoft Defender Integration
-
-    - Machine/device management in Microsoft Defender for Endpoint
-
-    - Security action execution (isolation, scans, investigations)
-
-    - Investigation package collection and live response operations
-
-
-    ## Detection Rules Management
-
-    - Microsoft Sentinel detection rules across customer environments
-
-    - Enriched rule metadata including MITRE ATT&CK mappings
-
-    - Incident generation statistics
-
-
-    ## JSM Middleware
-
-    - Security incident management and tracking
-
-    - Metrics aggregation and reporting
-
-    - Service request management
-
-    - Organization management
-
-
-    ## Monthly Security Reports
-
-    - Access to monthly security reports (PowerPoint, JSON, PDF)
-
-    - Security metrics and performance indicators
-
-    - Data ingestion analytics
-
-
-    ## Threat Intelligence
-
-    - Threat actor intelligence data
-
-    - Customer-specific threat intelligence based on deployed products
-
-    - OpenCTI GraphQL proxy for advanced queries
-
-
-    ## Authentication
-
-    All endpoints (except health checks) require OAuth2 Bearer token authentication.
-
-
-    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
-
-    '
+  description: Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
   contact:
     name: Armor Security Team
     url: https://armor.com
@@ -92,9 +25,7 @@ paths:
       summary: Get investigation package download URI
       description: 'Retrieves a SAS URI to download an investigation package collected from a machine.
 
-        Should be called after a ''collectInvestigationPackage'' action has completed successfully.
-
-        '
+        Should be called after a ''collectInvestigationPackage'' action has completed successfully.'
       operationId: getPackageUri
       parameters:
       - $ref: '#/components/parameters/AccountContext'
@@ -126,9 +57,7 @@ paths:
       summary: Get live response result download link
       description: 'Retrieves a download link for the results of a specific live response command.
 
-        The commandId corresponds to the index of the command in the original live response commands array.
-
-        '
+        The commandId corresponds to the index of the command in the original live response commands array.'
       operationId: getLiveResponseResult
       parameters:
       - $ref: '#/components/parameters/AccountContext'
@@ -162,6 +91,35 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
   schemas:
     PackageUriResponse:
       type: object
@@ -190,35 +148,6 @@ components:
           type: string
         statusCode:
           type: integer
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    CustomerNotFound:
-      description: Unable to retrieve customer records
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error occurred while processing the request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: The AMP account ID that identifies the customer account
-      schema:
-        type: string
-        format: uuid
-      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
   securitySchemes:
     OAuth2BearerAuth:
       type: http

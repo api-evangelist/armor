@@ -6,9 +6,7 @@ info:
     allow you to subscribe to events, detections, and incidents.
 
 
-    Base URL: `https://webhooks.api.secure-prod.services/`
-
-    '
+    Base URL: `https://webhooks.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://webhooks.api.secure-dev.services
@@ -21,9 +19,7 @@ security:
 - OAuth2: []
 tags:
 - name: Detections
-  description: 'The detection resource enables an API customer to build a webhook detection configuration.
-
-    '
+  description: The detection resource enables an API customer to build a webhook detection configuration.
 paths:
   /security/detection:
     get:
@@ -135,21 +131,30 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: string
-          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
   schemas:
+    ErrorMessage:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          description: Error message description
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Informational message
+    DetectionDefaultLabel:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key name of the default label.
+          example: rcn_idx
+        value:
+          type: string
+          description: The value of the default label.
+          example: Alpha
     DetectionResponse:
       type: object
       required:
@@ -168,6 +173,36 @@ components:
           type: integer
           description: The Id of the Account.
           example: 1000
+        name:
+          type: string
+          description: The name of the Detection Configuration.
+          example: Detection Name
+        format:
+          type: string
+          description: The format for detection.
+          example: splunk
+        event_type:
+          type: array
+          description: The list of events.
+          items:
+            type: string
+        transform:
+          type: array
+          description: The list of transforms.
+          items:
+            $ref: '#/components/schemas/DetectionTransform'
+        default_label:
+          type: array
+          description: The list of default labels.
+          items:
+            $ref: '#/components/schemas/DetectionDefaultLabel'
+    DetectionRequest:
+      type: object
+      required:
+      - name
+      - format
+      - event_type
+      properties:
         name:
           type: string
           description: The name of the Detection Configuration.
@@ -210,59 +245,6 @@ components:
           type: string
           description: The value of the transform.
           example: event_uuid
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Informational message
-    DetectionDefaultLabel:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The key name of the default label.
-          example: rcn_idx
-        value:
-          type: string
-          description: The value of the default label.
-          example: Alpha
-    ErrorMessage:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          description: Error message description
-    DetectionRequest:
-      type: object
-      required:
-      - name
-      - format
-      - event_type
-      properties:
-        name:
-          type: string
-          description: The name of the Detection Configuration.
-          example: Detection Name
-        format:
-          type: string
-          description: The format for detection.
-          example: splunk
-        event_type:
-          type: array
-          description: The list of events.
-          items:
-            type: string
-        transform:
-          type: array
-          description: The list of transforms.
-          items:
-            $ref: '#/components/schemas/DetectionTransform'
-        default_label:
-          type: array
-          description: The list of default labels.
-          items:
-            $ref: '#/components/schemas/DetectionDefaultLabel'
   parameters:
     AccountContext:
       name: x-account-context
@@ -272,6 +254,20 @@ components:
       schema:
         type: integer
       example: 4
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: string
+          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
   securitySchemes:
     OAuth2:
       type: oauth2

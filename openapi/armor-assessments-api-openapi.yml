@@ -3,9 +3,7 @@ info:
   title: Armor Compliance Assessments API
   description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
 
-    and Vulnerability Scanning (VS) services.
-
-    '
+    and Vulnerability Scanning (VS) services.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -123,15 +121,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    AssessmentUpdateAccountRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Updated assessment status
-        scanTargetStatus:
-          type: string
-          description: Updated scan target status
     AssessmentAccountResponse:
       type: object
       properties:
@@ -150,6 +139,15 @@ components:
         scanTargetStatus:
           type: string
           description: Scan Target status
+    AssessmentUpdateAccountRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Updated assessment status
+        scanTargetStatus:
+          type: string
+          description: Updated scan target status
     AssessmentCreateAccountRequest:
       type: object
       properties:

@@ -3,9 +3,7 @@ info:
   title: Armor Compliance CSPM Report API
   description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
 
-    and Vulnerability Scanning (VS) services.
-
-    '
+    and Vulnerability Scanning (VS) services.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -149,21 +147,12 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    CspmReportRequirementDetails:
+    Message:
       type: object
       properties:
-        requirementId:
+        message:
           type: string
-          description: Requirement ID
-        requirementName:
-          type: string
-          description: Requirement name
-        passCount:
-          type: integer
-          description: Pass count
-        failCount:
-          type: integer
-          description: Fail count
+          description: Response message
     CspmReportListDto:
       type: object
       properties:
@@ -183,12 +172,6 @@ components:
           type: string
           format: date-time
           description: Last run date
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Response message
     CspmReportDetailsDto:
       type: object
       properties:
@@ -250,6 +233,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CspmReportRequirementDetails'
+    CspmReportRequirementDetails:
+      type: object
+      properties:
+        requirementId:
+          type: string
+          description: Requirement ID
+        requirementName:
+          type: string
+          description: Requirement name
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
     CspmResourceDetails:
       type: object
       properties:

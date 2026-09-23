@@ -3,9 +3,7 @@ info:
   title: Armor Compliance CSPM Resources API
   description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
 
-    and Vulnerability Scanning (VS) services.
-
-    '
+    and Vulnerability Scanning (VS) services.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -99,6 +97,19 @@ paths:
           description: Forbidden
 components:
   schemas:
+    ResourceEvaluationDto:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        status:
+          type: string
+          description: Evaluation status
+        evaluatedOn:
+          type: string
+          format: date-time
+          description: Evaluation date
     CspmResourceListDto:
       type: object
       properties:
@@ -139,19 +150,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceEvaluationDto'
-    ResourceEvaluationDto:
-      type: object
-      properties:
-        controlId:
-          type: string
-          description: Control ID
-        status:
-          type: string
-          description: Evaluation status
-        evaluatedOn:
-          type: string
-          format: date-time
-          description: Evaluation date
     ResourceDetailDto:
       type: object
       properties:

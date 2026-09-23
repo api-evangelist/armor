@@ -2,74 +2,7 @@ openapi: 3.2.0
 info:
   title: MDR Public Reports - MSR API
   version: 1.0.0
-  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
-
-
-    This unified API provides access to:
-
-
-    ## AI Platform (AIP)
-
-    - AI-processed incident analysis with threat indicators and recommendations
-
-    - Entity threat intelligence for security entities associated with incidents
-
-
-    ## Microsoft Defender Integration
-
-    - Machine/device management in Microsoft Defender for Endpoint
-
-    - Security action execution (isolation, scans, investigations)
-
-    - Investigation package collection and live response operations
-
-
-    ## Detection Rules Management
-
-    - Microsoft Sentinel detection rules across customer environments
-
-    - Enriched rule metadata including MITRE ATT&CK mappings
-
-    - Incident generation statistics
-
-
-    ## JSM Middleware
-
-    - Security incident management and tracking
-
-    - Metrics aggregation and reporting
-
-    - Service request management
-
-    - Organization management
-
-
-    ## Monthly Security Reports
-
-    - Access to monthly security reports (PowerPoint, JSON, PDF)
-
-    - Security metrics and performance indicators
-
-    - Data ingestion analytics
-
-
-    ## Threat Intelligence
-
-    - Threat actor intelligence data
-
-    - Customer-specific threat intelligence based on deployed products
-
-    - OpenCTI GraphQL proxy for advanced queries
-
-
-    ## Authentication
-
-    All endpoints (except health checks) require OAuth2 Bearer token authentication.
-
-
-    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
-
-    '
+  description: Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
   contact:
     name: Armor Security Team
     url: https://armor.com
@@ -92,9 +25,7 @@ paths:
       summary: List available MSR files
       description: 'Retrieves a list of all available Monthly Security Report files for the authenticated
 
-        customer''s account.
-
-        '
+        customer''s account.'
       operationId: listMSRFiles
       parameters:
       - name: x-account-context
@@ -124,9 +55,7 @@ paths:
       summary: Download a specific MSR file
       description: 'Retrieves and downloads a specific Monthly Security Report file from S3 storage.
 
-        The file is streamed back to the client with appropriate content type and disposition headers.
-
-        '
+        The file is streamed back to the client with appropriate content type and disposition headers.'
       operationId: getMSRFile
       parameters:
       - name: x-account-context

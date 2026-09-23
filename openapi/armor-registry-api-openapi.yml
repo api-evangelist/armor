@@ -6,9 +6,7 @@ info:
 
     To connect to this API, use the following fully-qualified domain name (FQDN):
 
-    `compliance.api.secure-prod.services/containers`
-
-    '
+    `compliance.api.secure-prod.services/containers`'
   version: 1.0.0
 servers:
 - url: https://compliance.api.secure-dev.services/containers
@@ -142,77 +140,32 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
-    RegistryCreateRequest:
+    VulnerabilitiesResponse:
       type: object
-      required:
-      - registryName
-      - registryUri
-      - connectorId
-      - repositories
+      description: Count of vulnerabilities per severity level
       properties:
-        registryName:
-          type: string
-          description: The name for the registry
-        registryUri:
-          type: string
-          description: The registry URI
-        connectorId:
+        critical:
           type: number
-          description: Connector Id
-        region:
-          type: string
-          description: Region (not required for DockerHub)
-        dockerHubOrgName:
-          type: string
-          description: Organization name if registry type is DockerHub
-        repositories:
-          type: array
-          description: Array of Repositories
-          items:
-            $ref: '#/components/schemas/RepositoryRequest'
-    VendorTypesResponse:
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
+    Message:
       type: object
       properties:
-        id:
-          type: number
-          description: Vendor Id
-        code:
+        message:
           type: string
-          description: The Vendor Code
-        name:
-          type: string
-          description: The Vendor Name
-        regions:
-          type: array
-          description: List of Region Name or URI
-          items:
-            $ref: '#/components/schemas/Region'
+          description: Error or informational message
     Region:
       type: object
       properties:
@@ -225,38 +178,6 @@ components:
         uri:
           type: string
           description: Registry URI
-    RepositoryRequest:
-      type: object
-      required:
-      - name
-      - tags
-      properties:
-        name:
-          type: string
-          description: Name of the repository
-        tags:
-          type: array
-          description: Tags of the images in this repository
-          items:
-            type: string
-    RegistryDeleteResponse:
-      type: object
-      properties:
-        registryId:
-          type: number
-          description: Id for the registry deleted
-    RegistryCreateResponse:
-      type: object
-      properties:
-        registryId:
-          type: number
-          description: Id for the registry created
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     ContainerRegistryResponse:
       type: object
       properties:
@@ -301,25 +222,57 @@ components:
         modifiedDate:
           type: string
           description: The date & time the registry was updated
-    VulnerabilitiesResponse:
+    VendorTypesResponse:
       type: object
-      description: Count of vulnerabilities per severity level
       properties:
-        critical:
+        id:
           type: number
-          description: Count of "Critical" severity vulnerabilities
-        high:
+          description: Vendor Id
+        code:
+          type: string
+          description: The Vendor Code
+        name:
+          type: string
+          description: The Vendor Name
+        regions:
+          type: array
+          description: List of Region Name or URI
+          items:
+            $ref: '#/components/schemas/Region'
+    RegistryDeleteResponse:
+      type: object
+      properties:
+        registryId:
           type: number
-          description: Count of "High" severity vulnerabilities
-        medium:
+          description: Id for the registry deleted
+    RegistryCreateRequest:
+      type: object
+      required:
+      - registryName
+      - registryUri
+      - connectorId
+      - repositories
+      properties:
+        registryName:
+          type: string
+          description: The name for the registry
+        registryUri:
+          type: string
+          description: The registry URI
+        connectorId:
           type: number
-          description: Count of "Medium" severity vulnerabilities
-        low:
-          type: number
-          description: Count of "Low" severity vulnerabilities
-        info:
-          type: number
-          description: Count of "Info" severity vulnerabilities
+          description: Connector Id
+        region:
+          type: string
+          description: Region (not required for DockerHub)
+        dockerHubOrgName:
+          type: string
+          description: Organization name if registry type is DockerHub
+        repositories:
+          type: array
+          description: Array of Repositories
+          items:
+            $ref: '#/components/schemas/RepositoryRequest'
     RegistryDetailResponse:
       type: object
       properties:
@@ -370,14 +323,52 @@ components:
         modifiedDate:
           type: string
           description: The date & time the registry was updated
+    RegistryCreateResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry created
+    RepositoryRequest:
+      type: object
+      required:
+      - name
+      - tags
+      properties:
+        name:
+          type: string
+          description: Name of the repository
+        tags:
+          type: array
+          description: Tags of the images in this repository
+          items:
+            type: string
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
-    RegistryId:
-      name: id
-      in: path
-      required: true
-      description: Registry ID
-      schema:
-        type: integer
     AccountContext:
       name: x-account-context
       in: header
@@ -386,6 +377,13 @@ components:
       schema:
         type: integer
       example: 4
+    RegistryId:
+      name: id
+      in: path
+      required: true
+      description: Registry ID
+      schema:
+        type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

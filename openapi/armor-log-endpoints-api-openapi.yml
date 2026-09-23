@@ -3,9 +3,7 @@ info:
   title: Armor Log Management Log Endpoints API
   description: 'This API provides an interface for configuring and interacting with
 
-    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
-
-    '
+    Armor''s Log Management Platform.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -57,9 +55,7 @@ paths:
 
         A response of 200 means the allocation already existed and no action was taken.
 
-        A response of 201 means the allocation was successfully performed.
-
-        '
+        A response of 201 means the allocation was successfully performed.'
       operationId: allocateLogEndpoint
       deprecated: true
       responses:

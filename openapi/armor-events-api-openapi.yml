@@ -6,9 +6,7 @@ info:
     allow you to subscribe to events, detections, and incidents.
 
 
-    Base URL: `https://webhooks.api.secure-prod.services/`
-
-    '
+    Base URL: `https://webhooks.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://webhooks.api.secure-dev.services
@@ -21,9 +19,7 @@ security:
 - OAuth2: []
 tags:
 - name: Events
-  description: 'The event-type resource enables an API user to maintain the event types.
-
-    '
+  description: The event-type resource enables an API user to maintain the event types.
 paths:
   /security/detection/event-type:
     get:

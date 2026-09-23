@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://agent-management.api.secure-prod.services/`
-
-    '
+    Base URL: `https://agent-management.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://agent-management.api.secure-dev.services
@@ -23,9 +21,7 @@ security:
 - FHAuth: []
 tags:
 - name: Scheduled Tasks
-  description: 'The tasks resource enables an API customer to schedule, cancel and view agent CLI operations.
-
-    '
+  description: The tasks resource enables an API customer to schedule, cancel and view agent CLI operations.
 paths:
   /scheduled-tasks/details/{cid}:
     get:
@@ -206,102 +202,12 @@ paths:
           description: Successful response
 components:
   schemas:
-    AgentManagementScheduledTaskPagedList:
+    Message:
       type: object
       properties:
-        page:
-          type: integer
-          description: Page number.
-        total:
-          type: integer
-          description: Total records.
-        countPerPage:
-          type: integer
-          description: Maximum records per page.
-        filters:
-          type: object
-          description: Available filters.
-        items:
-          type: array
-          description: List of scheduled tasks.
-          items:
-            $ref: '#/components/schemas/AgentManagementScheduledTask'
-    ScheduledTasksResponseList:
-      type: object
-      properties:
-        data:
-          type: array
-          description: Scheduled tasks response list.
-          items:
-            $ref: '#/components/schemas/ScheduledTasksResponse'
-    AgentManagementScheduledTaskRequest:
-      type: object
-      required:
-      - coreInstanceId
-      - operationName
-      - productName
-      - runAfter
-      properties:
-        coreInstanceId:
-          type: array
-          description: The GUIDs of the VMs the scheduled task should run on.
-          items:
-            type: string
-            format: uuid
-        operationName:
+        message:
           type: string
-          description: The name of the product operation to be performed by the Armor CLI.
-          example: 'on'
-        productName:
-          type: string
-          description: The name of the Armor product, used by the Armor CLI.
-          example: fim
-        runAfter:
-          type: string
-          description: When the task should run. After this time the task will be run at the next agent heartbeat.
-        configuration:
-          type: object
-          description: An optional operation specific configuration, used by the Armor CLI.
-        userLabel:
-          type: string
-          description: An optional user-defined name for the task/batch.
-    ScheduledTasksCliCommandsHistory:
-      type: object
-      properties:
-        coreInstanceId:
-          type: string
-          description: The GUID of the VM the scheduled task should run on.
-        taskAssignmentId:
-          type: integer
-          description: Unique id for each task.
-        timestamp:
-          type: string
-          format: date-time
-          description: Created Date Time.
-        agentProductName:
-          type: string
-          description: Agent product name.
-        agentProductOperation:
-          type: string
-          description: Agent product operation.
-        agentProductOperationConfiguration:
-          type: string
-          description: Agent product operation configuration details.
-        resultCode:
-          type: string
-          description: Result code.
-        runtime:
-          type: integer
-          description: Run time.
-        scope:
-          type: string
-          description: Task scope.
-        scriptOutput:
-          type: string
-          description: Task script output.
-        scriptError:
-          type: string
-          description: Script error details.
+          description: Error or informational message
     AgentManagementScheduledTask:
       type: object
       properties:
@@ -372,41 +278,69 @@ components:
         resultCode:
           type: string
           description: The code to represent if a task execution is success or failed.
-    Message:
+    AgentManagementScheduledTaskUpdate:
       type: object
       properties:
-        message:
+        isCancelled:
+          type: boolean
+          description: Whether the task should be cancelled.
+        isPending:
+          type: boolean
+          description: Whether the task has been run.
+        userLabel:
           type: string
-          description: Error or informational message
-    ScheduledTasksCliResults:
+          description: An optional user-defined name for the task/batch.
+    AgentManagementScheduledTaskRequest:
       type: object
+      required:
+      - coreInstanceId
+      - operationName
+      - productName
+      - runAfter
       properties:
-        paging:
-          type: object
-          properties:
-            after:
-              type: string
-              description: Next pagination token.
-            before:
-              type: string
-              description: Previous pagination token.
-        data:
+        coreInstanceId:
           type: array
-          description: CLI commands history.
+          description: The GUIDs of the VMs the scheduled task should run on.
           items:
-            $ref: '#/components/schemas/ScheduledTasksCliCommandsHistory'
-    ScheduledTasksResponse:
+            type: string
+            format: uuid
+        operationName:
+          type: string
+          description: The name of the product operation to be performed by the Armor CLI.
+          example: 'on'
+        productName:
+          type: string
+          description: The name of the Armor product, used by the Armor CLI.
+          example: fim
+        runAfter:
+          type: string
+          description: When the task should run. After this time the task will be run at the next agent heartbeat.
+        configuration:
+          type: object
+          description: An optional operation specific configuration, used by the Armor CLI.
+        userLabel:
+          type: string
+          description: An optional user-defined name for the task/batch.
+    AgentManagementScheduledTaskPagedList:
       type: object
       properties:
-        CoreInstanceId:
-          type: string
-          description: The GUID of the VM the task is scheduled to run on.
-        TaskId:
+        page:
           type: integer
-          description: Unique Id for each task.
-        Error:
-          type: string
-          description: Error details.
+          description: Page number.
+        total:
+          type: integer
+          description: Total records.
+        countPerPage:
+          type: integer
+          description: Maximum records per page.
+        filters:
+          type: object
+          description: Available filters.
+        items:
+          type: array
+          description: List of scheduled tasks.
+          items:
+            $ref: '#/components/schemas/AgentManagementScheduledTask'
     AgentManagementProduct:
       type: object
       properties:
@@ -436,21 +370,83 @@ components:
         isDeleted:
           type: boolean
           description: Whether or not the product has been deleted.
-    AgentManagementScheduledTaskUpdate:
+    ScheduledTasksResponse:
       type: object
       properties:
-        isCancelled:
-          type: boolean
-          description: Whether the task should be cancelled.
-        isPending:
-          type: boolean
-          description: Whether the task has been run.
-        userLabel:
+        CoreInstanceId:
           type: string
-          description: An optional user-defined name for the task/batch.
+          description: The GUID of the VM the task is scheduled to run on.
+        TaskId:
+          type: integer
+          description: Unique Id for each task.
+        Error:
+          type: string
+          description: Error details.
+    ScheduledTasksCliResults:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: CLI commands history.
+          items:
+            $ref: '#/components/schemas/ScheduledTasksCliCommandsHistory'
+    ScheduledTasksResponseList:
+      type: object
+      properties:
+        data:
+          type: array
+          description: Scheduled tasks response list.
+          items:
+            $ref: '#/components/schemas/ScheduledTasksResponse'
+    ScheduledTasksCliCommandsHistory:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+          description: The GUID of the VM the scheduled task should run on.
+        taskAssignmentId:
+          type: integer
+          description: Unique id for each task.
+        timestamp:
+          type: string
+          format: date-time
+          description: Created Date Time.
+        agentProductName:
+          type: string
+          description: Agent product name.
+        agentProductOperation:
+          type: string
+          description: Agent product operation.
+        agentProductOperationConfiguration:
+          type: string
+          description: Agent product operation configuration details.
+        resultCode:
+          type: string
+          description: Result code.
+        runtime:
+          type: integer
+          description: Run time.
+        scope:
+          type: string
+          description: Task scope.
+        scriptOutput:
+          type: string
+          description: Task script output.
+        scriptError:
+          type: string
+          description: Script error details.
   responses:
-    BadRequest:
-      description: Bad request
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
@@ -461,8 +457,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:

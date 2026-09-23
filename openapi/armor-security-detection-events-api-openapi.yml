@@ -4,9 +4,7 @@ info:
   description: 'APIs for interacting with Armor products and services for incident management.
 
 
-    Base URL: `https://security-detections.api.secure-prod.services/`
-
-    '
+    Base URL: `https://security-detections.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://security-detections.api.secure-dev.services
@@ -31,9 +29,7 @@ paths:
 
         If more than 1000 events are related to the given detection, then the 1000 most recent
 
-        events are returned. This endpoint does not presently support paging using the `Range` header.
-
-        '
+        events are returned. This endpoint does not presently support paging using the `Range` header.'
       operationId: listDetectionEvents
       parameters:
       - name: detectionId

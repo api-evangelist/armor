@@ -3,9 +3,7 @@ info:
   title: Armor Compliance VS Reports API
   description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
 
-    and Vulnerability Scanning (VS) services.
-
-    '
+    and Vulnerability Scanning (VS) services.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -81,19 +79,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    DetailedVSReportForExport:
-      type: object
-      properties:
-        reportDate:
-          type: string
-          format: date-time
-          description: Report date
-        data:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-          description: Export data rows
     SummaryReport:
       type: object
       properties:
@@ -134,6 +119,19 @@ components:
         format:
           type: string
           description: Report format
+    DetailedVSReportForExport:
+      type: object
+      properties:
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Export data rows
   securitySchemes:
     OAuth2:
       type: oauth2

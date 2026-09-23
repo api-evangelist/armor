@@ -6,9 +6,7 @@ info:
     allow you to subscribe to events, detections, and incidents.
 
 
-    Base URL: `https://webhooks.api.secure-prod.services/`
-
-    '
+    Base URL: `https://webhooks.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://webhooks.api.secure-dev.services
@@ -21,9 +19,7 @@ security:
 - OAuth2: []
 tags:
 - name: Notifications
-  description: 'The notification resource enables an API customer to build a webhook notification configuration.
-
-    '
+  description: The notification resource enables an API customer to build a webhook notification configuration.
 paths:
   /security/notification:
     get:
@@ -164,6 +160,18 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    ErrorMessage:
+      type: object
+      properties:
+        errorMessage:
+          type: string
+          description: Error message description
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Informational message
     NotificationRequest:
       type: object
       required:
@@ -245,32 +253,6 @@ components:
           type: string
           description: The value of the property.
           example: Splunk XXXXX-XXXXX
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Informational message
-    ErrorMessage:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          description: Error message description
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            type: string
-          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
   parameters:
     AccountContext:
       name: x-account-context
@@ -280,6 +262,20 @@ components:
       schema:
         type: integer
       example: 4
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            type: string
+          example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
   securitySchemes:
     OAuth2:
       type: oauth2

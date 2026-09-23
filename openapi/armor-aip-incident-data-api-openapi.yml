@@ -2,74 +2,7 @@ openapi: 3.2.0
 info:
   title: MDR Public AIP - Incident Data API
   version: 1.0.0
-  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
-
-
-    This unified API provides access to:
-
-
-    ## AI Platform (AIP)
-
-    - AI-processed incident analysis with threat indicators and recommendations
-
-    - Entity threat intelligence for security entities associated with incidents
-
-
-    ## Microsoft Defender Integration
-
-    - Machine/device management in Microsoft Defender for Endpoint
-
-    - Security action execution (isolation, scans, investigations)
-
-    - Investigation package collection and live response operations
-
-
-    ## Detection Rules Management
-
-    - Microsoft Sentinel detection rules across customer environments
-
-    - Enriched rule metadata including MITRE ATT&CK mappings
-
-    - Incident generation statistics
-
-
-    ## JSM Middleware
-
-    - Security incident management and tracking
-
-    - Metrics aggregation and reporting
-
-    - Service request management
-
-    - Organization management
-
-
-    ## Monthly Security Reports
-
-    - Access to monthly security reports (PowerPoint, JSON, PDF)
-
-    - Security metrics and performance indicators
-
-    - Data ingestion analytics
-
-
-    ## Threat Intelligence
-
-    - Threat actor intelligence data
-
-    - Customer-specific threat intelligence based on deployed products
-
-    - OpenCTI GraphQL proxy for advanced queries
-
-
-    ## Authentication
-
-    All endpoints (except health checks) require OAuth2 Bearer token authentication.
-
-
-    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
-
-    '
+  description: Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
   contact:
     name: Armor Security Team
     url: https://armor.com
@@ -97,9 +30,7 @@ paths:
 
         **Authorization**: This endpoint validates that the requesting account has permission to
 
-        view the incident by checking customer organization associations with the Jira issue.
-
-        '
+        view the incident by checking customer organization associations with the Jira issue.'
       operationId: getIncidentAipData
       parameters:
       - name: incidentKey
@@ -151,6 +82,22 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ThreatIndicator:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - IP Address
+          - Domain
+          - URL
+          - File Hash
+          - Email Address
+          - Unknown
+        value:
+          type: string
+        description:
+          type: string
     AIMetrics:
       type: object
       properties:
@@ -181,6 +128,20 @@ components:
           type: string
         time_to_contain:
           type: string
+    SimilarIncident:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        severity:
+          type: string
+        detected_on:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        customer_name:
+          type: string
     AttackEvent:
       type: object
       properties:
@@ -199,14 +160,25 @@ components:
           type: string
         IncidentCreatedBy:
           type: string
-    IncidentDataResponse:
+    AIInvestigation:
       type: object
       properties:
-        available:
-          type: boolean
-          example: true
-        data:
-          $ref: '#/components/schemas/IncidentData'
+        summary:
+          type: string
+        indicators_of_compromise:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatIndicator'
+        root_cause_analysis:
+          type: string
+        recommended_actions:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        reason_for_recommeded_actions:
+          type: string
     IncidentNotAvailableResponse:
       type: object
       properties:
@@ -221,6 +193,14 @@ components:
           type:
           - object
           - 'null'
+    IncidentDataResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/IncidentData'
     IncidentData:
       type: object
       properties:
@@ -270,25 +250,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SimilarIncident'
-    AIInvestigation:
-      type: object
-      properties:
-        summary:
-          type: string
-        indicators_of_compromise:
-          type: array
-          items:
-            $ref: '#/components/schemas/ThreatIndicator'
-        root_cause_analysis:
-          type: string
-        recommended_actions:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        reason_for_recommeded_actions:
-          type: string
     ErrorResponse:
       type: object
       properties:
@@ -300,36 +261,6 @@ components:
           type: string
         statusCode:
           type: integer
-    ThreatIndicator:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - IP Address
-          - Domain
-          - URL
-          - File Hash
-          - Email Address
-          - Unknown
-        value:
-          type: string
-        description:
-          type: string
-    SimilarIncident:
-      type: object
-      properties:
-        incidentId:
-          type: string
-        severity:
-          type: string
-        detected_on:
-          type: string
-          format: date-time
-        displayName:
-          type: string
-        customer_name:
-          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

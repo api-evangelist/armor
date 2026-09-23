@@ -6,9 +6,7 @@ info:
 
     To connect to this API, use the following fully-qualified domain name (FQDN):
 
-    `compliance.api.secure-prod.services/containers`
-
-    '
+    `compliance.api.secure-prod.services/containers`'
   version: 1.0.0
 servers:
 - url: https://compliance.api.secure-dev.services/containers
@@ -70,18 +68,31 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    SoftwareInfo:
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
+    Message:
       type: object
       properties:
-        fixVersion:
+        message:
           type: string
-          description: The fix version of the software
-        name:
-          type: string
-          description: Name of the software
-        version:
-          type: string
-          description: The version of the software
+          description: Error or informational message
     LayerInfo:
       type: object
       properties:
@@ -165,21 +176,6 @@ components:
         imageModifiedDate:
           type: string
           description: Datetime on which the image was updated
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    LabelInfo:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Key of the label
-        value:
-          type: string
-          description: Corresponding value of the label
     ViewAllImagesResponse:
       type: object
       properties:
@@ -227,34 +223,36 @@ components:
         imageModifiedDate:
           type: string
           description: The date on which the image is modified
-    VulnerabilitiesResponse:
+    LabelInfo:
       type: object
-      description: Count of vulnerabilities per severity level
       properties:
-        critical:
-          type: number
-          description: Count of "Critical" severity vulnerabilities
-        high:
-          type: number
-          description: Count of "High" severity vulnerabilities
-        medium:
-          type: number
-          description: Count of "Medium" severity vulnerabilities
-        low:
-          type: number
-          description: Count of "Low" severity vulnerabilities
-        info:
-          type: number
-          description: Count of "Info" severity vulnerabilities
+        key:
+          type: string
+          description: Key of the label
+        value:
+          type: string
+          description: Corresponding value of the label
+    SoftwareInfo:
+      type: object
+      properties:
+        fixVersion:
+          type: string
+          description: The fix version of the software
+        name:
+          type: string
+          description: Name of the software
+        version:
+          type: string
+          description: The version of the software
   responses:
-    NotFound:
-      description: Not found
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:

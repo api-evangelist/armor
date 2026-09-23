@@ -23,6 +23,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Object'
       deprecated: false
+      summary: Active response get active response
+      x-summary-source: derived
 components:
   schemas:
     System.Object:

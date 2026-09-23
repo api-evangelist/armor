@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Utilization
-      summary: Retrieve Utilization for an account.
+      summary: Retrieve Utilization for an account
       description: 'Response Type: csv or zip file based on the report Type.'
       operationId: Utilization_GetUtilization
       parameters:
@@ -52,8 +52,17 @@ paths:
     get:
       tags:
       - Utilization
-      summary: Retrieve Utilization for an account group by Core Instance.
-      description: End Date should be later than Start Date. But not over 1 month later than Start Date.<br /><br /><strong>Get request URI contain the following query options</strong><br /><br /><strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br />
+      summary: Retrieve Utilization for an account group by Core Instance
+      description: 'End Date should be later than Start Date. But not over 1 month later than Start Date.
+
+
+        Get request URI contain the following query options
+
+
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
+
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1'
       operationId: Utilization_GetUsagePerCoreInstance
       parameters:
       - name: startDate

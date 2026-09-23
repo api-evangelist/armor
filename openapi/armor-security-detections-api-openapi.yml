@@ -4,9 +4,7 @@ info:
   description: 'APIs for interacting with Armor products and services for incident management.
 
 
-    Base URL: `https://security-detections.api.secure-prod.services/`
-
-    '
+    Base URL: `https://security-detections.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://security-detections.api.secure-dev.services
@@ -223,33 +221,6 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  parameters:
-    PaginationToken:
-      name: x-pagination-token
-      in: header
-      description: Pagination token from previous response header.
-      schema:
-        type: string
-    XRange:
-      name: x-range
-      in: header
-      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
-      schema:
-        type: string
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-    Range:
-      name: Range
-      in: header
-      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
-      schema:
-        type: string
   schemas:
     Message:
       type: object
@@ -270,6 +241,23 @@ components:
         status:
           type: string
           description: The status of receipt.
+    SecurityDetectionsResponse:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: List of SecurityDetection records.
+          items:
+            $ref: '#/components/schemas/SecurityDetection'
     SecurityDetection:
       type: object
       properties:
@@ -340,23 +328,33 @@ components:
           description: ReceiptIds generated for every notification delivery.
           items:
             $ref: '#/components/schemas/DeliveryReceipt'
-    SecurityDetectionsResponse:
-      type: object
-      properties:
-        paging:
-          type: object
-          properties:
-            after:
-              type: string
-              description: Next pagination token.
-            before:
-              type: string
-              description: Previous pagination token.
-        data:
-          type: array
-          description: List of SecurityDetection records.
-          items:
-            $ref: '#/components/schemas/SecurityDetection'
+  parameters:
+    Range:
+      name: Range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+    XRange:
+      name: x-range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
   responses:
     Forbidden:
       description: Forbidden

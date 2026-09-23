@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://accounts.api.secure-prod.services/`
-
-    '
+    Base URL: `https://accounts.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://accounts.api.secure-dev.services
@@ -23,9 +21,7 @@ tags:
 - name: Secure Notes
   description: 'The secure notes resource allows users to securely store and manage sensitive information such as passwords,
 
-    credentials, and other confidential data.
-
-    '
+    credentials, and other confidential data.'
 paths:
   /securenotes/securenotes:
     get:
@@ -189,25 +185,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
     SecureNoteUpdateRequest:
       type: object
@@ -223,63 +200,12 @@ components:
           type: boolean
           description: Indicates if the secure note should be shared with others.
           example: true
-    SecureNoteContent:
-      type: object
-      required:
-      - secureNote
-      properties:
-        secureNote:
-          type: string
-          description: The encrypted content of the secure note.
     Message:
       type: object
       properties:
         message:
           type: string
           description: Error or informational message
-    SecureNoteDetail:
-      type: object
-      required:
-      - id
-      - accountId
-      - displayName
-      - isEmployee
-      - isShared
-      - createdAt
-      - updatedAt
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the secure note.
-          example: 6667d45e-73c5-42b1-986e-dffa5226e65b
-        accountId:
-          type: integer
-          description: The account ID associated with the secure note.
-          example: 2
-        displayName:
-          type: string
-          description: The display name of the secure note.
-          example: My Secure Note
-        description:
-          type: string
-          description: The description of the secure note.
-          example: Contains production credentials
-        isEmployee:
-          type: boolean
-          description: Indicates if the secure note is associated with an employee.
-          example: false
-        isShared:
-          type: boolean
-          description: Indicates if the secure note is shared with others.
-          example: false
-        createdAt:
-          type: string
-          description: The timestamp when the secure note was created.
-          example: '2025-12-06T23:53:31.000Z'
-        updatedAt:
-          type: string
-          description: The timestamp when the secure note was last updated.
-          example: '2025-12-07T00:27:48.000Z'
     SecureNoteRevealResult:
       type: object
       required:
@@ -325,26 +251,6 @@ components:
           example: '2025-12-07T00:27:48.000Z'
         secureNote:
           $ref: '#/components/schemas/SecureNoteContent'
-    SecureNoteCreateRequest:
-      type: object
-      required:
-      - displayName
-      - isShared
-      properties:
-        displayName:
-          type: string
-          description: The display name of the secure note.
-          example: Test123
-        description:
-          type: string
-          description: The description of the secure note.
-          example: Test
-        secureNote:
-          $ref: '#/components/schemas/SecureNoteContent'
-        isShared:
-          type: boolean
-          description: Indicates if the secure note should be shared with others.
-          example: true
     SecureNote:
       type: object
       required:
@@ -383,6 +289,96 @@ components:
           type: string
           description: The timestamp when the secure note was created.
           example: '2025-12-06T23:53:31.000Z'
+    SecureNoteDetail:
+      type: object
+      required:
+      - id
+      - accountId
+      - displayName
+      - isEmployee
+      - isShared
+      - createdAt
+      - updatedAt
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the secure note.
+          example: 6667d45e-73c5-42b1-986e-dffa5226e65b
+        accountId:
+          type: integer
+          description: The account ID associated with the secure note.
+          example: 2
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: My Secure Note
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Contains production credentials
+        isEmployee:
+          type: boolean
+          description: Indicates if the secure note is associated with an employee.
+          example: false
+        isShared:
+          type: boolean
+          description: Indicates if the secure note is shared with others.
+          example: false
+        createdAt:
+          type: string
+          description: The timestamp when the secure note was created.
+          example: '2025-12-06T23:53:31.000Z'
+        updatedAt:
+          type: string
+          description: The timestamp when the secure note was last updated.
+          example: '2025-12-07T00:27:48.000Z'
+    SecureNoteCreateRequest:
+      type: object
+      required:
+      - displayName
+      - isShared
+      properties:
+        displayName:
+          type: string
+          description: The display name of the secure note.
+          example: Test123
+        description:
+          type: string
+          description: The description of the secure note.
+          example: Test
+        secureNote:
+          $ref: '#/components/schemas/SecureNoteContent'
+        isShared:
+          type: boolean
+          description: Indicates if the secure note should be shared with others.
+          example: true
+    SecureNoteContent:
+      type: object
+      required:
+      - secureNote
+      properties:
+        secureNote:
+          type: string
+          description: The encrypted content of the secure note.
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context

@@ -3,9 +3,7 @@ info:
   title: Armor Compliance VS Exclusions API
   description: 'Armor Compliance API provides endpoints for Cloud Security Posture Management (CSPM)
 
-    and Vulnerability Scanning (VS) services.
-
-    '
+    and Vulnerability Scanning (VS) services.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -94,6 +92,46 @@ paths:
           description: Forbidden
 components:
   schemas:
+    AssetInfo:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset ID
+        assetName:
+          type: string
+          description: Asset name
+    AddExclusion:
+      type: object
+      required:
+      - vulnerabilityId
+      - vulnerabilityName
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets
+        excludedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          description: Specific excluded assets
+        comment:
+          type: string
+          description: Exclusion details
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
     ExclusionList:
       type: object
       properties:
@@ -126,46 +164,6 @@ components:
           type: string
           format: date-time
           description: Creation date
-    AddExclusion:
-      type: object
-      required:
-      - vulnerabilityId
-      - vulnerabilityName
-      properties:
-        vulnerabilityId:
-          type: string
-          description: Vulnerability ID
-        vulnerabilityName:
-          type: string
-          description: Vulnerability name
-        excludeAllAssets:
-          type: boolean
-          description: Exclude all assets
-        excludedAssets:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetInfo'
-          description: Specific excluded assets
-        comment:
-          type: string
-          description: Exclusion details
-        exclusionReason:
-          type: string
-          description: Exclusion reason
-        expireDate:
-          type: string
-          format: date-time
-          description: Expiration date
-    AssetInfo:
-      type: object
-      properties:
-        assetId:
-          type: string
-          format: uuid
-          description: Asset ID
-        assetName:
-          type: string
-          description: Asset name
   securitySchemes:
     OAuth2:
       type: oauth2

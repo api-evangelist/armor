@@ -12,13 +12,22 @@ paths:
       tags:
       - Advanced Backup
       summary: Returns a list of restore activity logs
-      description: '<strong>Get request URI contain the following query options</strong>
+      description: 'Get request URI contain the following query options
 
-        <br />
 
-        <br />
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
 
-        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27Restoring%20files%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, message, startTime, endTime, errorMessage). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc'
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (optional): filters down results. Data Type: string. Example: $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27Restoring%20files%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=file%20restore
+
+
+        $orderby (optional): order by column name (name, message, startTime, endTime, errorMessage). Data Type: string. Example: $orderby=startTime%20desc'
       operationId: AdvancedBackup_GetActivityLogList
       responses:
         '200':
@@ -423,13 +432,22 @@ paths:
       tags:
       - Advanced Backup
       summary: Returns a list of fileset templates by page
-      description: '<strong>Get request URI contain the following query options</strong>
+      description: 'Get request URI contain the following query options
 
-        <br />
 
-        <br />
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
 
-        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27null%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, location, operatingSystemType, hostCount). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc'
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (optional): filters down results. Data Type: string. Example: $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27null%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=file%20restore
+
+
+        $orderby (optional): order by column name (name, location, operatingSystemType, hostCount). Data Type: string. Example: $orderby=startTime%20desc'
       operationId: Host_GetFileSetTemplateList
       responses:
         '200':
@@ -713,13 +731,22 @@ paths:
       tags:
       - Advanced Backup
       summary: Returns a list of VMs eligible for fileset protection
-      description: '<strong>Get request URI contain the following query options</strong>
+      description: 'Get request URI contain the following query options
 
-        <br />
 
-        <br />
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
 
-        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27null%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, location, status). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc'
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (optional): filters down results. Data Type: string. Example: $filter=status%20eq%20%27Success%27%20and%20taskCategory%20eq%20%27null%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=file%20restore
+
+
+        $orderby (optional): order by column name (name, location, status). Data Type: string. Example: $orderby=startTime%20desc'
       operationId: Host_GetRubrikHosts
       responses:
         '200':
@@ -1257,13 +1284,22 @@ paths:
       tags:
       - Advanced Backup
       summary: Returns a list of policies
-      description: '<strong>Get request URI contain the following query options</strong>
+      description: 'Get request URI contain the following query options
 
-        <br />
 
-        <br />
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
 
-        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=location%20eq%20%27null%27%20and%20slaDomainTypeName%20eq%20%27Fileset%20Protection%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, location, isReplicationEnabled, slaDomainTypeName, default). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc'
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (optional): filters down results. Data Type: string. Example: $filter=location%20eq%20%27null%27%20and%20slaDomainTypeName%20eq%20%27Fileset%20Protection%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=file%20restore
+
+
+        $orderby (optional): order by column name (name, location, isReplicationEnabled, slaDomainTypeName, default). Data Type: string. Example: $orderby=startTime%20desc'
       operationId: AdvancedBackup_GetBackupPoliciesList
       responses:
         '200':
@@ -2357,103 +2393,341 @@ paths:
         required: true
 components:
   schemas:
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UnprotectedVmsRequestSample:
-      type: object
-      properties:
-        locationId:
-          format: int32
-          type: integer
-        slaDomainId:
-          format: int32
-          type: integer
-        vmIds:
-          type: array
-          items:
-            format: int32
-            type: integer
-      example:
-        locationId: 1
-        slaDomainId: 1
-        vmIds:
-        - 1
-        - 2
-        - 3
-    FireHost.Services.Http.AdvancedBackup.ApiExample.UpdateVmPolicyRequestSample:
-      type: object
-      properties:
-        slaDomainId:
-          format: int32
-          type: integer
-        vmId:
-          format: int32
-          type: integer
-      example:
-        slaDomainId: 1
-        vmId: 1
-    FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDiskRequestDto:
-      type: object
-      properties:
-        diskId:
-          format: int32
-          type: integer
-        name:
-          type: string
-        nameId:
-          type: string
-        isBackupEnabled:
-          type: boolean
-        size:
-          format: int32
-          type: integer
-        isRubrikDiscovered:
-          type: boolean
-    FireHost.Services.Rubrik.Response.FileInfo:
-      type: object
-      properties:
-        filename:
-          type: string
-        path:
-          type: string
-        lastModified:
-          format: date-time
-          type: string
-        size:
-          format: double
-          type: number
-        fileMode:
-          type: string
-        statusMessage:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.Config:
-      type: object
-      properties:
-        sourceDir:
-          type: string
-        destinationDir:
-          type: string
-        ignoreErrors:
-          type: boolean
-    FireHost.Services.Common.Events.AdvancedBackup.VmDiskDto:
+    FireHost.Infrastructure.AdvancedBackup.Models.RubrikApplianceListDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        storageId:
-          format: int32
-          type: integer
-        diskName:
+        name:
           type: string
-        vcdDiskName:
+        url:
           type: string
-        deviceKey:
+        description:
+          type: string
+        version:
+          type: string
+        podId:
           format: int32
           type: integer
-        size:
+        location:
+          type: string
+        locationId:
           format: int32
           type: integer
-        isIncluded:
+        replicationPodId:
+          format: int32
+          type: integer
+        replicationLocationData:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.ReplicationLocationDto'
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreVmSnapshotRequestSample:
+      type: object
+      properties:
+        snapshotId:
+          type: string
+      example:
+        snapshotId: 00000000-0000-0000-0000-000000000000
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.VmHistoricalUsageRequestSample:
+      type: object
+      properties:
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+        vmProtectionType:
+          format: int32
+          type: integer
+        vmList:
+          type: array
+          items:
+            format: int32
+            type: integer
+      example:
+        startDate: '2026-01-14T16:25:51.8723753+00:00'
+        endDate: '2026-02-12T16:25:51.8723753+00:00'
+        vmProtectionType: 0
+        vmList:
+        - 1
+        - 2
+        - 3
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.CreateFileSetRequestSample:
+      type: object
+      properties:
+        hostName:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        fileSets:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FileSetDto'
+      example:
+        hostName: sample host name
+        vmId: 1
+        fileSets:
+        - hostId: 0
+          configureSlaDomainId: 1
+          effectiveSlaDomainId: 0
+          fileSetTemplateId: 1
+          accountId: 0
+          rubrikApplianceId: 0
+          localStorage: 0
+          archiveStorage: 0
+          localUsage: 0
+          replicationUsage: 0
+          replicationArchiveUsage: 0
+          id: 0
+          createdDate: '0001-01-01T00:00:00'
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreVmFileSample:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        destinationPath:
+          type: string
+      example:
+        sourcePath: \example_path
+        destinationPath: \example_path
+    FireHost.Services.Rubrik.Response.BrowseFilesetFilesResponseDto:
+      type: object
+      properties:
+        hasMore:
           type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Rubrik.Response.FileInfo'
+        osGroup:
+          type: string
+        hostName:
+          type: string
+    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        rubrikId:
+          type: string
+        rubrikCloudId:
+          type: string
+        agentId:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        vmName:
+          type: string
+        ipAddress:
+          type: string
+        location:
+          type: string
+        osName:
+          type: string
+        status:
+          type: string
+        fileSetsCsv:
+          type: string
+        policiesCsv:
+          type: string
+        localStorageCsv:
+          type: string
+        fileSets:
+          type: array
+          items:
+            type: string
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Policy'
+        totalStorage:
+          format: double
+          type: number
+        applianceUrl:
+          type: string
+        applianceCredentialId:
+          type: string
+        rubrikApplianceId:
+          format: int32
+          type: integer
+        primaryClusterId:
+          type: string
+        osId:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        userId:
+          type: string
+        localUsageCsv:
+          type: string
+        localUsage:
+          format: int64
+          type: integer
+        localArchiveUsage:
+          format: int64
+          type: integer
+        replicationArchiveUsage:
+          format: int64
+          type: integer
+        replicationUsageCsv:
+          type: string
+        replicationUsage:
+          format: int64
+          type: integer
+        storageUsed:
+          format: int64
+          type: integer
+          readOnly: true
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.BackupPolicyRequestSample:
+      type: object
+      properties:
+        name:
+          type: string
+        frequencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Frequencies'
+        firstFullAllowedBackupWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FirstFullAllowedBackupWindows'
+        isInternal:
+          type: boolean
+        slaDomainTypeId:
+          format: int32
+          type: integer
+        isReplicationEnabled:
+          type: boolean
+        replicationClusterId:
+          type: string
+        retentionLimit:
+          format: int64
+          type: integer
+        isCustomerDefault:
+          type: boolean
+      example:
+        name: sample Name
+        frequencies:
+        - id: 0
+          frequency: 10
+          retention: 10
+          timeUnit: Hourly
+          createdDate: '0001-01-01T00:00:00'
+        firstFullAllowedBackupWindows:
+        - startTimeAttributes:
+            id: 0
+            minutes: 2
+            hour: 2
+            dayOfWeek: 2
+          durationInHours: 2
+          isFirstFullBackupWindow: false
+          createdDate: '0001-01-01T00:00:00'
+        isInternal: false
+        slaDomainTypeId: 1
+        isReplicationEnabled: false
+        replicationClusterId: 00000000-0000-0000-0000-000000000000
+        retentionLimit: 32
+        isCustomerDefault: false
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UpdateBackupVmStorageDetailsRequestSample:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+        disks:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDiskRequestDto'
+      example:
+        vmId: 1
+        disks:
+        - diskId: 1
+          name: Disk 1
+          nameId: Hard disk 1
+          isBackupEnabled: true
+          size: 0
+          isRubrikDiscovered: false
+        - diskId: 2
+          name: Disk 2
+          nameId: Hard disk 2
+          isBackupEnabled: false
+          size: 0
+          isRubrikDiscovered: false
+    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostOverviewDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        vmName:
+          type: string
+        ipAddress:
+          type: string
+        location:
+          type: string
+        osName:
+          type: string
+        status:
+          type: string
+        filesets:
+          format: int32
+          type: integer
+        totalLocalUsage:
+          format: int64
+          type: integer
+        totalArchiveUsage:
+          format: int64
+          type: integer
+        osFamily:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        totalReplicationUsage:
+          format: int64
+          type: integer
+        totalReplicationArchiveUsage:
+          format: int64
+          type: integer
+        storageUsed:
+          format: int64
+          type: integer
+          readOnly: true
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.SnapshotRestoreActionRequestSample:
+      type: object
+      properties:
+        sagaId:
+          type: string
+        customerCommitted:
+          type: boolean
+        snapShotId:
+          type: string
+        statusDescription:
+          type: string
+      example:
+        sagaId: 00000000-0000-0000-0000-000000000000
+        customerCommitted: true
+        snapShotId: 00000000-0000-0000-0000-000000000000
+        statusDescription: sample description
+    FireHost.Infrastructure.AdvancedBackup.Data.Domain.RubrikSlaDomainType:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
     FireHost.Infrastructure.AdvancedBackup.Data.Domain.FileSet:
       type: object
       properties:
@@ -2517,50 +2791,6 @@ components:
           type: string
         modifiedBy:
           type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RemoveFilesetByIdRequestSample:
-      type: object
-      properties:
-        fileSetId:
-          format: int32
-          type: integer
-        preserveSnapshots:
-          type: boolean
-      example:
-        fileSetId: 1
-        preserveSnapshots: true
-    FireHost.Infrastructure.AdvancedBackup.Models.AllowedBackupWindows:
-      type: object
-      properties:
-        startTimeAttributes:
-          $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.StartTimeAttributes'
-        durationInHours:
-          format: int32
-          type: integer
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreVmFileSample:
-      type: object
-      properties:
-        sourcePath:
-          type: string
-        destinationPath:
-          type: string
-      example:
-        sourcePath: \example_path
-        destinationPath: \example_path
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreVmSnapshotRequestSample:
-      type: object
-      properties:
-        snapshotId:
-          type: string
-      example:
-        snapshotId: 00000000-0000-0000-0000-000000000000
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.AddRubrikHostRequestSample:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-      example:
-        vmId: 1
     FireHost.Infrastructure.AdvancedBackup.Models.FileSetTemplateListDto:
       type: object
       properties:
@@ -2608,119 +2838,6 @@ components:
         userId:
           format: int32
           type: integer
-    FireHost.Infrastructure.AdvancedBackup.Models.Frequencies:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        frequency:
-          format: int32
-          type: integer
-        retention:
-          format: int32
-          type: integer
-        timeUnit:
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UpdateFileSetRequestSample:
-      type: object
-      properties:
-        hostId:
-          format: int32
-          type: integer
-        fileSetId:
-          format: int32
-          type: integer
-        policyId:
-          format: int32
-          type: integer
-      example:
-        hostId: 1
-        fileSetId: 1
-        policyId: 1
-    FireHost.Services.Rubrik.Response.BrowseFilesResponseDto:
-      type: object
-      properties:
-        hasMore:
-          type: boolean
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Rubrik.Response.FileInfo'
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.CreateFileSetRequestSample:
-      type: object
-      properties:
-        hostName:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-        fileSets:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FileSetDto'
-      example:
-        hostName: sample host name
-        vmId: 1
-        fileSets:
-        - hostId: 0
-          configureSlaDomainId: 1
-          effectiveSlaDomainId: 0
-          fileSetTemplateId: 1
-          accountId: 0
-          rubrikApplianceId: 0
-          localStorage: 0
-          archiveStorage: 0
-          localUsage: 0
-          replicationUsage: 0
-          replicationArchiveUsage: 0
-          id: 0
-          createdDate: '0001-01-01T00:00:00'
-    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostOverviewDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        vmName:
-          type: string
-        ipAddress:
-          type: string
-        location:
-          type: string
-        osName:
-          type: string
-        status:
-          type: string
-        filesets:
-          format: int32
-          type: integer
-        totalLocalUsage:
-          format: int64
-          type: integer
-        totalArchiveUsage:
-          format: int64
-          type: integer
-        osFamily:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-        totalReplicationUsage:
-          format: int64
-          type: integer
-        totalReplicationArchiveUsage:
-          format: int64
-          type: integer
-        storageUsed:
-          format: int64
-          type: integer
-          readOnly: true
     FireHost.Infrastructure.AdvancedBackup.Models.FirstFullAllowedBackupWindows:
       type: object
       properties:
@@ -2734,73 +2851,143 @@ components:
         createdDate:
           format: date-time
           type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.SnapshotRestoreActionRequestSample:
-      type: object
-      properties:
-        sagaId:
-          type: string
-        customerCommitted:
-          type: boolean
-        snapShotId:
-          type: string
-        statusDescription:
-          type: string
-      example:
-        sagaId: 00000000-0000-0000-0000-000000000000
-        customerCommitted: true
-        snapShotId: 00000000-0000-0000-0000-000000000000
-        statusDescription: sample description
-    FireHost.Infrastructure.AdvancedBackup.Models.VmHistoricalOverviewDto:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        vmName:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.Policy:
-      type: object
-      properties:
-        policyId:
-          format: int32
-          type: integer
-        policyName:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.VmDetailDto:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        vmName:
-          type: string
-        ipAddress:
-          type: string
-        location:
-          type: string
-        osFamily:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.BackupWindows:
+    FireHost.Services.Common.Events.AdvancedBackup.VmDiskDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        minutes:
+        storageId:
           format: int32
           type: integer
-        hour:
+        diskName:
+          type: string
+        vcdDiskName:
+          type: string
+        deviceKey:
           format: int32
           type: integer
-        dayOfWeek:
+        size:
           format: int32
           type: integer
-        durationInHours:
-          format: int32
-          type: integer
-        isFirstFullBackupWindow:
+        isIncluded:
           type: boolean
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.GetVmsHistoricalOverviewRequestSample:
+    FireHost.Infrastructure.AdvancedBackup.Models.DefaultPolicyForAccountDto:
+      type: object
+      properties:
+        isDefaultExist:
+          type: boolean
+        locationId:
+          format: int32
+          type: integer
+        location:
+          type: string
+        podId:
+          format: int32
+          type: integer
+        rubrikApplianceId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.AdvancedBackup.Models.FilesetsListDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        rubrikId:
+          type: string
+        rubrikCloudId:
+          type: string
+        rubrikApplianceId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        configuredSlaDomainId:
+          format: int32
+          type: integer
+        effectiveSlaDomainId:
+          format: int32
+          type: integer
+        fileSetTemplateId:
+          format: int32
+          type: integer
+        storageUsed:
+          format: double
+          type: number
+        policyId:
+          format: int32
+          type: integer
+        policyName:
+          type: string
+        hostId:
+          format: int32
+          type: integer
+        vmName:
+          type: string
+        include:
+          type: array
+          items:
+            type: string
+        location:
+          type: string
+        osFamily:
+          type: string
+        localUsage:
+          format: int64
+          type: integer
+        archiveUsage:
+          format: int64
+          type: integer
+        replicationUsage:
+          format: int64
+          type: integer
+        replicationArchiveUsage:
+          format: int64
+          type: integer
+        totalStorageUsed:
+          format: int64
+          type: integer
+          readOnly: true
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.FilesetTemplateRequestDetailstSample:
+      type: object
+      properties:
+        name:
+          type: string
+        locationId:
+          format: int32
+          type: integer
+        include:
+          type: array
+          items:
+            type: string
+        exclude:
+          type: array
+          items:
+            type: string
+        doNotExclude:
+          type: array
+          items:
+            type: string
+        operatingSystemType:
+          type: string
+        etag:
+          type: string
+        rubrikId:
+          type: string
+      example:
+        name: sample name
+        locationId: 1
+        include:
+        - /usr/example
+        exclude:
+        - /usr/example
+        doNotExclude:
+        - /usr/example
+        operatingSystemType: Linux
+        etag: '0x000000000000'
+        rubrikId: 00000000-0000-0000-0000-000000000000
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.SnapshotRequestSample:
       type: object
       properties:
         startDate:
@@ -2810,23 +2997,76 @@ components:
           format: date-time
           type: string
       example:
-        startDate: '2026-01-14T16:25:51.9361054+00:00'
-        endDate: '2026-02-12T16:25:51.9361054+00:00'
-    FireHost.Infrastructure.AdvancedBackup.Models.StartTimeAttributes:
+        startDate: '2026-02-12T16:25:52.2712739Z'
+        endDate: '2026-02-12T16:25:52.2712739Z'
+    FireHost.Infrastructure.AdvancedBackup.Models.AllowedBackupWindows:
       type: object
       properties:
+        startTimeAttributes:
+          $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.StartTimeAttributes'
+        durationInHours:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.AdvancedBackup.Models.Config:
+      type: object
+      properties:
+        sourceDir:
+          type: string
+        destinationDir:
+          type: string
+        ignoreErrors:
+          type: boolean
+    FireHost.Infrastructure.AdvancedBackup.Models.VmHistoricalOverviewDto:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+        vmName:
+          type: string
+    FireHost.Infrastructure.AdvancedBackup.Models.ActivityLogDto:
+      type: object
+      properties:
+        taskId:
+          type: string
+        event:
+          type: string
+        message:
+          type: string
+        status:
+          type: string
+        errorMessage:
+          type: string
+        snapshotDate:
+          format: date-time
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        isPublic:
+          type: boolean
+        userId:
+          format: int32
+          type: integer
+        startTime:
+          format: date-time
+          type: string
+        endTime:
+          format: date-time
+          type: string
         id:
           format: int32
           type: integer
-        minutes:
-          format: int32
-          type: integer
-        hour:
-          format: int32
-          type: integer
-        dayOfWeek:
-          format: int32
-          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
+        modifiedBy:
+          type: string
     FireHost.Infrastructure.AdvancedBackup.Data.Domain.VmRubrikDetailDto:
       type: object
       properties:
@@ -2872,6 +3112,35 @@ components:
           type: string
         modifiedBy:
           type: string
+    FireHost.Infrastructure.AdvancedBackup.Models.Policy:
+      type: object
+      properties:
+        policyId:
+          format: int32
+          type: integer
+        policyName:
+          type: string
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.GetVmsHistoricalOverviewRequestSample:
+      type: object
+      properties:
+        startDate:
+          format: date-time
+          type: string
+        endDate:
+          format: date-time
+          type: string
+      example:
+        startDate: '2026-01-14T16:25:51.9361054+00:00'
+        endDate: '2026-02-12T16:25:51.9361054+00:00'
+    FireHost.Services.Rubrik.Response.BrowseFilesResponseDto:
+      type: object
+      properties:
+        hasMore:
+          type: boolean
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Rubrik.Response.FileInfo'
     FireHost.Infrastructure.AdvancedBackup.Models.DefaultPolicyDto:
       type: object
       properties:
@@ -2898,51 +3167,25 @@ components:
           type: integer
         location:
           type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostSnapshotDto:
+    FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDetailDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        rubrikSnapshotId:
+        name:
           type: string
-        filesetName:
-          type: string
-        snapshotDate:
-          format: date-time
-          type: string
-        filesetId:
+        podId:
           format: int32
           type: integer
-        rubrikFilesetId:
+        location:
           type: string
-        fileCount:
+        locationId:
           format: int32
           type: integer
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.SnapshotRequestSample:
-      type: object
-      properties:
-        startDate:
-          format: date-time
-          type: string
-        endDate:
-          format: date-time
-          type: string
-      example:
-        startDate: '2026-02-12T16:25:52.2712739Z'
-        endDate: '2026-02-12T16:25:52.2712739Z'
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.HostDetailsByIdRequestSample:
-      type: object
-      properties:
-        startDate:
-          format: date-time
-          type: string
-        endDate:
-          format: date-time
-          type: string
-      example:
-        startDate: '2026-02-12T16:25:53.8155916Z'
-        endDate: '2026-02-12T16:25:53.8155916Z'
+        rubrikSlaDomainId:
+          format: int32
+          type: integer
     FireHost.Infrastructure.AdvancedBackup.Models.ExternalSlaDomainDto:
       type: object
       properties:
@@ -2972,190 +3215,122 @@ components:
             $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Frequencies'
         isCustomerDefault:
           type: boolean
-    FireHost.Infrastructure.AdvancedBackup.Models.FilesetTemplateResponseDetailsDto:
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.BackupPolicyRequestDtoSample:
       type: object
       properties:
-        id:
-          format: int32
-          type: integer
         name:
           type: string
-        rubrikName:
-          type: string
-        rubrikId:
-          type: string
-        rubrikCloudId:
-          type: string
-        rubrikApplianceId:
+        frequencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Frequencies'
+        firstFullAllowedBackupWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FirstFullAllowedBackupWindows'
+        allowedBackupWindows:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.AllowedBackupWindows'
+        locationId:
           format: int32
           type: integer
-        primaryClusterId:
-          type: string
         isInternal:
           type: boolean
-        accountId:
-          format: int32
-          type: integer
-        filesetTemplateShareType:
-          type: string
-        operatingSystemType:
-          type: string
-        hostCount:
-          format: int32
-          type: integer
-        allowBackupNetworkMounts:
-          type: boolean
-        allowBackupHiddenFoldersInNetworkMounts:
-          type: boolean
-        preBackupScript:
-          type: string
-        postBackupScript:
-          type: string
-        backupScriptTimeout:
-          format: int32
-          type: integer
-        backupScriptErrorHandling:
-          type: string
-        isArchived:
-          type: boolean
-        shareCount:
-          format: int32
-          type: integer
-        useWindowsVss:
-          type: boolean
-        isDeleted:
-          type: boolean
-        etag:
-          type: string
-        createdBy:
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        modifiedDate:
-          format: date-time
-          type: string
-        modifiedBy:
-          type: string
-        locationId:
-          format: int32
-          type: integer
-        include:
-          type: array
-          items:
-            type: string
-        exclude:
-          type: array
-          items:
-            type: string
-        doNotExclude:
-          type: array
-          items:
-            type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.FilesetTemplateRequestDetailstSample:
-      type: object
-      properties:
-        name:
-          type: string
-        locationId:
-          format: int32
-          type: integer
-        include:
-          type: array
-          items:
-            type: string
-        exclude:
-          type: array
-          items:
-            type: string
-        doNotExclude:
-          type: array
-          items:
-            type: string
-        operatingSystemType:
-          type: string
         etag:
           type: string
         rubrikId:
           type: string
+        slaDomainTypeId:
+          format: int32
+          type: integer
+        isReplicationEnabled:
+          type: boolean
+        replicationClusterId:
+          type: string
+        retentionLimit:
+          format: int64
+          type: integer
+        isCustomerDefault:
+          type: boolean
       example:
-        name: sample name
+        name: sample Name
+        frequencies:
+        - id: 0
+          frequency: 10
+          retention: 10
+          timeUnit: Hourly
+          createdDate: '0001-01-01T00:00:00'
+        firstFullAllowedBackupWindows:
+        - startTimeAttributes:
+            id: 0
+            minutes: 2
+            hour: 2
+            dayOfWeek: 2
+          durationInHours: 2
+          isFirstFullBackupWindow: false
+          createdDate: '0001-01-01T00:00:00'
+        allowedBackupWindows: []
         locationId: 1
-        include:
-        - /usr/example
-        exclude:
-        - /usr/example
-        doNotExclude:
-        - /usr/example
-        operatingSystemType: Linux
-        etag: '0x000000000000'
+        isInternal: false
+        etag: '0x000000000000000'
         rubrikId: 00000000-0000-0000-0000-000000000000
-    FireHost.Infrastructure.AdvancedBackup.Models.FileSetDto:
+        slaDomainTypeId: 1
+        isReplicationEnabled: false
+        replicationClusterId: 00000000-0000-0000-0000-000000000000
+        retentionLimit: 10
+        isCustomerDefault: false
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreFilesetRequestSample:
       type: object
       properties:
-        hostId:
+        config:
+          $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Config'
+      example:
+        config:
+          sourceDir: \example_path
+          destinationDir: \example_path
+          ignoreErrors: false
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.AddRubrikHostRequestSample:
+      type: object
+      properties:
+        vmId:
           format: int32
           type: integer
-        rubrikConfiguredSlaDomainId:
-          type: string
-        rubrikFileSetTemplateId:
-          type: string
-        rubrikId:
-          type: string
-        rubrikCloudId:
-          type: string
+      example:
+        vmId: 1
+    FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDiskRequestDto:
+      type: object
+      properties:
+        diskId:
+          format: int32
+          type: integer
         name:
           type: string
-        rubrikHostId:
+        nameId:
           type: string
-        configureSlaDomainId:
+        isBackupEnabled:
+          type: boolean
+        size:
           format: int32
           type: integer
-        effectiveSlaDomainId:
-          format: int32
-          type: integer
-        fileSetTemplateId:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        rubrikApplianceId:
-          format: int32
-          type: integer
-        localStorage:
-          format: int64
-          type: integer
-        archiveStorage:
-          format: int64
-          type: integer
-        vmName:
+        isRubrikDiscovered:
+          type: boolean
+    FireHost.Services.Rubrik.Response.FileInfo:
+      type: object
+      properties:
+        filename:
           type: string
-        location:
+        path:
           type: string
-        osFamily:
-          type: string
-        localUsage:
-          format: int64
-          type: integer
-        replicationUsage:
-          format: int64
-          type: integer
-        replicationArchiveUsage:
-          format: int64
-          type: integer
-        id:
-          format: int32
-          type: integer
-        createdDate:
+        lastModified:
           format: date-time
           type: string
-        createdBy:
+        size:
+          format: double
+          type: number
+        fileMode:
           type: string
-        modifiedDate:
-          format: date-time
-          type: string
-        modifiedBy:
+        statusMessage:
           type: string
     FireHost.Infrastructure.AdvancedBackup.Models.BackupPolicyResponse:
       type: object
@@ -3254,55 +3429,177 @@ components:
           type: string
         modifiedBy:
           type: string
-    FireHost.Services.Rubrik.Response.BrowseFilesetFilesResponseDto:
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UnprotectedVmsRequestSample:
       type: object
       properties:
-        hasMore:
-          type: boolean
-        data:
+        locationId:
+          format: int32
+          type: integer
+        slaDomainId:
+          format: int32
+          type: integer
+        vmIds:
           type: array
           items:
-            $ref: '#/components/schemas/FireHost.Services.Rubrik.Response.FileInfo'
-        osGroup:
-          type: string
-        hostName:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.SnapShotDto:
+            format: int32
+            type: integer
+      example:
+        locationId: 1
+        slaDomainId: 1
+        vmIds:
+        - 1
+        - 2
+        - 3
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RemoveFilesetByIdRequestSample:
+      type: object
+      properties:
+        fileSetId:
+          format: int32
+          type: integer
+        preserveSnapshots:
+          type: boolean
+      example:
+        fileSetId: 1
+        preserveSnapshots: true
+    FireHost.Infrastructure.AdvancedBackup.Models.BackupWindows:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        snapshotId:
-          type: string
-        vmName:
-          type: string
-        slaName:
-          type: string
-        snapshotDate:
+        minutes:
+          format: int32
+          type: integer
+        hour:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+        durationInHours:
+          format: int32
+          type: integer
+        isFirstFullBackupWindow:
+          type: boolean
+    FireHost.Infrastructure.AdvancedBackup.Models.VmHistoricalPhysicalStorageUsageDto:
+      type: object
+      properties:
+        createdDate:
           format: date-time
           type: string
-        snapshotExpiryDate:
-          format: date-time
+        physicalStorage:
+          format: int64
+          type: integer
+        historicalIngestedStorage:
+          format: int64
+          type: integer
+    FireHost.Infrastructure.AdvancedBackup.Models.FilesetTemplateResponseDetailsDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
           type: string
-        isOnDemandSnapshot:
+        rubrikName:
+          type: string
+        rubrikId:
+          type: string
+        rubrikCloudId:
+          type: string
+        rubrikApplianceId:
+          format: int32
+          type: integer
+        primaryClusterId:
+          type: string
+        isInternal:
+          type: boolean
+        accountId:
+          format: int32
+          type: integer
+        filesetTemplateShareType:
+          type: string
+        operatingSystemType:
+          type: string
+        hostCount:
+          format: int32
+          type: integer
+        allowBackupNetworkMounts:
+          type: boolean
+        allowBackupHiddenFoldersInNetworkMounts:
+          type: boolean
+        preBackupScript:
+          type: string
+        postBackupScript:
+          type: string
+        backupScriptTimeout:
+          format: int32
+          type: integer
+        backupScriptErrorHandling:
+          type: string
+        isArchived:
+          type: boolean
+        shareCount:
+          format: int32
+          type: integer
+        useWindowsVss:
           type: boolean
         isDeleted:
           type: boolean
-        slaDomainId:
+        etag:
           type: string
-        isCorrupted:
-          type: boolean
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.RestoreFilesetRequestSample:
+        createdBy:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
+        modifiedBy:
+          type: string
+        locationId:
+          format: int32
+          type: integer
+        include:
+          type: array
+          items:
+            type: string
+        exclude:
+          type: array
+          items:
+            type: string
+        doNotExclude:
+          type: array
+          items:
+            type: string
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UpdateFileSetRequestSample:
       type: object
       properties:
-        config:
-          $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Config'
+        hostId:
+          format: int32
+          type: integer
+        fileSetId:
+          format: int32
+          type: integer
+        policyId:
+          format: int32
+          type: integer
       example:
-        config:
-          sourceDir: \example_path
-          destinationDir: \example_path
-          ignoreErrors: false
+        hostId: 1
+        fileSetId: 1
+        policyId: 1
+    FireHost.Infrastructure.AdvancedBackup.Models.RegisterAgentRequestDto:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        modifiedBy:
+          type: string
     FireHost.Infrastructure.AdvancedBackup.Models.UnprotectedVmsDetailDto:
       type: object
       properties:
@@ -3339,330 +3636,97 @@ components:
           type: string
         modifiedBy:
           type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.FilesetsListDto:
+    FireHost.Infrastructure.AdvancedBackup.Models.Frequencies:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        rubrikId:
-          type: string
-        rubrikCloudId:
-          type: string
-        rubrikApplianceId:
+        frequency:
           format: int32
           type: integer
-        name:
-          type: string
-        configuredSlaDomainId:
+        retention:
           format: int32
           type: integer
-        effectiveSlaDomainId:
-          format: int32
-          type: integer
-        fileSetTemplateId:
-          format: int32
-          type: integer
-        storageUsed:
-          format: double
-          type: number
-        policyId:
-          format: int32
-          type: integer
-        policyName:
+        timeUnit:
           type: string
-        hostId:
-          format: int32
-          type: integer
-        vmName:
-          type: string
-        include:
-          type: array
-          items:
-            type: string
-        location:
-          type: string
-        osFamily:
-          type: string
-        localUsage:
-          format: int64
-          type: integer
-        archiveUsage:
-          format: int64
-          type: integer
-        replicationUsage:
-          format: int64
-          type: integer
-        replicationArchiveUsage:
-          format: int64
-          type: integer
-        totalStorageUsed:
-          format: int64
-          type: integer
-          readOnly: true
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.UpdateBackupVmStorageDetailsRequestSample:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        disks:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDiskRequestDto'
-      example:
-        vmId: 1
-        disks:
-        - diskId: 1
-          name: Disk 1
-          nameId: Hard disk 1
-          isBackupEnabled: true
-          size: 0
-          isRubrikDiscovered: false
-        - diskId: 2
-          name: Disk 2
-          nameId: Hard disk 2
-          isBackupEnabled: false
-          size: 0
-          isRubrikDiscovered: false
-    FireHost.Infrastructure.AdvancedBackup.Data.Domain.RubrikSlaDomainType:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.BackupPolicyRequestDtoSample:
-      type: object
-      properties:
-        name:
-          type: string
-        frequencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Frequencies'
-        firstFullAllowedBackupWindows:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FirstFullAllowedBackupWindows'
-        allowedBackupWindows:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.AllowedBackupWindows'
-        locationId:
-          format: int32
-          type: integer
-        isInternal:
-          type: boolean
-        etag:
-          type: string
-        rubrikId:
-          type: string
-        slaDomainTypeId:
-          format: int32
-          type: integer
-        isReplicationEnabled:
-          type: boolean
-        replicationClusterId:
-          type: string
-        retentionLimit:
-          format: int64
-          type: integer
-        isCustomerDefault:
-          type: boolean
-      example:
-        name: sample Name
-        frequencies:
-        - id: 0
-          frequency: 10
-          retention: 10
-          timeUnit: Hourly
-          createdDate: '0001-01-01T00:00:00'
-        firstFullAllowedBackupWindows:
-        - startTimeAttributes:
-            id: 0
-            minutes: 2
-            hour: 2
-            dayOfWeek: 2
-          durationInHours: 2
-          isFirstFullBackupWindow: false
-          createdDate: '0001-01-01T00:00:00'
-        allowedBackupWindows: []
-        locationId: 1
-        isInternal: false
-        etag: '0x000000000000000'
-        rubrikId: 00000000-0000-0000-0000-000000000000
-        slaDomainTypeId: 1
-        isReplicationEnabled: false
-        replicationClusterId: 00000000-0000-0000-0000-000000000000
-        retentionLimit: 10
-        isCustomerDefault: false
-    FireHost.Infrastructure.AdvancedBackup.Models.RubrikApplianceListDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        url:
-          type: string
-        description:
-          type: string
-        version:
-          type: string
-        podId:
-          format: int32
-          type: integer
-        location:
-          type: string
-        locationId:
-          format: int32
-          type: integer
-        replicationPodId:
-          format: int32
-          type: integer
-        replicationLocationData:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.ReplicationLocationDto'
-    FireHost.Infrastructure.AdvancedBackup.Models.VmHistoricalPhysicalStorageUsageDto:
-      type: object
-      properties:
         createdDate:
           format: date-time
           type: string
-        physicalStorage:
-          format: int64
-          type: integer
-        historicalIngestedStorage:
-          format: int64
-          type: integer
-    FireHost.Infrastructure.AdvancedBackup.Models.ActivityLogDto:
+    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostSnapshotDto:
       type: object
       properties:
-        taskId:
+        id:
+          format: int32
+          type: integer
+        rubrikSnapshotId:
           type: string
-        event:
-          type: string
-        message:
-          type: string
-        status:
-          type: string
-        errorMessage:
+        filesetName:
           type: string
         snapshotDate:
           format: date-time
           type: string
-        accountId:
+        filesetId:
           format: int32
           type: integer
-        isPublic:
-          type: boolean
-        userId:
+        rubrikFilesetId:
+          type: string
+        fileCount:
           format: int32
           type: integer
-        startTime:
-          format: date-time
-          type: string
-        endTime:
-          format: date-time
-          type: string
-        id:
-          format: int32
-          type: integer
-        createdDate:
-          format: date-time
-          type: string
-        createdBy:
-          type: string
-        modifiedDate:
-          format: date-time
-          type: string
-        modifiedBy:
-          type: string
-    FireHost.Infrastructure.AdvancedBackup.Models.RubrikHostDto:
+    FireHost.Infrastructure.AdvancedBackup.Models.StartTimeAttributes:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        name:
+        minutes:
+          format: int32
+          type: integer
+        hour:
+          format: int32
+          type: integer
+        dayOfWeek:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.AdvancedBackup.Models.SnapShotDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        snapshotId:
           type: string
-        rubrikId:
+        vmName:
           type: string
-        rubrikCloudId:
+        slaName:
           type: string
-        agentId:
+        snapshotDate:
+          format: date-time
           type: string
+        snapshotExpiryDate:
+          format: date-time
+          type: string
+        isOnDemandSnapshot:
+          type: boolean
+        isDeleted:
+          type: boolean
+        slaDomainId:
+          type: string
+        isCorrupted:
+          type: boolean
+    FireHost.Services.Http.AdvancedBackup.ApiExample.UpdateVmPolicyRequestSample:
+      type: object
+      properties:
+        slaDomainId:
+          format: int32
+          type: integer
         vmId:
           format: int32
           type: integer
-        vmName:
-          type: string
-        ipAddress:
-          type: string
-        location:
-          type: string
-        osName:
-          type: string
-        status:
-          type: string
-        fileSetsCsv:
-          type: string
-        policiesCsv:
-          type: string
-        localStorageCsv:
-          type: string
-        fileSets:
-          type: array
-          items:
-            type: string
-        policies:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Policy'
-        totalStorage:
-          format: double
-          type: number
-        applianceUrl:
-          type: string
-        applianceCredentialId:
-          type: string
-        rubrikApplianceId:
-          format: int32
-          type: integer
-        primaryClusterId:
-          type: string
-        osId:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        userId:
-          type: string
-        localUsageCsv:
-          type: string
-        localUsage:
-          format: int64
-          type: integer
-        localArchiveUsage:
-          format: int64
-          type: integer
-        replicationArchiveUsage:
-          format: int64
-          type: integer
-        replicationUsageCsv:
-          type: string
-        replicationUsage:
-          format: int64
-          type: integer
-        storageUsed:
-          format: int64
-          type: integer
-          readOnly: true
+      example:
+        slaDomainId: 1
+        vmId: 1
     FireHost.Infrastructure.AdvancedBackup.Models.ReplicationLocationDto:
       type: object
       properties:
@@ -3686,103 +3750,74 @@ components:
           type: string
         modifiedBy:
           type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.BackupPolicyRequestSample:
+    FireHost.Infrastructure.AdvancedBackup.Models.FileSetDto:
       type: object
       properties:
+        hostId:
+          format: int32
+          type: integer
+        rubrikConfiguredSlaDomainId:
+          type: string
+        rubrikFileSetTemplateId:
+          type: string
+        rubrikId:
+          type: string
+        rubrikCloudId:
+          type: string
         name:
           type: string
-        frequencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.Frequencies'
-        firstFullAllowedBackupWindows:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.AdvancedBackup.Models.FirstFullAllowedBackupWindows'
-        isInternal:
-          type: boolean
-        slaDomainTypeId:
-          format: int32
-          type: integer
-        isReplicationEnabled:
-          type: boolean
-        replicationClusterId:
+        rubrikHostId:
           type: string
-        retentionLimit:
-          format: int64
-          type: integer
-        isCustomerDefault:
-          type: boolean
-      example:
-        name: sample Name
-        frequencies:
-        - id: 0
-          frequency: 10
-          retention: 10
-          timeUnit: Hourly
-          createdDate: '0001-01-01T00:00:00'
-        firstFullAllowedBackupWindows:
-        - startTimeAttributes:
-            id: 0
-            minutes: 2
-            hour: 2
-            dayOfWeek: 2
-          durationInHours: 2
-          isFirstFullBackupWindow: false
-          createdDate: '0001-01-01T00:00:00'
-        isInternal: false
-        slaDomainTypeId: 1
-        isReplicationEnabled: false
-        replicationClusterId: 00000000-0000-0000-0000-000000000000
-        retentionLimit: 32
-        isCustomerDefault: false
-    FireHost.Infrastructure.AdvancedBackup.Models.DefaultPolicyForAccountDto:
-      type: object
-      properties:
-        isDefaultExist:
-          type: boolean
-        locationId:
+        configureSlaDomainId:
           format: int32
           type: integer
-        location:
-          type: string
-        podId:
+        effectiveSlaDomainId:
           format: int32
           type: integer
-        rubrikApplianceId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.AdvancedBackup.Models.ProtectedVmDetailDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        podId:
-          format: int32
-          type: integer
-        location:
-          type: string
-        locationId:
-          format: int32
-          type: integer
-        rubrikSlaDomainId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.AdvancedBackup.Models.RegisterAgentRequestDto:
-      type: object
-      properties:
-        vmId:
+        fileSetTemplateId:
           format: int32
           type: integer
         accountId:
           format: int32
           type: integer
+        rubrikApplianceId:
+          format: int32
+          type: integer
+        localStorage:
+          format: int64
+          type: integer
+        archiveStorage:
+          format: int64
+          type: integer
+        vmName:
+          type: string
+        location:
+          type: string
+        osFamily:
+          type: string
+        localUsage:
+          format: int64
+          type: integer
+        replicationUsage:
+          format: int64
+          type: integer
+        replicationArchiveUsage:
+          format: int64
+          type: integer
+        id:
+          format: int32
+          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
         modifiedBy:
           type: string
-    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.VmHistoricalUsageRequestSample:
+    FireHost.Services.Http.AdvancedBackup.ApiExample.Models.HostDetailsByIdRequestSample:
       type: object
       properties:
         startDate:
@@ -3791,22 +3826,23 @@ components:
         endDate:
           format: date-time
           type: string
-        vmProtectionType:
+      example:
+        startDate: '2026-02-12T16:25:53.8155916Z'
+        endDate: '2026-02-12T16:25:53.8155916Z'
+    FireHost.Infrastructure.AdvancedBackup.Models.VmDetailDto:
+      type: object
+      properties:
+        vmId:
           format: int32
           type: integer
-        vmList:
-          type: array
-          items:
-            format: int32
-            type: integer
-      example:
-        startDate: '2026-01-14T16:25:51.8723753+00:00'
-        endDate: '2026-02-12T16:25:51.8723753+00:00'
-        vmProtectionType: 0
-        vmList:
-        - 1
-        - 2
-        - 3
+        vmName:
+          type: string
+        ipAddress:
+          type: string
+        location:
+          type: string
+        osFamily:
+          type: string
   securitySchemes:
     Authorization:
       type: apiKey

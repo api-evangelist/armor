@@ -50,6 +50,8 @@ paths:
         '400':
           description: Bad Request
       deprecated: false
+      summary: Security incidents get security incidents
+      x-summary-source: derived
   /security-incidents/severity-count:
     get:
       tags:
@@ -73,6 +75,8 @@ paths:
         '400':
           description: Bad Request
       deprecated: false
+      summary: Security incidents get security incidents severity count
+      x-summary-source: derived
 components:
   schemas:
     FireHost.Infrastructure.SecurityIncidents.Models.OpenSecurityIncidentStats:

@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://agent-management.api.secure-prod.services/`
-
-    '
+    Base URL: `https://agent-management.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://agent-management.api.secure-dev.services

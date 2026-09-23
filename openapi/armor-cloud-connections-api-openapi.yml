@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://accounts.api.secure-prod.services/`
-
-    '
+    Base URL: `https://accounts.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://accounts.api.secure-dev.services
@@ -115,44 +113,101 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
-    ConnectionSubServiceType:
+    CloudConnectionServiceTypesResult:
       type: object
       properties:
         id:
           type: integer
-          description: Cloud connection sub service type id.
+          description: The id of the cloud connection service type.
         name:
           type: string
-          description: Cloud connection sub service type name.
-        subServiceName:
-          type: string
-          description: Cloud connection provider sub service type name.
-        imageName:
-          type: string
-          description: Cloud connection provider sub service type image name.
+          description: The name of the service type.
+        subServices:
+          type: array
+          description: Cloud connection sub services.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
         policy:
           type: string
-          description: Cloud connection provider sub service type policy.
+          description: Cloud connection service type policy.
+        imageName:
+          type: string
+          description: The image name of the service type.
+    ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          type: integer
+          description: Account cloud connection id.
+        lastSuccessfulConnectionDate:
+          type: string
+          description: Last successful connection date.
+        id:
+          type: integer
+          description: Cloud connection service id.
+        name:
+          type: string
+          description: Cloud connection service name.
+        subServices:
+          type: array
+          description: Cloud connection sub service type.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+        imageName:
+          type: string
+          description: Cloud connection provider service image name.
     Message:
       type: object
       properties:
         message:
           type: string
           description: Error or informational message
+    CloudConnectionDetailResult:
+      type: object
+      properties:
+        providerAccountId:
+          type: integer
+          description: Armor AWS account id.
+        connectionName:
+          type: string
+          description: Cloud connection name.
+        description:
+          type: string
+          description: Cloud connection description.
+        externalId:
+          type: string
+          description: Cloud connection externalId.
+        providerAccessResource:
+          type: string
+          description: Cloud connection provider access resource.
+        accountConnectionId:
+          type: integer
+          description: Account connection id.
+        providerTypeName:
+          type: string
+          description: Cloud connection provider type name.
+        serviceTypeName:
+          type: string
+          description: Cloud connection service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection sub service name.
+        awsBaseJsonPolicy:
+          type: string
+          description: AWS Base JSON Policy.
+        armorAwsAccountId:
+          type: string
+          description: Armor AWS account id.
+        serviceTypeId:
+          type: string
+          description: Cloud connection service type id.
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
     CloudConnectionResourceResult:
       type: object
       properties:
@@ -197,94 +252,37 @@ components:
           description: Cloud Connection Services.
           items:
             $ref: '#/components/schemas/ConnectionService'
-    ConnectionService:
-      type: object
-      properties:
-        accountConnectionId:
-          type: integer
-          description: Account cloud connection id.
-        lastSuccessfulConnectionDate:
-          type: string
-          description: Last successful connection date.
-        id:
-          type: integer
-          description: Cloud connection service id.
-        name:
-          type: string
-          description: Cloud connection service name.
-        subServices:
-          type: array
-          description: Cloud connection sub service type.
-          items:
-            $ref: '#/components/schemas/ConnectionSubServiceType'
-        policy:
-          type: string
-          description: Cloud connection provider service policy.
-        imageName:
-          type: string
-          description: Cloud connection provider service image name.
-    CloudConnectionServiceTypesResult:
+    ConnectionSubServiceType:
       type: object
       properties:
         id:
           type: integer
-          description: The id of the cloud connection service type.
+          description: Cloud connection sub service type id.
         name:
           type: string
-          description: The name of the service type.
-        subServices:
-          type: array
-          description: Cloud connection sub services.
-          items:
-            $ref: '#/components/schemas/ConnectionSubServiceType'
-        policy:
-          type: string
-          description: Cloud connection service type policy.
-        imageName:
-          type: string
-          description: The image name of the service type.
-    CloudConnectionDetailResult:
-      type: object
-      properties:
-        providerAccountId:
-          type: integer
-          description: Armor AWS account id.
-        connectionName:
-          type: string
-          description: Cloud connection name.
-        description:
-          type: string
-          description: Cloud connection description.
-        externalId:
-          type: string
-          description: Cloud connection externalId.
-        providerAccessResource:
-          type: string
-          description: Cloud connection provider access resource.
-        accountConnectionId:
-          type: integer
-          description: Account connection id.
-        providerTypeName:
-          type: string
-          description: Cloud connection provider type name.
-        serviceTypeName:
-          type: string
-          description: Cloud connection service type name.
+          description: Cloud connection sub service type name.
         subServiceName:
           type: string
-          description: Cloud connection sub service name.
-        awsBaseJsonPolicy:
+          description: Cloud connection provider sub service type name.
+        imageName:
           type: string
-          description: AWS Base JSON Policy.
-        armorAwsAccountId:
-          type: string
-          description: Armor AWS account id.
-        serviceTypeId:
-          type: string
-          description: Cloud connection service type id.
+          description: Cloud connection provider sub service type image name.
         policy:
           type: string
-          description: Cloud connection provider service policy.
+          description: Cloud connection provider sub service type policy.
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context

@@ -4,9 +4,7 @@ info:
   description: 'APIs for interacting with Armor products and services for incident management.
 
 
-    Base URL: `https://security-detections.api.secure-prod.services/`
-
-    '
+    Base URL: `https://security-detections.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://security-detections.api.secure-dev.services

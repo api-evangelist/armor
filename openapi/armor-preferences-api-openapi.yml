@@ -4,9 +4,7 @@ info:
   description: 'This API provides an interface for configuring and interacting with Armor''s notifications platform.
 
 
-    Base URL: `https://notifications.api.secure-prod.services/`
-
-    '
+    Base URL: `https://notifications.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://notifications.api.secure-dev.services
@@ -19,9 +17,7 @@ security:
 - OAuth2: []
 tags:
 - name: Preferences
-  description: 'The Preferences resource describes a list of user-level preferences.
-
-    '
+  description: The Preferences resource describes a list of user-level preferences.
 paths:
   /preferences/{type}:
     get:
@@ -103,6 +99,27 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    PreferenceListRequest:
+      type: object
+      required:
+      - orgId
+      - type
+      properties:
+        orgId:
+          type: integer
+          description: The unique identifier of organization.
+        type:
+          type: string
+          description: The type of preference.
+          enum:
+          - tours
+          - offenses
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     Preference:
       type: object
       required:
@@ -126,27 +143,6 @@ components:
         preference:
           type: object
           description: An object map of preferences - the object properties depend on the preference type.
-    PreferenceListRequest:
-      type: object
-      required:
-      - orgId
-      - type
-      properties:
-        orgId:
-          type: integer
-          description: The unique identifier of organization.
-        type:
-          type: string
-          description: The type of preference.
-          enum:
-          - tours
-          - offenses
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
   responses:
     Forbidden:
       description: Forbidden

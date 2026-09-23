@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://agent-management.api.secure-prod.services/`
-
-    '
+    Base URL: `https://agent-management.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://agent-management.api.secure-dev.services
@@ -289,25 +287,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
     AgentManagementResourceByTag:
       type: object
@@ -320,14 +299,21 @@ components:
           description: The list of the tags.
           items:
             $ref: '#/components/schemas/AgentManagementTag'
-    AgentManagementTagRequest:
+    AgentManagementTag:
       type: object
       properties:
-        Tags:
-          type: array
-          description: The list of tags.
-          items:
-            $ref: '#/components/schemas/AgentManagementTag'
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     AgentManagementTagsResult:
       type: object
       properties:
@@ -337,24 +323,6 @@ components:
         ResourceId:
           type: string
           description: The coreInstance of the Armor Agent.
-        Key:
-          type: string
-          description: The name of the tag.
-        Value:
-          type: string
-          description: The value of the tag.
-        Islocked:
-          type: boolean
-          description: Whether the tag is locked.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    AgentManagementResourceTag:
-      type: object
-      properties:
         Key:
           type: string
           description: The name of the tag.
@@ -378,7 +346,15 @@ components:
           description: The details of the tag.
           items:
             $ref: '#/components/schemas/AgentManagementResourceTag'
-    AgentManagementTag:
+    AgentManagementTagRequest:
+      type: object
+      properties:
+        Tags:
+          type: array
+          description: The list of tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+    AgentManagementResourceTag:
       type: object
       properties:
         Key:
@@ -387,6 +363,9 @@ components:
         Value:
           type: string
           description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
   parameters:
     AccountContext:
       name: x-account-context
@@ -396,6 +375,25 @@ components:
       schema:
         type: integer
       example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://accounts.api.secure-prod.services/`
-
-    '
+    Base URL: `https://accounts.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://accounts.api.secure-dev.services
@@ -23,9 +21,7 @@ tags:
 - name: Tours
   description: 'The tours resource describes a list of UI tours that help users learn about features in the ARMOR Management Portal.
 
-    The preferences stored in this resource aid the portal in determining which tours should be displayed to the currently logged-in user.
-
-    '
+    The preferences stored in this resource aid the portal in determining which tours should be displayed to the currently logged-in user.'
 paths:
   /users/{userId}/tours:
     get:

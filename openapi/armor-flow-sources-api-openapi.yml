@@ -3,9 +3,7 @@ info:
   title: Armor Log Management Flow Sources API
   description: 'This API provides an interface for configuring and interacting with
 
-    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
-
-    '
+    Armor''s Log Management Platform.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -32,9 +30,7 @@ paths:
       summary: Get all flow sources
       description: 'Passing `all=true` can return Flow Sources across multiple orgs given you
 
-        have the necessary permissions.
-
-        '
+        have the necessary permissions.'
       operationId: getFlowSources
       parameters:
       - name: all
@@ -97,9 +93,7 @@ paths:
 
         supplied version, a `412` response will be returned. If this header is absent from the
 
-        request a `400` response will be returned.
-
-        '
+        request a `400` response will be returned.'
       operationId: updateFlowSource
       x-internal: true
       parameters:
@@ -189,9 +183,7 @@ paths:
       summary: Allocate a flow source
       description: 'Enable collection of network flow-based log sources by allocating a flow source to your account.
 
-        If you already have a flow source associated to your account, the API will return a 400 response.
-
-        '
+        If you already have a flow source associated to your account, the API will return a 400 response.'
       operationId: allocateFlowSource
       responses:
         '200':
@@ -214,46 +206,6 @@ paths:
                 $ref: '#/components/schemas/Message'
 components:
   schemas:
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
-    FlowSourceCreateRequest:
-      type: object
-      required:
-      - siemFlowSourceId
-      - flowCollectorId
-      - port
-      - type
-      properties:
-        siemFlowSourceId:
-          type: integer
-          description: The unique identifier of the flow source in the SIEM.
-        flowCollectorId:
-          $ref: '#/components/schemas/Guid'
-        port:
-          $ref: '#/components/schemas/IpPort'
-        type:
-          type: string
-          description: The type of network flow data this source can consume.
-          enum:
-          - ipfix
-          - sflow
-          - jflow
-    FlowCollector:
-      type: object
-      properties:
-        flowCollectorId:
-          $ref: '#/components/schemas/Guid'
-        flowCollectorName:
-          type:
-          - string
-          - 'null'
-          description: The friendly name of the Flow Collector.
-        ipAddress:
-          type: string
-          description: The IP address of the flow collector.
     Message:
       type: object
       required:
@@ -263,6 +215,11 @@ components:
           type: string
           description: A message containing details about the request or of an exception thrown.
           example: A confirmation message or explanation.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
     FlowSourceEditRequest:
       type: object
       required:
@@ -301,12 +258,28 @@ components:
         version:
           type: integer
           description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
-    IpPort:
-      type: integer
-      minimum: 1
-      maximum: 65535
-      description: A valid IP port number
-      example: 514
+    FlowSourceCreateRequest:
+      type: object
+      required:
+      - siemFlowSourceId
+      - flowCollectorId
+      - port
+      - type
+      properties:
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
     FlowSource:
       type: object
       properties:
@@ -343,6 +316,25 @@ components:
         version:
           type: integer
           description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+    FlowCollector:
+      type: object
+      properties:
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        flowCollectorName:
+          type:
+          - string
+          - 'null'
+          description: The friendly name of the Flow Collector.
+        ipAddress:
+          type: string
+          description: The IP address of the flow collector.
+    IpPort:
+      type: integer
+      minimum: 1
+      maximum: 65535
+      description: A valid IP port number
+      example: 514
   securitySchemes:
     oauth2:
       type: oauth2

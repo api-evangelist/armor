@@ -2,74 +2,7 @@ openapi: 3.2.0
 info:
   title: MDR Public JSM - Metrics API
   version: 1.0.0
-  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
-
-
-    This unified API provides access to:
-
-
-    ## AI Platform (AIP)
-
-    - AI-processed incident analysis with threat indicators and recommendations
-
-    - Entity threat intelligence for security entities associated with incidents
-
-
-    ## Microsoft Defender Integration
-
-    - Machine/device management in Microsoft Defender for Endpoint
-
-    - Security action execution (isolation, scans, investigations)
-
-    - Investigation package collection and live response operations
-
-
-    ## Detection Rules Management
-
-    - Microsoft Sentinel detection rules across customer environments
-
-    - Enriched rule metadata including MITRE ATT&CK mappings
-
-    - Incident generation statistics
-
-
-    ## JSM Middleware
-
-    - Security incident management and tracking
-
-    - Metrics aggregation and reporting
-
-    - Service request management
-
-    - Organization management
-
-
-    ## Monthly Security Reports
-
-    - Access to monthly security reports (PowerPoint, JSON, PDF)
-
-    - Security metrics and performance indicators
-
-    - Data ingestion analytics
-
-
-    ## Threat Intelligence
-
-    - Threat actor intelligence data
-
-    - Customer-specific threat intelligence based on deployed products
-
-    - OpenCTI GraphQL proxy for advanced queries
-
-
-    ## Authentication
-
-    All endpoints (except health checks) require OAuth2 Bearer token authentication.
-
-
-    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman
-
-    '
+  description: Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
   contact:
     name: Armor Security Team
     url: https://armor.com
@@ -92,9 +25,7 @@ paths:
       summary: Get incident summary metrics
       description: 'Retrieve aggregated incident metrics including event-to-incident ratio trends,
 
-        incident statistics, and summary data over time.
-
-        '
+        incident statistics, and summary data over time.'
       operationId: getIncidentMetrics
       responses:
         '200':
@@ -116,9 +47,7 @@ paths:
       summary: Get threat intelligence updates
       description: 'Retrieve threat intelligence updates from various sources including threat feeds,
 
-        device ingestion, identity ingestion, and vulnerability summaries.
-
-        '
+        device ingestion, identity ingestion, and vulnerability summaries.'
       operationId: getThreatIntelUpdates
       responses:
         '200':
@@ -161,26 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    IncidentMetrics:
-      type: object
-      properties:
-        eventToIncidentRatioTrend:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-                format: date
-              value:
-                type: object
-                properties:
-                  events:
-                    type: integer
-                  alerts:
-                    type: integer
-                  incidents:
-                    type: integer
     Error:
       type: object
       properties:
@@ -220,6 +129,26 @@ components:
               type: array
               items:
                 type: object
+    IncidentMetrics:
+      type: object
+      properties:
+        eventToIncidentRatioTrend:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              value:
+                type: object
+                properties:
+                  events:
+                    type: integer
+                  alerts:
+                    type: integer
+                  incidents:
+                    type: integer
   securitySchemes:
     OAuth2BearerAuth:
       type: http

@@ -4,9 +4,7 @@ info:
   description: 'APIs for interacting with Armor products and services for incident management.
 
 
-    Base URL: `https://security-detections.api.secure-prod.services/`
-
-    '
+    Base URL: `https://security-detections.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://security-detections.api.secure-dev.services
@@ -72,12 +70,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     TrendAvReports:
       type: object
       properties:
@@ -139,6 +131,12 @@ components:
         malwareMessage:
           type: string
           description: Malware message.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     TrendAvReportResponse:
       type: object
       properties:

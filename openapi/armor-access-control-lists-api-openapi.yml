@@ -3,9 +3,7 @@ info:
   title: Armor Log Management Access Control Lists API
   description: 'This API provides an interface for configuring and interacting with
 
-    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
-
-    '
+    Armor''s Log Management Platform.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -76,9 +74,7 @@ paths:
 
         supplied version, a `412` response will be returned. If this header is absent from the
 
-        request a `400` response will be returned.
-
-        '
+        request a `400` response will be returned.'
       operationId: updateLogAcl
       deprecated: true
       parameters:
@@ -128,11 +124,6 @@ paths:
                 $ref: '#/components/schemas/Message'
 components:
   schemas:
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
     Message:
       type: object
       required:
@@ -142,16 +133,6 @@ components:
           type: string
           description: A message containing details about the request or of an exception thrown.
           example: A confirmation message or explanation.
-    LogAclCreateRequest:
-      type: object
-      required:
-      - allowedNetworks
-      properties:
-        allowedNetworks:
-          type: array
-          items:
-            $ref: '#/components/schemas/CIDR'
-          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
     LogAcl:
       type: object
       required:
@@ -178,6 +159,21 @@ components:
       description: An IPv4 network subnet in CIDR notation
       pattern: ^([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}$
       example: 192.168.1.0/24
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    LogAclCreateRequest:
+      type: object
+      required:
+      - allowedNetworks
+      properties:
+        allowedNetworks:
+          type: array
+          items:
+            $ref: '#/components/schemas/CIDR'
+          description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
   securitySchemes:
     oauth2:
       type: oauth2

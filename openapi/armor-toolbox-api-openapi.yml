@@ -6,9 +6,7 @@ info:
     management functionality.
 
 
-    Base URL: `https://infrastructure.api.secure-prod.services/`
-
-    '
+    Base URL: `https://infrastructure.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://infrastructure.api.secure-dev.services

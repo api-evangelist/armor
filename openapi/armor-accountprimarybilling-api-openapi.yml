@@ -59,7 +59,7 @@ paths:
     put:
       tags:
       - AccountPrimaryBilling
-      summary: (Deprecated) Update the Account Primary Billing User. Instead use account/primary-notificationcontact endpoint to achieve same functionality
+      summary: (Deprecated) Update the Account Primary Billing User.
       operationId: AccountPrimaryBilling_UpdateAccountPrimaryBillingContact
       parameters:
       - name: accountId

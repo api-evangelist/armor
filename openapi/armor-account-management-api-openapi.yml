@@ -11,7 +11,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Return notes for a given entity type and id. Notes provide a free text field that can be used to storage additional information about a given entity.
+      summary: Return notes for a given entity type and id.
       operationId: Notes_GetNoteAsync
       parameters:
       - name: entityType
@@ -42,7 +42,7 @@ paths:
     put:
       tags:
       - Account Management
-      summary: Add or update notes for a given entity type and id. A free text field that can be used to store additional information about a given entity.
+      summary: Add or update notes for a given entity type and id.
       operationId: Notes_UpdateNoteAsync
       parameters:
       - name: entityType
@@ -86,7 +86,7 @@ paths:
     delete:
       tags:
       - Account Management
-      summary: Delete notes for a given entity type and id.
+      summary: Delete notes for a given entity type and id
       operationId: Notes_DeleteNoteAsync
       parameters:
       - name: entityType
@@ -131,7 +131,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Return tags for entity type and id. Tags are custom meta-data attributes that can be leveraged when searching for a given entity type.
+      summary: Return tags for entity type and id.
       operationId: Tags_GetTagsAsync
       parameters:
       - name: entityType
@@ -169,7 +169,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Add tags for a given entity type and id.
+      summary: Add tags for a given entity type and id
       operationId: Tags_AddTagAsync
       parameters:
       - name: entityType
@@ -213,7 +213,7 @@ paths:
     delete:
       tags:
       - Account Management
-      summary: Delete tags for a given entity type and id.
+      summary: Delete tags for a given entity type and id
       operationId: Tags_DeleteTagAsync
       parameters:
       - name: entityType
@@ -258,8 +258,26 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve list of Account Activity for your account.
-      description: "<strong>Get request URI contain the following query options</strong>\n<br />\n<br />\n<strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (required):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> date%20eq%20%27null%27%20and%20type%20eq%20%27null%27%20and%20startDate%20eq%20%272018-10-03T05.00.00%27%20and%20endDate%20eq%20%272018-10-06T04.59.59%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=file%20restore<br /><br /><strong>$orderby (optional):</strong> order by column name (name, location, status). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=startTime%20desc<br /><br />\n            Times are submited as UTC"
+      summary: Retrieve list of Account Activity for your account
+      description: 'Get request URI contain the following query options
+
+
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
+
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (required): filters down results. Data Type: string. Example: date%20eq%20%27null%27%20and%20type%20eq%20%27null%27%20and%20startDate%20eq%20%272018-10-03T05.00.00%27%20and%20endDate%20eq%20%272018-10-06T04.59.59%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=file%20restore
+
+
+        $orderby (optional): order by column name (name, location, status). Data Type: string. Example: $orderby=startTime%20desc
+
+
+        Times are submited as UTC'
       operationId: AccountHistory_GetAccountActivityHistory
       responses:
         '200':
@@ -312,13 +330,22 @@ paths:
       tags:
       - Account Management
       summary: Returns a list of child accounts associated to the parent account
-      description: '<strong>Get request URI contain the following query options</strong>
+      description: 'Get request URI contain the following query options
 
-        <br />
 
-        <br />
+        $top (required): total number of results to display. Data Type: integer. Example: $top=25
 
-        <strong>$top (required):</strong> total number of results to display. <strong>Data Type:</strong> integer. <strong>Example:</strong> $top=25<br /><br /><strong>$skip (required):</strong> skips the top number of results. <strong>Data Type:</strong> integer. <strong>Example:</strong> $skip=1<br /><br /><strong>$filter (optional):</strong> filters down results. <strong>Data Type:</strong> string. <strong>Example:</strong> $filter=status%20eq%20%27Active%27<br /><br /><strong>$search (optional):</strong> search for specific result. <strong>Data Type:</strong> string. <strong>Example:</strong> $search=Armor<br /><br /><strong>$orderby (optional):</strong> order by column name (name, account ID, status, deployed agents). <strong>Data Type:</strong> string. <strong>Example:</strong> $orderby=Name%20desc'
+
+        $skip (required): skips the top number of results. Data Type: integer. Example: $skip=1
+
+
+        $filter (optional): filters down results. Data Type: string. Example: $filter=status%20eq%20%27Active%27
+
+
+        $search (optional): search for specific result. Data Type: string. Example: $search=Armor
+
+
+        $orderby (optional): order by column name (name, account ID, status, deployed agents). Data Type: string. Example: $orderby=Name%20desc'
       operationId: ChildAccounts_GetAllChildAccounts
       responses:
         '200':
@@ -421,7 +448,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: This will return the list of Armor Contacts for the given Armor Account.
+      summary: This will return the list of Armor Contacts for the given Armor Account
       operationId: AccountContacts_GetContacts
       responses:
         '200':
@@ -480,6 +507,8 @@ paths:
               schema:
                 $ref: '#/components/schemas/System.Object'
       deprecated: false
+      summary: Account sku pricing get account price
+      x-summary-source: derived
   /account/primary-user:
     post:
       tags:
@@ -525,7 +554,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Return a list of accounts and the products related to the account id.
+      summary: Return a list of accounts and the products related to the account id
       operationId: Accounts_GetAccounts
       responses:
         '200':
@@ -569,7 +598,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Update the Account information.
+      summary: Update the Account information
       operationId: Accounts_UpdateAccount
       responses:
         '200':
@@ -615,7 +644,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get the Account information.
+      summary: Get the Account information
       operationId: Accounts_GetAccount
       parameters:
       - name: accountId
@@ -714,7 +743,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Retrieve All Cloud Connections based on Account Id.
+      summary: Retrieve All Cloud Connections based on Account Id
       operationId: CloudConnections_CloudConnections
       responses:
         '200':
@@ -805,7 +834,7 @@ paths:
     delete:
       tags:
       - Account Management
-      summary: Soft Delete Cloud Connection by Id.
+      summary: Soft Delete Cloud Connection by Id
       operationId: CloudConnections_CloudConnection
       parameters:
       - name: connectionId
@@ -832,7 +861,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Check whether any enabled cloud connections exist.
+      summary: Check whether any enabled cloud connections exist
       operationId: CloudConnections_CloudConnectionsEnabled
       responses:
         '200':
@@ -851,7 +880,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Save cloud connection details.
+      summary: Save cloud connection details
       operationId: CloudConnections_SaveCloudConnectionsDetails
       responses:
         '200':
@@ -901,7 +930,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve All Connection Service Types.
+      summary: Retrieve All Connection Service Types
       operationId: CloudConnections_AllServiceTypes
       responses:
         '200':
@@ -935,7 +964,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: "Cloud connectiion summary dto used by ngx-portal\n            Returns cloud connection list for security hub"
+      summary: Cloud connectiion summary dto used by ngx-portal Returns cloud connection list…
       operationId: CloudConnections_CloudConnectionsSummary
       responses:
         '200':
@@ -1009,7 +1038,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve invoices for an account.
+      summary: Retrieve invoices for an account
       operationId: Invoice_GetInvoices
       responses:
         '200':
@@ -1047,7 +1076,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve the invoice summary for an invoice.
+      summary: Retrieve the invoice summary for an invoice
       description: 'Response Type: application/json or application/pdf - depends on Accept header on request'
       operationId: Invoice_GetInvoiceSummary
       parameters:
@@ -1116,7 +1145,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve invoice export detail for an invoice.
+      summary: Retrieve invoice export detail for an invoice
       description: 'Response Type: application/json or text/csv - depends on Accept header on request'
       operationId: Invoice_GetInvoicesDetail
       parameters:
@@ -1145,7 +1174,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve payment methods for an account.
+      summary: Retrieve payment methods for an account
       operationId: PaymentMethod_GetPaymentMethods
       responses:
         '200':
@@ -1225,7 +1254,7 @@ paths:
     patch:
       tags:
       - Account Management
-      summary: Update payment method on an account.
+      summary: Update payment method on an account
       operationId: PaymentMethod_SetDefaultPaymentMethod
       parameters:
       - name: id
@@ -1265,7 +1294,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get a list of all permissions available on the account.
+      summary: Get a list of all permissions available on the account
       operationId: Roles_GetPermissions
       responses:
         '200':
@@ -1329,7 +1358,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve any product lists that are associated to your Account.
+      summary: Retrieve any product lists that are associated to your Account
       operationId: ProductCatalog_GetProductLists
       responses:
         '200':
@@ -1356,7 +1385,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve a specific product list that is associated to your Account.
+      summary: Retrieve a specific product list that is associated to your Account
       operationId: ProductCatalog_GetProductList
       parameters:
       - name: id
@@ -1451,7 +1480,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve a filtered list of products specific to a category within a given product list on your Account.
+      summary: Retrieve a filtered list of products specific to a category within a given…
       operationId: ProductCatalog_GetProductListByCategory
       parameters:
       - name: id
@@ -1535,7 +1564,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve a resizable list of products specific to a instance.
+      summary: Retrieve a resizable list of products specific to a instance
       operationId: ProductCatalog_GetResizableInstanceProductList
       parameters:
       - name: id
@@ -1613,7 +1642,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get a list of all roles on an account, including the associated permissions and assigned users.
+      summary: Get a list of all roles on an account, including the associated permissions and…
       operationId: Roles_GetRoles
       responses:
         '200':
@@ -1653,7 +1682,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Create a role with a group of permissions.
+      summary: Create a role with a group of permissions
       operationId: Roles_CreateRole
       responses:
         '200':
@@ -1700,7 +1729,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: GET a role by the role id.
+      summary: GET a role by the role id
       operationId: Roles_GetRole
       parameters:
       - name: id
@@ -1748,7 +1777,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Update the name and/or permissions assigned to a role.
+      summary: Update the name and/or permissions assigned to a role
       operationId: Roles_UpdateRole
       parameters:
       - name: id
@@ -1809,7 +1838,7 @@ paths:
     delete:
       tags:
       - Account Management
-      summary: Delete a role by id.
+      summary: Delete a role by id
       operationId: Roles_DeleteRole
       parameters:
       - name: id
@@ -1829,7 +1858,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Add a user to a role.
+      summary: Add a user to a role
       operationId: Roles_UpdateRoleMember
       parameters:
       - name: id
@@ -1874,7 +1903,7 @@ paths:
     delete:
       tags:
       - Account Management
-      summary: Delete a user from a role.
+      summary: Delete a user from a role
       operationId: Roles_DeleteRoleMember
       parameters:
       - name: id
@@ -1920,7 +1949,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve subscriptions for an account.
+      summary: Retrieve subscriptions for an account
       operationId: Subscription_GetSubscriptions
       responses:
         '200':
@@ -1953,7 +1982,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get partner customer details for logged-in account.
+      summary: Get partner customer details for logged-in account
       operationId: SubscriptionUsage_GetAllAccountDetailsForPartner
       responses:
         '200':
@@ -1974,7 +2003,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get account all usage for billing period.
+      summary: Get account all usage for billing period
       operationId: SubscriptionUsage_GetAccountUsage
       responses:
         '200':
@@ -2016,7 +2045,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Cancel an active subscription.
+      summary: Cancel an active subscription
       operationId: Subscription_CancelSubscription
       responses:
         '200':
@@ -2041,7 +2070,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get partners and partner customers hourly usagedetails for logged-in account.
+      summary: Get partners and partner customers hourly usagedetails for logged-in account
       operationId: SubscriptionUsage_GetHourlyUsage
       responses:
         '200':
@@ -2066,7 +2095,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve Usage records for an account.
+      summary: Retrieve Usage records for an account
       operationId: Usage_GetAccountUsage
       responses:
         '200':
@@ -2095,7 +2124,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve a list of users for an account.
+      summary: Retrieve a list of users for an account
       operationId: Users_GetUsers
       responses:
         '200':
@@ -2140,7 +2169,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Invite a new or existing user to an account.
+      summary: Invite a new or existing user to an account
       operationId: Users_CreateAccountUser
       responses:
         '200':
@@ -2178,7 +2207,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get details about a specific user.
+      summary: Get details about a specific user
       operationId: Users_GetUser
       parameters:
       - name: id
@@ -2232,7 +2261,7 @@ paths:
     put:
       tags:
       - Account Management
-      summary: Update the attributes of a user.
+      summary: Update the attributes of a user
       operationId: Users_UpdateUser
       parameters:
       - name: id
@@ -2289,7 +2318,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Resend email invitation for an invited user.
+      summary: Resend email invitation for an invited user
       operationId: Users_ResendAccountInvite
       parameters:
       - name: userId
@@ -2309,7 +2338,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Get a user's notification settings. Notification settings determine the types of notifications a given user is subscribed to (e.g. Technical notifications, Ticket notifications, etc.).
+      summary: Get a user's notification settings.
       operationId: Users_GetUserNotificationPreferences
       responses:
         '200':
@@ -2356,7 +2385,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Update the notification settings for a user.
+      summary: Update the notification settings for a user
       operationId: Users_CreateUserNotificationPreferences
       responses:
         '200':
@@ -2388,7 +2417,7 @@ paths:
     get:
       tags:
       - Account Management
-      summary: Retrieve a simplified list of users for an account.
+      summary: Retrieve a simplified list of users for an account
       operationId: Users_GetUsersSimpleList
       responses:
         '200':
@@ -2449,7 +2478,7 @@ paths:
     post:
       tags:
       - Account Management
-      summary: Enable or disable a user on an account.
+      summary: Enable or disable a user on an account
       operationId: Users_UpdateUserStatus
       responses:
         '200':
@@ -2488,7 +2517,7 @@ paths:
     put:
       tags:
       - Account Management
-      summary: Update the user challenge phrase for a given user account.
+      summary: Update the user challenge phrase for a given user account
       operationId: UserSecurity_UpdateChallengePhrase
       responses:
         '200':
@@ -2528,369 +2557,73 @@ paths:
         required: true
 components:
   schemas:
-    FireHost.Services.Http.Accounts.Models.GetUserResponse:
+    FireHost.Services.Http.Accounts.Data.Domain.AccountContacts:
       type: object
       properties:
-        id:
-          format: int32
-          type: integer
-        status:
+        accountExecutive:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
+        accountStrategicManager:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest:
+      type: object
+      properties:
+        name:
           type: string
-        title:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        phonePrimary:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Phone'
-        timezone:
-          type: string
-        culture:
-          type: string
+          readOnly: true
         permissions:
           type: array
           items:
             format: int32
             type: integer
-        lastModified:
-          format: date-time
-          type: string
-        passwordLastSet:
-          format: date-time
-          type: string
-        mustChangePassword:
-          type: boolean
-        lastLogin:
-          format: date-time
-          type: string
-        apiKeyCount:
-          format: int32
-          description: Gets or sets the Api Key Count
-          type: integer
-        isPrimaryBillingNotificationUser:
-          type: boolean
-        isPrimaryAccountNotificationUser:
-          type: boolean
-        isPrimaryTechnicalNotificationUser:
-          type: boolean
-    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        name:
-          type: string
-        externalId:
-          type: string
-        provider:
-          type: string
-        providerAccountId:
-          type: string
-        providerAccessResource:
-          type: string
-        total:
-          format: int64
-          type: integer
-        isEnabled_Beta:
-          type: boolean
-        isEnabled_Ec2:
-          type: boolean
-        isEnabled_Log:
-          type: boolean
-        setupStatus:
-          type: string
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService'
-    FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest:
-      type: object
-      properties:
-        modifiedBy:
-          type: string
           readOnly: true
       example:
-        modifiedBy: Name
-    FireHost.Services.Http.Billing.Models.InvoiceSummaryLineItem:
-      type: object
-      properties:
-        productLine:
-          type: string
-        category:
-          type: string
-        subCategory:
-          type: string
-        sku:
-          type: string
-        name:
-          type: string
-        itemTotal:
-          format: double
-          type: number
-    FireHost.Services.Http.Accounts.Models.PermissionDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        system:
-          type: string
-        resource:
-          type: string
-        endpoints:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionEndpoint'
-        description:
-          type: string
-    FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone:
+        name: Role 1
+        permissions:
+        - 1
+        - 2
+        - 3
+    FireHost.Infrastructure.Accounts.Data.Phone:
       type: object
       properties:
         countryCode:
           format: int32
           type: integer
-          readOnly: true
         countryIsoCode:
           type: string
-          readOnly: true
         number:
           type: string
-          readOnly: true
-    FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams:
+        phoneExt:
+          type: string
+    FireHost.Services.Http.Billing.Models.SubscriptionResponse:
       type: object
       properties:
-        parameters:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-    FireHost.Services.Http.Accounts.Models.GetRolesResponse:
-      description: Role Details
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
+        uniqueProductIdentifier:
           type: string
-        isdefault:
-          type: boolean
-    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest:
-      type: object
-      properties:
-        addressLine1:
+        productName:
           type: string
-          readOnly: true
-        addressLine2:
+        productCategory:
           type: string
-          readOnly: true
-        city:
-          type: string
-          readOnly: true
-        state:
-          type: string
-          readOnly: true
-        postalCode:
-          type: string
-          readOnly: true
-        country:
-          type: string
-          readOnly: true
-      example:
-        addressLine1: 123 street
-        addressLine2: ste 500
-        city: City
-        state: TX
-        postalCode: '75000'
-        country: US
-    FireHost.Services.Http.Accounts.Models.GetPermissionsResponse:
-      type: object
-      properties:
-        name:
-          type: string
-        permissions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionDto'
-    FireHost.Services.Http.Accounts.Models.GetUsageResponse:
-      description: Model for Usage Data
-      type: object
-      properties:
-        accountId:
-          format: int32
-          description: Account Id
-          type: integer
-        sku:
-          description: Sku
-          type: string
-        vmId:
-          format: int32
-          description: VmId
-          type: integer
         quantity:
           format: double
-          description: Quantity Used
           type: number
-        usageDate:
-          description: Date of Usage
+        sku:
           type: string
-    FireHost.Infrastructure.Billing.Data.Persistence.ProductList:
-      type: object
-      properties:
-        id:
+        price:
+          format: double
+          type: number
+        totalPrice:
+          format: double
+          type: number
+        ticketNumber:
           format: int32
           type: integer
-        name:
-          type: string
-        category:
-          type: string
-        currency:
-          type: string
-        salesforceId:
-          type: string
-    FireHost.Services.Common.Data.Domain.User.UserNotificationPreference:
-      type: object
-      properties:
-        notificationTypeId:
-          format: int32
-          type: integer
-        notificationType:
-          type: string
-        alert:
-          type: boolean
-        sms:
-          type: boolean
-        email:
-          type: boolean
-    FireHost.Services.Http.Accounts.Models.UserAccountDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        currency:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
-        parent:
-          format: int32
-          type: integer
-        products:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        accountType:
-          description: Type of Account
-          type: string
-        isSynced:
-          description: To Check Whether Account Is Qualys Account
-          type: boolean
-        isFreeTrial:
-          type: boolean
-    FireHost.Services.Http.Accounts.Models.GetRoleUser:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        added:
+        contractEffectiveDate:
           format: date-time
           type: string
-        enabled:
+        pendingCancellation:
           type: boolean
-        roleId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Accounts.Data.Persistence.UserNotificationPreferencesResponse:
-      type: object
-      properties:
-        notificationPreferences:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Common.Data.Domain.User.UserNotificationPreference'
-    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest:
-      type: object
-      properties:
-        firstName:
+        ticketKey:
           type: string
-          readOnly: true
-        lastName:
-          type: string
-          readOnly: true
-        email:
-          type: string
-          readOnly: true
-        roles:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role'
-          readOnly: true
-      example:
-        firstName: John
-        lastName: Smith
-        email: john.smith@armor.com
-        roles:
-        - id: 1
-    FireHost.Services.Http.Accounts.Models.CreateAccountResponse:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.RBAC.Data.Domain.RoleUser:
-      type: object
-      properties:
-        roleId:
-          format: int32
-          type: integer
-        id:
-          format: int32
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        isEnabled:
-          type: boolean
-    FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        serviceStartDate:
-          format: date-time
-          type: string
-        serviceEndDate:
-          format: date-time
-          type: string
-        usageDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails'
     FireHost.Services.Http.Billing.Models.InvoiceResponse:
       type: object
       properties:
@@ -2912,158 +2645,48 @@ components:
         remainingBalance:
           format: double
           type: number
-    FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest:
+    FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest:
       type: object
       properties:
-        messages:
-          type: string
+        isPrimary:
+          type: boolean
           readOnly: true
       example:
-        messages: tag1
-    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsSummaryDto:
+        isPrimary: true
+    FireHost.Services.Http.CloudConnections.Models.Requests.ServiceParams:
       type: object
       properties:
-        id:
-          format: int32
-          type: integer
+        parameters:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+    FireHost.Services.Http.Billing.Models.Usage.AccountUsageResponse:
+      type: object
+      properties:
         accountId:
           format: int32
           type: integer
-        connectorName:
-          type: string
-        provider:
-          type: string
-        connectionType:
-          type: string
-          readOnly: true
-        status:
-          type: string
-    FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Accounts.Models.PermissionEndpoint:
-      type: object
-      properties:
-        method:
-          type: string
-        route:
-          type: string
-    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService:
-      type: object
-      properties:
-        accountConnectionId:
-          format: int32
-          type: integer
-        lastSuccessfulConnectionDate:
+        serviceStartDate:
           format: date-time
           type: string
+        serviceEndDate:
+          format: date-time
+          type: string
+        usageDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails'
+    FireHost.Services.Http.Accounts.Models.GetRolesResponse:
+      description: Role Details
+      type: object
+      properties:
         id:
           format: int32
           type: integer
         name:
           type: string
-        subServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType'
-        policy:
-          type: string
-        imageName:
-          type: string
-    FireHost.Services.Http.Billing.Models.ProductListItemModel:
-      type: object
-      properties:
-        name:
-          type: string
-        sku:
-          type: string
-        category:
-          type: string
-        description:
-          type: string
-        typeCode:
-          type: string
-        storagePolicyClass:
-          type: string
-        chargeType:
-          type: string
-        price:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductItemLocationPrice'
-        priceType:
-          type: string
-        instanceSeries:
-          type: string
-        cpu:
-          format: int32
-          type: integer
-        memory:
-          format: int32
-          type: integer
-        baseDiskSize:
-          format: int32
-          type: integer
-        baseDiskTier:
-          type: string
-        operatingSystem:
-          type: string
-        tier:
-          type: string
-        min:
-          format: int32
-          type: integer
-        max:
-          format: int32
-          type: integer
-        increment:
-          format: int32
-          type: integer
-        billingOnly:
+        isdefault:
           type: boolean
-        hasRules:
-          type: boolean
-    System.Object:
-      type: object
-      properties: {}
-    FireHost.Services.Http.Accounts.Models.UpdateUserStatusResponse:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-        isEnabled:
-          type: boolean
-    FireHost.Infrastructure.Billing.Models.SubAccountDto:
-      type: object
-      properties:
-        name:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Billing.Models.InvoiceAddress:
-      type: object
-      properties:
-        name:
-          type: string
-        addressLine1:
-          type: string
-        addressLine2:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        vatNumber:
-          type: string
     FireHost.Services.Http.Accounts.Models.ChildAccounts.ChildAccountSignupRequest:
       description: Request object for Child Account Signup
       type: object
@@ -3146,6 +2769,283 @@ components:
         armorAnywhereOtherLocation: example location
         autoAcceptUserInvite: true
         correlationId: d4244c08-efcc-4283-b197-27ebff111b88
+    FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest:
+      type: object
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: tag1
+    FireHost.Services.Http.Accounts.Models.PermissionDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        system:
+          type: string
+        resource:
+          type: string
+        endpoints:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionEndpoint'
+        description:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample:
+      type: object
+      properties:
+        notificationTypeId:
+          format: int32
+          type: integer
+          readOnly: true
+        alert:
+          type: boolean
+          readOnly: true
+        sms:
+          type: boolean
+          readOnly: true
+        email:
+          type: boolean
+          readOnly: true
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        challengePhrase:
+          type: string
+          readOnly: true
+        challengeAnswer:
+          type: string
+          readOnly: true
+      example:
+        userId: 0
+        challengePhrase: what is your mother's maiden name?
+        challengeAnswer: maiden
+    FireHost.Services.Http.Accounts.Models.GetUserResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        status:
+          type: string
+        title:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phonePrimary:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.Phone'
+        timezone:
+          type: string
+        culture:
+          type: string
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+        lastModified:
+          format: date-time
+          type: string
+        passwordLastSet:
+          format: date-time
+          type: string
+        mustChangePassword:
+          type: boolean
+        lastLogin:
+          format: date-time
+          type: string
+        apiKeyCount:
+          format: int32
+          description: Gets or sets the Api Key Count
+          type: integer
+        isPrimaryBillingNotificationUser:
+          type: boolean
+        isPrimaryAccountNotificationUser:
+          type: boolean
+        isPrimaryTechnicalNotificationUser:
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails:
+      type: object
+      properties:
+        sku:
+          type: string
+        location:
+          type: string
+        quantity:
+          format: double
+          type: number
+        serviceStartDate:
+          format: date-time
+          type: string
+        serviceEndDate:
+          format: date-time
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        productLine:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        resource:
+          type: string
+        uri:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        notes:
+          type: string
+        unit:
+          type: string
+        tier:
+          type: string
+        workload:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        notificationTypes:
+          type: array
+          items:
+            type: string
+        accountId:
+          format: int32
+          type: integer
+      example:
+        userId: 3
+        notificationTypes:
+        - Account, Technical, Billing
+        accountId: 2
+    FireHost.Services.Http.Billing.Models.ProductItemLocationPrice:
+      type: object
+      properties:
+        location:
+          type: string
+        amount:
+          format: double
+          type: number
+        units:
+          format: double
+          type: number
+    FireHost.Services.Meta.ApiExamples.Models.DeleteTagSampleRequest:
+      type: object
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: tag1
+    FireHost.Services.Http.Billing.Models.InvoiceAddress:
+      type: object
+      properties:
+        name:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        vatNumber:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          readOnly: true
+        firstName:
+          type: string
+          readOnly: true
+        lastName:
+          type: string
+          readOnly: true
+        phonePrimary:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone'
+          readOnly: true
+      example:
+        status: enabled
+        firstName: John
+        lastName: Smith
+        phonePrimary:
+          countryCode: 1
+          countryIsoCode: US
+          number: '8880000000'
+    FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        created:
+          format: date-time
+          type: string
+        modified:
+          format: date-time
+          type: string
+        members:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRoleUser'
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+        default:
+          type: boolean
+    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          format: int32
+          type: integer
+        lastSuccessfulConnectionDate:
+          format: date-time
+          type: string
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        subServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType'
+        policy:
+          type: string
+        imageName:
+          type: string
     FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserStatusSampleRequest:
       type: object
       properties:
@@ -3164,107 +3064,79 @@ components:
         id: 8
         isEnabled: true
         accountId: 2
-    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-          readOnly: true
-        accountId:
-          format: int32
-          type: integer
-          readOnly: true
-        isSelfUpdate:
-          type: boolean
-          readOnly: true
-        notificationPreferences:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample'
-          readOnly: true
-      example:
-        userId: 2903
-        accountId: 2
-        isSelfUpdate: true
-        notificationPreferences:
-        - notificationTypeId: 2
-          alert: true
-          sms: true
-          email: true
-    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateRoleSampleRequest:
+    FireHost.Services.Http.Billing.Models.ProductListItemModel:
       type: object
       properties:
         name:
           type: string
-          readOnly: true
-        permissions:
-          type: array
-          items:
-            format: int32
-            type: integer
-          readOnly: true
-      example:
-        name: Role 1
-        permissions:
-        - 1
-        - 2
-        - 3
-    FireHost.Services.Http.Billing.Models.SubscriptionResponse:
-      type: object
-      properties:
-        uniqueProductIdentifier:
-          type: string
-        productName:
-          type: string
-        productCategory:
-          type: string
-        quantity:
-          format: double
-          type: number
         sku:
           type: string
+        category:
+          type: string
+        description:
+          type: string
+        typeCode:
+          type: string
+        storagePolicyClass:
+          type: string
+        chargeType:
+          type: string
         price:
-          format: double
-          type: number
-        totalPrice:
-          format: double
-          type: number
-        ticketNumber:
-          format: int32
-          type: integer
-        contractEffectiveDate:
-          format: date-time
-          type: string
-        pendingCancellation:
-          type: boolean
-        ticketKey:
-          type: string
-    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest:
-      type: object
-      properties:
-        name:
-          type: string
-          readOnly: true
-        permissions:
           type: array
           items:
-            format: int32
-            type: integer
-          readOnly: true
-      example:
-        name: Admin
-        permissions:
-        - 1
-        - 2
-    FireHost.Services.Http.Accounts.ApiExamples.Models.SetDefaultPaymentMethodSampleRequest:
+            $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.ProductItemLocationPrice'
+        priceType:
+          type: string
+        instanceSeries:
+          type: string
+        cpu:
+          format: int32
+          type: integer
+        memory:
+          format: int32
+          type: integer
+        baseDiskSize:
+          format: int32
+          type: integer
+        baseDiskTier:
+          type: string
+        operatingSystem:
+          type: string
+        tier:
+          type: string
+        min:
+          format: int32
+          type: integer
+        max:
+          format: int32
+          type: integer
+        increment:
+          format: int32
+          type: integer
+        billingOnly:
+          type: boolean
+        hasRules:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.CreateAccountResponse:
       type: object
       properties:
-        isPrimary:
-          type: boolean
+        id:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Accounts.ApiExamples.Models.DeletePaymentMethodByIdSampleRequest:
+      type: object
+      properties:
+        modifiedBy:
+          type: string
           readOnly: true
       example:
-        isPrimary: true
+        modifiedBy: Name
+    FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
     FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionDetailsDto:
       type: object
       properties:
@@ -3304,22 +3176,86 @@ components:
         isEnabled_Log: false
         setupStatus: Completed
         services: []
-    FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample:
+    FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest:
+      type: object
+      properties: {}
+      example: {}
+    FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest:
+      type: object
+      properties:
+        sku:
+          type: string
+          readOnly: true
+        uniqueProductIdentifier:
+          type: string
+          readOnly: true
+      example:
+        sku: APP-MONITORING-PRO
+        uniqueProductIdentifier: e1158c05-5090-4083-a8e1-d56bed8ee4cc
+    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        subServiceName:
+          type: string
+        imageName:
+          type: string
+        policy:
+          type: string
+    FireHost.Services.Http.Billing.Models.InvoiceSummaryLineItem:
+      type: object
+      properties:
+        productLine:
+          type: string
+        category:
+          type: string
+        subCategory:
+          type: string
+        sku:
+          type: string
+        name:
+          type: string
+        itemTotal:
+          format: double
+          type: number
+    FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone:
+      type: object
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+          readOnly: true
+        countryIsoCode:
+          type: string
+          readOnly: true
+        number:
+          type: string
+          readOnly: true
+    FireHost.Services.Common.Data.Domain.User.UserNotificationPreference:
       type: object
       properties:
         notificationTypeId:
           format: int32
           type: integer
-          readOnly: true
+        notificationType:
+          type: string
         alert:
           type: boolean
-          readOnly: true
         sms:
           type: boolean
-          readOnly: true
         email:
           type: boolean
-          readOnly: true
+    FireHost.Services.Http.Accounts.Models.PermissionEndpoint:
+      type: object
+      properties:
+        method:
+          type: string
+        route:
+          type: string
     FireHost.Services.Http.Accounts.Models.ChildAccounts.MassGrantAccessRequest:
       description: Request object for Mass Access for Parent Account Users to Child Account
       type: object
@@ -3340,6 +3276,69 @@ components:
           format: int32
           description: Child account Role Id to which the Parent account users should be added to
           type: integer
+    FireHost.Infrastructure.Accounts.Data.Persistence.PaymentMethod:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountBillingId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        paymentMethodId:
+          type: string
+        paymentType:
+          type: string
+        achRoutingNumber:
+          type: string
+        achAccountMaskNumber:
+          type: string
+        creditCardType:
+          type: string
+        creditCardMaskNumber:
+          type: string
+        creditCardExpirationMonth:
+          format: int32
+          type: integer
+        creditCardExpirationYear:
+          format: int32
+          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
+        modifiedBy:
+          type: string
+        status:
+          type: string
+        isDeleted:
+          type: boolean
+        isPrimary:
+          type: boolean
+    FireHost.Infrastructure.Accounts.Data.Persistence.UserNotificationPreferencesResponse:
+      type: object
+      properties:
+        notificationPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Common.Data.Domain.User.UserNotificationPreference'
+    FireHost.Infrastructure.Billing.Models.AccountListDto:
+      type: object
+      properties:
+        months:
+          type: array
+          items:
+            type: string
+        accountDtos:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.SubAccountDto'
     FireHost.Services.Http.Billing.Models.InvoiceSummary:
       type: object
       properties:
@@ -3386,162 +3385,60 @@ components:
           $ref: '#/components/schemas/FireHost.Services.Http.Billing.Models.InvoiceAddress'
         poNumber:
           type: string
-    FireHost.Services.Http.Billing.Models.ProductItemLocationPrice:
+    FireHost.Infrastructure.RBAC.Data.Domain.RoleUser:
       type: object
       properties:
-        location:
-          type: string
-        amount:
-          format: double
-          type: number
-        units:
-          format: double
-          type: number
-    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateUserSampleRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          readOnly: true
-        firstName:
-          type: string
-          readOnly: true
-        lastName:
-          type: string
-          readOnly: true
-        phonePrimary:
-          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.SamplePhone'
-          readOnly: true
-      example:
-        status: enabled
-        firstName: John
-        lastName: Smith
-        phonePrimary:
-          countryCode: 1
-          countryIsoCode: US
-          number: '8880000000'
-    FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest:
-      type: object
-      properties:
-        messages:
-          type: string
-          readOnly: true
-      example:
-        messages: This is a note!
-    FireHost.Services.Http.Accounts.Data.Domain.AccountContacts:
-      type: object
-      properties:
-        accountExecutive:
-          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
-        accountStrategicManager:
-          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser'
-    FireHost.Infrastructure.Billing.Models.AccountListDto:
-      type: object
-      properties:
-        months:
-          type: array
-          items:
-            type: string
-        accountDtos:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Billing.Models.SubAccountDto'
-    FireHost.Infrastructure.Accounts.Data.Persistence.PaymentMethod:
-      type: object
-      properties:
+        roleId:
+          format: int32
+          type: integer
         id:
           format: int32
           type: integer
-        accountBillingId:
-          format: int32
-          type: integer
-        name:
+        firstName:
           type: string
-        paymentMethodId:
+        lastName:
           type: string
-        paymentType:
+        email:
           type: string
-        achRoutingNumber:
-          type: string
-        achAccountMaskNumber:
-          type: string
-        creditCardType:
-          type: string
-        creditCardMaskNumber:
-          type: string
-        creditCardExpirationMonth:
-          format: int32
-          type: integer
-        creditCardExpirationYear:
-          format: int32
-          type: integer
         createdDate:
           format: date-time
           type: string
-        createdBy:
-          type: string
-        modifiedDate:
-          format: date-time
-          type: string
-        modifiedBy:
-          type: string
-        status:
-          type: string
-        isDeleted:
+        isEnabled:
           type: boolean
-        isPrimary:
-          type: boolean
-    FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionSubServiceType:
+    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        name:
-          type: string
-        subServiceName:
-          type: string
-        imageName:
-          type: string
-        policy:
-          type: string
-    FireHost.Infrastructure.Accounts.Data.Phone:
-      type: object
-      properties:
-        countryCode:
-          format: int32
-          type: integer
-        countryIsoCode:
-          type: string
-        number:
-          type: string
-        phoneExt:
-          type: string
-    FireHost.Services.Http.Accounts.Models.GetAccountRolePermissionsResponse:
-      type: object
-      properties:
-        id:
+        accountId:
           format: int32
           type: integer
         name:
           type: string
-        created:
-          format: date-time
+        externalId:
           type: string
-        modified:
-          format: date-time
+        provider:
           type: string
-        members:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.GetRoleUser'
-        permissions:
-          type: array
-          items:
-            format: int32
-            type: integer
-        default:
+        providerAccountId:
+          type: string
+        providerAccessResource:
+          type: string
+        total:
+          format: int64
+          type: integer
+        isEnabled_Beta:
           type: boolean
+        isEnabled_Ec2:
+          type: boolean
+        isEnabled_Log:
+          type: boolean
+        setupStatus:
+          type: string
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionService'
     FireHost.Services.Infrastructure.CloudConnections.Models.ConnectionServiceTypesDto:
       type: object
       properties:
@@ -3558,10 +3455,90 @@ components:
           type: string
         imageName:
           type: string
-    FireHost.Services.Http.Meta.ApiExamples.Models.DeleteNoteSampleRequest:
+    FireHost.Services.Meta.ApiExamples.Models.UpdateNoteSampleRequest:
       type: object
-      properties: {}
-      example: {}
+      properties:
+        messages:
+          type: string
+          readOnly: true
+      example:
+        messages: This is a note!
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateRoleSampleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+        permissions:
+          type: array
+          items:
+            format: int32
+            type: integer
+          readOnly: true
+      example:
+        name: Admin
+        permissions:
+        - 1
+        - 2
+    FireHost.Infrastructure.Billing.Data.Persistence.ProductList:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        category:
+          type: string
+        currency:
+          type: string
+        salesforceId:
+          type: string
+    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateAccountSampleRequest:
+      type: object
+      properties:
+        addressLine1:
+          type: string
+          readOnly: true
+        addressLine2:
+          type: string
+          readOnly: true
+        city:
+          type: string
+          readOnly: true
+        state:
+          type: string
+          readOnly: true
+        postalCode:
+          type: string
+          readOnly: true
+        country:
+          type: string
+          readOnly: true
+      example:
+        addressLine1: 123 street
+        addressLine2: ste 500
+        city: City
+        state: TX
+        postalCode: '75000'
+        country: US
+    FireHost.Infrastructure.Billing.Models.AccountHourlyUsageItem:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        coreUsageQty:
+          format: int32
+          type: integer
+        usageEndDate:
+          format: date-time
+          type: string
+        usageStartDate:
+          format: date-time
+          type: string
     FireHost.Services.Http.Accounts.Data.Domain.SalesForceUser:
       type: object
       properties:
@@ -3595,84 +3572,49 @@ components:
           type: string
         type:
           type: string
-    FireHost.Services.Http.Billing.Models.Usage.AccountUsageItemDetails:
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateAccountUserSampleRequest:
       type: object
       properties:
-        sku:
+        firstName:
           type: string
-        location:
+          readOnly: true
+        lastName:
           type: string
-        quantity:
-          format: double
-          type: number
-        serviceStartDate:
-          format: date-time
+          readOnly: true
+        email:
           type: string
-        serviceEndDate:
-          format: date-time
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        productLine:
-          type: string
-        category:
-          type: string
-        subCategory:
-          type: string
-        resource:
-          type: string
-        uri:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-        notes:
-          type: string
-        unit:
-          type: string
-        tier:
-          type: string
-        workload:
-          type: string
-    FireHost.Infrastructure.Billing.Models.AccountHourlyUsageItem:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        name:
-          type: string
-        coreUsageQty:
-          format: int32
-          type: integer
-        usageEndDate:
-          format: date-time
-          type: string
-        usageStartDate:
-          format: date-time
-          type: string
-    FireHost.Services.Meta.ApiExamples.Models.AddTagSampleRequest:
-      type: object
-      properties:
-        messages:
-          type: string
+          readOnly: true
+        roles:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Internal.Data.Requests.Role'
           readOnly: true
       example:
-        messages: tag1
-    FireHost.Services.Http.Billing.ApiExamples.Models.CancelSubscriptionSampleRequest:
+        firstName: John
+        lastName: Smith
+        email: john.smith@armor.com
+        roles:
+        - id: 1
+    FireHost.Services.Http.Accounts.Models.GetRoleUser:
       type: object
       properties:
-        sku:
+        id:
+          format: int32
+          type: integer
+        firstName:
           type: string
-          readOnly: true
-        uniqueProductIdentifier:
+        lastName:
           type: string
-          readOnly: true
-      example:
-        sku: APP-MONITORING-PRO
-        uniqueProductIdentifier: e1158c05-5090-4083-a8e1-d56bed8ee4cc
+        email:
+          type: string
+        added:
+          format: date-time
+          type: string
+        enabled:
+          type: boolean
+        roleId:
+          format: int32
+          type: integer
     FireHost.Services.Http.Accounts.Models.AccountDetail:
       type: object
       properties:
@@ -3694,41 +3636,128 @@ components:
           type: string
         accountSignupType:
           type: string
-    FireHost.Services.Http.Accounts.ApiExamples.Models.UpdateChallengePhraseSampleRequest:
+    FireHost.Services.Http.Accounts.ApiExamples.Models.CreateUserNotificationPreferenceSampleRequest:
       type: object
       properties:
         userId:
           format: int32
           type: integer
           readOnly: true
-        challengePhrase:
-          type: string
-          readOnly: true
-        challengeAnswer:
-          type: string
-          readOnly: true
-      example:
-        userId: 0
-        challengePhrase: what is your mother's maiden name?
-        challengeAnswer: maiden
-    FireHost.Services.Http.Accounts.ApiExamples.Models.AddUpdatePrimaryNotificationUserRequestSample:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-        notificationTypes:
-          type: array
-          items:
-            type: string
         accountId:
           format: int32
           type: integer
+          readOnly: true
+        isSelfUpdate:
+          type: boolean
+          readOnly: true
+        notificationPreferences:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.ApiExamples.Models.UserNotificationPreferenceSample'
+          readOnly: true
       example:
-        userId: 3
-        notificationTypes:
-        - Account, Technical, Billing
+        userId: 2903
         accountId: 2
+        isSelfUpdate: true
+        notificationPreferences:
+        - notificationTypeId: 2
+          alert: true
+          sms: true
+          email: true
+    FireHost.Services.Http.Accounts.Models.UpdateUserStatusResponse:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.GetUsageResponse:
+      description: Model for Usage Data
+      type: object
+      properties:
+        accountId:
+          format: int32
+          description: Account Id
+          type: integer
+        sku:
+          description: Sku
+          type: string
+        vmId:
+          format: int32
+          description: VmId
+          type: integer
+        quantity:
+          format: double
+          description: Quantity Used
+          type: number
+        usageDate:
+          description: Date of Usage
+          type: string
+    FireHost.Infrastructure.Billing.Models.SubAccountDto:
+      type: object
+      properties:
+        name:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Accounts.Models.GetPermissionsResponse:
+      type: object
+      properties:
+        name:
+          type: string
+        permissions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.PermissionDto'
+    FireHost.Services.Infrastructure.CloudConnections.Models.CloudConnectionsSummaryDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        connectorName:
+          type: string
+        provider:
+          type: string
+        connectionType:
+          type: string
+          readOnly: true
+        status:
+          type: string
+    FireHost.Services.Http.Accounts.Models.UserAccountDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        currency:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        parent:
+          format: int32
+          type: integer
+        products:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        accountType:
+          description: Type of Account
+          type: string
+        isSynced:
+          description: To Check Whether Account Is Qualys Account
+          type: boolean
+        isFreeTrial:
+          type: boolean
   securitySchemes:
     Authorization:
       type: apiKey

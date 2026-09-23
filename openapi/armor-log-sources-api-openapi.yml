@@ -3,9 +3,7 @@ info:
   title: Armor Log Management Log Sources API
   description: 'This API provides an interface for configuring and interacting with
 
-    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
-
-    '
+    Armor''s Log Management Platform.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -72,9 +70,7 @@ paths:
 
         can enumerate deleted log sources by appending the `?deleted=true` query string to a `GET`
 
-        request.
-
-        '
+        request.'
       operationId: deleteLogSource
       deprecated: true
       parameters:
@@ -116,9 +112,7 @@ paths:
 
         supplied version, a `412` response will be returned. If this header is absent from the
 
-        request a `400` response will be returned.
-
-        '
+        request a `400` response will be returned.'
       operationId: updateLogSource
       deprecated: true
       parameters:
@@ -173,6 +167,22 @@ paths:
                 $ref: '#/components/schemas/Message'
 components:
   schemas:
+    Message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+      - tcp
+      - udp
+      example: tcp
     Guid:
       type: string
       format: uuid
@@ -207,61 +217,6 @@ components:
         requiresFlow:
           type: boolean
           description: Whether or not network flow sources need to be enabled on the org for this log source type.
-    IpProtocol:
-      type: string
-      description: An IP protocol (tcp, udp)
-      enum:
-      - tcp
-      - udp
-      example: tcp
-    Message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A message containing details about the request or of an exception thrown.
-          example: A confirmation message or explanation.
-    LogSourceUpdateRequest:
-      type: object
-      required:
-      - logSourceId
-      - options
-      - version
-      properties:
-        logSourceId:
-          $ref: '#/components/schemas/Guid'
-        options:
-          type: object
-          additionalProperties: true
-          description: An object map of configuration properties when the log source protocol requires additional configuration options.
-        version:
-          type: integer
-          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
-    LogSourceCreateRequest:
-      type: object
-      required:
-      - hostname
-      - endpointId
-      - logSourceTypeId
-      - logSourceProtocolId
-      properties:
-        hostname:
-          type: string
-          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
-        endpointId:
-          $ref: '#/components/schemas/Guid'
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type this log source will be provisioned as.
-        logSourceProtocolId:
-          type: integer
-          description: The unique identifier of the log source protocol this log source will use.
-        options:
-          type: object
-          additionalProperties: true
-          description: An object map of configuration properties when the log source protocol requires additional configuration options.
     LogSource:
       type: object
       properties:
@@ -324,6 +279,45 @@ components:
         modifiedByUserId:
           type: integer
           description: The unique identifier of the user that last updated this log source.
+    LogSourceCreateRequest:
+      type: object
+      required:
+      - hostname
+      - endpointId
+      - logSourceTypeId
+      - logSourceProtocolId
+      properties:
+        hostname:
+          type: string
+          description: The hostname of the entity for which the log source will process logs. This must be universally unique!
+        endpointId:
+          $ref: '#/components/schemas/Guid'
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type this log source will be provisioned as.
+        logSourceProtocolId:
+          type: integer
+          description: The unique identifier of the log source protocol this log source will use.
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+    LogSourceUpdateRequest:
+      type: object
+      required:
+      - logSourceId
+      - options
+      - version
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
   securitySchemes:
     oauth2:
       type: oauth2

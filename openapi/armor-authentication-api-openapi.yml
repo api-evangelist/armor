@@ -1,9 +1,7 @@
 openapi: 3.2.0
 info:
   title: Armor FH-AUTH Security Authentication API
-  description: 'Armor Security Platform Authentication API using FH-AUTH flow.
-
-    '
+  description: Armor Security Platform Authentication API using FH-AUTH flow.
   version: 2.0.0
   contact:
     name: Armor Support
@@ -24,9 +22,7 @@ tags:
 
     3. Use `Authorization: FH-AUTH {token}` header for API calls
 
-    4. POST `/auth/token/reissue` to refresh expired tokens
-
-    '
+    4. POST `/auth/token/reissue` to refresh expired tokens'
 paths:
   /auth/authorize:
     post:
@@ -34,9 +30,7 @@ paths:
       summary: Get authorization code
       description: 'Authenticates user credentials and returns an authorization code.
 
-        The code must be exchanged for an access token within 2 minutes.
-
-        '
+        The code must be exchanged for an access token within 2 minutes.'
       tags:
       - Authentication
       security: []
@@ -73,9 +67,7 @@ paths:
 
         The authorization code must be used within 2 minutes of issuance.
 
-        Access tokens are valid for 15 minutes.
-
-        '
+        Access tokens are valid for 15 minutes.'
       tags:
       - Authentication
       security: []
@@ -104,9 +96,7 @@ paths:
       summary: Refresh an access token
       description: 'Exchanges an existing access token for a new one.
 
-        Use this endpoint when the current token is about to expire or has expired.
-
-        '
+        Use this endpoint when the current token is about to expire or has expired.'
       tags:
       - Authentication
       security: []
@@ -131,6 +121,42 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    RefreshRequest:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+          description: Current access token to refresh
+          example: eyJhbGciOiJSUzI1NiIs...
+    AuthorizeRequest:
+      type: object
+      required:
+      - username
+      - password
+      properties:
+        username:
+          type: string
+          format: email
+          description: User's email address
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          description: User's password
+          writeOnly: true
+    AuthorizeResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Authorization code valid for 2 minutes
+          example: abc123xyz...
+        expiresIn:
+          type: integer
+          description: Seconds until code expires
+          example: 120
     TokenResponse:
       type: object
       properties:
@@ -166,22 +192,6 @@ components:
           - authorization_code
           description: Must be "authorization_code"
           example: authorization_code
-    AuthorizeRequest:
-      type: object
-      required:
-      - username
-      - password
-      properties:
-        username:
-          type: string
-          format: email
-          description: User's email address
-          example: user@example.com
-        password:
-          type: string
-          format: password
-          description: User's password
-          writeOnly: true
     ErrorResponse:
       type: object
       properties:
@@ -197,26 +207,6 @@ components:
           type: integer
           description: HTTP status code
           example: 401
-    AuthorizeResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Authorization code valid for 2 minutes
-          example: abc123xyz...
-        expiresIn:
-          type: integer
-          description: Seconds until code expires
-          example: 120
-    RefreshRequest:
-      type: object
-      required:
-      - token
-      properties:
-        token:
-          type: string
-          description: Current access token to refresh
-          example: eyJhbGciOiJSUzI1NiIs...
   securitySchemes:
     FH-AUTH:
       type: http

@@ -4,9 +4,7 @@ info:
   description: 'APIs for interacting with Armor products and services for incident management.
 
 
-    Base URL: `https://security-detections.api.secure-prod.services/`
-
-    '
+    Base URL: `https://security-detections.api.secure-prod.services/`'
   version: 1.0.0
 servers:
 - url: https://security-detections.api.secure-dev.services
@@ -207,31 +205,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
     GetEdrConfiguration:
       type: object
@@ -263,6 +236,66 @@ components:
         count:
           type: string
           description: Total number of VMs with EDR agents installed.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    EdrServices:
+      type: object
+      properties:
+        skuMappingId:
+          type: integer
+          description: Unique identifier of mapping id.
+        sku:
+          type: string
+          description: EDR SKU name.
+        accountType:
+          type: string
+          description: Type of account.
+        accountProduct:
+          type: string
+          description: Account Product.
+        name:
+          type: string
+          description: EDR service name.
+        description:
+          type: string
+          description: EDR service description.
+        features:
+          type: array
+          description: EDR features.
+          items:
+            type: string
+    GetEdrEventForwarder:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique Id of an event forwarder.
+        org_key:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        name:
+          type: string
+          description: Name of an event forwarder.
+        enabled:
+          type: boolean
+          description: Flag to denote if an event forwarder is enabled or not.
+        s3_bucket_name:
+          type: string
+          description: Name of the AWS S3 bucket configured.
+        s3_prefix:
+          type: string
+          description: Prefix text used for event forwarder logs.
+        type:
+          type: string
+          description: Type of the event forwarder log whether Alert or Event.
+        create_time:
+          type: string
+          format: date-time
+          description: Date and Time when the event forwarder is setup.
     PostEdrConfiguration:
       type: object
       properties:
@@ -310,6 +343,21 @@ components:
           description: EDR SKU name (from `edrServices` in GET /edr/sign-up).
         adminUser:
           $ref: '#/components/schemas/AdminUser'
+    AdminUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier of admin user.
+        email:
+          type: string
+          description: Admin user email id.
+        firstName:
+          type: string
+          description: Admin user first name.
+        lastName:
+          type: string
+          description: Admin user last name.
     GetEdrSignUp:
       type: object
       properties:
@@ -373,81 +421,31 @@ components:
           description: Mail To information.
         adminUser:
           $ref: '#/components/schemas/AdminUser'
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    AdminUser:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Unique identifier of admin user.
-        email:
-          type: string
-          description: Admin user email id.
-        firstName:
-          type: string
-          description: Admin user first name.
-        lastName:
-          type: string
-          description: Admin user last name.
-    EdrServices:
-      type: object
-      properties:
-        skuMappingId:
-          type: integer
-          description: Unique identifier of mapping id.
-        sku:
-          type: string
-          description: EDR SKU name.
-        accountType:
-          type: string
-          description: Type of account.
-        accountProduct:
-          type: string
-          description: Account Product.
-        name:
-          type: string
-          description: EDR service name.
-        description:
-          type: string
-          description: EDR service description.
-        features:
-          type: array
-          description: EDR features.
-          items:
-            type: string
-    GetEdrEventForwarder:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique Id of an event forwarder.
-        org_key:
-          type: string
-          description: Unique key of an organization and used with Carbon Black APIs.
-        name:
-          type: string
-          description: Name of an event forwarder.
-        enabled:
-          type: boolean
-          description: Flag to denote if an event forwarder is enabled or not.
-        s3_bucket_name:
-          type: string
-          description: Name of the AWS S3 bucket configured.
-        s3_prefix:
-          type: string
-          description: Prefix text used for event forwarder logs.
-        type:
-          type: string
-          description: Type of the event forwarder log whether Alert or Event.
-        create_time:
-          type: string
-          format: date-time
-          description: Date and Time when the event forwarder is setup.
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context

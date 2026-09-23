@@ -40,6 +40,8 @@ paths:
         '400':
           description: Invalid Request
       deprecated: false
+      summary: Security analytics security analytics overview
+      x-summary-source: derived
   /security-analytics/resources:
     get:
       tags:
@@ -58,6 +60,8 @@ paths:
         '400':
           description: Invalid Request
       deprecated: false
+      summary: Security resource get security resources
+      x-summary-source: derived
 components:
   schemas:
     FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse:
@@ -87,22 +91,6 @@ components:
           type: integer
         vulnerabilities:
           $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse'
-    FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        referenceUrl:
-          type: string
-        imageData:
-          type: string
-        modifiedBy:
-          type: string
     FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse:
       type: object
       properties:
@@ -122,6 +110,22 @@ components:
           format: int32
           type: integer
         detailsUrl:
+          type: string
+    FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        referenceUrl:
+          type: string
+        imageData:
+          type: string
+        modifiedBy:
           type: string
   securitySchemes:
     Authorization:

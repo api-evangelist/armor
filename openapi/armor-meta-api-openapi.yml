@@ -3,9 +3,7 @@ info:
   title: Armor Log Management Meta API
   description: 'This API provides an interface for configuring and interacting with
 
-    [Armor''s Log Management Platform](https://www.armor.com/armor-log-management/).
-
-    '
+    Armor''s Log Management Platform.'
   version: 1.0.0
   contact:
     name: Armor Support
@@ -80,6 +78,18 @@ components:
         available:
           type: boolean
           description: Whether or not the hostname is available for use as a unique log source identifier.
+    HostnameAvailabilityCheckRequest:
+      type: object
+      required:
+      - hostname
+      - logSourceTypeId
+      properties:
+        hostname:
+          type: string
+          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
     LogSourceType:
       type: object
       properties:
@@ -109,18 +119,6 @@ components:
         requiresFlow:
           type: boolean
           description: Whether or not network flow sources need to be enabled on the org for this log source type.
-    HostnameAvailabilityCheckRequest:
-      type: object
-      required:
-      - hostname
-      - logSourceTypeId
-      properties:
-        hostname:
-          type: string
-          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type the proposed log source will be provisioned as.
   securitySchemes:
     oauth2:
       type: oauth2
