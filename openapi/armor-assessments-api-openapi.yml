@@ -121,6 +121,24 @@ paths:
           description: Internal Server Error
 components:
   schemas:
+    AssessmentCreateAccountRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Armor Account ID
+        sku:
+          type: string
+          description: Billing reference
+    AssessmentUpdateAccountRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          description: Updated assessment status
+        scanTargetStatus:
+          type: string
+          description: Updated scan target status
     AssessmentAccountResponse:
       type: object
       properties:
@@ -139,24 +157,6 @@ components:
         scanTargetStatus:
           type: string
           description: Scan Target status
-    AssessmentUpdateAccountRequest:
-      type: object
-      properties:
-        status:
-          type: string
-          description: Updated assessment status
-        scanTargetStatus:
-          type: string
-          description: Updated scan target status
-    AssessmentCreateAccountRequest:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          description: Armor Account ID
-        sku:
-          type: string
-          description: Billing reference
   securitySchemes:
     OAuth2:
       type: oauth2

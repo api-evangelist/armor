@@ -67,6 +67,19 @@ paths:
           description: Forbidden
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
+    ReportConfigurationResponse:
+      type: object
+      properties:
+        configurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmReportConfiguration'
     CspmReportConfiguration:
       type: object
       required:
@@ -105,19 +118,6 @@ components:
           items:
             type: string
           description: Array of policies
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Response message
-    ReportConfigurationResponse:
-      type: object
-      properties:
-        configurations:
-          type: array
-          items:
-            $ref: '#/components/schemas/CspmReportConfiguration'
   securitySchemes:
     OAuth2:
       type: oauth2

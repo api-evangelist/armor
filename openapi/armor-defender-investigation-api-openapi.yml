@@ -91,37 +91,8 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    CustomerNotFound:
-      description: Unable to retrieve customer records
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error occurred while processing the request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: The AMP account ID that identifies the customer account
-      schema:
-        type: string
-        format: uuid
-      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
   schemas:
-    PackageUriResponse:
+    LiveResponseResultResponse:
       type: object
       properties:
         '@odata.context':
@@ -129,7 +100,7 @@ components:
         value:
           type: string
           format: uri
-    LiveResponseResultResponse:
+    PackageUriResponse:
       type: object
       properties:
         '@odata.context':
@@ -148,6 +119,35 @@ components:
           type: string
         statusCode:
           type: integer
+  responses:
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
   securitySchemes:
     OAuth2BearerAuth:
       type: http

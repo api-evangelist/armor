@@ -60,27 +60,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    GraphQLResponse:
-      type: object
-      properties:
-        data:
-          type: object
-          additionalProperties: true
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              locations:
-                type: array
-                items:
-                  type: object
-              path:
-                type: array
-                items:
-                  type: string
     ErrorResponse:
       type: object
       properties:
@@ -104,6 +83,27 @@ components:
           additionalProperties: true
         operationName:
           type: string
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
+              path:
+                type: array
+                items:
+                  type: string
     GraphQLError:
       type: object
       properties:

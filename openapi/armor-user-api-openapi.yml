@@ -88,12 +88,6 @@ components:
         isFreeTrial:
           type: boolean
           example: false
-    UserLinks:
-      type: object
-      properties:
-        userId:
-          type: integer
-          example: 4922
     MeResponse:
       type: object
       properties:
@@ -103,6 +97,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Account'
+    UserLinks:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 4922
     User:
       type: object
       properties:

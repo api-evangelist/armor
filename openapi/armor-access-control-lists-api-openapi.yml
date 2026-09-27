@@ -159,11 +159,6 @@ components:
       description: An IPv4 network subnet in CIDR notation
       pattern: ^([0-9]{1,3}\.){3}[0-9]{1,3}/[0-9]{1,2}$
       example: 192.168.1.0/24
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
     LogAclCreateRequest:
       type: object
       required:
@@ -174,6 +169,11 @@ components:
           items:
             $ref: '#/components/schemas/CIDR'
           description: An array of IPv4 network subnets in CIDR notation that are permitted to send logs to ARMOR.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     oauth2:
       type: oauth2

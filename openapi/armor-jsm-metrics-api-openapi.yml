@@ -90,11 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     ThreatIntelUpdate:
       type: object
       properties:
@@ -149,6 +144,11 @@ components:
                     type: integer
                   incidents:
                     type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

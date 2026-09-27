@@ -109,8 +109,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
@@ -121,8 +121,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:

@@ -92,16 +92,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    AssetInfo:
-      type: object
-      properties:
-        assetId:
-          type: string
-          format: uuid
-          description: Asset ID
-        assetName:
-          type: string
-          description: Asset name
     AddExclusion:
       type: object
       required:
@@ -164,6 +154,16 @@ components:
           type: string
           format: date-time
           description: Creation date
+    AssetInfo:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset ID
+        assetName:
+          type: string
+          description: Asset name
   securitySchemes:
     OAuth2:
       type: oauth2

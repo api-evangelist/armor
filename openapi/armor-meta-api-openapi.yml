@@ -62,6 +62,18 @@ paths:
                   $ref: '#/components/schemas/LogSourceType'
 components:
   schemas:
+    HostnameAvailabilityCheckRequest:
+      type: object
+      required:
+      - hostname
+      - logSourceTypeId
+      properties:
+        hostname:
+          type: string
+          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
     HostnameAvailabilityCheckResponse:
       type: object
       required:
@@ -78,18 +90,6 @@ components:
         available:
           type: boolean
           description: Whether or not the hostname is available for use as a unique log source identifier.
-    HostnameAvailabilityCheckRequest:
-      type: object
-      required:
-      - hostname
-      - logSourceTypeId
-      properties:
-        hostname:
-          type: string
-          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type the proposed log source will be provisioned as.
     LogSourceType:
       type: object
       properties:

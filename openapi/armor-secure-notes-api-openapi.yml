@@ -186,26 +186,20 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    SecureNoteUpdateRequest:
-      type: object
-      required:
-      - displayName
-      - isShared
-      properties:
-        displayName:
-          type: string
-          description: The updated display name of the secure note.
-          example: Test123 Updated
-        isShared:
-          type: boolean
-          description: Indicates if the secure note should be shared with others.
-          example: true
     Message:
       type: object
       properties:
         message:
           type: string
           description: Error or informational message
+    SecureNoteContent:
+      type: object
+      required:
+      - secureNote
+      properties:
+        secureNote:
+          type: string
+          description: The encrypted content of the secure note.
     SecureNoteRevealResult:
       type: object
       required:
@@ -352,14 +346,20 @@ components:
           type: boolean
           description: Indicates if the secure note should be shared with others.
           example: true
-    SecureNoteContent:
+    SecureNoteUpdateRequest:
       type: object
       required:
-      - secureNote
+      - displayName
+      - isShared
       properties:
-        secureNote:
+        displayName:
           type: string
-          description: The encrypted content of the secure note.
+          description: The updated display name of the secure note.
+          example: Test123 Updated
+        isShared:
+          type: boolean
+          description: Indicates if the secure note should be shared with others.
+          example: true
   responses:
     Forbidden:
       description: Forbidden
@@ -367,14 +367,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
+    BadRequest:
+      description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:

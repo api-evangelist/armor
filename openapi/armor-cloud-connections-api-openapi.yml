@@ -114,26 +114,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    CloudConnectionServiceTypesResult:
+    Message:
       type: object
       properties:
-        id:
-          type: integer
-          description: The id of the cloud connection service type.
-        name:
+        message:
           type: string
-          description: The name of the service type.
-        subServices:
-          type: array
-          description: Cloud connection sub services.
-          items:
-            $ref: '#/components/schemas/ConnectionSubServiceType'
-        policy:
-          type: string
-          description: Cloud connection service type policy.
-        imageName:
-          type: string
-          description: The image name of the service type.
+          description: Error or informational message
     ConnectionService:
       type: object
       properties:
@@ -160,54 +146,6 @@ components:
         imageName:
           type: string
           description: Cloud connection provider service image name.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    CloudConnectionDetailResult:
-      type: object
-      properties:
-        providerAccountId:
-          type: integer
-          description: Armor AWS account id.
-        connectionName:
-          type: string
-          description: Cloud connection name.
-        description:
-          type: string
-          description: Cloud connection description.
-        externalId:
-          type: string
-          description: Cloud connection externalId.
-        providerAccessResource:
-          type: string
-          description: Cloud connection provider access resource.
-        accountConnectionId:
-          type: integer
-          description: Account connection id.
-        providerTypeName:
-          type: string
-          description: Cloud connection provider type name.
-        serviceTypeName:
-          type: string
-          description: Cloud connection service type name.
-        subServiceName:
-          type: string
-          description: Cloud connection sub service name.
-        awsBaseJsonPolicy:
-          type: string
-          description: AWS Base JSON Policy.
-        armorAwsAccountId:
-          type: string
-          description: Armor AWS account id.
-        serviceTypeId:
-          type: string
-          description: Cloud connection service type id.
-        policy:
-          type: string
-          description: Cloud connection provider service policy.
     CloudConnectionResourceResult:
       type: object
       properties:
@@ -252,6 +190,48 @@ components:
           description: Cloud Connection Services.
           items:
             $ref: '#/components/schemas/ConnectionService'
+    CloudConnectionDetailResult:
+      type: object
+      properties:
+        providerAccountId:
+          type: integer
+          description: Armor AWS account id.
+        connectionName:
+          type: string
+          description: Cloud connection name.
+        description:
+          type: string
+          description: Cloud connection description.
+        externalId:
+          type: string
+          description: Cloud connection externalId.
+        providerAccessResource:
+          type: string
+          description: Cloud connection provider access resource.
+        accountConnectionId:
+          type: integer
+          description: Account connection id.
+        providerTypeName:
+          type: string
+          description: Cloud connection provider type name.
+        serviceTypeName:
+          type: string
+          description: Cloud connection service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection sub service name.
+        awsBaseJsonPolicy:
+          type: string
+          description: AWS Base JSON Policy.
+        armorAwsAccountId:
+          type: string
+          description: Armor AWS account id.
+        serviceTypeId:
+          type: string
+          description: Cloud connection service type id.
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
     ConnectionSubServiceType:
       type: object
       properties:
@@ -270,6 +250,26 @@ components:
         policy:
           type: string
           description: Cloud connection provider sub service type policy.
+    CloudConnectionServiceTypesResult:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The id of the cloud connection service type.
+        name:
+          type: string
+          description: The name of the service type.
+        subServices:
+          type: array
+          description: Cloud connection sub services.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection service type policy.
+        imageName:
+          type: string
+          description: The image name of the service type.
   responses:
     Forbidden:
       description: Forbidden

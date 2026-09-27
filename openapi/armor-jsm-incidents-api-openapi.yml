@@ -234,48 +234,6 @@ paths:
                 type: string
 components:
   schemas:
-    IncidentListResponse:
-      type: object
-      properties:
-        totalRows:
-          type: integer
-        issues:
-          type: array
-          items:
-            $ref: '#/components/schemas/IncidentListItem'
-        approvedOrgs:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-              name:
-                type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-    Comment:
-      type: object
-      properties:
-        id:
-          type: string
-        authorDisplayName:
-          type: string
-        authorEmail:
-          type: string
-        body:
-          type: string
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-        isPublic:
-          type: boolean
     IncidentDetails:
       type: object
       properties:
@@ -439,6 +397,48 @@ components:
                 type: string
               id:
                 type: string
+    IncidentListResponse:
+      type: object
+      properties:
+        totalRows:
+          type: integer
+        issues:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncidentListItem'
+        approvedOrgs:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        authorDisplayName:
+          type: string
+        authorEmail:
+          type: string
+        body:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

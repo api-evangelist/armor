@@ -1944,227 +1944,6 @@ paths:
       deprecated: false
 components:
   schemas:
-    FireHost.Infrastructure.Firewall.Models.Rules.RuleSet:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        deviceId:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        rules:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Rules.Rule'
-        staged:
-          type: boolean
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        isOverride:
-          type: boolean
-        ipGroups:
-          type: string
-        isRulePendingGlobal:
-          type: boolean
-        isRuleErrorGlobal:
-          type: boolean
-        totalRulesInRuleSet:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallService:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        deviceId:
-          format: int32
-          type: integer
-        location:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-        name:
-          type: string
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
-    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateServiceSampleRequest:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-          readOnly: true
-        deviceId:
-          format: int32
-          type: integer
-          readOnly: true
-        location:
-          type: string
-          readOnly: true
-        accountId:
-          format: int32
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
-          readOnly: true
-      example:
-        id: 4
-        deviceId: 2
-        location: DFW01
-        accountId: 0
-        name: HTTP
-        description: Use this for inbound HTTP traffic
-        values:
-        - port: 80
-          protocol: tcp
-          isConsistent: false
-    FireHost.Infrastructure.Compute.Models.Environment.VdcDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        location:
-          type: string
-        zone:
-          type: string
-        isRecoveryVdc:
-          type: boolean
-        description:
-          type: string
-    FireHost.Services.Http.Network.ApiExamples.Models.EnableSslVpnSampleRequest:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-          readOnly: true
-        locations:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Network.ApiExamples.Models.SampleLocation'
-          readOnly: true
-        enable:
-          type: boolean
-          readOnly: true
-      example:
-        userId: 3
-        locations:
-        - zone: dfw01-vc01
-        enable: true
-    FireHost.Infrastructure.Network.Models.L2LSiteDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        localIp:
-          type: string
-        peerIp:
-          type: string
-        isEnabled:
-          type: boolean
-        notes:
-          type: string
-        tags:
-          type: array
-          items:
-            type: string
-          readOnly: true
-    System.Object:
-      type: object
-      properties: {}
-    FireHost.Infrastructure.Network.Models.L2LConfigurationDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        edgeId:
-          format: int32
-          type: integer
-        edgeIp:
-          type: string
-        location:
-          type: string
-        zone:
-          type: string
-        lastModified:
-          format: date-time
-          type: string
-        sites:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.L2LSiteDto'
-        tenantCidr:
-          type: string
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        vcdOrgId:
-          format: int32
-          type: integer
-        hasGen34:
-          type: boolean
-        isNsxT:
-          type: boolean
-    FireHost.Services.Http.Network.ApiExamples.Models.UpdateNatSampleRequest:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-          readOnly: true
-        translatedIp:
-          type: string
-          readOnly: true
-        originalIps:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-      example:
-        vmId: 2
-        translatedIp: 100.10.10.1
-        originalIps:
-        - 192.158.1.1
-        vcdOrgVdcId: 1
-    FireHost.Infrastructure.Network.Models.SslVpnConfigDetail:
-      type: object
-      properties:
-        sslVpnConnectionDetails:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.SslVpnConnectionDetail'
-        sslVpnClientVersions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.SslVpnClientVersion'
     FireHost.Services.Http.Network.ApiExamples.Models.CreateL2LSampleRequest:
       type: object
       properties:
@@ -2223,36 +2002,76 @@ components:
         localIp: 146.88.118.5
         peerIp: 10.1.1.3
         isEnabled: true
-    FireHost.Services.Http.Network.ApiExamples.Models.SampleLocation:
+    FireHost.Services.Http.Network.ApiExamples.Models.UnAssignIpFromVmSampleRequest:
       type: object
       properties:
-        zone:
-          type: string
-          readOnly: true
-    FireHost.Services.Http.Firewall.ApiExamples.Models.CreateGroupSampleRequest:
-      type: object
-      properties:
-        deviceId:
+        vmId:
           format: int32
           type: integer
           readOnly: true
-        name:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+      example:
+        vmId: 1
+        id: 518
+    FireHost.Services.Http.Network.ApiExamples.Models.NatSampleRequest:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+          readOnly: true
+        translatedIp:
           type: string
           readOnly: true
-        description:
-          type: string
-          readOnly: true
-        values:
+        originalIps:
           type: array
           items:
             type: string
           readOnly: true
+        id:
+          format: int32
+          type: integer
+          readOnly: true
       example:
-        deviceId: 2
-        name: HTTP
-        description: ''
-        values:
+        vmId: 2
+        translatedIp: 100.10.10.1
+        originalIps:
         - 192.158.1.1
+        id: 1
+    FireHost.Infrastructure.Network.Models.SslVpnConfigDetail:
+      type: object
+      properties:
+        sslVpnConnectionDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.SslVpnConnectionDetail'
+        sslVpnClientVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.SslVpnClientVersion'
+    FireHost.Services.Http.Network.ApiExamples.Models.EnableSslVpnSampleRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        locations:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Network.ApiExamples.Models.SampleLocation'
+          readOnly: true
+        enable:
+          type: boolean
+          readOnly: true
+      example:
+        userId: 3
+        locations:
+        - zone: dfw01-vc01
+        enable: true
     FireHost.Infrastructure.Firewall.Models.Services.ServiceCreatedDto:
       type: object
       properties:
@@ -2275,59 +2094,6 @@ components:
         vcdOrgVdcId:
           format: int32
           type: integer
-    FireHost.Infrastructure.Firewall.Models.Groups.GroupDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        deviceId:
-          format: int32
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-          readOnly: true
-        values:
-          type: array
-          items:
-            type: string
-        isReadonly:
-          type: boolean
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        status:
-          format: int32
-          type: integer
-        retryCount:
-          format: int32
-          type: integer
-        isDefaultGroupCopied:
-          type: boolean
-    FireHost.Infrastructure.Firewall.Models.Rules.RuleMember:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        type:
-          type: string
-          readOnly: true
-        joinedValues:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        isReadOnly:
-          type: boolean
     FireHost.Services.Http.Firewall.ApiExamples.Models.CreateServiceSampleRequest:
       type: object
       properties:
@@ -2358,6 +2124,469 @@ components:
         - port: 80
           protocol: tcp
           isConsistent: false
+    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateGroupByIdSampleRequest:
+      type: object
+      properties:
+        deviceId:
+          format: int32
+          type: integer
+          readOnly: true
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        values:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      example:
+        deviceId: 2
+        id: 8
+        name: Local IP
+        description: ''
+        values:
+        - 192.158.1.1
+    FireHost.Services.Http.Network.ApiExamples.Models.AssignPrivateIpToVmSampleRequest:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+          readOnly: true
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+      example:
+        vmId: 1
+        id: 518
+    FireHost.Infrastructure.Network.Models.SslVpnMemberDto:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        id:
+          format: int32
+          type: integer
+        email:
+          type: string
+        isSslVpnEnabled:
+          type: boolean
+          readOnly: true
+        vpcData:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Environment.VdcDto'
+    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        deviceId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        ipGroups:
+          type: string
+        isReadonly:
+          type: boolean
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+        status:
+          format: int32
+          type: integer
+        retryCount:
+          format: int32
+          type: integer
+        joinedValues:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+          readOnly: true
+    FireHost.Infrastructure.Firewall.Models.Services.ServiceUpdatedDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        deviceId:
+          format: int32
+          type: integer
+        location:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+        status:
+          format: int32
+          type: integer
+        retryCount:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Firewall.ApiExamples.Models.CreateGroupSampleRequest:
+      type: object
+      properties:
+        deviceId:
+          format: int32
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        values:
+          type: array
+          items:
+            type: string
+          readOnly: true
+      example:
+        deviceId: 2
+        name: HTTP
+        description: ''
+        values:
+        - 192.158.1.1
+    FireHost.Infrastructure.Firewall.Models.FirewallDeviceDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Compute.Models.Environment.VdcDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        zone:
+          type: string
+        isRecoveryVdc:
+          type: boolean
+        description:
+          type: string
+    FireHost.Services.Common.Data.Domain.Nat.IpAddressModel:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        ipAddress:
+          type: string
+        subnetId:
+          format: int32
+          type: integer
+        ipStateId:
+          format: int32
+          type: integer
+        location:
+          type: string
+        type:
+          type: string
+        cancelOrgRequestedSagaId:
+          type: string
+        ipState:
+          format: int32
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          type: integer
+          readOnly: true
+    FireHost.Infrastructure.Network.Models.UpdateSslCertificateRequestDto:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        id:
+          format: int32
+          type: integer
+        cname:
+          type: string
+        expiry:
+          format: date-time
+          type: string
+        status:
+          type: string
+        ticket:
+          type: string
+    FireHost.Services.Http.Network.ApiExamples.Models.SampleLocation:
+      type: object
+      properties:
+        zone:
+          type: string
+          readOnly: true
+    FireHost.Services.Common.Events.Compute.Environment.Catalogs.VmNatRuleDto:
+      type: object
+      properties:
+        vmIp:
+          type: string
+        publicIps:
+          type: array
+          items:
+            type: string
+          readOnly: true
+    FireHost.Infrastructure.Network.Models.SslVpnConnectionDetail:
+      type: object
+      properties:
+        location:
+          type: string
+        host:
+          type: string
+        port:
+          format: int32
+          type: integer
+    FireHost.Services.Ipam.Data.Domain.IpDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        location:
+          type: string
+        zone:
+          type: string
+        ip:
+          type: string
+        state:
+          type: string
+        type:
+          type: string
+        assignedTo:
+          $ref: '#/components/schemas/FireHost.Services.Ipam.Data.Domain.AssignedToDto'
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+        isRecovery:
+          type: boolean
+    FireHost.Infrastructure.Network.Models.SslCertificateDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        cname:
+          type: string
+        sku:
+          type: string
+        certificateType:
+          type: string
+        orderDate:
+          format: date-time
+          type: string
+        expiryDate:
+          format: date-time
+          type: string
+        uniqueProductIdentifier:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        accountName:
+          type: string
+        tickets:
+          type: string
+        status:
+          type: string
+    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateServiceSampleRequest:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        deviceId:
+          format: int32
+          type: integer
+          readOnly: true
+        location:
+          type: string
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+        description:
+          type: string
+          readOnly: true
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
+          readOnly: true
+      example:
+        id: 4
+        deviceId: 2
+        location: DFW01
+        accountId: 0
+        name: HTTP
+        description: Use this for inbound HTTP traffic
+        values:
+        - port: 80
+          protocol: tcp
+          isConsistent: false
+    FireHost.Infrastructure.Network.Models.L2LSiteDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        localIp:
+          type: string
+        peerIp:
+          type: string
+        isEnabled:
+          type: boolean
+        notes:
+          type: string
+        tags:
+          type: array
+          items:
+            type: string
+          readOnly: true
+    FireHost.Infrastructure.Network.Models.SslVpnUserDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        isSslVpnEnabled:
+          type: boolean
+    FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto:
+      type: object
+      properties:
+        port:
+          format: int32
+          type: integer
+        protocol:
+          type: string
+        subprotocol:
+          type: string
+        minimum:
+          format: int32
+          type: integer
+        maximum:
+          format: int32
+          type: integer
+        isConsistent:
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Services.Ipam.Data.Domain.AssignedToDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        type:
+          type: string
+        name:
+          type: string
+        assignmentType:
+          type: string
+    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRule:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember'
+        destinations:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember'
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallService'
+        action:
+          type: string
+        name:
+          type: string
+        sortOrder:
+          format: int32
+          type: integer
+        isEnabled:
+          type: boolean
+        providerRefId:
+          format: int32
+          type: integer
+        readonly:
+          type: boolean
+        status:
+          format: int32
+          type: integer
+        firewallRuleAction:
+          format: int32
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          type: integer
     FireHost.Infrastructure.Firewall.Models.Rules.Rule:
       type: object
       properties:
@@ -2424,78 +2653,212 @@ components:
           type: integer
         isDeleted:
           type: boolean
-    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRule:
+    FireHost.Infrastructure.Firewall.Models.Groups.GroupDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        sources:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember'
-        destinations:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember'
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallService'
-        action:
-          type: string
+        deviceId:
+          format: int32
+          type: integer
         name:
           type: string
-        sortOrder:
+        description:
+          type: string
+        type:
+          type: string
+          readOnly: true
+        values:
+          type: array
+          items:
+            type: string
+        isReadonly:
+          type: boolean
+        vcdOrgVdcId:
           format: int32
           type: integer
-        isEnabled:
-          type: boolean
-        providerRefId:
-          format: int32
-          type: integer
-        readonly:
-          type: boolean
         status:
           format: int32
           type: integer
-        firewallRuleAction:
+        retryCount:
           format: int32
-          enum:
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
           type: integer
-    FireHost.Services.Ipam.Data.Domain.AssignExtDnatRequest:
+        isDefaultGroupCopied:
+          type: boolean
+    FireHost.Infrastructure.Firewall.Models.Rules.RuleMember:
       type: object
       properties:
-        quantity:
+        id:
           format: int32
           type: integer
-        locationId:
-          format: int32
-          type: integer
-        isRecovery:
+        name:
+          type: string
+        type:
+          type: string
+          readOnly: true
+        joinedValues:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        isReadOnly:
           type: boolean
+    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallService:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        deviceId:
+          format: int32
+          type: integer
+        location:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        name:
+          type: string
+        values:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
+    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateIndividualRuleSampleRequest:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        deviceId:
+          format: int32
+          type: integer
+        rule:
+          $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRule'
       example:
-        quantity: 1
-        locationId: 1
-        isRecovery: false
-    FireHost.Infrastructure.Network.Models.SslVpnConnectionDetail:
+        id: 2
+        deviceId: 3
+        rule:
+          id: 0
+          sources:
+          - id: 5
+            deviceId: 3
+            name: Source 1
+            type: group
+            ipGroups: 192.168.10.10
+            isReadonly: false
+            vcdOrgVdcId: 0
+            status: 5
+            retryCount: 0
+            joinedValues: 192.168.10.10
+            values:
+            - 192.168.10.10
+          destinations:
+          - id: 3
+            deviceId: 3
+            name: Destination 1
+            type: group
+            ipGroups: 192.168.10.12
+            isReadonly: false
+            vcdOrgVdcId: 0
+            status: 5
+            retryCount: 0
+            joinedValues: 192.168.10.12
+            values:
+            - 192.168.10.12
+          services:
+          - id: 2
+            deviceId: 3
+            location: vsite-a
+            accountId: 2
+            name: Service 2
+            values:
+            - port: 8888
+              protocol: tcp
+              isConsistent: false
+            - port: 21
+              protocol: udp
+              isConsistent: false
+          action: allow
+          name: Test Rule edited
+          sortOrder: 12
+          isEnabled: true
+          providerRefId: 1069
+          readonly: false
+          status: 4
+          firewallRuleAction: 2
+    FireHost.Infrastructure.Network.Models.L2LConfigurationDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        edgeId:
+          format: int32
+          type: integer
+        edgeIp:
+          type: string
+        location:
+          type: string
+        zone:
+          type: string
+        lastModified:
+          format: date-time
+          type: string
+        sites:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Network.Models.L2LSiteDto'
+        tenantCidr:
+          type: string
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+        vcdOrgId:
+          format: int32
+          type: integer
+        hasGen34:
+          type: boolean
+        isNsxT:
+          type: boolean
+    FireHost.Services.Common.Events.Compute.Environment.Catalogs.NatRuleRefactoredDto:
       type: object
       properties:
         location:
           type: string
-        host:
+        zone:
           type: string
-        port:
+        destinationIpId:
           format: int32
           type: integer
+        type:
+          type: string
+        sourceIpIds:
+          type: array
+          items:
+            format: int32
+            type: integer
+          readOnly: true
+    FireHost.Infrastructure.Network.Models.CancelSslCertificateRequestDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        cname:
+          type: string
+        expiryDate:
+          format: date-time
+          type: string
+        tickets:
+          type: string
+        status:
+          type: string
     FireHost.Services.Http.Firewall.ApiExamples.Models.CreateRuleSampleRequest:
       type: object
       properties:
@@ -2568,265 +2931,22 @@ components:
           type: string
         clientDownloadUrl:
           type: string
-    FireHost.Services.Common.Events.Compute.Environment.Catalogs.NatRuleRefactoredDto:
+    FireHost.Services.Ipam.Data.Domain.AssignExtDnatRequest:
       type: object
       properties:
-        location:
-          type: string
-        zone:
-          type: string
-        destinationIpId:
+        quantity:
           format: int32
           type: integer
-        type:
-          type: string
-        sourceIpIds:
-          type: array
-          items:
-            format: int32
-            type: integer
-          readOnly: true
-    FireHost.Infrastructure.Firewall.Models.FirewallDeviceDto:
-      type: object
-      properties:
-        id:
+        locationId:
           format: int32
           type: integer
-        name:
-          type: string
-        location:
-          type: string
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateIndividualRuleSampleRequest:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        deviceId:
-          format: int32
-          type: integer
-        rule:
-          $ref: '#/components/schemas/FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRule'
-      example:
-        id: 2
-        deviceId: 3
-        rule:
-          id: 0
-          sources:
-          - id: 5
-            deviceId: 3
-            name: Source 1
-            type: group
-            ipGroups: 192.168.10.10
-            isReadonly: false
-            vcdOrgVdcId: 0
-            status: 5
-            retryCount: 0
-            joinedValues: 192.168.10.10
-            values:
-            - 192.168.10.10
-          destinations:
-          - id: 3
-            deviceId: 3
-            name: Destination 1
-            type: group
-            ipGroups: 192.168.10.12
-            isReadonly: false
-            vcdOrgVdcId: 0
-            status: 5
-            retryCount: 0
-            joinedValues: 192.168.10.12
-            values:
-            - 192.168.10.12
-          services:
-          - id: 2
-            deviceId: 3
-            location: vsite-a
-            accountId: 2
-            name: Service 2
-            values:
-            - port: 8888
-              protocol: tcp
-              isConsistent: false
-            - port: 21
-              protocol: udp
-              isConsistent: false
-          action: allow
-          name: Test Rule edited
-          sortOrder: 12
-          isEnabled: true
-          providerRefId: 1069
-          readonly: false
-          status: 4
-          firewallRuleAction: 2
-    FireHost.Infrastructure.Network.Models.UpdateSslCertificateRequestDto:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        id:
-          format: int32
-          type: integer
-        cname:
-          type: string
-        expiry:
-          format: date-time
-          type: string
-        status:
-          type: string
-        ticket:
-          type: string
-    FireHost.Infrastructure.Network.Models.SslCertificateDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        cname:
-          type: string
-        sku:
-          type: string
-        certificateType:
-          type: string
-        orderDate:
-          format: date-time
-          type: string
-        expiryDate:
-          format: date-time
-          type: string
-        uniqueProductIdentifier:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-        accountName:
-          type: string
-        tickets:
-          type: string
-        status:
-          type: string
-    FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto:
-      type: object
-      properties:
-        port:
-          format: int32
-          type: integer
-        protocol:
-          type: string
-        subprotocol:
-          type: string
-        minimum:
-          format: int32
-          type: integer
-        maximum:
-          format: int32
-          type: integer
-        isConsistent:
+        isRecovery:
           type: boolean
-    FireHost.Services.Http.Network.ApiExamples.Models.AssignPrivateIpToVmSampleRequest:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-          readOnly: true
-        id:
-          format: int32
-          type: integer
-          readOnly: true
       example:
-        vmId: 1
-        id: 518
-    FireHost.Services.Http.Firewall.ApiExamples.Models.UpdateGroupByIdSampleRequest:
-      type: object
-      properties:
-        deviceId:
-          format: int32
-          type: integer
-          readOnly: true
-        id:
-          format: int32
-          type: integer
-          readOnly: true
-        name:
-          type: string
-          readOnly: true
-        description:
-          type: string
-          readOnly: true
-        values:
-          type: array
-          items:
-            type: string
-          readOnly: true
-      example:
-        deviceId: 2
-        id: 8
-        name: Local IP
-        description: ''
-        values:
-        - 192.158.1.1
-    FireHost.Infrastructure.Firewall.Models.Services.ServiceUpdatedDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        deviceId:
-          format: int32
-          type: integer
-        location:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        values:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Services.ServiceValueDto'
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        status:
-          format: int32
-          type: integer
-        retryCount:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Network.ApiExamples.Models.UnAssignIpFromVmSampleRequest:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-          readOnly: true
-        id:
-          format: int32
-          type: integer
-          readOnly: true
-      example:
-        vmId: 1
-        id: 518
-    FireHost.Infrastructure.Network.Models.SslVpnUserDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        email:
-          type: string
-        isSslVpnEnabled:
-          type: boolean
-    FireHost.Services.Http.Network.ApiExamples.Models.NatSampleRequest:
+        quantity: 1
+        locationId: 1
+        isRecovery: false
+    FireHost.Services.Http.Network.ApiExamples.Models.UpdateNatSampleRequest:
       type: object
       properties:
         vmId:
@@ -2841,133 +2961,16 @@ components:
           items:
             type: string
           readOnly: true
-        id:
+        vcdOrgVdcId:
           format: int32
           type: integer
-          readOnly: true
       example:
         vmId: 2
         translatedIp: 100.10.10.1
         originalIps:
         - 192.158.1.1
-        id: 1
-    FireHost.Infrastructure.Network.Models.CancelSslCertificateRequestDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        cname:
-          type: string
-        expiryDate:
-          format: date-time
-          type: string
-        tickets:
-          type: string
-        status:
-          type: string
-    FireHost.Services.Common.Events.Compute.Environment.Catalogs.VmNatRuleDto:
-      type: object
-      properties:
-        vmIp:
-          type: string
-        publicIps:
-          type: array
-          items:
-            type: string
-          readOnly: true
-    FireHost.Infrastructure.Network.Models.SslVpnMemberDto:
-      type: object
-      properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        id:
-          format: int32
-          type: integer
-        email:
-          type: string
-        isSslVpnEnabled:
-          type: boolean
-          readOnly: true
-        vpcData:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Environment.VdcDto'
-    FireHost.Services.Ipam.Data.Domain.IpDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        location:
-          type: string
-        zone:
-          type: string
-        ip:
-          type: string
-        state:
-          type: string
-        type:
-          type: string
-        assignedTo:
-          $ref: '#/components/schemas/FireHost.Services.Ipam.Data.Domain.AssignedToDto'
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        isRecovery:
-          type: boolean
-    FireHost.Services.Common.Data.Domain.Nat.IpAddressModel:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        ipAddress:
-          type: string
-        subnetId:
-          format: int32
-          type: integer
-        ipStateId:
-          format: int32
-          type: integer
-        location:
-          type: string
-        type:
-          type: string
-        cancelOrgRequestedSagaId:
-          type: string
-        ipState:
-          format: int32
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          type: integer
-          readOnly: true
-    FireHost.Services.Ipam.Data.Domain.AssignedToDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        type:
-          type: string
-        name:
-          type: string
-        assignmentType:
-          type: string
-    FireHost.Services.Http.Firewall.ApiExamples.Models.SampleFirewallRuleMember:
+        vcdOrgVdcId: 1
+    FireHost.Infrastructure.Firewall.Models.Rules.RuleSet:
       type: object
       properties:
         id:
@@ -2976,32 +2979,29 @@ components:
         deviceId:
           format: int32
           type: integer
-        name:
-          type: string
-        description:
-          type: string
-        type:
-          type: string
-        ipGroups:
-          type: string
-        isReadonly:
+        accountId:
+          format: int32
+          type: integer
+        rules:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Firewall.Models.Rules.Rule'
+        staged:
           type: boolean
         vcdOrgVdcId:
           format: int32
           type: integer
-        status:
-          format: int32
-          type: integer
-        retryCount:
-          format: int32
-          type: integer
-        joinedValues:
+        isOverride:
+          type: boolean
+        ipGroups:
           type: string
-        values:
-          type: array
-          items:
-            type: string
-          readOnly: true
+        isRulePendingGlobal:
+          type: boolean
+        isRuleErrorGlobal:
+          type: boolean
+        totalRulesInRuleSet:
+          format: int32
+          type: integer
   securitySchemes:
     Authorization:
       type: apiKey

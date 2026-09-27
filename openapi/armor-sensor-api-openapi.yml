@@ -81,15 +81,6 @@ components:
         lastReportedIn:
           type: string
           description: Datetime when sensor was last communicated with by the Armor platform
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   responses:
     Forbidden:
       description: Forbidden
@@ -103,6 +94,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

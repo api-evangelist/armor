@@ -288,6 +288,12 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     AgentManagementResourceByTag:
       type: object
       properties:
@@ -299,21 +305,6 @@ components:
           description: The list of the tags.
           items:
             $ref: '#/components/schemas/AgentManagementTag'
-    AgentManagementTag:
-      type: object
-      properties:
-        Key:
-          type: string
-          description: The name of the tag.
-        Value:
-          type: string
-          description: The value of the tag.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     AgentManagementTagsResult:
       type: object
       properties:
@@ -323,6 +314,18 @@ components:
         ResourceId:
           type: string
           description: The coreInstance of the Armor Agent.
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+        Islocked:
+          type: boolean
+          description: Whether the tag is locked.
+    AgentManagementResourceTag:
+      type: object
+      properties:
         Key:
           type: string
           description: The name of the tag.
@@ -354,7 +357,7 @@ components:
           description: The list of tags.
           items:
             $ref: '#/components/schemas/AgentManagementTag'
-    AgentManagementResourceTag:
+    AgentManagementTag:
       type: object
       properties:
         Key:
@@ -363,27 +366,9 @@ components:
         Value:
           type: string
           description: The value of the tag.
-        Islocked:
-          type: boolean
-          description: Whether the tag is locked.
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   responses:
     Forbidden:
       description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
       content:
         application/json:
           schema:
@@ -394,6 +379,21 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

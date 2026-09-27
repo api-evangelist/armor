@@ -105,11 +105,6 @@ paths:
                 type: string
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     ServiceRequestListResponse:
       type: object
       properties:
@@ -158,6 +153,11 @@ components:
                 type: string
               orgName:
                 type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

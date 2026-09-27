@@ -150,6 +150,21 @@ paths:
       deprecated: false
 components:
   schemas:
+    FireHost.Infrastructure.Accounts.Data.Persistence.ApiKey:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        lastUsed:
+          format: date-time
+          type: string
+        keyStatus:
+          type: string
     FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyRequest:
       type: object
       properties:
@@ -170,6 +185,9 @@ components:
           type: string
         newApiKeyName:
           type: string
+    System.Object:
+      type: object
+      properties: {}
     FireHost.Infrastructure.Accounts.Data.Persistence.CreateApiKeyResponse:
       type: object
       properties:
@@ -178,24 +196,6 @@ components:
         apiKey:
           type: string
         name:
-          type: string
-    System.Object:
-      type: object
-      properties: {}
-    FireHost.Infrastructure.Accounts.Data.Persistence.ApiKey:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        lastUsed:
-          format: date-time
-          type: string
-        keyStatus:
           type: string
   securitySchemes:
     Authorization:

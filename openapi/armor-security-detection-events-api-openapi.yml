@@ -51,6 +51,12 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     SecurityDetectionEvent:
       type: object
       properties:
@@ -112,12 +118,6 @@ components:
           - string
           - 'null'
           description: The username associated with this event.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
   responses:
     Forbidden:
       description: Forbidden

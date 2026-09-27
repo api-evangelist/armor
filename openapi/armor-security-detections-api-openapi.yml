@@ -228,19 +228,6 @@ components:
         message:
           type: string
           description: Error or informational message
-    DeliveryReceipt:
-      type: object
-      properties:
-        receiptId:
-          type: string
-          description: The receiptId of notification sent.
-        dateTime:
-          type: string
-          format: date-time
-          description: The date and time notification sent.
-        status:
-          type: string
-          description: The status of receipt.
     SecurityDetectionsResponse:
       type: object
       properties:
@@ -258,6 +245,19 @@ components:
           description: List of SecurityDetection records.
           items:
             $ref: '#/components/schemas/SecurityDetection'
+    DeliveryReceipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+          description: The receiptId of notification sent.
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time notification sent.
+        status:
+          type: string
+          description: The status of receipt.
     SecurityDetection:
       type: object
       properties:

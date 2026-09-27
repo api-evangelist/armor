@@ -79,6 +79,19 @@ paths:
           description: Forbidden
 components:
   schemas:
+    DetailedVSReportForExport:
+      type: object
+      properties:
+        reportDate:
+          type: string
+          format: date-time
+          description: Report date
+        data:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+          description: Export data rows
     SummaryReport:
       type: object
       properties:
@@ -119,19 +132,6 @@ components:
         format:
           type: string
           description: Report format
-    DetailedVSReportForExport:
-      type: object
-      properties:
-        reportDate:
-          type: string
-          format: date-time
-          description: Report date
-        data:
-          type: array
-          items:
-            type: object
-            additionalProperties: true
-          description: Export data rows
   securitySchemes:
     OAuth2:
       type: oauth2

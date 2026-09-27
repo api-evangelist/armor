@@ -126,22 +126,6 @@ components:
         message:
           type: string
           description: Response message
-    CloudConnectorByIdGroups:
-      type: object
-      properties:
-        groupId:
-          type: string
-          description: Group ID
-        groupName:
-          type: string
-          description: Group name
-    CloudConnectors:
-      type: object
-      properties:
-        connectors:
-          type: array
-          items:
-            $ref: '#/components/schemas/CloudConnectorDetails'
     CloudConnectorDetails:
       type: object
       properties:
@@ -209,6 +193,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CloudConnectorByIdGroups'
+    CloudConnectors:
+      type: object
+      properties:
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorDetails'
+    CloudConnectorByIdGroups:
+      type: object
+      properties:
+        groupId:
+          type: string
+          description: Group ID
+        groupName:
+          type: string
+          description: Group name
     CloudConnectorRequestDto:
       type: object
       required:

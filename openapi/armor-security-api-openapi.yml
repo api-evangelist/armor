@@ -1043,6 +1043,21 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    FireHost.Infrastructure.LogManagement.Models.AccountLogUtilizationTotals:
+      type: object
+      properties:
+        totalLogUsage:
+          format: double
+          type: number
+        usageDate:
+          format: date-time
+          type: string
+        totalLogUsageInGb:
+          format: double
+          type: number
+          readOnly: true
+        label:
+          type: string
     FireHost.Infrastructure.LogManagement.Models.LogSourceDetails:
       type: object
       properties:
@@ -1063,21 +1078,55 @@ components:
         logSourceTypeId:
           format: int32
           type: integer
-    FireHost.Infrastructure.LogManagement.Models.AccountLogUtilizationTotals:
+    FireHost.Infrastructure.Trend.Models.AvamVmOverAllStatus:
       type: object
       properties:
-        totalLogUsage:
-          format: double
-          type: number
-        usageDate:
-          format: date-time
+        totalOkStatus:
+          format: int32
+          type: integer
+        totalWarningStatus:
+          format: int32
+          type: integer
+        totalCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest:
+      type: object
+      properties:
+        coreInstanceId:
           type: string
-        totalLogUsageInGb:
-          format: double
-          type: number
-          readOnly: true
-        label:
+        vmId:
+          format: int32
+          type: integer
+        retentionType:
+          format: int32
+          description: Log Retention type. Default value is 13 months since the feature initial design is for upgrade from the default 90 days.
+          enum:
+          - 0
+          - 1
+          type: integer
+      example:
+        coreInstanceId: 57c48819-9390-4f01-9257-5fc766591c61
+        vmId: 0
+        retentionType: 1
+    FireHost.Infrastructure.LogManagement.Models.ConnectorRequest:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        userId:
+          format: int32
+          type: integer
+        sourceName:
           type: string
+        sourceVendor:
+          type: string
+      example:
+        accountId: 2
+        userId: 2002
+        sourceName: EC2
+        sourceVendor: Amazon Web Services
     FireHost.Infrastructure.LogManagement.Models.VmLogDetails:
       type: object
       properties:
@@ -1112,43 +1161,14 @@ components:
         id:
           format: int32
           type: integer
-    FireHost.Infrastructure.LogSearch.Models.ExecuteChaosSearchTemplateResult:
+    Nest.IAggregate:
       type: object
       properties:
-        total:
-          format: int64
-          type: integer
-        items:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              $ref: '#/components/schemas/System.Object'
-        filterOptions:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        aggregations:
+        meta:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/System.Object'
-    FireHost.Infrastructure.Trend.Models.SecurityOverAllStatusDto:
-      type: object
-      properties:
-        totalOkStatus:
-          format: int32
-          type: integer
-        totalWarningStatus:
-          format: int32
-          type: integer
-        totalCriticalStatus:
-          format: int32
-          type: integer
-    System.Object:
-      type: object
-      properties: {}
+          readOnly: true
     FireHost.Infrastructure.Trend.Models.AvamGridDto:
       type: object
       properties:
@@ -1206,6 +1226,54 @@ components:
           type: integer
         isAvamEnabled:
           type: boolean
+    FireHost.Services.Http.TimeSeries.Models.TimeSeriesDataPointResponseDto:
+      type: object
+      properties:
+        t:
+          format: date-time
+          type: string
+        v:
+          format: double
+          type: number
+    FireHost.Infrastructure.Trend.Models.SecurityStatusDto:
+      type: object
+      properties:
+        avamOkStatus:
+          format: int32
+          type: integer
+        avamWarningStatus:
+          format: int32
+          type: integer
+        avamCriticalStatus:
+          format: int32
+          type: integer
+        fimOkStatus:
+          format: int32
+          type: integer
+        fimWarningStatus:
+          format: int32
+          type: integer
+        fimCriticalStatus:
+          format: int32
+          type: integer
+        osPatchingOkStatus:
+          format: int32
+          type: integer
+        osPatchingWarningStatus:
+          format: int32
+          type: integer
+        osPatchingCriticalStatus:
+          format: int32
+          type: integer
+        overAllOkStatus:
+          format: int32
+          type: integer
+        overAllWarningStatus:
+          format: int32
+          type: integer
+        overAllCriticalStatus:
+          format: int32
+          type: integer
     FireHost.Infrastructure.Trend.Models.FimOverAllStatusDto:
       type: object
       properties:
@@ -1218,75 +1286,6 @@ components:
         totalCriticalStatus:
           format: int32
           type: integer
-    FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse:
-      type: object
-      properties:
-        statusCode:
-          format: int32
-          type: integer
-        warning:
-          type: string
-    FireHost.Infrastructure.LogManagement.Models.ConnectorRequest:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        userId:
-          format: int32
-          type: integer
-        sourceName:
-          type: string
-        sourceVendor:
-          type: string
-      example:
-        accountId: 2
-        userId: 2002
-        sourceName: EC2
-        sourceVendor: Amazon Web Services
-    FireHost.Infrastructure.LogManagement.Models.RetentionPlanTypesDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        description:
-          type: string
-        isDefault:
-          type: boolean
-        sortOrder:
-          format: int32
-          type: integer
-        skuBss:
-          type: string
-        title:
-          type: string
-        subTitle:
-          type: string
-        imageList:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        isCurrentPlan:
-          type: boolean
-        helpText:
-          type: string
-    FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest:
-      type: object
-      properties:
-        accountLogRetentionType:
-          format: int32
-          enum:
-          - 30
-          - 90
-          - 400
-          type: integer
-        retainLast30DaysData:
-          type: boolean
-      example:
-        accountLogRetentionType: 90
-        retainLast30DaysData: true
     FireHost.Infrastructure.Trend.Models.TrendCoreInstanceState:
       type: object
       properties:
@@ -1331,183 +1330,6 @@ components:
         lastDefinitionUpdatedDate:
           format: date-time
           type: string
-    FireHost.Infrastructure.Trend.Models.SecurityStatusDto:
-      type: object
-      properties:
-        avamOkStatus:
-          format: int32
-          type: integer
-        avamWarningStatus:
-          format: int32
-          type: integer
-        avamCriticalStatus:
-          format: int32
-          type: integer
-        fimOkStatus:
-          format: int32
-          type: integer
-        fimWarningStatus:
-          format: int32
-          type: integer
-        fimCriticalStatus:
-          format: int32
-          type: integer
-        osPatchingOkStatus:
-          format: int32
-          type: integer
-        osPatchingWarningStatus:
-          format: int32
-          type: integer
-        osPatchingCriticalStatus:
-          format: int32
-          type: integer
-        overAllOkStatus:
-          format: int32
-          type: integer
-        overAllWarningStatus:
-          format: int32
-          type: integer
-        overAllCriticalStatus:
-          format: int32
-          type: integer
-    Nest.IAggregate:
-      type: object
-      properties:
-        meta:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-          readOnly: true
-    FireHost.Services.Http.TimeSeries.Models.TimeSeriesDataPointResponseDto:
-      type: object
-      properties:
-        t:
-          format: date-time
-          type: string
-        v:
-          format: double
-          type: number
-    FireHost.Infrastructure.Trend.Models.CoreInstanceTrendSecurityDetails:
-      type: object
-      properties:
-        hostname:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-        providerRefId:
-          type: string
-        lastAvamScan:
-          format: date-time
-          type: string
-        lastCommunicationDate:
-          format: date-time
-          type: string
-        isAvamRealtime:
-          type: boolean
-        isFimRealtime:
-          type: boolean
-        biosUuid:
-          type: string
-    FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        modifiedByUserId:
-          format: int32
-          type: integer
-        modifiedDate:
-          format: date-time
-          type: string
-        isEnabled:
-          type: boolean
-    FireHost.Infrastructure.Trend.Models.AvamVmOverAllStatus:
-      type: object
-      properties:
-        totalOkStatus:
-          format: int32
-          type: integer
-        totalWarningStatus:
-          format: int32
-          type: integer
-        totalCriticalStatus:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateResult:
-      type: object
-      properties:
-        total:
-          format: int64
-          type: integer
-        items:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              $ref: '#/components/schemas/System.Object'
-        filterOptions:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-        aggregations:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/Nest.IAggregate'
-    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest:
-      type: object
-      properties:
-        viewName:
-          type: string
-        parameters:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/System.Object'
-      example:
-        viewName: Trend FIM List
-        parameters:
-          coreinstance_id: b7939804-3190-494e-933f-f837fe545c3a
-          size: 10
-          from: 0
-          include_filteroptions: true
-          include_aggregations: true
-    FireHost.Infrastructure.LogManagement.Models.LogServiceTypeResponse:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        description:
-          type: string
-        planRate:
-          format: double
-          type: number
-        sku:
-          type: string
-    FireHost.Services.Http.LogManagement.Requests.RetentionUpgradeRequest:
-      type: object
-      properties:
-        coreInstanceId:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-        retentionType:
-          format: int32
-          description: Log Retention type. Default value is 13 months since the feature initial design is for upgrade from the default 90 days.
-          enum:
-          - 0
-          - 1
-          type: integer
-      example:
-        coreInstanceId: 57c48819-9390-4f01-9257-5fc766591c61
-        vmId: 0
-        retentionType: 1
     FireHost.Infrastructure.LogManagement.Models.LogInsightOverviewResponse:
       type: object
       properties:
@@ -1541,33 +1363,56 @@ components:
         connectedSources:
           format: int32
           type: integer
-    FireHost.Infrastructure.LogManagement.Models.AccountLogStorageUtilizedDto:
+    FireHost.Infrastructure.LogManagement.Models.RetentionPlanTypesDto:
       type: object
       properties:
-        day:
-          format: date-time
+        id:
+          format: int32
+          type: integer
+        description:
           type: string
-        logSize:
-          format: double
-          type: number
-        armrorAgentLogSize:
-          format: double
-          type: number
-        logsAndDataManagementLogSize:
-          format: double
-          type: number
-        logSizeGb:
-          format: double
-          type: number
+        isDefault:
+          type: boolean
+        sortOrder:
+          format: int32
+          type: integer
+        skuBss:
+          type: string
+        title:
+          type: string
+        subTitle:
+          type: string
+        imageList:
+          type: array
+          items:
+            type: string
           readOnly: true
-        armrorAgentLogSizeGb:
-          format: double
-          type: number
-          readOnly: true
-        logsAndDataManagementLogSizeGb:
-          format: double
-          type: number
-          readOnly: true
+        isCurrentPlan:
+          type: boolean
+        helpText:
+          type: string
+    FireHost.Infrastructure.LogSearch.Models.ExecuteChaosSearchTemplateResult:
+      type: object
+      properties:
+        total:
+          format: int64
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/System.Object'
+        filterOptions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        aggregations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
     FireHost.Infrastructure.Trend.Models.FimGridDto:
       type: object
       properties:
@@ -1613,6 +1458,161 @@ components:
         biosUuid:
           type: string
         isFimEnabled:
+          type: boolean
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Infrastructure.LogManagement.Models.LogServiceTypeResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        planRate:
+          format: double
+          type: number
+        sku:
+          type: string
+    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateRequest:
+      type: object
+      properties:
+        viewName:
+          type: string
+        parameters:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/System.Object'
+      example:
+        viewName: Trend FIM List
+        parameters:
+          coreinstance_id: b7939804-3190-494e-933f-f837fe545c3a
+          size: 10
+          from: 0
+          include_filteroptions: true
+          include_aggregations: true
+    FireHost.Infrastructure.Trend.Models.CoreInstanceTrendSecurityDetails:
+      type: object
+      properties:
+        hostname:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        providerRefId:
+          type: string
+        lastAvamScan:
+          format: date-time
+          type: string
+        lastCommunicationDate:
+          format: date-time
+          type: string
+        isAvamRealtime:
+          type: boolean
+        isFimRealtime:
+          type: boolean
+        biosUuid:
+          type: string
+    FireHost.Infrastructure.Trend.Models.SecurityOverAllStatusDto:
+      type: object
+      properties:
+        totalOkStatus:
+          format: int32
+          type: integer
+        totalWarningStatus:
+          format: int32
+          type: integer
+        totalCriticalStatus:
+          format: int32
+          type: integer
+    FireHost.Services.Http.LogManagement.Requests.AccountRetentionPlanRequest:
+      type: object
+      properties:
+        accountLogRetentionType:
+          format: int32
+          enum:
+          - 30
+          - 90
+          - 400
+          type: integer
+        retainLast30DaysData:
+          type: boolean
+      example:
+        accountLogRetentionType: 90
+        retainLast30DaysData: true
+    FireHost.Infrastructure.LogSearch.Models.ExecuteSearchTemplateResult:
+      type: object
+      properties:
+        total:
+          format: int64
+          type: integer
+        items:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              $ref: '#/components/schemas/System.Object'
+        filterOptions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        aggregations:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/Nest.IAggregate'
+    FireHost.Infrastructure.Patching.Models.PackageDepricatedResponse:
+      type: object
+      properties:
+        statusCode:
+          format: int32
+          type: integer
+        warning:
+          type: string
+    FireHost.Infrastructure.LogManagement.Models.AccountLogStorageUtilizedDto:
+      type: object
+      properties:
+        day:
+          format: date-time
+          type: string
+        logSize:
+          format: double
+          type: number
+        armrorAgentLogSize:
+          format: double
+          type: number
+        logsAndDataManagementLogSize:
+          format: double
+          type: number
+        logSizeGb:
+          format: double
+          type: number
+          readOnly: true
+        armrorAgentLogSizeGb:
+          format: double
+          type: number
+          readOnly: true
+        logsAndDataManagementLogSizeGb:
+          format: double
+          type: number
+          readOnly: true
+    FireHost.Infrastructure.LogManagement.Models.LogDepotSubscription:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        modifiedByUserId:
+          format: int32
+          type: integer
+        modifiedDate:
+          format: date-time
+          type: string
+        isEnabled:
           type: boolean
   securitySchemes:
     Authorization:

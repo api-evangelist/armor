@@ -120,8 +120,8 @@ components:
         statusCode:
           type: integer
   responses:
-    CustomerNotFound:
-      description: Unable to retrieve customer records
+    InternalServerError:
+      description: Internal server error occurred while processing the request
       content:
         application/json:
           schema:
@@ -132,8 +132,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error occurred while processing the request
+    CustomerNotFound:
+      description: Unable to retrieve customer records
       content:
         application/json:
           schema:

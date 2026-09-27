@@ -220,6 +220,61 @@ components:
       format: uuid
       description: A universally unique identifier (UUID)
       example: 550e8400-e29b-41d4-a716-446655440000
+    FlowCollector:
+      type: object
+      properties:
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        flowCollectorName:
+          type:
+          - string
+          - 'null'
+          description: The friendly name of the Flow Collector.
+        ipAddress:
+          type: string
+          description: The IP address of the flow collector.
+    IpPort:
+      type: integer
+      minimum: 1
+      maximum: 65535
+      description: A valid IP port number
+      example: 514
+    FlowSource:
+      type: object
+      properties:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        flowCollector:
+          $ref: '#/components/schemas/FlowCollector'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
+        orgId:
+          type:
+          - integer
+          - 'null'
+          description: The unique identifier of organization with which this flow source is associated.
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The state of the Flow Source.
+          enum:
+          - Allocated
+          - Unallocated
+          - Not Configured
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
     FlowSourceEditRequest:
       type: object
       required:
@@ -280,61 +335,6 @@ components:
           - ipfix
           - sflow
           - jflow
-    FlowSource:
-      type: object
-      properties:
-        flowSourceId:
-          $ref: '#/components/schemas/Guid'
-        flowCollector:
-          $ref: '#/components/schemas/FlowCollector'
-        port:
-          $ref: '#/components/schemas/IpPort'
-        type:
-          type: string
-          description: The type of network flow data this source can consume.
-          enum:
-          - ipfix
-          - sflow
-          - jflow
-        orgId:
-          type:
-          - integer
-          - 'null'
-          description: The unique identifier of organization with which this flow source is associated.
-        siemFlowSourceId:
-          type: integer
-          description: The unique identifier of the flow source in the SIEM.
-        state:
-          type:
-          - string
-          - 'null'
-          description: The state of the Flow Source.
-          enum:
-          - Allocated
-          - Unallocated
-          - Not Configured
-        version:
-          type: integer
-          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
-    FlowCollector:
-      type: object
-      properties:
-        flowCollectorId:
-          $ref: '#/components/schemas/Guid'
-        flowCollectorName:
-          type:
-          - string
-          - 'null'
-          description: The friendly name of the Flow Collector.
-        ipAddress:
-          type: string
-          description: The IP address of the flow collector.
-    IpPort:
-      type: integer
-      minimum: 1
-      maximum: 65535
-      description: A valid IP port number
-      example: 514
   securitySchemes:
     oauth2:
       type: oauth2

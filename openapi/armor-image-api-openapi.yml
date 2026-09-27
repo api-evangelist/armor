@@ -68,46 +68,12 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    VulnerabilitiesResponse:
-      type: object
-      description: Count of vulnerabilities per severity level
-      properties:
-        critical:
-          type: number
-          description: Count of "Critical" severity vulnerabilities
-        high:
-          type: number
-          description: Count of "High" severity vulnerabilities
-        medium:
-          type: number
-          description: Count of "Medium" severity vulnerabilities
-        low:
-          type: number
-          description: Count of "Low" severity vulnerabilities
-        info:
-          type: number
-          description: Count of "Info" severity vulnerabilities
     Message:
       type: object
       properties:
         message:
           type: string
           description: Error or informational message
-    LayerInfo:
-      type: object
-      properties:
-        size:
-          type: number
-          description: The size in bytes
-        tags:
-          type: string
-          description: The tags applied to the layer
-        layerCreatedDate:
-          type: string
-          description: The date on which layer is created
-        layerCreatedBy:
-          type: string
-          description: Program details regarding layer creation
     ImageDetailResponse:
       type: object
       properties:
@@ -176,6 +142,34 @@ components:
         imageModifiedDate:
           type: string
           description: Datetime on which the image was updated
+    LabelInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the label
+        value:
+          type: string
+          description: Corresponding value of the label
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
     ViewAllImagesResponse:
       type: object
       properties:
@@ -223,15 +217,21 @@ components:
         imageModifiedDate:
           type: string
           description: The date on which the image is modified
-    LabelInfo:
+    LayerInfo:
       type: object
       properties:
-        key:
+        size:
+          type: number
+          description: The size in bytes
+        tags:
           type: string
-          description: Key of the label
-        value:
+          description: The tags applied to the layer
+        layerCreatedDate:
           type: string
-          description: Corresponding value of the label
+          description: The date on which layer is created
+        layerCreatedBy:
+          type: string
+          description: Program details regarding layer creation
     SoftwareInfo:
       type: object
       properties:
@@ -244,6 +244,22 @@ components:
         version:
           type: string
           description: The version of the software
+  parameters:
+    ImageId:
+      name: id
+      in: path
+      required: true
+      description: Image ID
+      schema:
+        type: integer
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   responses:
     Forbidden:
       description: Forbidden
@@ -263,22 +279,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-    ImageId:
-      name: id
-      in: path
-      required: true
-      description: Image ID
-      schema:
-        type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

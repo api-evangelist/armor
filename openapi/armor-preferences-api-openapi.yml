@@ -99,21 +99,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    PreferenceListRequest:
-      type: object
-      required:
-      - orgId
-      - type
-      properties:
-        orgId:
-          type: integer
-          description: The unique identifier of organization.
-        type:
-          type: string
-          description: The type of preference.
-          enum:
-          - tours
-          - offenses
     Message:
       type: object
       properties:
@@ -143,6 +128,21 @@ components:
         preference:
           type: object
           description: An object map of preferences - the object properties depend on the preference type.
+    PreferenceListRequest:
+      type: object
+      required:
+      - orgId
+      - type
+      properties:
+        orgId:
+          type: integer
+          description: The unique identifier of organization.
+        type:
+          type: string
+          description: The type of preference.
+          enum:
+          - tours
+          - offenses
   responses:
     Forbidden:
       description: Forbidden

@@ -100,6 +100,18 @@ paths:
         required: true
 components:
   schemas:
+    FireHost.Infrastructure.Accounts.Data.Phone:
+      type: object
+      properties:
+        countryCode:
+          format: int32
+          type: integer
+        countryIsoCode:
+          type: string
+        number:
+          type: string
+        phoneExt:
+          type: string
     FireHost.Services.Http.Accounts.Models.GetUserResponse:
       type: object
       properties:
@@ -159,18 +171,6 @@ components:
           format: int32
           type: integer
           readOnly: true
-    FireHost.Infrastructure.Accounts.Data.Phone:
-      type: object
-      properties:
-        countryCode:
-          format: int32
-          type: integer
-        countryIsoCode:
-          type: string
-        number:
-          type: string
-        phoneExt:
-          type: string
   securitySchemes:
     Authorization:
       type: apiKey

@@ -82,84 +82,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    ThreatIndicator:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - IP Address
-          - Domain
-          - URL
-          - File Hash
-          - Email Address
-          - Unknown
-        value:
-          type: string
-        description:
-          type: string
-    AIMetrics:
-      type: object
-      properties:
-        ai_classification:
-          type: string
-          enum:
-          - True Positive
-          - False Positive
-          - Benign Positive
-          - Unknown
-        ai_threat_level:
-          type: string
-          enum:
-          - HIGH
-          - MEDIUM
-          - LOW
-        ai_historical_similarity:
-          type: string
-        ai_community_similarity:
-          type: string
-        time_saved_by_ai:
-          type: string
-        ai_speed_percentage:
-          type: string
-        time_to_triage:
-          type: string
-        time_to_investigate:
-          type: string
-        time_to_contain:
-          type: string
-    SimilarIncident:
-      type: object
-      properties:
-        incidentId:
-          type: string
-        severity:
-          type: string
-        detected_on:
-          type: string
-          format: date-time
-        displayName:
-          type: string
-        customer_name:
-          type: string
-    AttackEvent:
-      type: object
-      properties:
-        Timestamp:
-          type: string
-          format: date-time
-        description:
-          type: string
-        MitreTactic:
-          type: string
-        MitreTechnique:
-          type: string
-        MitreTacticId:
-          type: string
-        MitreTechniqueId:
-          type: string
-        IncidentCreatedBy:
-          type: string
     AIInvestigation:
       type: object
       properties:
@@ -179,6 +101,40 @@ components:
               type: string
         reason_for_recommeded_actions:
           type: string
+    ThreatIndicator:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - IP Address
+          - Domain
+          - URL
+          - File Hash
+          - Email Address
+          - Unknown
+        value:
+          type: string
+        description:
+          type: string
+    AttackEvent:
+      type: object
+      properties:
+        Timestamp:
+          type: string
+          format: date-time
+        description:
+          type: string
+        MitreTactic:
+          type: string
+        MitreTechnique:
+          type: string
+        MitreTacticId:
+          type: string
+        MitreTechniqueId:
+          type: string
+        IncidentCreatedBy:
+          type: string
     IncidentNotAvailableResponse:
       type: object
       properties:
@@ -193,14 +149,6 @@ components:
           type:
           - object
           - 'null'
-    IncidentDataResponse:
-      type: object
-      properties:
-        available:
-          type: boolean
-          example: true
-        data:
-          $ref: '#/components/schemas/IncidentData'
     IncidentData:
       type: object
       properties:
@@ -250,6 +198,58 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SimilarIncident'
+    AIMetrics:
+      type: object
+      properties:
+        ai_classification:
+          type: string
+          enum:
+          - True Positive
+          - False Positive
+          - Benign Positive
+          - Unknown
+        ai_threat_level:
+          type: string
+          enum:
+          - HIGH
+          - MEDIUM
+          - LOW
+        ai_historical_similarity:
+          type: string
+        ai_community_similarity:
+          type: string
+        time_saved_by_ai:
+          type: string
+        ai_speed_percentage:
+          type: string
+        time_to_triage:
+          type: string
+        time_to_investigate:
+          type: string
+        time_to_contain:
+          type: string
+    IncidentDataResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/IncidentData'
+    SimilarIncident:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        severity:
+          type: string
+        detected_on:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        customer_name:
+          type: string
     ErrorResponse:
       type: object
       properties:

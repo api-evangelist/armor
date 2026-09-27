@@ -176,47 +176,6 @@ components:
           type: string
           description: A message containing details about the request or of an exception thrown.
           example: A confirmation message or explanation.
-    IpProtocol:
-      type: string
-      description: An IP protocol (tcp, udp)
-      enum:
-      - tcp
-      - udp
-      example: tcp
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
-    LogSourceType:
-      type: object
-      properties:
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type.
-        name:
-          type: string
-          description: The friendly name of the log source type.
-        logSourceProtocols:
-          type: array
-          items:
-            type: integer
-          description: A collection of protocol IDs available for the type.
-        icon:
-          type: string
-          description: The Brandkit CSS class used to specify the icon for this log source type.
-        category:
-          type: string
-          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
-        vendor:
-          type: string
-          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
-        kbLink:
-          type: string
-          description: Link to the KB article for this log source type.
-        requiresFlow:
-          type: boolean
-          description: Whether or not network flow sources need to be enabled on the org for this log source type.
     LogSource:
       type: object
       properties:
@@ -279,6 +238,35 @@ components:
         modifiedByUserId:
           type: integer
           description: The unique identifier of the user that last updated this log source.
+    LogSourceType:
+      type: object
+      properties:
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type.
+        name:
+          type: string
+          description: The friendly name of the log source type.
+        logSourceProtocols:
+          type: array
+          items:
+            type: integer
+          description: A collection of protocol IDs available for the type.
+        icon:
+          type: string
+          description: The Brandkit CSS class used to specify the icon for this log source type.
+        category:
+          type: string
+          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
+        vendor:
+          type: string
+          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
+        kbLink:
+          type: string
+          description: Link to the KB article for this log source type.
+        requiresFlow:
+          type: boolean
+          description: Whether or not network flow sources need to be enabled on the org for this log source type.
     LogSourceCreateRequest:
       type: object
       required:
@@ -318,6 +306,18 @@ components:
         version:
           type: integer
           description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+      - tcp
+      - udp
+      example: tcp
   securitySchemes:
     oauth2:
       type: oauth2

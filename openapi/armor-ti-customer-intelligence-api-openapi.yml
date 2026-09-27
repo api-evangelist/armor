@@ -64,6 +64,34 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    OpenCTIVulnerability:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        x_opencti_cvss_base_score:
+          type: number
+          format: float
+          minimum: 0.0
+          maximum: 10.0
+        x_opencti_cvss_base_severity:
+          type: string
+          enum:
+          - NONE
+          - LOW
+          - MEDIUM
+          - HIGH
+          - CRITICAL
     OpenCTIReport:
       type: object
       properties:
@@ -125,34 +153,6 @@ components:
               type: array
               items:
                 $ref: '#/components/schemas/OpenCTIReport'
-    OpenCTIVulnerability:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        created:
-          type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-        x_opencti_cvss_base_score:
-          type: number
-          format: float
-          minimum: 0.0
-          maximum: 10.0
-        x_opencti_cvss_base_severity:
-          type: string
-          enum:
-          - NONE
-          - LOW
-          - MEDIUM
-          - HIGH
-          - CRITICAL
     ErrorResponse:
       type: object
       properties:

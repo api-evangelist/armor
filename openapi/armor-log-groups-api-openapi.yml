@@ -41,11 +41,6 @@ paths:
                   $ref: '#/components/schemas/LogGroup'
 components:
   schemas:
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
     LogGroup:
       type: object
       properties:
@@ -63,6 +58,11 @@ components:
         apiToken:
           type: string
           description: The apiToken used to configure a log source to belong to this log group.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     oauth2:
       type: oauth2

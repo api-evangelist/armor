@@ -121,31 +121,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    RefreshRequest:
-      type: object
-      required:
-      - token
-      properties:
-        token:
-          type: string
-          description: Current access token to refresh
-          example: eyJhbGciOiJSUzI1NiIs...
-    AuthorizeRequest:
-      type: object
-      required:
-      - username
-      - password
-      properties:
-        username:
-          type: string
-          format: email
-          description: User's email address
-          example: user@example.com
-        password:
-          type: string
-          format: password
-          description: User's password
-          writeOnly: true
     AuthorizeResponse:
       type: object
       properties:
@@ -192,6 +167,31 @@ components:
           - authorization_code
           description: Must be "authorization_code"
           example: authorization_code
+    AuthorizeRequest:
+      type: object
+      required:
+      - username
+      - password
+      properties:
+        username:
+          type: string
+          format: email
+          description: User's email address
+          example: user@example.com
+        password:
+          type: string
+          format: password
+          description: User's password
+          writeOnly: true
+    RefreshRequest:
+      type: object
+      required:
+      - token
+      properties:
+        token:
+          type: string
+          description: Current access token to refresh
+          example: eyJhbGciOiJSUzI1NiIs...
     ErrorResponse:
       type: object
       properties:
