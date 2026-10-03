@@ -62,18 +62,6 @@ paths:
                   $ref: '#/components/schemas/LogSourceType'
 components:
   schemas:
-    HostnameAvailabilityCheckRequest:
-      type: object
-      required:
-      - hostname
-      - logSourceTypeId
-      properties:
-        hostname:
-          type: string
-          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type the proposed log source will be provisioned as.
     HostnameAvailabilityCheckResponse:
       type: object
       required:
@@ -119,6 +107,18 @@ components:
         requiresFlow:
           type: boolean
           description: Whether or not network flow sources need to be enabled on the org for this log source type.
+    HostnameAvailabilityCheckRequest:
+      type: object
+      required:
+      - hostname
+      - logSourceTypeId
+      properties:
+        hostname:
+          type: string
+          description: The hostname being checked. This may be any valid hostname, but we suggest that hostnames be fully-qualified to avoid name collisions.
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type the proposed log source will be provisioned as.
   securitySchemes:
     oauth2:
       type: oauth2

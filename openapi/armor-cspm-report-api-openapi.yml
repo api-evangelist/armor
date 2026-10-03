@@ -147,27 +147,25 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    Message:
+    CspmReportListDto:
       type: object
       properties:
-        message:
+        reportId:
           type: string
-          description: Response message
-    CspmReportRequirementDetails:
-      type: object
-      properties:
-        requirementId:
+          description: Report ID
+        title:
           type: string
-          description: Requirement ID
-        requirementName:
+          description: Report title
+        cloudType:
           type: string
-          description: Requirement name
-        passCount:
-          type: integer
-          description: Pass count
-        failCount:
-          type: integer
-          description: Fail count
+          description: Cloud type
+        reportType:
+          type: string
+          description: Report type
+        lastRunDate:
+          type: string
+          format: date-time
+          description: Last run date
     CspmReportDetailsDto:
       type: object
       properties:
@@ -247,25 +245,27 @@ components:
         status:
           type: string
           description: Status
-    CspmReportListDto:
+    Message:
       type: object
       properties:
-        reportId:
+        message:
           type: string
-          description: Report ID
-        title:
+          description: Response message
+    CspmReportRequirementDetails:
+      type: object
+      properties:
+        requirementId:
           type: string
-          description: Report title
-        cloudType:
+          description: Requirement ID
+        requirementName:
           type: string
-          description: Cloud type
-        reportType:
-          type: string
-          description: Report type
-        lastRunDate:
-          type: string
-          format: date-time
-          description: Last run date
+          description: Requirement name
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -160,12 +160,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Informational message
     NotificationResponse:
       type: object
       required:
@@ -184,32 +178,6 @@ components:
           type: integer
           description: The Id of the Account.
           example: 1000
-        name:
-          type: string
-          description: The name of the Notification Configuration.
-          example: Notification Name
-        email_for_error:
-          type: string
-          format: email
-          description: The email for notification errors.
-          example: name@example.com
-        event_type:
-          type: array
-          description: The list of events.
-          items:
-            type: string
-        properties:
-          type: array
-          description: The list of headers and URI properties.
-          items:
-            $ref: '#/components/schemas/NotificationProperties'
-    NotificationRequest:
-      type: object
-      required:
-      - name
-      - email_for_error
-      - event_type
-      properties:
         name:
           type: string
           description: The name of the Notification Configuration.
@@ -253,13 +221,39 @@ components:
           type: string
           description: The value of the property.
           example: Splunk XXXXX-XXXXX
+    NotificationRequest:
+      type: object
+      required:
+      - name
+      - email_for_error
+      - event_type
+      properties:
+        name:
+          type: string
+          description: The name of the Notification Configuration.
+          example: Notification Name
+        email_for_error:
+          type: string
+          format: email
+          description: The email for notification errors.
+          example: name@example.com
+        event_type:
+          type: array
+          description: The list of events.
+          items:
+            type: string
+        properties:
+          type: array
+          description: The list of headers and URI properties.
+          items:
+            $ref: '#/components/schemas/NotificationProperties'
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Informational message
   responses:
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorMessage'
     InternalServerError:
       description: Internal server error
       content:
@@ -267,6 +261,12 @@ components:
           schema:
             type: string
           example: 'An error occurred processing the request. Error ID: 7854a268-bc98-478c-af0d-f65ff3d27d52'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorMessage'
   parameters:
     AccountContext:
       name: x-account-context

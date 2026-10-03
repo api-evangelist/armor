@@ -92,22 +92,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    LiveResponseResultResponse:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: string
-          format: uri
-    PackageUriResponse:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: string
-          format: uri
     ErrorResponse:
       type: object
       properties:
@@ -119,6 +103,22 @@ components:
           type: string
         statusCode:
           type: integer
+    PackageUriResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
+    LiveResponseResultResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: string
+          format: uri
   responses:
     InternalServerError:
       description: Internal server error occurred while processing the request

@@ -64,6 +64,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     DetectionRule:
       type: object
       required:
@@ -119,17 +130,6 @@ components:
           type: integer
           format: int32
           minimum: 0
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
   securitySchemes:
     OAuth2BearerAuth:
       type: http

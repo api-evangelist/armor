@@ -87,6 +87,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     EntityIntelligenceResponse:
       type: object
       properties:
@@ -126,17 +137,6 @@ components:
               type: string
             region:
               type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
   securitySchemes:
     OAuth2BearerAuth:
       type: http

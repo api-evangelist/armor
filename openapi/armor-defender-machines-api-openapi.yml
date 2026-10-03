@@ -44,6 +44,17 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     MachinesResponse:
       type: object
       properties:
@@ -108,17 +119,6 @@ components:
           type: array
           items:
             type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
   responses:
     InternalServerError:
       description: Internal server error occurred while processing the request

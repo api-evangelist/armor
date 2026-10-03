@@ -68,12 +68,67 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    LabelInfo:
+      type: object
+      properties:
+        key:
+          type: string
+          description: Key of the label
+        value:
+          type: string
+          description: Corresponding value of the label
+    SoftwareInfo:
+      type: object
+      properties:
+        fixVersion:
+          type: string
+          description: The fix version of the software
+        name:
+          type: string
+          description: Name of the software
+        version:
+          type: string
+          description: The version of the software
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
     Message:
       type: object
       properties:
         message:
           type: string
           description: Error or informational message
+    LayerInfo:
+      type: object
+      properties:
+        size:
+          type: number
+          description: The size in bytes
+        tags:
+          type: string
+          description: The tags applied to the layer
+        layerCreatedDate:
+          type: string
+          description: The date on which layer is created
+        layerCreatedBy:
+          type: string
+          description: Program details regarding layer creation
     ImageDetailResponse:
       type: object
       properties:
@@ -142,34 +197,6 @@ components:
         imageModifiedDate:
           type: string
           description: Datetime on which the image was updated
-    LabelInfo:
-      type: object
-      properties:
-        key:
-          type: string
-          description: Key of the label
-        value:
-          type: string
-          description: Corresponding value of the label
-    VulnerabilitiesResponse:
-      type: object
-      description: Count of vulnerabilities per severity level
-      properties:
-        critical:
-          type: number
-          description: Count of "Critical" severity vulnerabilities
-        high:
-          type: number
-          description: Count of "High" severity vulnerabilities
-        medium:
-          type: number
-          description: Count of "Medium" severity vulnerabilities
-        low:
-          type: number
-          description: Count of "Low" severity vulnerabilities
-        info:
-          type: number
-          description: Count of "Info" severity vulnerabilities
     ViewAllImagesResponse:
       type: object
       properties:
@@ -217,33 +244,25 @@ components:
         imageModifiedDate:
           type: string
           description: The date on which the image is modified
-    LayerInfo:
-      type: object
-      properties:
-        size:
-          type: number
-          description: The size in bytes
-        tags:
-          type: string
-          description: The tags applied to the layer
-        layerCreatedDate:
-          type: string
-          description: The date on which layer is created
-        layerCreatedBy:
-          type: string
-          description: Program details regarding layer creation
-    SoftwareInfo:
-      type: object
-      properties:
-        fixVersion:
-          type: string
-          description: The fix version of the software
-        name:
-          type: string
-          description: Name of the software
-        version:
-          type: string
-          description: The version of the software
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
     ImageId:
       name: id
@@ -260,25 +279,6 @@ components:
       schema:
         type: integer
       example: 4
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -288,21 +288,35 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Message:
+    AgentManagementResourceByTagResult:
       type: object
       properties:
-        message:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        Resource:
           type: string
-          description: Error or informational message
-    AgentManagementResourceByTag:
-      type: object
-      properties:
-        Type:
-          type: string
-          description: The type of the tag.
+          description: The Resource of the tag.
         Tags:
           type: array
-          description: The list of the tags.
+          description: The details of the tag.
+          items:
+            $ref: '#/components/schemas/AgentManagementResourceTag'
+    AgentManagementTag:
+      type: object
+      properties:
+        Key:
+          type: string
+          description: The name of the tag.
+        Value:
+          type: string
+          description: The value of the tag.
+    AgentManagementTagRequest:
+      type: object
+      properties:
+        Tags:
+          type: array
+          description: The list of tags.
           items:
             $ref: '#/components/schemas/AgentManagementTag'
     AgentManagementTagsResult:
@@ -323,6 +337,17 @@ components:
         Islocked:
           type: boolean
           description: Whether the tag is locked.
+    AgentManagementResourceByTag:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: The type of the tag.
+        Tags:
+          type: array
+          description: The list of the tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
     AgentManagementResourceTag:
       type: object
       properties:
@@ -335,38 +360,19 @@ components:
         Islocked:
           type: boolean
           description: Whether the tag is locked.
-    AgentManagementResourceByTagResult:
+    Message:
       type: object
       properties:
-        AccountId:
-          type: integer
-          description: The accountId of the tag.
-        Resource:
+        message:
           type: string
-          description: The Resource of the tag.
-        Tags:
-          type: array
-          description: The details of the tag.
-          items:
-            $ref: '#/components/schemas/AgentManagementResourceTag'
-    AgentManagementTagRequest:
-      type: object
-      properties:
-        Tags:
-          type: array
-          description: The list of tags.
-          items:
-            $ref: '#/components/schemas/AgentManagementTag'
-    AgentManagementTag:
-      type: object
-      properties:
-        Key:
-          type: string
-          description: The name of the tag.
-        Value:
-          type: string
-          description: The value of the tag.
+          description: Error or informational message
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
     Forbidden:
       description: Forbidden
       content:
@@ -375,12 +381,6 @@ components:
             $ref: '#/components/schemas/Message'
     NotFound:
       description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
       content:
         application/json:
           schema:

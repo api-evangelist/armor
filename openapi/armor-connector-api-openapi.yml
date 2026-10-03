@@ -139,33 +139,12 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Message:
+    ConnectorDeleteResponse:
       type: object
       properties:
-        message:
-          type: string
-          description: Error or informational message
-    ConnectorGcrParam:
-      type: object
-      required:
-      - displayName
-      - serviceAccountJson
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for the connector
-        serviceAccountJson:
-          type: string
-          description: Configuration JSON file
-    AwsBaseResponse:
-      type: object
-      properties:
-        accountId:
-          type: string
-          description: AWS Account ID
-        externalId:
-          type: string
-          description: External ID
+        connectorId:
+          type: number
+          description: Id for the connector deleted
     ConnectorDetailResponse:
       type: object
       properties:
@@ -205,66 +184,18 @@ components:
         modifiedDate:
           type: string
           description: The date & time the connector was updated
-    ConnectorOthersParam:
+    ConnectorGcrParam:
       type: object
       required:
       - displayName
-      - username
-      - password
+      - serviceAccountJson
       properties:
         displayName:
           type: string
           description: Friendly name for the connector
-        username:
+        serviceAccountJson:
           type: string
-          description: Username to connect to registry (base64 format)
-        password:
-          type: string
-          description: Password to connect to registry (base64 format)
-    ConnectorEcrParam:
-      type: object
-      required:
-      - displayName
-      - externalId
-      - arn
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for connector
-        externalId:
-          type: string
-          description: The external ID to access the role
-        arn:
-          type: string
-          description: AWS role ARN created to allow access
-    ConnectorAzureParam:
-      type: object
-      required:
-      - displayName
-      - applicationId
-      - clientSecret
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for the connector
-        applicationId:
-          type: string
-          description: Azure application ID
-        clientSecret:
-          type: string
-          description: Azure client secret
-    ConnectorDeleteResponse:
-      type: object
-      properties:
-        connectorId:
-          type: number
-          description: Id for the connector deleted
-    ConnectorCreateResponse:
-      type: object
-      properties:
-        connectorId:
-          type: number
-          description: Id for the connector created
+          description: Configuration JSON file
     ConnectorCreateRequest:
       type: object
       required:
@@ -281,6 +212,12 @@ components:
           $ref: '#/components/schemas/ConnectorAzureParam'
         dockerHubConnector:
           $ref: '#/components/schemas/ConnectorOthersParam'
+    ConnectorCreateResponse:
+      type: object
+      properties:
+        connectorId:
+          type: number
+          description: Id for the connector created
     ViewAllConnectorsResponse:
       type: object
       properties:
@@ -302,7 +239,76 @@ components:
         createdDate:
           type: string
           description: The date & time the connector was created
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ConnectorAzureParam:
+      type: object
+      required:
+      - displayName
+      - applicationId
+      - clientSecret
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        applicationId:
+          type: string
+          description: Azure application ID
+        clientSecret:
+          type: string
+          description: Azure client secret
+    ConnectorEcrParam:
+      type: object
+      required:
+      - displayName
+      - externalId
+      - arn
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for connector
+        externalId:
+          type: string
+          description: The external ID to access the role
+        arn:
+          type: string
+          description: AWS role ARN created to allow access
+    AwsBaseResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: AWS Account ID
+        externalId:
+          type: string
+          description: External ID
+    ConnectorOthersParam:
+      type: object
+      required:
+      - displayName
+      - username
+      - password
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        username:
+          type: string
+          description: Username to connect to registry (base64 format)
+        password:
+          type: string
+          description: Password to connect to registry (base64 format)
   responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
     Forbidden:
       description: Forbidden
       content:
@@ -317,12 +323,6 @@ components:
             $ref: '#/components/schemas/Message'
     NotFound:
       description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
       content:
         application/json:
           schema:

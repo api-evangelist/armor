@@ -123,6 +123,11 @@ components:
                 type: string
               name:
                 type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
     ServiceRequestListItem:
       type: object
       properties:
@@ -153,11 +158,6 @@ components:
                 type: string
               orgName:
                 type: string
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

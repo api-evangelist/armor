@@ -60,6 +60,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    GraphQLError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              locations:
+                type: array
+                items:
+                  type: object
     ErrorResponse:
       type: object
       properties:
@@ -104,20 +118,6 @@ components:
                 type: array
                 items:
                   type: string
-    GraphQLError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              locations:
-                type: array
-                items:
-                  type: object
   securitySchemes:
     OAuth2BearerAuth:
       type: http

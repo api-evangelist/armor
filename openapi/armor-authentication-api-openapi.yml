@@ -121,17 +121,21 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    AuthorizeResponse:
+    ErrorResponse:
       type: object
       properties:
-        code:
+        error:
           type: string
-          description: Authorization code valid for 2 minutes
-          example: abc123xyz...
-        expiresIn:
+          description: Error code
+          example: invalid_credentials
+        error_description:
+          type: string
+          description: Human-readable error message
+          example: The provided credentials are invalid
+        status:
           type: integer
-          description: Seconds until code expires
-          example: 120
+          description: HTTP status code
+          example: 401
     TokenResponse:
       type: object
       properties:
@@ -151,22 +155,15 @@ components:
           type: integer
           description: Seconds until access token expires
           example: 900
-    TokenRequest:
+    RefreshRequest:
       type: object
       required:
-      - code
-      - grant_type
+      - token
       properties:
-        code:
+        token:
           type: string
-          description: Authorization code from /auth/authorize
-          example: abc123xyz...
-        grant_type:
-          type: string
-          enum:
-          - authorization_code
-          description: Must be "authorization_code"
-          example: authorization_code
+          description: Current access token to refresh
+          example: eyJhbGciOiJSUzI1NiIs...
     AuthorizeRequest:
       type: object
       required:
@@ -183,30 +180,33 @@ components:
           format: password
           description: User's password
           writeOnly: true
-    RefreshRequest:
+    TokenRequest:
       type: object
       required:
-      - token
+      - code
+      - grant_type
       properties:
-        token:
+        code:
           type: string
-          description: Current access token to refresh
-          example: eyJhbGciOiJSUzI1NiIs...
-    ErrorResponse:
+          description: Authorization code from /auth/authorize
+          example: abc123xyz...
+        grant_type:
+          type: string
+          enum:
+          - authorization_code
+          description: Must be "authorization_code"
+          example: authorization_code
+    AuthorizeResponse:
       type: object
       properties:
-        error:
+        code:
           type: string
-          description: Error code
-          example: invalid_credentials
-        error_description:
-          type: string
-          description: Human-readable error message
-          example: The provided credentials are invalid
-        status:
+          description: Authorization code valid for 2 minutes
+          example: abc123xyz...
+        expiresIn:
           type: integer
-          description: HTTP status code
-          example: 401
+          description: Seconds until code expires
+          example: 120
   securitySchemes:
     FH-AUTH:
       type: http

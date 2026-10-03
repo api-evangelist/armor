@@ -81,19 +81,6 @@ paths:
                   $ref: '#/components/schemas/InfrastructureManagementGetOperatingSystem'
 components:
   schemas:
-    InfrastructureManagementGetVirtualMachine:
-      type: object
-      properties:
-        coreInstanceId:
-          type: string
-          format: uuid
-          description: The GUID of the VM the task is scheduled to run on.
-        hostName:
-          type: string
-          description: The name of the VM the task will be run on.
-        operatingSystem:
-          type: string
-          description: Operating System of the VM.
     InfrastructureManagementGetVirtualMachines:
       type: object
       properties:
@@ -120,6 +107,19 @@ components:
         operatingSystem:
           type: string
           description: The name of operating system.
+    InfrastructureManagementGetVirtualMachine:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+          format: uuid
+          description: The GUID of the VM the task is scheduled to run on.
+        hostName:
+          type: string
+          description: The name of the VM the task will be run on.
+        operatingSystem:
+          type: string
+          description: Operating System of the VM.
   securitySchemes:
     OAuth2:
       type: oauth2

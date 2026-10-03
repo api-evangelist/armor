@@ -222,12 +222,19 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    Message:
+    DeliveryReceipt:
       type: object
       properties:
-        message:
+        receiptId:
           type: string
-          description: Error or informational message
+          description: The receiptId of notification sent.
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time notification sent.
+        status:
+          type: string
+          description: The status of receipt.
     SecurityDetectionsResponse:
       type: object
       properties:
@@ -245,19 +252,6 @@ components:
           description: List of SecurityDetection records.
           items:
             $ref: '#/components/schemas/SecurityDetection'
-    DeliveryReceipt:
-      type: object
-      properties:
-        receiptId:
-          type: string
-          description: The receiptId of notification sent.
-        dateTime:
-          type: string
-          format: date-time
-          description: The date and time notification sent.
-        status:
-          type: string
-          description: The status of receipt.
     SecurityDetection:
       type: object
       properties:
@@ -328,19 +322,13 @@ components:
           description: ReceiptIds generated for every notification delivery.
           items:
             $ref: '#/components/schemas/DeliveryReceipt'
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
   parameters:
-    Range:
-      name: Range
-      in: header
-      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
-      schema:
-        type: string
-    PaginationToken:
-      name: x-pagination-token
-      in: header
-      description: Pagination token from previous response header.
-      schema:
-        type: string
     AccountContext:
       name: x-account-context
       in: header
@@ -349,6 +337,18 @@ components:
       schema:
         type: integer
       example: 4
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+    Range:
+      name: Range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
     XRange:
       name: x-range
       in: header

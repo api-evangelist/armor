@@ -114,38 +114,6 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    ConnectionService:
-      type: object
-      properties:
-        accountConnectionId:
-          type: integer
-          description: Account cloud connection id.
-        lastSuccessfulConnectionDate:
-          type: string
-          description: Last successful connection date.
-        id:
-          type: integer
-          description: Cloud connection service id.
-        name:
-          type: string
-          description: Cloud connection service name.
-        subServices:
-          type: array
-          description: Cloud connection sub service type.
-          items:
-            $ref: '#/components/schemas/ConnectionSubServiceType'
-        policy:
-          type: string
-          description: Cloud connection provider service policy.
-        imageName:
-          type: string
-          description: Cloud connection provider service image name.
     CloudConnectionResourceResult:
       type: object
       properties:
@@ -232,6 +200,12 @@ components:
         policy:
           type: string
           description: Cloud connection provider service policy.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     ConnectionSubServiceType:
       type: object
       properties:
@@ -250,6 +224,32 @@ components:
         policy:
           type: string
           description: Cloud connection provider sub service type policy.
+    ConnectionService:
+      type: object
+      properties:
+        accountConnectionId:
+          type: integer
+          description: Account cloud connection id.
+        lastSuccessfulConnectionDate:
+          type: string
+          description: Last successful connection date.
+        id:
+          type: integer
+          description: Cloud connection service id.
+        name:
+          type: string
+          description: Cloud connection service name.
+        subServices:
+          type: array
+          description: Cloud connection sub service type.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
+        imageName:
+          type: string
+          description: Cloud connection provider service image name.
     CloudConnectionServiceTypesResult:
       type: object
       properties:
@@ -270,6 +270,15 @@ components:
         imageName:
           type: string
           description: The image name of the service type.
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   responses:
     Forbidden:
       description: Forbidden
@@ -283,15 +292,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

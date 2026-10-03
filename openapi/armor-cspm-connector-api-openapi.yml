@@ -120,12 +120,72 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    Message:
+    CloudConnectorRequestDto:
+      type: object
+      required:
+      - accountId
+      - name
+      - provider
+      properties:
+        accountId:
+          type: integer
+          description: Account ID
+        arn:
+          type: string
+          description: ARN (for AWS)
+        name:
+          type: string
+          description: Connector Name
+        description:
+          type: string
+          description: Description
+        provider:
+          type: string
+          enum:
+          - AWS
+          - Azure
+          - GCP
+          description: Provider Type
+        externalId:
+          type: string
+          description: External ID
+        isChinaRegion:
+          type: boolean
+          description: Is China Region
+        isGovCloud:
+          type: boolean
+          description: Is Government Cloud
+        isPortalConnector:
+          type: boolean
+          description: Is Portal Connector
+        httpMethod:
+          type: string
+          description: HTTP Method
+        applicationId:
+          type: string
+          description: Azure Application ID
+        directoryId:
+          type: string
+          description: Azure Directory ID
+        subscriptionId:
+          type: string
+          description: Azure Subscription ID
+        authenticationKey:
+          type: string
+          description: Authentication Key
+        projectId:
+          type: string
+          description: GCP Project ID
+        gcpConfigJson:
+          type: string
+          description: GCP Config JSON
+    CloudConnectors:
       type: object
       properties:
-        message:
-          type: string
-          description: Response message
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorDetails'
     CloudConnectorDetails:
       type: object
       properties:
@@ -193,13 +253,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CloudConnectorByIdGroups'
-    CloudConnectors:
+    Message:
       type: object
       properties:
-        connectors:
-          type: array
-          items:
-            $ref: '#/components/schemas/CloudConnectorDetails'
+        message:
+          type: string
+          description: Response message
     CloudConnectorByIdGroups:
       type: object
       properties:
@@ -209,65 +268,6 @@ components:
         groupName:
           type: string
           description: Group name
-    CloudConnectorRequestDto:
-      type: object
-      required:
-      - accountId
-      - name
-      - provider
-      properties:
-        accountId:
-          type: integer
-          description: Account ID
-        arn:
-          type: string
-          description: ARN (for AWS)
-        name:
-          type: string
-          description: Connector Name
-        description:
-          type: string
-          description: Description
-        provider:
-          type: string
-          enum:
-          - AWS
-          - Azure
-          - GCP
-          description: Provider Type
-        externalId:
-          type: string
-          description: External ID
-        isChinaRegion:
-          type: boolean
-          description: Is China Region
-        isGovCloud:
-          type: boolean
-          description: Is Government Cloud
-        isPortalConnector:
-          type: boolean
-          description: Is Portal Connector
-        httpMethod:
-          type: string
-          description: HTTP Method
-        applicationId:
-          type: string
-          description: Azure Application ID
-        directoryId:
-          type: string
-          description: Azure Directory ID
-        subscriptionId:
-          type: string
-          description: Azure Subscription ID
-        authenticationKey:
-          type: string
-          description: Authentication Key
-        projectId:
-          type: string
-          description: GCP Project ID
-        gcpConfigJson:
-          type: string
-          description: GCP Config JSON
   securitySchemes:
     OAuth2:
       type: oauth2

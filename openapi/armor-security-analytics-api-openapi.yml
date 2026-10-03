@@ -64,6 +64,22 @@ paths:
       x-summary-source: derived
 components:
   schemas:
+    FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        referenceUrl:
+          type: string
+        imageData:
+          type: string
+        modifiedBy:
+          type: string
     FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse:
       type: object
       properties:
@@ -91,22 +107,6 @@ components:
           type: integer
         vulnerabilities:
           $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse'
-    FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        title:
-          type: string
-        description:
-          type: string
-        referenceUrl:
-          type: string
-        imageData:
-          type: string
-        modifiedBy:
-          type: string
     FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse:
       type: object
       properties:

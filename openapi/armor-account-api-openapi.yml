@@ -65,19 +65,41 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   schemas:
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    ContainerSecurityAccountCreateResponse:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Id for the container security subscription
     AccountDetailsResponse:
       type: object
       properties:
@@ -102,40 +124,18 @@ components:
         supportTicketNo:
           type: string
           description: Reference to Armor Ticketing System (ATS) issue used to track container security subscription setup to completion
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ContainerSecurityAccountCreateResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -206,20 +206,12 @@ paths:
                 $ref: '#/components/schemas/Message'
 components:
   schemas:
-    Message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A message containing details about the request or of an exception thrown.
-          example: A confirmation message or explanation.
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
+    IpPort:
+      type: integer
+      minimum: 1
+      maximum: 65535
+      description: A valid IP port number
+      example: 514
     FlowCollector:
       type: object
       properties:
@@ -233,12 +225,28 @@ components:
         ipAddress:
           type: string
           description: The IP address of the flow collector.
-    IpPort:
-      type: integer
-      minimum: 1
-      maximum: 65535
-      description: A valid IP port number
-      example: 514
+    FlowSourceCreateRequest:
+      type: object
+      required:
+      - siemFlowSourceId
+      - flowCollectorId
+      - port
+      - type
+      properties:
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        flowCollectorId:
+          $ref: '#/components/schemas/Guid'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
+          type: string
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
     FlowSource:
       type: object
       properties:
@@ -313,28 +321,20 @@ components:
         version:
           type: integer
           description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
-    FlowSourceCreateRequest:
+    Message:
       type: object
       required:
-      - siemFlowSourceId
-      - flowCollectorId
-      - port
-      - type
+      - message
       properties:
-        siemFlowSourceId:
-          type: integer
-          description: The unique identifier of the flow source in the SIEM.
-        flowCollectorId:
-          $ref: '#/components/schemas/Guid'
-        port:
-          $ref: '#/components/schemas/IpPort'
-        type:
+        message:
           type: string
-          description: The type of network flow data this source can consume.
-          enum:
-          - ipfix
-          - sflow
-          - jflow
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     oauth2:
       type: oauth2

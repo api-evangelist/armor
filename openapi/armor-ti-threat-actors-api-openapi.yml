@@ -113,29 +113,6 @@ components:
           type: string
         statusCode:
           type: integer
-    ThreatActorDetail:
-      allOf:
-      - $ref: '#/components/schemas/ThreatActor'
-      - type: object
-        properties:
-          first_seen:
-            type: string
-            format: date-time
-          last_seen:
-            type: string
-            format: date-time
-          goals:
-            type: array
-            items:
-              type: string
-          tactics:
-            type: array
-            items:
-              type: string
-          associated_campaigns:
-            type: array
-            items:
-              type: string
     ThreatActor:
       type: object
       properties:
@@ -184,6 +161,29 @@ components:
           - team
           - organization
           - government
+    ThreatActorDetail:
+      allOf:
+      - $ref: '#/components/schemas/ThreatActor'
+      - type: object
+        properties:
+          first_seen:
+            type: string
+            format: date-time
+          last_seen:
+            type: string
+            format: date-time
+          goals:
+            type: array
+            items:
+              type: string
+          tactics:
+            type: array
+            items:
+              type: string
+          associated_campaigns:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

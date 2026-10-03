@@ -206,27 +206,90 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    Message:
+    GetEdrConfiguration:
       type: object
       properties:
-        message:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        companyCode:
           type: string
-          description: Error or informational message
-    AdminUser:
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+    GetEdrEventForwarder:
       type: object
       properties:
         id:
+          type: string
+          description: Unique Id of an event forwarder.
+        org_key:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        name:
+          type: string
+          description: Name of an event forwarder.
+        enabled:
+          type: boolean
+          description: Flag to denote if an event forwarder is enabled or not.
+        s3_bucket_name:
+          type: string
+          description: Name of the AWS S3 bucket configured.
+        s3_prefix:
+          type: string
+          description: Prefix text used for event forwarder logs.
+        type:
+          type: string
+          description: Type of the event forwarder log whether Alert or Event.
+        create_time:
+          type: string
+          format: date-time
+          description: Date and Time when the event forwarder is setup.
+    GetEdrUsage:
+      type: object
+      properties:
+        accountId:
           type: integer
-          description: Unique identifier of admin user.
-        email:
+          description: EDR account Id.
+        count:
           type: string
-          description: Admin user email id.
-        firstName:
+          description: Total number of VMs with EDR agents installed.
+    EdrServices:
+      type: object
+      properties:
+        skuMappingId:
+          type: integer
+          description: Unique identifier of mapping id.
+        sku:
           type: string
-          description: Admin user first name.
-        lastName:
+          description: EDR SKU name.
+        accountType:
           type: string
-          description: Admin user last name.
+          description: Type of account.
+        accountProduct:
+          type: string
+          description: Account Product.
+        name:
+          type: string
+          description: EDR service name.
+        description:
+          type: string
+          description: EDR service description.
+        features:
+          type: array
+          description: EDR features.
+          items:
+            type: string
     GetEdrSignUp:
       type: object
       properties:
@@ -290,34 +353,27 @@ components:
           description: Mail To information.
         adminUser:
           $ref: '#/components/schemas/AdminUser'
-    GetEdrEventForwarder:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    AdminUser:
       type: object
       properties:
         id:
+          type: integer
+          description: Unique identifier of admin user.
+        email:
           type: string
-          description: Unique Id of an event forwarder.
-        org_key:
+          description: Admin user email id.
+        firstName:
           type: string
-          description: Unique key of an organization and used with Carbon Black APIs.
-        name:
+          description: Admin user first name.
+        lastName:
           type: string
-          description: Name of an event forwarder.
-        enabled:
-          type: boolean
-          description: Flag to denote if an event forwarder is enabled or not.
-        s3_bucket_name:
-          type: string
-          description: Name of the AWS S3 bucket configured.
-        s3_prefix:
-          type: string
-          description: Prefix text used for event forwarder logs.
-        type:
-          type: string
-          description: Type of the event forwarder log whether Alert or Event.
-        create_time:
-          type: string
-          format: date-time
-          description: Date and Time when the event forwarder is setup.
+          description: Admin user last name.
     PostEdrSignUp:
       type: object
       properties:
@@ -341,53 +397,6 @@ components:
           description: EDR SKU name (from `edrServices` in GET /edr/sign-up).
         adminUser:
           $ref: '#/components/schemas/AdminUser'
-    GetEdrConfiguration:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          description: EDR account Id.
-        companyCode:
-          type: string
-          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
-        orgId:
-          type: string
-          description: Unique Id of an organization.
-        orgKey:
-          type: string
-          description: Unique key of an organization and used with Carbon Black APIs.
-        policyId:
-          type: string
-          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
-        hostUrl:
-          type: string
-          description: Carbon Black Cloud base URL used for API calls.
-    EdrServices:
-      type: object
-      properties:
-        skuMappingId:
-          type: integer
-          description: Unique identifier of mapping id.
-        sku:
-          type: string
-          description: EDR SKU name.
-        accountType:
-          type: string
-          description: Type of account.
-        accountProduct:
-          type: string
-          description: Account Product.
-        name:
-          type: string
-          description: EDR service name.
-        description:
-          type: string
-          description: EDR service description.
-        features:
-          type: array
-          description: EDR features.
-          items:
-            type: string
     PostEdrConfiguration:
       type: object
       properties:
@@ -412,18 +421,9 @@ components:
         superAdminApiSecretKey:
           type: string
           description: SecretKey used with Carbon Black User APIs.
-    GetEdrUsage:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          description: EDR account Id.
-        count:
-          type: string
-          description: Total number of VMs with EDR agents installed.
   responses:
-    Forbidden:
-      description: Forbidden
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
@@ -434,14 +434,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
+    NotFound:
+      description: Not found
       content:
         application/json:
           schema:

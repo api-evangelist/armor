@@ -118,6 +118,26 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+    MachineActionsResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineAction'
     MachineActionRequest:
       type: object
       required:
@@ -166,15 +186,6 @@ components:
         sha1:
           type: string
           pattern: ^[a-fA-F0-9]{40}$
-    MachineActionsResponse:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/MachineAction'
     MachineAction:
       type: object
       properties:
@@ -225,24 +236,7 @@ components:
               type: string
             fileIdentifierType:
               type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
   responses:
-    BadRequest:
-      description: Bad Request - Invalid parameters or malformed request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     InternalServerError:
       description: Internal server error occurred while processing the request
       content:
@@ -251,6 +245,12 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Bad Request - Invalid parameters or malformed request
       content:
         application/json:
           schema:

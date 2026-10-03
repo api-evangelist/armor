@@ -45,6 +45,30 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: invalid_credentials
+        error_description:
+          type: string
+          description: Human-readable error message
+          example: The provided credentials are invalid
+        status:
+          type: integer
+          description: HTTP status code
+          example: 401
+    MeResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
     Account:
       type: object
       properties:
@@ -88,21 +112,6 @@ components:
         isFreeTrial:
           type: boolean
           example: false
-    MeResponse:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-    UserLinks:
-      type: object
-      properties:
-        userId:
-          type: integer
-          example: 4922
     User:
       type: object
       properties:
@@ -125,21 +134,12 @@ components:
           type: string
           description: Password expiry time in seconds
           example: '2609961'
-    ErrorResponse:
+    UserLinks:
       type: object
       properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_credentials
-        error_description:
-          type: string
-          description: Human-readable error message
-          example: The provided credentials are invalid
-        status:
+        userId:
           type: integer
-          description: HTTP status code
-          example: 401
+          example: 4922
   parameters:
     X-Account-Context:
       name: X-Account-Context

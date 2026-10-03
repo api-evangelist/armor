@@ -92,6 +92,15 @@ components:
             type: object
             additionalProperties: true
           description: Export data rows
+    GenerateReportRequest:
+      type: object
+      properties:
+        reportType:
+          type: string
+          description: Report type
+        format:
+          type: string
+          description: Report format
     SummaryReport:
       type: object
       properties:
@@ -123,15 +132,6 @@ components:
         assetsScanned:
           type: integer
           description: Assets scanned count
-    GenerateReportRequest:
-      type: object
-      properties:
-        reportType:
-          type: string
-          description: Report type
-        format:
-          type: string
-          description: Report format
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -92,36 +92,16 @@ paths:
           description: Forbidden
 components:
   schemas:
-    AddExclusion:
+    AssetInfo:
       type: object
-      required:
-      - vulnerabilityId
-      - vulnerabilityName
       properties:
-        vulnerabilityId:
+        assetId:
           type: string
-          description: Vulnerability ID
-        vulnerabilityName:
+          format: uuid
+          description: Asset ID
+        assetName:
           type: string
-          description: Vulnerability name
-        excludeAllAssets:
-          type: boolean
-          description: Exclude all assets
-        excludedAssets:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetInfo'
-          description: Specific excluded assets
-        comment:
-          type: string
-          description: Exclusion details
-        exclusionReason:
-          type: string
-          description: Exclusion reason
-        expireDate:
-          type: string
-          format: date-time
-          description: Expiration date
+          description: Asset name
     ExclusionList:
       type: object
       properties:
@@ -154,16 +134,36 @@ components:
           type: string
           format: date-time
           description: Creation date
-    AssetInfo:
+    AddExclusion:
       type: object
+      required:
+      - vulnerabilityId
+      - vulnerabilityName
       properties:
-        assetId:
+        vulnerabilityId:
           type: string
-          format: uuid
-          description: Asset ID
-        assetName:
+          description: Vulnerability ID
+        vulnerabilityName:
           type: string
-          description: Asset name
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets
+        excludedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          description: Specific excluded assets
+        comment:
+          type: string
+          description: Exclusion details
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
   securitySchemes:
     OAuth2:
       type: oauth2

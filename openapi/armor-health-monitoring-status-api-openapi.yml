@@ -71,6 +71,22 @@ paths:
                   $ref: '#/components/schemas/AgentManagementHealthMonitoringStatusResults'
 components:
   schemas:
+    AgentManagementHealthMonitoringStatusResults:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the coreInstance.
+        CoreInstance:
+          type: string
+          description: The coreInstance of the Armor Agent.
+        IsRegistered:
+          type: string
+          description: The coreInstance registered status.
+        SubAgents:
+          type: array
+          items:
+            $ref: '#/components/schemas/HealthMonitoringStatus'
     HealthMonitoringStatus:
       type: object
       properties:
@@ -90,22 +106,6 @@ components:
           type: string
           format: date-time
           description: The last UpdateTime of the SubAgent's status.
-    AgentManagementHealthMonitoringStatusResults:
-      type: object
-      properties:
-        AccountId:
-          type: integer
-          description: The accountId of the coreInstance.
-        CoreInstance:
-          type: string
-          description: The coreInstance of the Armor Agent.
-        IsRegistered:
-          type: string
-          description: The coreInstance registered status.
-        SubAgents:
-          type: array
-          items:
-            $ref: '#/components/schemas/HealthMonitoringStatus'
   securitySchemes:
     OAuth2:
       type: oauth2
