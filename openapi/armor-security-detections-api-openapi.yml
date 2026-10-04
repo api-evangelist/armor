@@ -221,37 +221,41 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+    Range:
+      name: Range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
+    PaginationToken:
+      name: x-pagination-token
+      in: header
+      description: Pagination token from previous response header.
+      schema:
+        type: string
+    XRange:
+      name: x-range
+      in: header
+      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
+      schema:
+        type: string
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   schemas:
-    DeliveryReceipt:
-      type: object
-      properties:
-        receiptId:
-          type: string
-          description: The receiptId of notification sent.
-        dateTime:
-          type: string
-          format: date-time
-          description: The date and time notification sent.
-        status:
-          type: string
-          description: The status of receipt.
-    SecurityDetectionsResponse:
-      type: object
-      properties:
-        paging:
-          type: object
-          properties:
-            after:
-              type: string
-              description: Next pagination token.
-            before:
-              type: string
-              description: Previous pagination token.
-        data:
-          type: array
-          description: List of SecurityDetection records.
-          items:
-            $ref: '#/components/schemas/SecurityDetection'
     SecurityDetection:
       type: object
       properties:
@@ -328,40 +332,36 @@ components:
         message:
           type: string
           description: Error or informational message
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-    PaginationToken:
-      name: x-pagination-token
-      in: header
-      description: Pagination token from previous response header.
-      schema:
-        type: string
-    Range:
-      name: Range
-      in: header
-      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
-      schema:
-        type: string
-    XRange:
-      name: x-range
-      in: header
-      description: 'Range header for pagination. Example: `entities=0-10; max=10`'
-      schema:
-        type: string
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
+    DeliveryReceipt:
+      type: object
+      properties:
+        receiptId:
+          type: string
+          description: The receiptId of notification sent.
+        dateTime:
+          type: string
+          format: date-time
+          description: The date and time notification sent.
+        status:
+          type: string
+          description: The status of receipt.
+    SecurityDetectionsResponse:
+      type: object
+      properties:
+        paging:
+          type: object
+          properties:
+            after:
+              type: string
+              description: Next pagination token.
+            before:
+              type: string
+              description: Previous pagination token.
+        data:
+          type: array
+          description: List of SecurityDetection records.
+          items:
+            $ref: '#/components/schemas/SecurityDetection'
   securitySchemes:
     OAuth2:
       type: oauth2

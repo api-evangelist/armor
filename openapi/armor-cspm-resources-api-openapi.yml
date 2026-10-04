@@ -97,6 +97,45 @@ paths:
           description: Forbidden
 components:
   schemas:
+    ResourceDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        details:
+          type: object
+          additionalProperties: true
+          description: Resource details
+    ResourceEvaluationDto:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        status:
+          type: string
+          description: Evaluation status
+        evaluatedOn:
+          type: string
+          format: date-time
+          description: Evaluation date
+    PagedResultSet:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmResourceListDto'
     CspmResourceListDto:
       type: object
       properties:
@@ -137,45 +176,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceEvaluationDto'
-    PagedResultSet:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total count
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CspmResourceListDto'
-    ResourceDetailDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Resource ID
-        resourceName:
-          type: string
-          description: Resource name
-        resourceType:
-          type: string
-          description: Resource type
-        details:
-          type: object
-          additionalProperties: true
-          description: Resource details
-    ResourceEvaluationDto:
-      type: object
-      properties:
-        controlId:
-          type: string
-          description: Control ID
-        status:
-          type: string
-          description: Evaluation status
-        evaluatedOn:
-          type: string
-          format: date-time
-          description: Evaluation date
   securitySchemes:
     OAuth2:
       type: oauth2

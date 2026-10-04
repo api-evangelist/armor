@@ -55,15 +55,6 @@ components:
           type: string
         statusCode:
           type: integer
-    MachinesResponse:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Machine'
     Machine:
       type: object
       properties:
@@ -119,9 +110,18 @@ components:
           type: array
           items:
             type: string
+    MachinesResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Machine'
   responses:
-    InternalServerError:
-      description: Internal server error occurred while processing the request
+    CustomerNotFound:
+      description: Unable to retrieve customer records
       content:
         application/json:
           schema:
@@ -132,8 +132,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    CustomerNotFound:
-      description: Unable to retrieve customer records
+    InternalServerError:
+      description: Internal server error occurred while processing the request
       content:
         application/json:
           schema:

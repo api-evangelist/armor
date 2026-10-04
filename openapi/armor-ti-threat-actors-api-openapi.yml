@@ -102,17 +102,6 @@ paths:
           description: Internal server error
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     ThreatActor:
       type: object
       properties:
@@ -161,6 +150,17 @@ components:
           - team
           - organization
           - government
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     ThreatActorDetail:
       allOf:
       - $ref: '#/components/schemas/ThreatActor'

@@ -155,6 +155,17 @@ components:
           type: integer
           description: Seconds until access token expires
           example: 900
+    AuthorizeResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Authorization code valid for 2 minutes
+          example: abc123xyz...
+        expiresIn:
+          type: integer
+          description: Seconds until code expires
+          example: 120
     RefreshRequest:
       type: object
       required:
@@ -196,17 +207,6 @@ components:
           - authorization_code
           description: Must be "authorization_code"
           example: authorization_code
-    AuthorizeResponse:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Authorization code valid for 2 minutes
-          example: abc123xyz...
-        expiresIn:
-          type: integer
-          description: Seconds until code expires
-          example: 120
   securitySchemes:
     FH-AUTH:
       type: http

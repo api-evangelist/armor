@@ -90,31 +90,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    IncidentMetrics:
-      type: object
-      properties:
-        eventToIncidentRatioTrend:
-          type: array
-          items:
-            type: object
-            properties:
-              date:
-                type: string
-                format: date
-              value:
-                type: object
-                properties:
-                  events:
-                    type: integer
-                  alerts:
-                    type: integer
-                  incidents:
-                    type: integer
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
     ThreatIntelUpdate:
       type: object
       properties:
@@ -149,6 +124,31 @@ components:
               type: array
               items:
                 type: object
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    IncidentMetrics:
+      type: object
+      properties:
+        eventToIncidentRatioTrend:
+          type: array
+          items:
+            type: object
+            properties:
+              date:
+                type: string
+                format: date
+              value:
+                type: object
+                properties:
+                  events:
+                    type: integer
+                  alerts:
+                    type: integer
+                  incidents:
+                    type: integer
   securitySchemes:
     OAuth2BearerAuth:
       type: http

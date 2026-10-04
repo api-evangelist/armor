@@ -2373,337 +2373,63 @@ paths:
       deprecated: false
 components:
   schemas:
-    FireHost.Infrastructure.Compute.Models.Application.ApplicationDto:
+    FireHost.Services.Http.Orders.ApiExamples.Models.PostVmOrderAsyncSampleRequest:
       type: object
       properties:
-        id:
-          format: int32
-          type: integer
         name:
           type: string
+          readOnly: true
         location:
           type: string
-        zone:
-          type: string
-        status:
-          format: int32
-          type: integer
-        deployed:
-          type: boolean
-        tierCount:
-          format: int32
-          type: integer
-        vmCount:
-          format: int32
-          type: integer
-        totalCpu:
-          format: int32
-          type: integer
-        totalMemory:
-          format: int32
-          type: integer
-        totalStorage:
-          format: int32
-          type: integer
-        isRecoveryWorkload:
-          type: boolean
-        notes:
-          type: string
-        health:
-          format: int32
-          type: integer
           readOnly: true
-        tags:
-          type: array
-          items:
-            type: string
-          readOnly: true
-    FireHost.Services.Http.Scheduling.Models.TaskRequest:
-      type: object
-      properties:
-        entityType:
-          type: string
-        entityId:
-          type: string
-        action:
-          type: string
-        extraInfo:
-          type: string
-      example:
-        action: delete
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageAdvancedSettingsUpdateRequest:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        storageId:
-          format: int32
-          type: integer
-        vmId:
-          format: int32
-          type: integer
-        scsiBusNo:
-          format: int32
-          type: integer
-        scsiUnitNo:
-          format: int32
-          type: integer
-      example:
-        accountId: 4
-        storageId: 5
-        vmId: 15
-        scsiBusNo: 1
-        scsiUnitNo: 3
-    FireHost.Infrastructure.Compute.Data.Domain.VmService:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        sku:
-          type: string
-        isDeleted:
-          type: boolean
-        id:
-          format: int32
-          type: integer
-        createdDate:
-          format: date-time
-          type: string
-        createdBy:
-          type: string
-        modifiedDate:
-          format: date-time
-          type: string
-        modifiedBy:
-          type: string
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageOrderDto:
-      type: object
-      properties:
-        storage:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmStorageDto'
-        accountId:
-          format: int32
-          type: integer
-        accountName:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-      example:
-        storage:
-        - sku: SAN-001
-          size: 10
-          isBackupEnabled: false
-    FireHost.Infrastructure.Compute.Data.Domain.StorageProduct:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        sku:
-          type: string
-        category:
-          type: string
-        description:
-          type: string
-        tier:
-          type: string
-        min:
-          format: int32
-          type: integer
-        max:
-          format: int32
-          type: integer
-        increment:
-          format: int32
-          type: integer
-        price:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Data.Domain.ProductPrice'
-    FireHost.Infrastructure.Orders.Models.SubscriptionOrderItem:
-      type: object
-      properties:
-        location:
-          type: string
-        sku:
-          type: string
-        quantity:
-          format: int32
-          type: integer
-        model:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Orders.Models.SoftwareOrderItem:
-      type: object
-      properties:
-        type:
-          type: string
-        parameters:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareInstallParameter'
-        sku:
-          type: string
-        quantity:
-          format: int32
-          type: integer
-        model:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Compute.Models.Disk:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        capacity:
-          format: int32
-          type: integer
-        name:
-          type: string
-        type:
-          type: string
-        scsiBusNo:
-          format: int32
-          type: integer
-        scsiUnitNo:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Orders.Models.StorageOrderItem:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        mountPoint:
-          type: string
-        fileSystem:
-          type: string
-        size:
-          format: int32
-          type: integer
-        sku:
-          type: string
-        quantity:
-          format: int32
-          type: integer
-        model:
-          type: string
-        accountId:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Compute.Models.Stats.VmStatsDto:
-      type: object
-      properties:
-        vmId:
-          type: string
-        cpu:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
-        memory:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
-        networkIn:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
-        networkOut:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.TemplateStorageSumDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        name:
-          type: string
-        location:
-          type: string
-        ssd:
-          format: int32
-          type: integer
-        fluid:
-          format: int32
-          type: integer
-        raw:
-          format: int32
-          type: integer
-        total:
-          format: int32
-          type: integer
-    FireHost.Services.Http.Orders.ApiExamples.Models.PostSubscriptionOrderAsyncSampleRequest:
-      type: object
-      properties:
-        sku:
-          type: string
-          readOnly: true
-        quantity:
-          format: int32
-          type: integer
-          readOnly: true
-      example:
-        sku: DB-SQL-EXPRESS-2012
-        quantity: 1
-    FireHost.Infrastructure.Orders.Data.Domain.Order:
-      type: object
-      properties:
-        orderId:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
         appId:
           format: int32
           type: integer
-        dateOrdered:
-          format: date-time
+        appName:
           type: string
-        status:
+        tierId:
+          format: int32
+          type: integer
+          readOnly: true
+        tierName:
           type: string
-        jsonData:
-          type: string
-        secret:
-          type: string
-        createdBy:
-          type: string
-    FireHost.Infrastructure.Compute.Data.Domain.ProductPrice:
-      type: object
-      properties:
-        location:
-          type: string
-        amount:
-          format: double
-          type: number
-    FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsPublicResponse:
-      type: object
-      properties:
-        healthDetails:
+          readOnly: true
+        storage:
           type: array
           items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic'
-    FireHost.Infrastructure.Perimeter.Data.Domain.Profile.ProfileRequest:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.StorageOrderItem'
+        secret:
+          type: string
+          readOnly: true
+        sku:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+          readOnly: true
+        vmProtectionPolicyId:
+          format: int32
+          type: integer
+          readOnly: true
+      example:
+        name: NewVirtualMachine
+        location: dfw01
+        appId: -1
+        appName: NewWorkload
+        tierId: -1
+        tierName: NewTier
+        storage: []
+        secret: kbwcEFufHBc$j#Z97HWMXdPCss
+        sku: A1-101
+        quantity: 1
+        vmProtectionPolicyId: 1
+    FireHost.Infrastructure.Orders.Models.SoftwareInstallParameter:
       type: object
       properties:
-        profileName:
+        name:
           type: string
-      example:
-        profileName: Log Collector
+        value:
+          type: string
     FireHost.Infrastructure.Compute.Models.CoreVmDetail:
       type: object
       properties:
@@ -2830,127 +2556,31 @@ components:
           type: string
         isWafProtected:
           type: boolean
-    FireHost.Services.Http.Orders.ApiExamples.Models.PostVmOrderAsyncSampleRequest:
+    FireHost.Services.Http.Scheduling.Models.TaskResponse:
       type: object
       properties:
-        name:
+        entityType:
           type: string
-          readOnly: true
-        location:
+        entityId:
           type: string
-          readOnly: true
-        appId:
-          format: int32
-          type: integer
-        appName:
+        action:
           type: string
-        tierId:
-          format: int32
-          type: integer
-          readOnly: true
-        tierName:
+        taskDate:
+          format: date-time
           type: string
-          readOnly: true
-        storage:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.StorageOrderItem'
-        secret:
-          type: string
-          readOnly: true
-        sku:
-          type: string
-        quantity:
-          format: int32
-          type: integer
-          readOnly: true
-        vmProtectionPolicyId:
-          format: int32
-          type: integer
-          readOnly: true
-      example:
-        name: NewVirtualMachine
-        location: dfw01
-        appId: -1
-        appName: NewWorkload
-        tierId: -1
-        tierName: NewTier
-        storage: []
-        secret: kbwcEFufHBc$j#Z97HWMXdPCss
-        sku: A1-101
-        quantity: 1
-        vmProtectionPolicyId: 1
-    FireHost.Infrastructure.Compute.Models.ProductDetail:
+    FireHost.Infrastructure.Compute.Models.Requests.TaskResponse:
       type: object
       properties:
-        sku:
+        entityType:
           type: string
-        size:
+        entityId:
           type: string
-        isExpired:
-          type: boolean
-        storagePolicyClass:
+        action:
           type: string
-        productCategory:
+        taskDate:
+          format: date-time
           type: string
-        productSubCategory:
-          type: string
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageSummaryDto:
-      type: object
-      properties:
-        vms:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmsStorageDto'
-        templates:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.TemplateStorageSumDto'
-    FireHost.Infrastructure.Orders.Models.VmOrderItem:
-      type: object
-      properties:
-        trackingId:
-          type: string
-        name:
-          type: string
-        location:
-          type: string
-        zone:
-          type: string
-        appId:
-          format: int32
-          type: integer
-        appName:
-          type: string
-        tierId:
-          format: int32
-          type: integer
-        tierName:
-          type: string
-        storage:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.StorageOrderItem'
-        software:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareOrderItem'
-        secret:
-          type: string
-        templateId:
-          format: int32
-          type: integer
-        vmProtectionPolicyId:
-          format: int32
-          type: integer
-        sku:
-          type: string
-        quantity:
-          format: int32
-          type: integer
-        model:
-          type: string
-        accountId:
+        maintenanceWindow:
           format: int32
           type: integer
     FireHost.Infrastructure.Compute.Models.Application.ApplicationDetail:
@@ -3002,21 +2632,6 @@ components:
           items:
             type: string
           readOnly: true
-    FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic:
-      type: object
-      properties:
-        name:
-          type: string
-        state:
-          type: string
-        message:
-          type: string
-        messageHoverText:
-          type: string
-        subAgentVersion:
-          type: string
-        subAgentProductName:
-          type: string
     FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsResponse:
       type: object
       properties:
@@ -3024,252 +2639,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetail'
-    FireHost.Infrastructure.Orders.Models.SoftwareInstallParameter:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint:
-      type: object
-      properties:
-        t:
-          format: date-time
-          type: string
-        v:
-          format: double
-          type: number
-        s:
-          type: string
-    FireHost.Infrastructure.Compute.Models.Requests.TaskResponse:
-      type: object
-      properties:
-        entityType:
-          type: string
-        entityId:
-          type: string
-        action:
-          type: string
-        taskDate:
-          format: date-time
-          type: string
-        maintenanceWindow:
-          format: int32
-          type: integer
-    FireHost.Infrastructure.Compute.Data.Domain.AccountAutoAgePolicy:
-      type: object
-      properties:
-        isEnabled:
-          type: boolean
-        hoursGracePeriod:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-    System.Object:
-      type: object
-      properties: {}
-    FireHost.Infrastructure.Compute.Models.AccountVmDto:
-      type: object
-      properties:
-        coreInstanceId:
-          type: string
-        dateCreated:
-          format: date-time
-          type: string
-        providerRefId:
-          type: string
-        provider:
-          type: string
-        hostName:
-          type: string
-        externalAddress:
-          type: string
-        isRegistered:
-          type: boolean
-        dateRegistered:
-          format: date-time
-          type: string
-        lastPing:
-          format: date-time
-          type: string
-        needsReboot:
-          type: boolean
-        customProvider:
-          type: string
-        customLocation:
-          type: string
-        instanceType:
-          type: string
-        status:
-          format: int32
-          type: integer
-        isCore:
-          type: boolean
-        externalVmIsDeleted:
-          type: boolean
-        accountId:
-          format: int32
-          type: integer
-        vmId:
-          format: int32
-          type: integer
-        workLoadId:
-          format: int32
-          type: integer
-        workLoadName:
-          type: string
-        location:
-          type: string
-        operatingSystem:
-          type: string
-        isArmor:
-          type: boolean
-        ipAddress:
-          type: string
-        zone:
-          type: string
-        name:
-          type: string
-        cpu:
-          format: int32
-          type: integer
-        memory:
-          format: int32
-          type: integer
-        storage:
-          format: int32
-          type: integer
-        statusId:
-          format: int32
-          type: integer
-        deployed:
-          type: boolean
-        vcdOrgVdcId:
-          format: int32
-          type: integer
-        isRecoveryVm:
-          type: boolean
-        product:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.ProductDetail'
-        tags:
-          type: array
-          items:
-            type: string
-          readOnly: true
-        scheduledEvents:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.TaskResponse'
-        vmServices:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Data.Domain.VmService'
-        multiVmVapp:
-          type: boolean
-    FireHost.Infrastructure.Orders.Models.OrderDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        status:
-          type: string
-        dateCreated:
-          format: date-time
-          type: string
-        dateCompleted:
-          format: date-time
-          type: string
-        vms:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.VmOrderItem'
-        software:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareOrderItem'
-        subscriptions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SubscriptionOrderItem'
-    FireHost.Infrastructure.Compute.Models.AccountSimpleVmDto:
-      type: object
-      properties:
-        coreInstanceId:
-          type: string
-        vmId:
-          format: int32
-          type: integer
-        hostName:
-          type: string
-    FireHost.Services.Http.Compute.ApiExamples.Models.SampleAssignVmToWorkloadRequestDto:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-          readOnly: true
-        workloadId:
-          format: int32
-          type: integer
-          readOnly: true
-        tierId:
-          format: int32
-          type: integer
-          readOnly: true
-        accountId:
-          format: int32
-          type: integer
-          readOnly: true
-        userName:
-          type: string
-          readOnly: true
-      example:
-        vmId: 1
-        workloadId: 2
-        tierId: 3
-        accountId: 4
-        userName: example@armor.com
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmStorageDto:
-      type: object
-      properties:
-        sku:
-          type: string
-        size:
-          format: int32
-          type: integer
-        scsiBusNo:
-          format: int32
-          type: integer
-        scsiUnitNo:
-          format: int32
-          type: integer
-        isBackupEnabled:
-          type: boolean
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.AdjustVmResourcesRequest:
-      type: object
-      properties:
-        vmId:
-          format: int32
-          type: integer
-        accountId:
-          format: int32
-          type: integer
-        user:
-          type: string
-        sku:
-          type: string
-      example:
-        vmId: 6
-        accountId: 2
-        user: test.dev@armor.com
-        sku: A1-122
     FireHost.Infrastructure.Compute.Models.VmDetail:
       type: object
       properties:
@@ -3397,21 +2766,401 @@ components:
           type: string
         isWafProtected:
           type: boolean
-    FireHost.Infrastructure.Compute.Models.Environment.LocationDto:
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageAdvancedSettingsUpdateRequest:
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        storageId:
+          format: int32
+          type: integer
+        vmId:
+          format: int32
+          type: integer
+        scsiBusNo:
+          format: int32
+          type: integer
+        scsiUnitNo:
+          format: int32
+          type: integer
+      example:
+        accountId: 4
+        storageId: 5
+        vmId: 15
+        scsiBusNo: 1
+        scsiUnitNo: 3
+    FireHost.Infrastructure.Compute.Data.Domain.VmService:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        isDeleted:
+          type: boolean
+        id:
+          format: int32
+          type: integer
+        createdDate:
+          format: date-time
+          type: string
+        createdBy:
+          type: string
+        modifiedDate:
+          format: date-time
+          type: string
+        modifiedBy:
+          type: string
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.TemplateStorageSumDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        location:
-          type: string
         name:
           type: string
-        zones:
+        location:
+          type: string
+        ssd:
+          format: int32
+          type: integer
+        fluid:
+          format: int32
+          type: integer
+        raw:
+          format: int32
+          type: integer
+        total:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsPublicResponse:
+      type: object
+      properties:
+        healthDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic'
+    FireHost.Services.Http.Orders.ApiExamples.Models.PostSubscriptionOrderAsyncSampleRequest:
+      type: object
+      properties:
+        sku:
+          type: string
+          readOnly: true
+        quantity:
+          format: int32
+          type: integer
+          readOnly: true
+      example:
+        sku: DB-SQL-EXPRESS-2012
+        quantity: 1
+    FireHost.Infrastructure.Compute.Models.Application.ApplicationDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        zone:
+          type: string
+        status:
+          format: int32
+          type: integer
+        deployed:
+          type: boolean
+        tierCount:
+          format: int32
+          type: integer
+        vmCount:
+          format: int32
+          type: integer
+        totalCpu:
+          format: int32
+          type: integer
+        totalMemory:
+          format: int32
+          type: integer
+        totalStorage:
+          format: int32
+          type: integer
+        isRecoveryWorkload:
+          type: boolean
+        notes:
+          type: string
+        health:
+          format: int32
+          type: integer
+          readOnly: true
+        tags:
           type: array
           items:
             type: string
-        displayName:
+          readOnly: true
+    FireHost.Infrastructure.Compute.Models.VmHealthStatusDto:
+      type: object
+      properties:
+        ruleFamily:
+          type: string
+        message:
+          type: string
+    FireHost.Infrastructure.Perimeter.Data.Domain.Profile.ProfileRequest:
+      type: object
+      properties:
+        profileName:
+          type: string
+      example:
+        profileName: Log Collector
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        message:
+          type: string
+        messageHoverText:
+          type: string
+        subAgentVersion:
+          type: string
+        subAgentProductName:
+          type: string
+    FireHost.Services.Http.Compute.ApiExamples.Models.UpdateAppSampleRequest:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          readOnly: true
+      example:
+        id: 1
+        name: VMW Workload
+    FireHost.Services.Http.Compute.ApiExamples.UpdateTierExampleRequest:
+      type: object
+      properties: {}
+      example:
+        name: New Tier 1
+    FireHost.Services.Http.Compute.ApiExamples.Models.SampleAssignVmToWorkloadRequestDto:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+          readOnly: true
+        workloadId:
+          format: int32
+          type: integer
+          readOnly: true
+        tierId:
+          format: int32
+          type: integer
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
+        userName:
+          type: string
+          readOnly: true
+      example:
+        vmId: 1
+        workloadId: 2
+        tierId: 3
+        accountId: 4
+        userName: example@armor.com
+    FireHost.Infrastructure.Compute.Models.Disk:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        capacity:
+          format: int32
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        scsiBusNo:
+          format: int32
+          type: integer
+        scsiUnitNo:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Orders.Models.StorageOrderItem:
+      type: object
+      properties:
+        vmId:
+          format: int32
+          type: integer
+        mountPoint:
+          type: string
+        fileSystem:
+          type: string
+        size:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        model:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Orders.Models.SoftwareOrderItem:
+      type: object
+      properties:
+        type:
+          type: string
+        parameters:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareInstallParameter'
+        sku:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        model:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Compute.Models.AccountVmDto:
+      type: object
+      properties:
+        coreInstanceId:
+          type: string
+        dateCreated:
+          format: date-time
+          type: string
+        providerRefId:
+          type: string
+        provider:
+          type: string
+        hostName:
+          type: string
+        externalAddress:
+          type: string
+        isRegistered:
+          type: boolean
+        dateRegistered:
+          format: date-time
+          type: string
+        lastPing:
+          format: date-time
+          type: string
+        needsReboot:
+          type: boolean
+        customProvider:
+          type: string
+        customLocation:
+          type: string
+        instanceType:
+          type: string
+        status:
+          format: int32
+          type: integer
+        isCore:
+          type: boolean
+        externalVmIsDeleted:
+          type: boolean
+        accountId:
+          format: int32
+          type: integer
+        vmId:
+          format: int32
+          type: integer
+        workLoadId:
+          format: int32
+          type: integer
+        workLoadName:
+          type: string
+        location:
+          type: string
+        operatingSystem:
+          type: string
+        isArmor:
+          type: boolean
+        ipAddress:
+          type: string
+        zone:
+          type: string
+        name:
+          type: string
+        cpu:
+          format: int32
+          type: integer
+        memory:
+          format: int32
+          type: integer
+        storage:
+          format: int32
+          type: integer
+        statusId:
+          format: int32
+          type: integer
+        deployed:
+          type: boolean
+        vcdOrgVdcId:
+          format: int32
+          type: integer
+        isRecoveryVm:
+          type: boolean
+        product:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.ProductDetail'
+        tags:
+          type: array
+          items:
+            type: string
+          readOnly: true
+        scheduledEvents:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.TaskResponse'
+        vmServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Data.Domain.VmService'
+        multiVmVapp:
+          type: boolean
+    FireHost.Services.Http.Scheduling.Models.TaskRequest:
+      type: object
+      properties:
+        entityType:
+          type: string
+        entityId:
+          type: string
+        action:
+          type: string
+        extraInfo:
+          type: string
+      example:
+        action: delete
+    FireHost.Infrastructure.Compute.Models.ProductDetail:
+      type: object
+      properties:
+        sku:
+          type: string
+        size:
+          type: string
+        isExpired:
+          type: boolean
+        storagePolicyClass:
+          type: string
+        productCategory:
+          type: string
+        productSubCategory:
           type: string
     FireHost.Infrastructure.HealthMonitoring.Models.HealthDetail:
       type: object
@@ -3436,14 +3185,69 @@ components:
           type: string
         hideServices:
           type: boolean
-    FireHost.Infrastructure.Compute.Models.VmHealthStatusDto:
+    FireHost.Infrastructure.Orders.Models.VmOrderItem:
       type: object
       properties:
-        ruleFamily:
+        trackingId:
           type: string
-        message:
+        name:
           type: string
-    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmsStorageDto:
+        location:
+          type: string
+        zone:
+          type: string
+        appId:
+          format: int32
+          type: integer
+        appName:
+          type: string
+        tierId:
+          format: int32
+          type: integer
+        tierName:
+          type: string
+        storage:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.StorageOrderItem'
+        software:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareOrderItem'
+        secret:
+          type: string
+        templateId:
+          format: int32
+          type: integer
+        vmProtectionPolicyId:
+          format: int32
+          type: integer
+        sku:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        model:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Orders.Models.SubscriptionOrderItem:
+      type: object
+      properties:
+        location:
+          type: string
+        sku:
+          type: string
+        quantity:
+          format: int32
+          type: integer
+        model:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Compute.Data.Domain.StorageProduct:
       type: object
       properties:
         id:
@@ -3451,20 +3255,81 @@ components:
           type: integer
         name:
           type: string
-        location:
+        sku:
           type: string
-        ssd:
+        category:
+          type: string
+        description:
+          type: string
+        tier:
+          type: string
+        min:
           format: int32
           type: integer
-        fluid:
+        max:
           format: int32
           type: integer
-        raw:
+        increment:
           format: int32
           type: integer
-        total:
+        price:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Data.Domain.ProductPrice'
+    System.Object:
+      type: object
+      properties: {}
+    FireHost.Infrastructure.Compute.Data.Domain.AccountAutoAgePolicy:
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+        hoursGracePeriod:
           format: int32
           type: integer
+        accountId:
+          format: int32
+          type: integer
+    FireHost.Services.Http.Compute.ApiExamples.Models.AddTierSampleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+          readOnly: true
+      example:
+        name: New Tier 3
+    FireHost.Infrastructure.Compute.Models.Stats.VmAllStatsDto:
+      type: object
+      properties:
+        vmId:
+          type: string
+        vMstatPoints:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
+    FireHost.Infrastructure.Compute.Models.Stats.VmStatsDto:
+      type: object
+      properties:
+        vmId:
+          type: string
+        cpu:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
+        memory:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
+        networkIn:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
+        networkOut:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
     FireHost.Infrastructure.Compute.Models.AccountVmWithCloudConnectionsDto:
       type: object
       properties:
@@ -3609,44 +3474,111 @@ components:
           type: string
         isWafProtected:
           type: boolean
-    FireHost.Services.Http.Compute.ApiExamples.Models.UpdateAppSampleRequest:
+    FireHost.Infrastructure.Compute.Data.Domain.ProductPrice:
+      type: object
+      properties:
+        location:
+          type: string
+        amount:
+          format: double
+          type: number
+    FireHost.Infrastructure.Compute.Models.Environment.LocationDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-          readOnly: true
+        location:
+          type: string
         name:
           type: string
-          readOnly: true
-      example:
-        id: 1
-        name: VMW Workload
-    FireHost.Services.Http.Scheduling.Models.TaskResponse:
+        zones:
+          type: array
+          items:
+            type: string
+        displayName:
+          type: string
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.AdjustVmResourcesRequest:
       type: object
       properties:
-        entityType:
+        vmId:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        user:
           type: string
-        entityId:
+        sku:
           type: string
-        action:
+      example:
+        vmId: 6
+        accountId: 2
+        user: test.dev@armor.com
+        sku: A1-122
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmsStorageDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
           type: string
-        taskDate:
+        location:
+          type: string
+        ssd:
+          format: int32
+          type: integer
+        fluid:
+          format: int32
+          type: integer
+        raw:
+          format: int32
+          type: integer
+        total:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint:
+      type: object
+      properties:
+        t:
           format: date-time
           type: string
-    FireHost.Services.Http.Compute.ApiExamples.Models.AddTierSampleRequest:
+        v:
+          format: double
+          type: number
+        s:
+          type: string
+    FireHost.Infrastructure.Compute.Models.AccountSimpleVmDto:
       type: object
       properties:
-        name:
+        coreInstanceId:
           type: string
-          readOnly: true
-      example:
-        name: New Tier 3
-    FireHost.Services.Http.Compute.ApiExamples.UpdateTierExampleRequest:
+        vmId:
+          format: int32
+          type: integer
+        hostName:
+          type: string
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageOrderDto:
       type: object
-      properties: {}
+      properties:
+        storage:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmStorageDto'
+        accountId:
+          format: int32
+          type: integer
+        accountName:
+          type: string
+        vmId:
+          format: int32
+          type: integer
       example:
-        name: New Tier 1
+        storage:
+        - sku: SAN-001
+          size: 10
+          isBackupEnabled: false
     FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.DeleteVmRequest:
       type: object
       properties:
@@ -3665,17 +3597,85 @@ components:
         vmId: 6
         userEmail: test.dev@armor.com
         isActive: true
-    FireHost.Infrastructure.Compute.Models.Stats.VmAllStatsDto:
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmStorageDto:
       type: object
       properties:
-        vmId:
+        sku:
           type: string
-        vMstatPoints:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Stats.VmStatPoint'
+        size:
+          format: int32
+          type: integer
+        scsiBusNo:
+          format: int32
+          type: integer
+        scsiUnitNo:
+          format: int32
+          type: integer
+        isBackupEnabled:
+          type: boolean
+    FireHost.Infrastructure.Orders.Models.OrderDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        status:
+          type: string
+        dateCreated:
+          format: date-time
+          type: string
+        dateCompleted:
+          format: date-time
+          type: string
+        vms:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.VmOrderItem'
+        software:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SoftwareOrderItem'
+        subscriptions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Orders.Models.SubscriptionOrderItem'
+    FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.StorageSummaryDto:
+      type: object
+      properties:
+        vms:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.VmsStorageDto'
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Compute.Models.Requests.VirtualMachines.Storage.TemplateStorageSumDto'
+    FireHost.Infrastructure.Orders.Data.Domain.Order:
+      type: object
+      properties:
+        orderId:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        appId:
+          format: int32
+          type: integer
+        dateOrdered:
+          format: date-time
+          type: string
+        status:
+          type: string
+        jsonData:
+          type: string
+        secret:
+          type: string
+        createdBy:
+          type: string
   securitySchemes:
     Authorization:
       type: apiKey

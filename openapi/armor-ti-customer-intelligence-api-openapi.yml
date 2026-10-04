@@ -75,38 +75,6 @@ components:
           type: string
         statusCode:
           type: integer
-    OpenCTIReport:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        created:
-          type: string
-          format: date-time
-        modified:
-          type: string
-          format: date-time
-        published:
-          type: string
-          format: date-time
-        report_types:
-          type: array
-          items:
-            type: string
-    ProductVendor:
-      type: object
-      required:
-      - productName
-      - productVendor
-      properties:
-        productName:
-          type: string
-        productVendor:
-          type: string
     OpenCTIVulnerability:
       type: object
       properties:
@@ -135,6 +103,38 @@ components:
           - MEDIUM
           - HIGH
           - CRITICAL
+    ProductVendor:
+      type: object
+      required:
+      - productName
+      - productVendor
+      properties:
+        productName:
+          type: string
+        productVendor:
+          type: string
+    OpenCTIReport:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created:
+          type: string
+          format: date-time
+        modified:
+          type: string
+          format: date-time
+        published:
+          type: string
+          format: date-time
+        report_types:
+          type: array
+          items:
+            type: string
     CustomerTIResponse:
       type: object
       required:

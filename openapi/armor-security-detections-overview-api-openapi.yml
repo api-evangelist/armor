@@ -48,19 +48,16 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   schemas:
-    Category:
-      type: object
-      properties:
-        categoryName:
-          type: string
-          description: The category associated with the incident/detection.
-        categoryCount:
-          type: integer
-          description: The number of incidents/detections for the category.
-        categoryPercentage:
-          type: string
-          description: The percentage of incidents/detections for the category.
     Description:
       type: object
       properties:
@@ -73,6 +70,18 @@ components:
         descriptionPercentage:
           type: string
           description: The percentage of incidents/detections for the description.
+    Category:
+      type: object
+      properties:
+        categoryName:
+          type: string
+          description: The category associated with the incident/detection.
+        categoryCount:
+          type: integer
+          description: The number of incidents/detections for the category.
+        categoryPercentage:
+          type: string
+          description: The percentage of incidents/detections for the category.
     Message:
       type: object
       properties:
@@ -125,15 +134,6 @@ components:
         severityPercentage:
           type: string
           description: The percentage of incidents/detections for the severity.
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   responses:
     Forbidden:
       description: Forbidden

@@ -67,12 +67,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Response message
     CspmReportConfiguration:
       type: object
       required:
@@ -111,6 +105,12 @@ components:
           items:
             type: string
           description: Array of policies
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
     ReportConfigurationResponse:
       type: object
       properties:

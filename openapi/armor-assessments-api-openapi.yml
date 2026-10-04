@@ -121,24 +121,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    AssessmentAccountResponse:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Coalfire account identifier
-        sku:
-          type: string
-          description: Billing reference
-        accountId:
-          type: integer
-          description: Armor Account ID
-        status:
-          type: string
-          description: Assessment status
-        scanTargetStatus:
-          type: string
-          description: Scan Target status
     AssessmentUpdateAccountRequest:
       type: object
       properties:
@@ -157,6 +139,24 @@ components:
         sku:
           type: string
           description: Billing reference
+    AssessmentAccountResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Coalfire account identifier
+        sku:
+          type: string
+          description: Billing reference
+        accountId:
+          type: integer
+          description: Armor Account ID
+        status:
+          type: string
+          description: Assessment status
+        scanTargetStatus:
+          type: string
+          description: Scan Target status
   securitySchemes:
     OAuth2:
       type: oauth2

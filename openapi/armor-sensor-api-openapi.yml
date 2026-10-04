@@ -44,19 +44,6 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context
@@ -66,7 +53,26 @@ components:
       schema:
         type: integer
       example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     SensorDetailsResponse:
       type: object
       properties:
@@ -97,12 +103,6 @@ components:
         lastReportedIn:
           type: string
           description: Datetime when sensor was last communicated with by the Armor platform
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
   securitySchemes:
     OAuth2:
       type: oauth2

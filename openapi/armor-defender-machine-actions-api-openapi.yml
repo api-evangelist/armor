@@ -129,15 +129,6 @@ components:
           type: string
         statusCode:
           type: integer
-    MachineActionsResponse:
-      type: object
-      properties:
-        '@odata.context':
-          type: string
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/MachineAction'
     MachineActionRequest:
       type: object
       required:
@@ -236,9 +227,18 @@ components:
               type: string
             fileIdentifierType:
               type: string
+    MachineActionsResponse:
+      type: object
+      properties:
+        '@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/MachineAction'
   responses:
-    InternalServerError:
-      description: Internal server error occurred while processing the request
+    CustomerNotFound:
+      description: Unable to retrieve customer records
       content:
         application/json:
           schema:
@@ -249,14 +249,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Bad Request - Invalid parameters or malformed request
+    InternalServerError:
+      description: Internal server error occurred while processing the request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    CustomerNotFound:
-      description: Unable to retrieve customer records
+    BadRequest:
+      description: Bad Request - Invalid parameters or malformed request
       content:
         application/json:
           schema:

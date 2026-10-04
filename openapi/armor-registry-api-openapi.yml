@@ -140,75 +140,48 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  responses:
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+    RegistryId:
+      name: id
+      in: path
+      required: true
+      description: Registry ID
+      schema:
+        type: integer
   schemas:
-    RepositoryRequest:
-      type: object
-      required:
-      - name
-      - tags
-      properties:
-        name:
-          type: string
-          description: Name of the repository
-        tags:
-          type: array
-          description: Tags of the images in this repository
-          items:
-            type: string
-    VendorTypesResponse:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Vendor Id
-        code:
-          type: string
-          description: The Vendor Code
-        name:
-          type: string
-          description: The Vendor Name
-        regions:
-          type: array
-          description: List of Region Name or URI
-          items:
-            $ref: '#/components/schemas/Region'
-    RegistryDeleteResponse:
-      type: object
-      properties:
-        registryId:
-          type: number
-          description: Id for the registry deleted
-    VulnerabilitiesResponse:
-      type: object
-      description: Count of vulnerabilities per severity level
-      properties:
-        critical:
-          type: number
-          description: Count of "Critical" severity vulnerabilities
-        high:
-          type: number
-          description: Count of "High" severity vulnerabilities
-        medium:
-          type: number
-          description: Count of "Medium" severity vulnerabilities
-        low:
-          type: number
-          description: Count of "Low" severity vulnerabilities
-        info:
-          type: number
-          description: Count of "Info" severity vulnerabilities
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    RegistryCreateResponse:
-      type: object
-      properties:
-        registryId:
-          type: number
-          description: Id for the registry created
     RegistryDetailResponse:
       type: object
       properties:
@@ -259,6 +232,12 @@ components:
         modifiedDate:
           type: string
           description: The date & time the registry was updated
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     RegistryCreateRequest:
       type: object
       required:
@@ -287,18 +266,45 @@ components:
           description: Array of Repositories
           items:
             $ref: '#/components/schemas/RepositoryRequest'
-    Region:
+    RegistryDeleteResponse:
       type: object
       properties:
-        code:
-          type: string
-          description: Region Code
+        registryId:
+          type: number
+          description: Id for the registry deleted
+    RepositoryRequest:
+      type: object
+      required:
+      - name
+      - tags
+      properties:
         name:
           type: string
-          description: The Region Name
-        uri:
-          type: string
-          description: Registry URI
+          description: Name of the repository
+        tags:
+          type: array
+          description: Tags of the images in this repository
+          items:
+            type: string
+    VulnerabilitiesResponse:
+      type: object
+      description: Count of vulnerabilities per severity level
+      properties:
+        critical:
+          type: number
+          description: Count of "Critical" severity vulnerabilities
+        high:
+          type: number
+          description: Count of "High" severity vulnerabilities
+        medium:
+          type: number
+          description: Count of "Medium" severity vulnerabilities
+        low:
+          type: number
+          description: Count of "Low" severity vulnerabilities
+        info:
+          type: number
+          description: Count of "Info" severity vulnerabilities
     ContainerRegistryResponse:
       type: object
       properties:
@@ -343,47 +349,41 @@ components:
         modifiedDate:
           type: string
           description: The date & time the registry was updated
-  responses:
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-    RegistryId:
-      name: id
-      in: path
-      required: true
-      description: Registry ID
-      schema:
-        type: integer
+    Region:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Region Code
+        name:
+          type: string
+          description: The Region Name
+        uri:
+          type: string
+          description: Registry URI
+    RegistryCreateResponse:
+      type: object
+      properties:
+        registryId:
+          type: number
+          description: Id for the registry created
+    VendorTypesResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Vendor Id
+        code:
+          type: string
+          description: The Vendor Code
+        name:
+          type: string
+          description: The Vendor Name
+        regions:
+          type: array
+          description: List of Region Name or URI
+          items:
+            $ref: '#/components/schemas/Region'
   securitySchemes:
     OAuth2:
       type: oauth2

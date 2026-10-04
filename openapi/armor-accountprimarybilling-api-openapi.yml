@@ -112,17 +112,6 @@ components:
           type: string
         phoneExt:
           type: string
-    FireHost.Services.Http.Accounts.Models.Requests.UpdateAccountPrimaryBillingContactRequest:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
-          readOnly: true
-        accountId:
-          format: int32
-          type: integer
-          readOnly: true
     FireHost.Services.Http.Accounts.Models.GetUserResponse:
       type: object
       properties:
@@ -171,6 +160,17 @@ components:
           type: boolean
         isPrimaryTechnicalNotificationUser:
           type: boolean
+    FireHost.Services.Http.Accounts.Models.Requests.UpdateAccountPrimaryBillingContactRequest:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+          readOnly: true
+        accountId:
+          format: int32
+          type: integer
+          readOnly: true
   securitySchemes:
     Authorization:
       type: apiKey

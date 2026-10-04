@@ -113,7 +113,53 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Cloud connection sub service type id.
+        name:
+          type: string
+          description: Cloud connection sub service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection provider sub service type name.
+        imageName:
+          type: string
+          description: Cloud connection provider sub service type image name.
+        policy:
+          type: string
+          description: Cloud connection provider sub service type policy.
     CloudConnectionResourceResult:
       type: object
       properties:
@@ -158,72 +204,6 @@ components:
           description: Cloud Connection Services.
           items:
             $ref: '#/components/schemas/ConnectionService'
-    CloudConnectionDetailResult:
-      type: object
-      properties:
-        providerAccountId:
-          type: integer
-          description: Armor AWS account id.
-        connectionName:
-          type: string
-          description: Cloud connection name.
-        description:
-          type: string
-          description: Cloud connection description.
-        externalId:
-          type: string
-          description: Cloud connection externalId.
-        providerAccessResource:
-          type: string
-          description: Cloud connection provider access resource.
-        accountConnectionId:
-          type: integer
-          description: Account connection id.
-        providerTypeName:
-          type: string
-          description: Cloud connection provider type name.
-        serviceTypeName:
-          type: string
-          description: Cloud connection service type name.
-        subServiceName:
-          type: string
-          description: Cloud connection sub service name.
-        awsBaseJsonPolicy:
-          type: string
-          description: AWS Base JSON Policy.
-        armorAwsAccountId:
-          type: string
-          description: Armor AWS account id.
-        serviceTypeId:
-          type: string
-          description: Cloud connection service type id.
-        policy:
-          type: string
-          description: Cloud connection provider service policy.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-    ConnectionSubServiceType:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Cloud connection sub service type id.
-        name:
-          type: string
-          description: Cloud connection sub service type name.
-        subServiceName:
-          type: string
-          description: Cloud connection provider sub service type name.
-        imageName:
-          type: string
-          description: Cloud connection provider sub service type image name.
-        policy:
-          type: string
-          description: Cloud connection provider sub service type policy.
     ConnectionService:
       type: object
       properties:
@@ -270,28 +250,48 @@ components:
         imageName:
           type: string
           description: The image name of the service type.
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
+    CloudConnectionDetailResult:
+      type: object
+      properties:
+        providerAccountId:
+          type: integer
+          description: Armor AWS account id.
+        connectionName:
+          type: string
+          description: Cloud connection name.
+        description:
+          type: string
+          description: Cloud connection description.
+        externalId:
+          type: string
+          description: Cloud connection externalId.
+        providerAccessResource:
+          type: string
+          description: Cloud connection provider access resource.
+        accountConnectionId:
+          type: integer
+          description: Account connection id.
+        providerTypeName:
+          type: string
+          description: Cloud connection provider type name.
+        serviceTypeName:
+          type: string
+          description: Cloud connection service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection sub service name.
+        awsBaseJsonPolicy:
+          type: string
+          description: AWS Base JSON Policy.
+        armorAwsAccountId:
+          type: string
+          description: Armor AWS account id.
+        serviceTypeId:
+          type: string
+          description: Cloud connection service type id.
+        policy:
+          type: string
+          description: Cloud connection provider service policy.
   securitySchemes:
     OAuth2:
       type: oauth2

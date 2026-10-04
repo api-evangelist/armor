@@ -212,19 +212,20 @@ components:
       maximum: 65535
       description: A valid IP port number
       example: 514
-    FlowCollector:
+    Message:
       type: object
+      required:
+      - message
       properties:
-        flowCollectorId:
-          $ref: '#/components/schemas/Guid'
-        flowCollectorName:
-          type:
-          - string
-          - 'null'
-          description: The friendly name of the Flow Collector.
-        ipAddress:
+        message:
           type: string
-          description: The IP address of the flow collector.
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
     FlowSourceCreateRequest:
       type: object
       required:
@@ -247,42 +248,19 @@ components:
           - ipfix
           - sflow
           - jflow
-    FlowSource:
+    FlowCollector:
       type: object
       properties:
-        flowSourceId:
+        flowCollectorId:
           $ref: '#/components/schemas/Guid'
-        flowCollector:
-          $ref: '#/components/schemas/FlowCollector'
-        port:
-          $ref: '#/components/schemas/IpPort'
-        type:
-          type: string
-          description: The type of network flow data this source can consume.
-          enum:
-          - ipfix
-          - sflow
-          - jflow
-        orgId:
-          type:
-          - integer
-          - 'null'
-          description: The unique identifier of organization with which this flow source is associated.
-        siemFlowSourceId:
-          type: integer
-          description: The unique identifier of the flow source in the SIEM.
-        state:
+        flowCollectorName:
           type:
           - string
           - 'null'
-          description: The state of the Flow Source.
-          enum:
-          - Allocated
-          - Unallocated
-          - Not Configured
-        version:
-          type: integer
-          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
+          description: The friendly name of the Flow Collector.
+        ipAddress:
+          type: string
+          description: The IP address of the flow collector.
     FlowSourceEditRequest:
       type: object
       required:
@@ -321,20 +299,42 @@ components:
         version:
           type: integer
           description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
-    Message:
+    FlowSource:
       type: object
-      required:
-      - message
       properties:
-        message:
+        flowSourceId:
+          $ref: '#/components/schemas/Guid'
+        flowCollector:
+          $ref: '#/components/schemas/FlowCollector'
+        port:
+          $ref: '#/components/schemas/IpPort'
+        type:
           type: string
-          description: A message containing details about the request or of an exception thrown.
-          example: A confirmation message or explanation.
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
+          description: The type of network flow data this source can consume.
+          enum:
+          - ipfix
+          - sflow
+          - jflow
+        orgId:
+          type:
+          - integer
+          - 'null'
+          description: The unique identifier of organization with which this flow source is associated.
+        siemFlowSourceId:
+          type: integer
+          description: The unique identifier of the flow source in the SIEM.
+        state:
+          type:
+          - string
+          - 'null'
+          description: The state of the Flow Source.
+          enum:
+          - Allocated
+          - Unallocated
+          - Not Configured
+        version:
+          type: integer
+          description: The version of this flow source (used for concurrency checking). Pass this value with any subsequent update request.
   securitySchemes:
     oauth2:
       type: oauth2
