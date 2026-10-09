@@ -43,3 +43,42 @@ plans:
 - name: Armor Enterprise Cloud (AEC)
   price_text: Pricing depends on scope; request a quote or demo to learn more.
   period: none
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units: []
+  plans:
+  - name: Armor Agent Free Tier
+    access: other
+    model: free
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Armor Agent Premium Tier
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Armor Managed Detection and Response (MDR)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Armor Enterprise Cloud (AEC)
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
