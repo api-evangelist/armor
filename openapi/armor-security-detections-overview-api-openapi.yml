@@ -48,46 +48,7 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   schemas:
-    Description:
-      type: object
-      properties:
-        descriptionName:
-          type: string
-          description: The description associated with the incident/detection.
-        descriptionCount:
-          type: integer
-          description: The number of incidents/detections for the description.
-        descriptionPercentage:
-          type: string
-          description: The percentage of incidents/detections for the description.
-    Category:
-      type: object
-      properties:
-        categoryName:
-          type: string
-          description: The category associated with the incident/detection.
-        categoryCount:
-          type: integer
-          description: The number of incidents/detections for the category.
-        categoryPercentage:
-          type: string
-          description: The percentage of incidents/detections for the category.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     SecurityDetectionOverview:
       type: object
       properties:
@@ -134,6 +95,36 @@ components:
         severityPercentage:
           type: string
           description: The percentage of incidents/detections for the severity.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    Category:
+      type: object
+      properties:
+        categoryName:
+          type: string
+          description: The category associated with the incident/detection.
+        categoryCount:
+          type: integer
+          description: The number of incidents/detections for the category.
+        categoryPercentage:
+          type: string
+          description: The percentage of incidents/detections for the category.
+    Description:
+      type: object
+      properties:
+        descriptionName:
+          type: string
+          description: The description associated with the incident/detection.
+        descriptionCount:
+          type: integer
+          description: The number of incidents/detections for the description.
+        descriptionPercentage:
+          type: string
+          description: The percentage of incidents/detections for the description.
   responses:
     Forbidden:
       description: Forbidden
@@ -141,6 +132,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

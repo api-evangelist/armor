@@ -92,17 +92,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     PackageUriResponse:
       type: object
       properties:
@@ -119,25 +108,17 @@ components:
         value:
           type: string
           format: uri
-  responses:
-    CustomerNotFound:
-      description: Unable to retrieve customer records
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalServerError:
-      description: Internal server error occurred while processing the request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
   parameters:
     AccountContext:
       name: x-account-context
@@ -148,6 +129,25 @@ components:
         type: string
         format: uuid
       example: 81ece7fb-ff8e-411c-8787-9ea4639545be
+  responses:
+    CustomerNotFound:
+      description: Unable to retrieve customer records
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalServerError:
+      description: Internal server error occurred while processing the request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2BearerAuth:
       type: http

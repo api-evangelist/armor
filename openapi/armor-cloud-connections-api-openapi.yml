@@ -113,53 +113,33 @@ paths:
         '403':
           $ref: '#/components/responses/Forbidden'
 components:
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    BadRequest:
-      description: Bad request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
-    Message:
+    ConnectionService:
       type: object
       properties:
-        message:
+        accountConnectionId:
+          type: integer
+          description: Account cloud connection id.
+        lastSuccessfulConnectionDate:
           type: string
-          description: Error or informational message
-    ConnectionSubServiceType:
-      type: object
-      properties:
+          description: Last successful connection date.
         id:
           type: integer
-          description: Cloud connection sub service type id.
+          description: Cloud connection service id.
         name:
           type: string
-          description: Cloud connection sub service type name.
-        subServiceName:
-          type: string
-          description: Cloud connection provider sub service type name.
-        imageName:
-          type: string
-          description: Cloud connection provider sub service type image name.
+          description: Cloud connection service name.
+        subServices:
+          type: array
+          description: Cloud connection sub service type.
+          items:
+            $ref: '#/components/schemas/ConnectionSubServiceType'
         policy:
           type: string
-          description: Cloud connection provider sub service type policy.
+          description: Cloud connection provider service policy.
+        imageName:
+          type: string
+          description: Cloud connection provider service image name.
     CloudConnectionResourceResult:
       type: object
       properties:
@@ -204,32 +184,6 @@ components:
           description: Cloud Connection Services.
           items:
             $ref: '#/components/schemas/ConnectionService'
-    ConnectionService:
-      type: object
-      properties:
-        accountConnectionId:
-          type: integer
-          description: Account cloud connection id.
-        lastSuccessfulConnectionDate:
-          type: string
-          description: Last successful connection date.
-        id:
-          type: integer
-          description: Cloud connection service id.
-        name:
-          type: string
-          description: Cloud connection service name.
-        subServices:
-          type: array
-          description: Cloud connection sub service type.
-          items:
-            $ref: '#/components/schemas/ConnectionSubServiceType'
-        policy:
-          type: string
-          description: Cloud connection provider service policy.
-        imageName:
-          type: string
-          description: Cloud connection provider service image name.
     CloudConnectionServiceTypesResult:
       type: object
       properties:
@@ -292,6 +246,52 @@ components:
         policy:
           type: string
           description: Cloud connection provider service policy.
+    ConnectionSubServiceType:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Cloud connection sub service type id.
+        name:
+          type: string
+          description: Cloud connection sub service type name.
+        subServiceName:
+          type: string
+          description: Cloud connection provider sub service type name.
+        imageName:
+          type: string
+          description: Cloud connection provider sub service type image name.
+        policy:
+          type: string
+          description: Cloud connection provider sub service type policy.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    BadRequest:
+      description: Bad request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -92,6 +92,38 @@ paths:
           description: Forbidden
 components:
   schemas:
+    ExclusionList:
+      type: object
+      properties:
+        exclusionId:
+          type: string
+          description: Exclusion ID
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets flag
+        comment:
+          type: string
+          description: Exclusion comment
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+        createdBy:
+          type: string
+          description: Created by user
+        createdDate:
+          type: string
+          format: date-time
+          description: Creation date
     AssetInfo:
       type: object
       properties:
@@ -132,38 +164,6 @@ components:
           type: string
           format: date-time
           description: Expiration date
-    ExclusionList:
-      type: object
-      properties:
-        exclusionId:
-          type: string
-          description: Exclusion ID
-        vulnerabilityId:
-          type: string
-          description: Vulnerability ID
-        vulnerabilityName:
-          type: string
-          description: Vulnerability name
-        excludeAllAssets:
-          type: boolean
-          description: Exclude all assets flag
-        comment:
-          type: string
-          description: Exclusion comment
-        exclusionReason:
-          type: string
-          description: Exclusion reason
-        expireDate:
-          type: string
-          format: date-time
-          description: Expiration date
-        createdBy:
-          type: string
-          description: Created by user
-        createdDate:
-          type: string
-          format: date-time
-          description: Creation date
   securitySchemes:
     OAuth2:
       type: oauth2

@@ -147,21 +147,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    CspmReportRequirementDetails:
-      type: object
-      properties:
-        requirementId:
-          type: string
-          description: Requirement ID
-        requirementName:
-          type: string
-          description: Requirement name
-        passCount:
-          type: integer
-          description: Pass count
-        failCount:
-          type: integer
-          description: Fail count
     CspmReportListDto:
       type: object
       properties:
@@ -181,12 +166,45 @@ components:
           type: string
           format: date-time
           description: Last run date
+    CspmResourceDetails:
+      type: object
+      properties:
+        resourceId:
+          type: string
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        region:
+          type: string
+          description: Region
+        status:
+          type: string
+          description: Status
     Message:
       type: object
       properties:
         message:
           type: string
           description: Response message
+    CspmReportRequirementDetails:
+      type: object
+      properties:
+        requirementId:
+          type: string
+          description: Requirement ID
+        requirementName:
+          type: string
+          description: Requirement name
+        passCount:
+          type: integer
+          description: Pass count
+        failCount:
+          type: integer
+          description: Fail count
     CspmReportDetailsDto:
       type: object
       properties:
@@ -248,24 +266,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CspmReportRequirementDetails'
-    CspmResourceDetails:
-      type: object
-      properties:
-        resourceId:
-          type: string
-          description: Resource ID
-        resourceName:
-          type: string
-          description: Resource name
-        resourceType:
-          type: string
-          description: Resource type
-        region:
-          type: string
-          description: Region
-        status:
-          type: string
-          description: Status
   securitySchemes:
     OAuth2:
       type: oauth2

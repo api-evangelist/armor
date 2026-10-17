@@ -120,19 +120,6 @@ paths:
           description: Internal Server Error
 components:
   schemas:
-    CloudConnectors:
-      type: object
-      properties:
-        connectors:
-          type: array
-          items:
-            $ref: '#/components/schemas/CloudConnectorDetails'
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Response message
     CloudConnectorByIdGroups:
       type: object
       properties:
@@ -201,6 +188,12 @@ components:
         gcpConfigJson:
           type: string
           description: GCP Config JSON
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Response message
     CloudConnectorDetails:
       type: object
       properties:
@@ -268,6 +261,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CloudConnectorByIdGroups'
+    CloudConnectors:
+      type: object
+      properties:
+        connectors:
+          type: array
+          items:
+            $ref: '#/components/schemas/CloudConnectorDetails'
   securitySchemes:
     OAuth2:
       type: oauth2

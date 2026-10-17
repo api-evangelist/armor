@@ -113,29 +113,6 @@ components:
           type: object
           additionalProperties: true
           description: Resource details
-    ResourceEvaluationDto:
-      type: object
-      properties:
-        controlId:
-          type: string
-          description: Control ID
-        status:
-          type: string
-          description: Evaluation status
-        evaluatedOn:
-          type: string
-          format: date-time
-          description: Evaluation date
-    PagedResultSet:
-      type: object
-      properties:
-        total:
-          type: integer
-          description: Total count
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CspmResourceListDto'
     CspmResourceListDto:
       type: object
       properties:
@@ -176,6 +153,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceEvaluationDto'
+    ResourceEvaluationDto:
+      type: object
+      properties:
+        controlId:
+          type: string
+          description: Control ID
+        status:
+          type: string
+          description: Evaluation status
+        evaluatedOn:
+          type: string
+          format: date-time
+          description: Evaluation date
+    PagedResultSet:
+      type: object
+      properties:
+        total:
+          type: integer
+          description: Total count
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CspmResourceListDto'
   securitySchemes:
     OAuth2:
       type: oauth2

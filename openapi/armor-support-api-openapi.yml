@@ -937,42 +937,109 @@ paths:
       deprecated: false
 components:
   schemas:
-    FireHost.Services.Http.Tickets.ApiExamples.Models.IssueSummarySampleResponse:
+    FireHost.Infrastructure.Tickets.Models.TicketCommentDto:
+      type: object
+      properties:
+        id:
+          type: string
+        text:
+          type: string
+        commentorId:
+          type: string
+        commentorDisplayName:
+          type: string
+          readOnly: true
+        isArmor:
+          type: boolean
+          readOnly: true
+        date:
+          format: date-time
+          type: string
+        isPublic:
+          type: boolean
+        attachments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketAttachmentDto'
+        feedback:
+          format: int32
+          enum:
+          - 0
+          - 1
+          - -1
+          type: integer
+        reason:
+          format: int32
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          type: integer
+        read:
+          type: boolean
+    FireHost.Services.Http.Tickets.ApiExamples.Models.IssueDetailsSampleResponse:
       type: object
       properties:
         issueKeyId:
           type: string
         summary:
           type: string
-        currentStatus:
+        description:
           type: string
-        requestType:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.RequestTypeDto'
-        reporter:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
         assignee:
           $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
-    FireHost.Services.ServiceDesk.Response.JiraIssueStatus:
+        reporter:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
+        organizations:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.JiraTicketOrganizationDto'
+        currentStatus:
+          $ref: '#/components/schemas/FireHost.Services.ServiceDesk.Response.JiraIssueStatus'
+        requestType:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.RequestTypeDto'
+        createdDate:
+          format: date-time
+          type: string
+        transitions:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketStatusDto'
+    FireHost.Services.Http.Tickets.ApiExamples.Models.TransitionTicketSampleRequest:
       type: object
       properties:
-        name:
+        ticketNumber:
           type: string
+        comment:
+          type: string
+      example:
+        ticketNumber: ATS-123
+        comment: Optional Comment
+    FireHost.Infrastructure.Tickets.Models.TicketRelatedTicketDto:
+      type: object
+      properties:
+        ticketNumber:
+          format: int32
+          type: integer
+        title:
+          type: string
+    FireHost.Infrastructure.Tickets.Models.TicketRelatedServerDto:
+      type: object
+      properties:
         id:
           format: int32
           type: integer
-    FireHost.Infrastructure.Tickets.Models.TicketStatusDto:
-      type: object
-      properties:
-        fromStatusId:
+        name:
           type: string
-        fromStatusString:
+        hostName:
           type: string
-        toStatusId:
-          type: string
-        toStatusString:
-          type: string
-        statusDate:
-          format: date-time
+        correlationId:
           type: string
     FireHost.Infrastructure.Tickets.Models.Responses.TicketGroupMembersDto:
       type: object
@@ -1002,6 +1069,52 @@ components:
           type: string
         ticketingOrganizationName:
           type: string
+    FireHost.Services.ServiceDesk.Request.AssetsDto:
+      type: object
+      properties:
+        key:
+          type: string
+        id:
+          type: string
+    FireHost.Infrastructure.Tickets.Models.JiraTicketOrganizationDto:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        name:
+          type: string
+    FireHost.Infrastructure.Tickets.Models.Responses.TicketGroupsResponseDto:
+      type: object
+      properties:
+        userId:
+          format: int32
+          type: integer
+        accountId:
+          format: int32
+          type: integer
+        ticketGroupTypeName:
+          type: string
+        ticketGroupMemberId:
+          format: int32
+          type: integer
+        organizationId:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.Tickets.Models.TicketAttachmentDto:
+      type: object
+      properties:
+        ticket:
+          format: int32
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        url:
+          type: string
+        token:
+          type: string
     FireHost.Infrastructure.Tickets.Models.RequestTypeDto:
       type: object
       properties:
@@ -1012,41 +1125,44 @@ components:
           type: string
         description:
           type: string
-    FireHost.Services.ServiceDesk.Response.ServiceDeskTransitions:
+    FireHost.Infrastructure.Tickets.Models.TicketRecipientDto:
       type: object
       properties:
         id:
           format: int32
           type: integer
-        name:
+        firstName:
           type: string
-    FireHost.Infrastructure.Tickets.Models.TicketRelatedServerDto:
+        lastName:
+          type: string
+        emailAddress:
+          type: string
+        account:
+          type: boolean
+        billing:
+          type: boolean
+        technical:
+          type: boolean
+        partner:
+          type: boolean
+    FireHost.Services.ServiceDesk.Response.JiraIssueStatus:
       type: object
       properties:
+        name:
+          type: string
         id:
           format: int32
           type: integer
-        name:
-          type: string
-        hostName:
-          type: string
-        correlationId:
-          type: string
-    FireHost.Infrastructure.Tickets.Models.JiraTicketOrganizationDto:
+    FireHost.Infrastructure.Tickets.Models.TicketResultDto:
       type: object
       properties:
-        id:
-          format: int32
+        total:
+          format: int64
           type: integer
-        name:
-          type: string
-    FireHost.Services.ServiceDesk.Request.AssetsDto:
-      type: object
-      properties:
-        key:
-          type: string
-        id:
-          type: string
+        ticketsList:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketDto'
     FireHost.Infrastructure.Tickets.Models.ParticipantDto:
       type: object
       properties:
@@ -1162,104 +1278,22 @@ components:
           type: string
         description:
           type: string
-    FireHost.Infrastructure.Tickets.Models.TicketCommentDto:
+    FireHost.Services.Http.Tickets.ApiExamples.Models.AddTicketGroupMemberSampleRequest:
       type: object
       properties:
-        id:
-          type: string
-        text:
-          type: string
-        commentorId:
-          type: string
-        commentorDisplayName:
-          type: string
-          readOnly: true
-        isArmor:
-          type: boolean
-          readOnly: true
-        date:
-          format: date-time
-          type: string
-        isPublic:
-          type: boolean
-        attachments:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketAttachmentDto'
-        feedback:
-          format: int32
-          enum:
-          - 0
-          - 1
-          - -1
-          type: integer
-        reason:
-          format: int32
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          type: integer
-        read:
-          type: boolean
-    FireHost.Infrastructure.Tickets.Models.Responses.TicketGroupsResponseDto:
-      type: object
-      properties:
-        userId:
-          format: int32
-          type: integer
         accountId:
           format: int32
           type: integer
-        ticketGroupTypeName:
-          type: string
-        ticketGroupMemberId:
+        ticketGroupId:
           format: int32
           type: integer
-        organizationId:
+        userId:
           format: int32
           type: integer
-    FireHost.Services.Http.Tickets.ApiExamples.CreateTicketCommentExampleRequest:
-      type: object
-      properties: {}
       example:
-        comment: sample comment text
-        isPublic: false
-        issueKeyId: ATS-360
-    FireHost.Services.Http.Tickets.ApiExamples.Models.IssueDetailsSampleResponse:
-      type: object
-      properties:
-        issueKeyId:
-          type: string
-        summary:
-          type: string
-        description:
-          type: string
-        assignee:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
-        reporter:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
-        participants:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
-        organizations:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.JiraTicketOrganizationDto'
-        currentStatus:
-          $ref: '#/components/schemas/FireHost.Services.ServiceDesk.Response.JiraIssueStatus'
-        requestType:
-          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.RequestTypeDto'
-        createdDate:
-          format: date-time
-          type: string
-        transitions:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketStatusDto'
+        accountId: 1
+        ticketGroupId: 3
+        userId: 2
     FireHost.Infrastructure.Tickets.Models.Responses.TicketMetadataResponse:
       type: object
       properties:
@@ -1279,40 +1313,50 @@ components:
           type: array
           items:
             type: string
-    FireHost.Infrastructure.Tickets.Models.Responses.JiraTicketComments:
+    FireHost.Services.ServiceDesk.Response.ServiceDeskTransitions:
       type: object
       properties:
-        creator:
-          type: string
-        comment:
-          type: string
-        createdDate:
-          format: date-time
-          type: string
-        visibility:
-          type: string
-    FireHost.Infrastructure.Tickets.Models.TicketRelatedTicketDto:
-      type: object
-      properties:
-        ticketNumber:
-          format: int32
-          type: integer
-        title:
-          type: string
-    FireHost.Infrastructure.Tickets.Models.TicketAttachmentDto:
-      type: object
-      properties:
-        ticket:
+        id:
           format: int32
           type: integer
         name:
           type: string
-        location:
+    FireHost.Services.Http.Tickets.ApiExamples.Models.IssueSummarySampleResponse:
+      type: object
+      properties:
+        issueKeyId:
           type: string
-        url:
+        summary:
           type: string
-        token:
+        currentStatus:
           type: string
+        requestType:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.RequestTypeDto'
+        reporter:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
+        assignee:
+          $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.ParticipantDto'
+    FireHost.Infrastructure.Tickets.Models.TicketStatusDto:
+      type: object
+      properties:
+        fromStatusId:
+          type: string
+        fromStatusString:
+          type: string
+        toStatusId:
+          type: string
+        toStatusString:
+          type: string
+        statusDate:
+          format: date-time
+          type: string
+    FireHost.Services.Http.Tickets.ApiExamples.CreateTicketCommentExampleRequest:
+      type: object
+      properties: {}
+      example:
+        comment: sample comment text
+        isPublic: false
+        issueKeyId: ATS-360
     FireHost.Infrastructure.Tickets.Models.TicketDto:
       type: object
       properties:
@@ -1392,36 +1436,6 @@ components:
           type: string
         description:
           type: string
-    FireHost.Infrastructure.Tickets.Models.TicketRecipientDto:
-      type: object
-      properties:
-        id:
-          format: int32
-          type: integer
-        firstName:
-          type: string
-        lastName:
-          type: string
-        emailAddress:
-          type: string
-        account:
-          type: boolean
-        billing:
-          type: boolean
-        technical:
-          type: boolean
-        partner:
-          type: boolean
-    FireHost.Services.Http.Tickets.ApiExamples.Models.TransitionTicketSampleRequest:
-      type: object
-      properties:
-        ticketNumber:
-          type: string
-        comment:
-          type: string
-      example:
-        ticketNumber: ATS-123
-        comment: Optional Comment
     FireHost.Infrastructure.Tickets.Models.TicketUser:
       type: object
       properties:
@@ -1441,32 +1455,18 @@ components:
           type: string
         isEmployee:
           type: boolean
-    FireHost.Infrastructure.Tickets.Models.TicketResultDto:
+    FireHost.Infrastructure.Tickets.Models.Responses.JiraTicketComments:
       type: object
       properties:
-        total:
-          format: int64
-          type: integer
-        ticketsList:
-          type: array
-          items:
-            $ref: '#/components/schemas/FireHost.Infrastructure.Tickets.Models.TicketDto'
-    FireHost.Services.Http.Tickets.ApiExamples.Models.AddTicketGroupMemberSampleRequest:
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        ticketGroupId:
-          format: int32
-          type: integer
-        userId:
-          format: int32
-          type: integer
-      example:
-        accountId: 1
-        ticketGroupId: 3
-        userId: 2
+        creator:
+          type: string
+        comment:
+          type: string
+        createdDate:
+          format: date-time
+          type: string
+        visibility:
+          type: string
   securitySchemes:
     Authorization:
       type: apiKey

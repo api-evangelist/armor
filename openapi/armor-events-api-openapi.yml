@@ -40,6 +40,15 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   responses:
     InternalServerError:
       description: Internal server error
@@ -59,15 +68,6 @@ components:
           description: The list of Event Types.
           items:
             type: string
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

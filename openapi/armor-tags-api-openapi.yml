@@ -288,15 +288,17 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    AgentManagementTagsResult:
+    AgentManagementTagRequest:
       type: object
       properties:
-        AccountId:
-          type: integer
-          description: The accountId of the tag.
-        ResourceId:
-          type: string
-          description: The coreInstance of the Armor Agent.
+        Tags:
+          type: array
+          description: The list of tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+    AgentManagementResourceTag:
+      type: object
+      properties:
         Key:
           type: string
           description: The name of the tag.
@@ -315,23 +317,6 @@ components:
         Value:
           type: string
           description: The value of the tag.
-    AgentManagementResourceByTag:
-      type: object
-      properties:
-        Type:
-          type: string
-          description: The type of the tag.
-        Tags:
-          type: array
-          description: The list of the tags.
-          items:
-            $ref: '#/components/schemas/AgentManagementTag'
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     AgentManagementResourceByTagResult:
       type: object
       properties:
@@ -346,9 +331,32 @@ components:
           description: The details of the tag.
           items:
             $ref: '#/components/schemas/AgentManagementResourceTag'
-    AgentManagementResourceTag:
+    Message:
       type: object
       properties:
+        message:
+          type: string
+          description: Error or informational message
+    AgentManagementResourceByTag:
+      type: object
+      properties:
+        Type:
+          type: string
+          description: The type of the tag.
+        Tags:
+          type: array
+          description: The list of the tags.
+          items:
+            $ref: '#/components/schemas/AgentManagementTag'
+    AgentManagementTagsResult:
+      type: object
+      properties:
+        AccountId:
+          type: integer
+          description: The accountId of the tag.
+        ResourceId:
+          type: string
+          description: The coreInstance of the Armor Agent.
         Key:
           type: string
           description: The name of the tag.
@@ -358,23 +366,6 @@ components:
         Islocked:
           type: boolean
           description: Whether the tag is locked.
-    AgentManagementTagRequest:
-      type: object
-      properties:
-        Tags:
-          type: array
-          description: The list of tags.
-          items:
-            $ref: '#/components/schemas/AgentManagementTag'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   responses:
     NotFound:
       description: Not found
@@ -394,6 +385,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

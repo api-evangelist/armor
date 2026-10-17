@@ -66,18 +66,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    ContainerSecurityAccountCreateResponse:
-      type: object
-      properties:
-        id:
-          type: number
-          description: Id for the container security subscription
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     AccountDetailsResponse:
       type: object
       properties:
@@ -102,15 +90,18 @@ components:
         supportTicketNo:
           type: string
           description: Reference to Armor Ticketing System (ATS) issue used to track container security subscription setup to completion
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
+    ContainerSecurityAccountCreateResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          description: Id for the container security subscription
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
   responses:
     NotFound:
       description: Not found
@@ -136,6 +127,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2

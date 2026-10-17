@@ -131,27 +131,19 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   schemas:
-    DetectionDefaultLabel:
+    ErrorMessage:
       type: object
       properties:
-        key:
+        errorMessage:
           type: string
-          description: The key name of the default label.
-          example: rcn_idx
-        value:
+          description: Error message description
+    Message:
+      type: object
+      properties:
+        message:
           type: string
-          description: The value of the default label.
-          example: Alpha
+          description: Informational message
     DetectionTransform:
       type: object
       properties:
@@ -171,48 +163,6 @@ components:
           type: string
           description: The value of the transform.
           example: event_uuid
-    ErrorMessage:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-          description: Error message description
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Informational message
-    DetectionRequest:
-      type: object
-      required:
-      - name
-      - format
-      - event_type
-      properties:
-        name:
-          type: string
-          description: The name of the Detection Configuration.
-          example: Detection Name
-        format:
-          type: string
-          description: The format for detection.
-          example: splunk
-        event_type:
-          type: array
-          description: The list of events.
-          items:
-            type: string
-        transform:
-          type: array
-          description: The list of transforms.
-          items:
-            $ref: '#/components/schemas/DetectionTransform'
-        default_label:
-          type: array
-          description: The list of default labels.
-          items:
-            $ref: '#/components/schemas/DetectionDefaultLabel'
     DetectionResponse:
       type: object
       required:
@@ -254,6 +204,56 @@ components:
           description: The list of default labels.
           items:
             $ref: '#/components/schemas/DetectionDefaultLabel'
+    DetectionDefaultLabel:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The key name of the default label.
+          example: rcn_idx
+        value:
+          type: string
+          description: The value of the default label.
+          example: Alpha
+    DetectionRequest:
+      type: object
+      required:
+      - name
+      - format
+      - event_type
+      properties:
+        name:
+          type: string
+          description: The name of the Detection Configuration.
+          example: Detection Name
+        format:
+          type: string
+          description: The format for detection.
+          example: splunk
+        event_type:
+          type: array
+          description: The list of events.
+          items:
+            type: string
+        transform:
+          type: array
+          description: The list of transforms.
+          items:
+            $ref: '#/components/schemas/DetectionTransform'
+        default_label:
+          type: array
+          description: The list of default labels.
+          items:
+            $ref: '#/components/schemas/DetectionDefaultLabel'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   responses:
     InternalServerError:
       description: Internal server error

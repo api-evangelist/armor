@@ -118,65 +118,6 @@ paths:
           $ref: '#/components/responses/InternalServerError'
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
-    MachineActionRequest:
-      type: object
-      required:
-      - action
-      - comment
-      properties:
-        action:
-          type: string
-          enum:
-          - isolate
-          - unisolate
-          - runAntiVirusScan
-          - collectInvestigationPackage
-          - restrictCodeExecution
-          - unrestrictCodeExecution
-          - runliveresponse
-          - startInvestigation
-          - StopAndQuarantineFile
-          - cancel
-          - offboard
-        comment:
-          type: string
-          minLength: 1
-          maxLength: 1000
-        type:
-          type: string
-          enum:
-          - Quick
-          - Full
-        commands:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-              params:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    key:
-                      type: string
-                    value:
-                      type: string
-        sha1:
-          type: string
-          pattern: ^[a-fA-F0-9]{40}$
     MachineAction:
       type: object
       properties:
@@ -227,6 +168,54 @@ components:
               type: string
             fileIdentifierType:
               type: string
+    MachineActionRequest:
+      type: object
+      required:
+      - action
+      - comment
+      properties:
+        action:
+          type: string
+          enum:
+          - isolate
+          - unisolate
+          - runAntiVirusScan
+          - collectInvestigationPackage
+          - restrictCodeExecution
+          - unrestrictCodeExecution
+          - runliveresponse
+          - startInvestigation
+          - StopAndQuarantineFile
+          - cancel
+          - offboard
+        comment:
+          type: string
+          minLength: 1
+          maxLength: 1000
+        type:
+          type: string
+          enum:
+          - Quick
+          - Full
+        commands:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+              params:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    key:
+                      type: string
+                    value:
+                      type: string
+        sha1:
+          type: string
+          pattern: ^[a-fA-F0-9]{40}$
     MachineActionsResponse:
       type: object
       properties:
@@ -236,15 +225,30 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MachineAction'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: The AMP account ID that identifies the customer account
+      schema:
+        type: string
+        format: uuid
+      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
   responses:
     CustomerNotFound:
       description: Unable to retrieve customer records
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
       content:
         application/json:
           schema:
@@ -261,16 +265,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: The AMP account ID that identifies the customer account
-      schema:
-        type: string
-        format: uuid
-      example: 81ece7fb-ff8e-411c-8787-9ea4639545be
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     OAuth2BearerAuth:
       type: http

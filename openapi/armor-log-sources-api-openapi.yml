@@ -167,6 +167,51 @@ paths:
                 $ref: '#/components/schemas/Message'
 components:
   schemas:
+    LogSourceType:
+      type: object
+      properties:
+        logSourceTypeId:
+          type: integer
+          description: The unique identifier of the log source type.
+        name:
+          type: string
+          description: The friendly name of the log source type.
+        logSourceProtocols:
+          type: array
+          items:
+            type: integer
+          description: A collection of protocol IDs available for the type.
+        icon:
+          type: string
+          description: The Brandkit CSS class used to specify the icon for this log source type.
+        category:
+          type: string
+          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
+        vendor:
+          type: string
+          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
+        kbLink:
+          type: string
+          description: Link to the KB article for this log source type.
+        requiresFlow:
+          type: boolean
+          description: Whether or not network flow sources need to be enabled on the org for this log source type.
+    LogSourceUpdateRequest:
+      type: object
+      required:
+      - logSourceId
+      - options
+      - version
+      properties:
+        logSourceId:
+          $ref: '#/components/schemas/Guid'
+        options:
+          type: object
+          additionalProperties: true
+          description: An object map of configuration properties when the log source protocol requires additional configuration options.
+        version:
+          type: integer
+          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
     LogSource:
       type: object
       properties:
@@ -229,42 +274,6 @@ components:
         modifiedByUserId:
           type: integer
           description: The unique identifier of the user that last updated this log source.
-    IpProtocol:
-      type: string
-      description: An IP protocol (tcp, udp)
-      enum:
-      - tcp
-      - udp
-      example: tcp
-    LogSourceType:
-      type: object
-      properties:
-        logSourceTypeId:
-          type: integer
-          description: The unique identifier of the log source type.
-        name:
-          type: string
-          description: The friendly name of the log source type.
-        logSourceProtocols:
-          type: array
-          items:
-            type: integer
-          description: A collection of protocol IDs available for the type.
-        icon:
-          type: string
-          description: The Brandkit CSS class used to specify the icon for this log source type.
-        category:
-          type: string
-          description: The type of infrastructure the log source type belongs to (e.g. Network Devices, Cloud Services, Web Servers, Operating Systems, Generic Logs, etc.)
-        vendor:
-          type: string
-          description: The vendor of the device or application that generates logs of this type (e.g. Microsoft Azure, Amazon Web Services, Cisco, etc.)
-        kbLink:
-          type: string
-          description: Link to the KB article for this log source type.
-        requiresFlow:
-          type: boolean
-          description: Whether or not network flow sources need to be enabled on the org for this log source type.
     Message:
       type: object
       required:
@@ -279,22 +288,6 @@ components:
       format: uuid
       description: A universally unique identifier (UUID)
       example: 550e8400-e29b-41d4-a716-446655440000
-    LogSourceUpdateRequest:
-      type: object
-      required:
-      - logSourceId
-      - options
-      - version
-      properties:
-        logSourceId:
-          $ref: '#/components/schemas/Guid'
-        options:
-          type: object
-          additionalProperties: true
-          description: An object map of configuration properties when the log source protocol requires additional configuration options.
-        version:
-          type: integer
-          description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
     LogSourceCreateRequest:
       type: object
       required:
@@ -318,6 +311,13 @@ components:
           type: object
           additionalProperties: true
           description: An object map of configuration properties when the log source protocol requires additional configuration options.
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+      - tcp
+      - udp
+      example: tcp
   securitySchemes:
     oauth2:
       type: oauth2

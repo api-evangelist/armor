@@ -234,52 +234,6 @@ paths:
                 type: string
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-    IncidentListItem:
-      type: object
-      properties:
-        id:
-          type: string
-        summary:
-          type: string
-        status:
-          type: string
-        priority:
-          type: string
-        created:
-          type: string
-          format: date-time
-        updated:
-          type: string
-          format: date-time
-        assignee:
-          type:
-          - string
-          - 'null'
-        orgs:
-          type:
-          - array
-          - 'null'
-          items:
-            type: object
-            properties:
-              orgId:
-                type: string
-              orgName:
-                type: string
-        tactics:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              id:
-                type: string
     IncidentListResponse:
       type: object
       properties:
@@ -298,6 +252,30 @@ components:
                 type: string
               name:
                 type: string
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        authorDisplayName:
+          type: string
+        authorEmail:
+          type: string
+        body:
+          type: string
+        created:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean
     IncidentDetails:
       type: object
       properties:
@@ -420,16 +398,16 @@ components:
           type: array
           items:
             type: object
-    Comment:
+    IncidentListItem:
       type: object
       properties:
         id:
           type: string
-        authorDisplayName:
+        summary:
           type: string
-        authorEmail:
+        status:
           type: string
-        body:
+        priority:
           type: string
         created:
           type: string
@@ -437,8 +415,30 @@ components:
         updated:
           type: string
           format: date-time
-        isPublic:
-          type: boolean
+        assignee:
+          type:
+          - string
+          - 'null'
+        orgs:
+          type:
+          - array
+          - 'null'
+          items:
+            type: object
+            properties:
+              orgId:
+                type: string
+              orgName:
+                type: string
+        tactics:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              id:
+                type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

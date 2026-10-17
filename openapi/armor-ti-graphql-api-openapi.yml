@@ -85,18 +85,6 @@ components:
           type: string
         statusCode:
           type: integer
-    GraphQLRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-        variables:
-          type: object
-          additionalProperties: true
-        operationName:
-          type: string
     GraphQLResponse:
       type: object
       properties:
@@ -118,6 +106,18 @@ components:
                 type: array
                 items:
                   type: string
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
+          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

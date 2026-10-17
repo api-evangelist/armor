@@ -138,19 +138,23 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
+  parameters:
+    ConnectorId:
+      name: id
+      in: path
+      required: true
+      description: Connector ID
+      schema:
+        type: integer
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   schemas:
-    ConnectorGcrParam:
-      type: object
-      required:
-      - displayName
-      - serviceAccountJson
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for the connector
-        serviceAccountJson:
-          type: string
-          description: Configuration JSON file
     ConnectorDetailResponse:
       type: object
       properties:
@@ -190,22 +194,65 @@ components:
         modifiedDate:
           type: string
           description: The date & time the connector was updated
-    ConnectorEcrParam:
+    AwsBaseResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+          description: AWS Account ID
+        externalId:
+          type: string
+          description: External ID
+    ConnectorGcrParam:
       type: object
       required:
       - displayName
-      - externalId
-      - arn
+      - serviceAccountJson
       properties:
         displayName:
           type: string
-          description: Friendly name for connector
-        externalId:
+          description: Friendly name for the connector
+        serviceAccountJson:
           type: string
-          description: The external ID to access the role
-        arn:
+          description: Configuration JSON file
+    ConnectorAzureParam:
+      type: object
+      required:
+      - displayName
+      - applicationId
+      - clientSecret
+      properties:
+        displayName:
           type: string
-          description: AWS role ARN created to allow access
+          description: Friendly name for the connector
+        applicationId:
+          type: string
+          description: Azure application ID
+        clientSecret:
+          type: string
+          description: Azure client secret
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    ConnectorOthersParam:
+      type: object
+      required:
+      - displayName
+      - username
+      - password
+      properties:
+        displayName:
+          type: string
+          description: Friendly name for the connector
+        username:
+          type: string
+          description: Username to connect to registry (base64 format)
+        password:
+          type: string
+          description: Password to connect to registry (base64 format)
     ConnectorCreateRequest:
       type: object
       required:
@@ -222,21 +269,34 @@ components:
           $ref: '#/components/schemas/ConnectorAzureParam'
         dockerHubConnector:
           $ref: '#/components/schemas/ConnectorOthersParam'
-    AwsBaseResponse:
+    ConnectorEcrParam:
       type: object
+      required:
+      - displayName
+      - externalId
+      - arn
       properties:
-        accountId:
+        displayName:
           type: string
-          description: AWS Account ID
+          description: Friendly name for connector
         externalId:
           type: string
-          description: External ID
-    Message:
+          description: The external ID to access the role
+        arn:
+          type: string
+          description: AWS role ARN created to allow access
+    ConnectorDeleteResponse:
       type: object
       properties:
-        message:
-          type: string
-          description: Error or informational message
+        connectorId:
+          type: number
+          description: Id for the connector deleted
+    ConnectorCreateResponse:
+      type: object
+      properties:
+        connectorId:
+          type: number
+          description: Id for the connector created
     ViewAllConnectorsResponse:
       type: object
       properties:
@@ -258,59 +318,9 @@ components:
         createdDate:
           type: string
           description: The date & time the connector was created
-    ConnectorAzureParam:
-      type: object
-      required:
-      - displayName
-      - applicationId
-      - clientSecret
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for the connector
-        applicationId:
-          type: string
-          description: Azure application ID
-        clientSecret:
-          type: string
-          description: Azure client secret
-    ConnectorCreateResponse:
-      type: object
-      properties:
-        connectorId:
-          type: number
-          description: Id for the connector created
-    ConnectorDeleteResponse:
-      type: object
-      properties:
-        connectorId:
-          type: number
-          description: Id for the connector deleted
-    ConnectorOthersParam:
-      type: object
-      required:
-      - displayName
-      - username
-      - password
-      properties:
-        displayName:
-          type: string
-          description: Friendly name for the connector
-        username:
-          type: string
-          description: Username to connect to registry (base64 format)
-        password:
-          type: string
-          description: Password to connect to registry (base64 format)
   responses:
     NotFound:
       description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
       content:
         application/json:
           schema:
@@ -321,28 +331,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
     BadRequest:
       description: Bad request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
-    ConnectorId:
-      name: id
-      in: path
-      required: true
-      description: Connector ID
-      schema:
-        type: integer
   securitySchemes:
     OAuth2:
       type: oauth2

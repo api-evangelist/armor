@@ -82,6 +82,83 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    AIInvestigation:
+      type: object
+      properties:
+        summary:
+          type: string
+        indicators_of_compromise:
+          type: array
+          items:
+            $ref: '#/components/schemas/ThreatIndicator'
+        root_cause_analysis:
+          type: string
+        recommended_actions:
+          type: array
+          items:
+            type: object
+            additionalProperties:
+              type: string
+        reason_for_recommeded_actions:
+          type: string
+    IncidentNotAvailableResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: false
+        message:
+          type: string
+        incidentKey:
+          type: string
+        data:
+          type:
+          - object
+          - 'null'
+    SimilarIncident:
+      type: object
+      properties:
+        incidentId:
+          type: string
+        severity:
+          type: string
+        detected_on:
+          type: string
+          format: date-time
+        displayName:
+          type: string
+        customer_name:
+          type: string
+    AIMetrics:
+      type: object
+      properties:
+        ai_classification:
+          type: string
+          enum:
+          - True Positive
+          - False Positive
+          - Benign Positive
+          - Unknown
+        ai_threat_level:
+          type: string
+          enum:
+          - HIGH
+          - MEDIUM
+          - LOW
+        ai_historical_similarity:
+          type: string
+        ai_community_similarity:
+          type: string
+        time_saved_by_ai:
+          type: string
+        ai_speed_percentage:
+          type: string
+        time_to_triage:
+          type: string
+        time_to_investigate:
+          type: string
+        time_to_contain:
+          type: string
     AttackEvent:
       type: object
       properties:
@@ -100,28 +177,6 @@ components:
           type: string
         IncidentCreatedBy:
           type: string
-    IncidentDataResponse:
-      type: object
-      properties:
-        available:
-          type: boolean
-          example: true
-        data:
-          $ref: '#/components/schemas/IncidentData'
-    IncidentNotAvailableResponse:
-      type: object
-      properties:
-        available:
-          type: boolean
-          example: false
-        message:
-          type: string
-        incidentKey:
-          type: string
-        data:
-          type:
-          - object
-          - 'null'
     ErrorResponse:
       type: object
       properties:
@@ -133,6 +188,14 @@ components:
           type: string
         statusCode:
           type: integer
+    IncidentDataResponse:
+      type: object
+      properties:
+        available:
+          type: boolean
+          example: true
+        data:
+          $ref: '#/components/schemas/IncidentData'
     IncidentData:
       type: object
       properties:
@@ -182,20 +245,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SimilarIncident'
-    SimilarIncident:
-      type: object
-      properties:
-        incidentId:
-          type: string
-        severity:
-          type: string
-        detected_on:
-          type: string
-          format: date-time
-        displayName:
-          type: string
-        customer_name:
-          type: string
     ThreatIndicator:
       type: object
       properties:
@@ -211,55 +260,6 @@ components:
         value:
           type: string
         description:
-          type: string
-    AIInvestigation:
-      type: object
-      properties:
-        summary:
-          type: string
-        indicators_of_compromise:
-          type: array
-          items:
-            $ref: '#/components/schemas/ThreatIndicator'
-        root_cause_analysis:
-          type: string
-        recommended_actions:
-          type: array
-          items:
-            type: object
-            additionalProperties:
-              type: string
-        reason_for_recommeded_actions:
-          type: string
-    AIMetrics:
-      type: object
-      properties:
-        ai_classification:
-          type: string
-          enum:
-          - True Positive
-          - False Positive
-          - Benign Positive
-          - Unknown
-        ai_threat_level:
-          type: string
-          enum:
-          - HIGH
-          - MEDIUM
-          - LOW
-        ai_historical_similarity:
-          type: string
-        ai_community_similarity:
-          type: string
-        time_saved_by_ai:
-          type: string
-        ai_speed_percentage:
-          type: string
-        time_to_triage:
-          type: string
-        time_to_investigate:
-          type: string
-        time_to_contain:
           type: string
   securitySchemes:
     OAuth2BearerAuth:

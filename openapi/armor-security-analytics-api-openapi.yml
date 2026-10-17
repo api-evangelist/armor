@@ -64,26 +64,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse:
-      type: object
-      properties:
-        scanDate:
-          format: date-time
-          type: string
-        criticalCount:
-          format: int32
-          type: integer
-        highCount:
-          format: int32
-          type: integer
-        mediumCount:
-          format: int32
-          type: integer
-        lowCount:
-          format: int32
-          type: integer
-        detailsUrl:
-          type: string
     FireHost.Infrastructure.SecurityAnalytics.Models.OverviewResponse:
       type: object
       properties:
@@ -111,6 +91,26 @@ components:
           type: integer
         vulnerabilities:
           $ref: '#/components/schemas/FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse'
+    FireHost.Infrastructure.SecurityAnalytics.Models.OverviewVulnerabilitiesResponse:
+      type: object
+      properties:
+        scanDate:
+          format: date-time
+          type: string
+        criticalCount:
+          format: int32
+          type: integer
+        highCount:
+          format: int32
+          type: integer
+        mediumCount:
+          format: int32
+          type: integer
+        lowCount:
+          format: int32
+          type: integer
+        detailsUrl:
+          type: string
     FireHost.Infrastructure.SecurityAnalytics.Models.SecurityResourceDto:
       type: object
       properties:

@@ -102,6 +102,40 @@ paths:
           description: Internal server error
 components:
   schemas:
+    ThreatActorDetail:
+      allOf:
+      - $ref: '#/components/schemas/ThreatActor'
+      - type: object
+        properties:
+          first_seen:
+            type: string
+            format: date-time
+          last_seen:
+            type: string
+            format: date-time
+          goals:
+            type: array
+            items:
+              type: string
+          tactics:
+            type: array
+            items:
+              type: string
+          associated_campaigns:
+            type: array
+            items:
+              type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     ThreatActor:
       type: object
       properties:
@@ -150,40 +184,6 @@ components:
           - team
           - organization
           - government
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: string
-        detail:
-          type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
-    ThreatActorDetail:
-      allOf:
-      - $ref: '#/components/schemas/ThreatActor'
-      - type: object
-        properties:
-          first_seen:
-            type: string
-            format: date-time
-          last_seen:
-            type: string
-            format: date-time
-          goals:
-            type: array
-            items:
-              type: string
-          tactics:
-            type: array
-            items:
-              type: string
-          associated_campaigns:
-            type: array
-            items:
-              type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

@@ -81,6 +81,12 @@ components:
         total:
           type: integer
           description: Total number of reports.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
     TrendAvReports:
       type: object
       properties:
@@ -142,21 +148,6 @@ components:
         malwareMessage:
           type: string
           description: Malware message.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
-  parameters:
-    AccountContext:
-      name: x-account-context
-      in: header
-      required: true
-      description: Account context identifier
-      schema:
-        type: integer
-      example: 4
   responses:
     Forbidden:
       description: Forbidden
@@ -170,6 +161,15 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
+  parameters:
+    AccountContext:
+      name: x-account-context
+      in: header
+      required: true
+      description: Account context identifier
+      schema:
+        type: integer
+      example: 4
   securitySchemes:
     OAuth2:
       type: oauth2
