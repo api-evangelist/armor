@@ -1333,6 +1333,8 @@ apis:
   humanURL: https://developer.armor.com/
   baseURL: https://api.armor.com
   tags:
+  - Endpoint Detection and Response
+  tags_raw:
   - EDR
   properties:
   - type: OpenAPI
