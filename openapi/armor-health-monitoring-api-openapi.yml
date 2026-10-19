@@ -1,0 +1,419 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Health Monitoring API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Health Monitoring
+paths:
+  /health-monitoring/core:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_GetOverallServiceHealth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.OverallHealthStats'
+              example:
+                needsAttentionCount: 1
+                okCount: 1
+                total: null
+                name: test-box
+                location: DFW01
+                coreInstanceId: b1c19536-6955-40a7-b22d-8da44c5014df
+                zone: ACD01
+                vmId: 22
+                ticketNumber: 6782
+                healthDetails:
+                - name: FIM
+                  state: OK
+                  message: ''
+                  messageHoverText: null
+                  duration: '2026-02-12T15:25:54.3449313+00:00'
+                  ticketNumber: null
+                  subAgentVersion: null
+                  subAgentProductName: null
+                  hideServices: false
+                - name: MalwareProtection
+                  state: Needs Attention
+                  message: Malware Protection has not provided a heartbeat in the past 4 hours.
+                  messageHoverText: null
+                  duration: '2026-02-12T15:25:54.3449313+00:00'
+                  ticketNumber: 12345
+                  subAgentVersion: null
+                  subAgentProductName: null
+                  hideServices: false
+                calculatedNeedsAttentionCount: 0
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.OverallHealthStats'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health get overall service health
+      x-summary-source: derived
+  /health-monitoring/core/agentversion:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_GetCurrentCoreAgentVersion
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.CoreAgentVersionResponse'
+              example:
+                goLiveDate: '2019-06-06T00:00:00'
+                version: '1.0'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.CoreAgentVersionResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health get current core agent version
+      x-summary-source: derived
+  /health-monitoring/core/health/{coreInstanceId}:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_HealthStatusCore
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsResponse'
+              example:
+                healthDetails:
+                - name: FIM
+                  state: OK
+                  message: ''
+                  messageHoverText: null
+                  duration: '2026-02-12T15:25:54.3763093+00:00'
+                  ticketNumber: null
+                  subAgentVersion: null
+                  subAgentProductName: null
+                  hideServices: false
+                - name: MalwareProtection
+                  state: Needs Attention
+                  message: Malware Protection has not provided a heartbeat in the past 4 hours.
+                  messageHoverText: null
+                  duration: '2026-02-12T15:25:54.3763093+00:00'
+                  ticketNumber: 12345
+                  subAgentVersion: null
+                  subAgentProductName: null
+                  hideServices: false
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health health status core
+      x-summary-source: derived
+  /health-monitoring/core/health-status/{coreInstanceId}:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_HealthStatusCorePublic
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsPublicResponse'
+              example:
+                healthDetails:
+                - name: FIM
+                  state: OK
+                  message: ''
+                  messageHoverText: null
+                  subAgentVersion: null
+                  subAgentProductName: null
+                - name: MalwareProtection
+                  state: Needs Attention
+                  message: Malware Protection has not provided a heartbeat in the past 4 hours.
+                  messageHoverText: null
+                  subAgentVersion: null
+                  subAgentProductName: null
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsPublicResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health health status core public
+      x-summary-source: derived
+  /health-monitoring/core/health-status-log/{coreInstanceId}:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_GetLogHealthStatusForVm
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.LogHealthDetails'
+              example:
+                lastLogSent: '2019-11-07T00:00:00'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.LogHealthDetails'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health get log health status for vm
+      x-summary-source: derived
+  /health-monitoring/core/logversion/{osProvider}:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_GetCurrentLogVersion
+      parameters:
+      - name: osProvider
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.SubAgentVersion'
+              example:
+              - name: Filebeat
+                version: 1.0.0
+              - name: WinLogging
+                version: 2.0.0
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.SubAgentVersion'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health get current log version
+      x-summary-source: derived
+  /health-monitoring/core/on-demand-trend-status/{coreInstanceId}:
+    post:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_OnDemandTrendStatusCoreInstance
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+              example: true
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health on demand trend status core instance
+      x-summary-source: derived
+  /health-monitoring/core/statistics:
+    get:
+      tags:
+      - Health Monitoring
+      operationId: ServiceHealth_GetServiceHealth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.ServiceHealthStats'
+              example:
+                totalNeedsAttention: 10
+                totalOk: 5
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.ServiceHealthStats'
+        '400':
+          description: Bad Request
+      deprecated: false
+      summary: Service health get service health
+      x-summary-source: derived
+components:
+  schemas:
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        message:
+          type: string
+        messageHoverText:
+          type: string
+        duration:
+          format: date-time
+          type: string
+        ticketNumber:
+          format: int32
+          type: integer
+        subAgentVersion:
+          type: string
+        subAgentProductName:
+          type: string
+        hideServices:
+          type: boolean
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsResponse:
+      type: object
+      properties:
+        healthDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetail'
+    FireHost.Infrastructure.HealthMonitoring.Models.OverallHealthStats:
+      type: object
+      properties:
+        needsAttentionCount:
+          format: int32
+          type: integer
+          readOnly: true
+        okCount:
+          format: int32
+          type: integer
+          readOnly: true
+        total:
+          format: int32
+          type: integer
+        name:
+          type: string
+        location:
+          type: string
+        coreInstanceId:
+          type: string
+        zone:
+          type: string
+        vmId:
+          format: int32
+          type: integer
+        ticketNumber:
+          format: int32
+          type: integer
+        healthDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetail'
+        calculatedNeedsAttentionCount:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthStatusDetailsPublicResponse:
+      type: object
+      properties:
+        healthDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic'
+    FireHost.Infrastructure.HealthMonitoring.Models.ServiceHealthStats:
+      type: object
+      properties:
+        totalNeedsAttention:
+          format: int32
+          type: integer
+        totalOk:
+          format: int32
+          type: integer
+    FireHost.Infrastructure.HealthMonitoring.Models.HealthDetailPublic:
+      type: object
+      properties:
+        name:
+          type: string
+        state:
+          type: string
+        message:
+          type: string
+        messageHoverText:
+          type: string
+        subAgentVersion:
+          type: string
+        subAgentProductName:
+          type: string
+    FireHost.Infrastructure.HealthMonitoring.Models.SubAgentVersion:
+      type: object
+      properties:
+        name:
+          type: string
+        version:
+          type: string
+    FireHost.Infrastructure.HealthMonitoring.Models.LogHealthDetails:
+      type: object
+      properties:
+        lastLogSent:
+          format: date-time
+          type: string
+    FireHost.Infrastructure.HealthMonitoring.Models.CoreAgentVersionResponse:
+      type: object
+      properties:
+        goLiveDate:
+          format: date-time
+          type: string
+        version:
+          type: string
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

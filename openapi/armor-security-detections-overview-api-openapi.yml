@@ -49,6 +49,24 @@ paths:
           $ref: '#/components/responses/Forbidden'
 components:
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    SeverityLevel:
+      type: object
+      properties:
+        severityName:
+          type: string
+          description: The severity associated with the incident/detection.
+        severityCount:
+          type: integer
+          description: The number of incidents/detections for the severity.
+        severityPercentage:
+          type: string
+          description: The percentage of incidents/detections for the severity.
     SecurityDetectionOverview:
       type: object
       properties:
@@ -83,24 +101,6 @@ components:
           type: string
           format: date-time
           description: The date and time the recent security overview report was updated.
-    SeverityLevel:
-      type: object
-      properties:
-        severityName:
-          type: string
-          description: The severity associated with the incident/detection.
-        severityCount:
-          type: integer
-          description: The number of incidents/detections for the severity.
-        severityPercentage:
-          type: string
-          description: The percentage of incidents/detections for the severity.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     Category:
       type: object
       properties:
@@ -125,13 +125,6 @@ components:
         descriptionPercentage:
           type: string
           description: The percentage of incidents/detections for the description.
-  responses:
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context
@@ -141,6 +134,13 @@ components:
       schema:
         type: integer
       example: 4
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   securitySchemes:
     OAuth2:
       type: oauth2

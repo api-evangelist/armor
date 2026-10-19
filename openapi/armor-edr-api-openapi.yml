@@ -205,32 +205,46 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    NotFound:
-      description: Not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    Forbidden:
-      description: Forbidden
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Message'
   schemas:
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
+    GetEdrUsage:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: EDR account Id.
+        count:
+          type: string
+          description: Total number of VMs with EDR agents installed.
+    PostEdrConfiguration:
+      type: object
+      properties:
+        companyCode:
+          type: string
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+        superAdminApiId:
+          type: string
+          description: ApiId used with Carbon Black User APIs.
+        superAdminApiSecretKey:
+          type: string
+          description: SecretKey used with Carbon Black User APIs.
     PostEdrSignUp:
       type: object
       properties:
@@ -254,59 +268,6 @@ components:
           description: EDR SKU name (from `edrServices` in GET /edr/sign-up).
         adminUser:
           $ref: '#/components/schemas/AdminUser'
-    EdrServices:
-      type: object
-      properties:
-        skuMappingId:
-          type: integer
-          description: Unique identifier of mapping id.
-        sku:
-          type: string
-          description: EDR SKU name.
-        accountType:
-          type: string
-          description: Type of account.
-        accountProduct:
-          type: string
-          description: Account Product.
-        name:
-          type: string
-          description: EDR service name.
-        description:
-          type: string
-          description: EDR service description.
-        features:
-          type: array
-          description: EDR features.
-          items:
-            type: string
-    GetEdrConfiguration:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          description: EDR account Id.
-        companyCode:
-          type: string
-          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
-        orgId:
-          type: string
-          description: Unique Id of an organization.
-        orgKey:
-          type: string
-          description: Unique key of an organization and used with Carbon Black APIs.
-        policyId:
-          type: string
-          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
-        hostUrl:
-          type: string
-          description: Carbon Black Cloud base URL used for API calls.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     AdminUser:
       type: object
       properties:
@@ -350,15 +311,53 @@ components:
           type: string
           format: date-time
           description: Date and Time when the event forwarder is setup.
-    GetEdrUsage:
+    GetEdrConfiguration:
       type: object
       properties:
         accountId:
           type: integer
           description: EDR account Id.
-        count:
+        companyCode:
           type: string
-          description: Total number of VMs with EDR agents installed.
+          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
+        orgId:
+          type: string
+          description: Unique Id of an organization.
+        orgKey:
+          type: string
+          description: Unique key of an organization and used with Carbon Black APIs.
+        policyId:
+          type: string
+          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
+        hostUrl:
+          type: string
+          description: Carbon Black Cloud base URL used for API calls.
+    EdrServices:
+      type: object
+      properties:
+        skuMappingId:
+          type: integer
+          description: Unique identifier of mapping id.
+        sku:
+          type: string
+          description: EDR SKU name.
+        accountType:
+          type: string
+          description: Type of account.
+        accountProduct:
+          type: string
+          description: Account Product.
+        name:
+          type: string
+          description: EDR service name.
+        description:
+          type: string
+          description: EDR service description.
+        features:
+          type: array
+          description: EDR features.
+          items:
+            type: string
     GetEdrSignUp:
       type: object
       properties:
@@ -422,30 +421,31 @@ components:
           description: Mail To information.
         adminUser:
           $ref: '#/components/schemas/AdminUser'
-    PostEdrConfiguration:
-      type: object
-      properties:
-        companyCode:
-          type: string
-          description: Code unique to each organization in Carbon Black Cloud and used for EDR agent installation.
-        orgId:
-          type: string
-          description: Unique Id of an organization.
-        orgKey:
-          type: string
-          description: Unique key of an organization and used with Carbon Black APIs.
-        policyId:
-          type: string
-          description: Unique Id of a Carbon Black policy used to apply policies on an EDR agent.
-        hostUrl:
-          type: string
-          description: Carbon Black Cloud base URL used for API calls.
-        superAdminApiId:
-          type: string
-          description: ApiId used with Carbon Black User APIs.
-        superAdminApiSecretKey:
-          type: string
-          description: SecretKey used with Carbon Black User APIs.
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    NotFound:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Message'
   parameters:
     AccountContext:
       name: x-account-context

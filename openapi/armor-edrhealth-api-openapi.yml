@@ -1,0 +1,49 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Edr Health API
+servers:
+- url: https://api.armor.com
+tags:
+- name: EdrHealth
+paths:
+  /edr-health/edrhealthdetails/{coreInstanceId}:
+    get:
+      tags:
+      - EdrHealth
+      operationId: EdrHealth_GetEdrHealthDetails
+      parameters:
+      - name: coreInstanceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+      summary: Edr health get edr health details
+      x-summary-source: derived
+components:
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

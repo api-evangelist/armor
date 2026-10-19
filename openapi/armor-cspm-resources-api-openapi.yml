@@ -97,22 +97,6 @@ paths:
           description: Forbidden
 components:
   schemas:
-    ResourceDetailDto:
-      type: object
-      properties:
-        id:
-          type: integer
-          description: Resource ID
-        resourceName:
-          type: string
-          description: Resource name
-        resourceType:
-          type: string
-          description: Resource type
-        details:
-          type: object
-          additionalProperties: true
-          description: Resource details
     CspmResourceListDto:
       type: object
       properties:
@@ -153,6 +137,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ResourceEvaluationDto'
+    ResourceDetailDto:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Resource ID
+        resourceName:
+          type: string
+          description: Resource name
+        resourceType:
+          type: string
+          description: Resource type
+        details:
+          type: object
+          additionalProperties: true
+          description: Resource details
     ResourceEvaluationDto:
       type: object
       properties:

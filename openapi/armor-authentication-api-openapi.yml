@@ -1,250 +1,403 @@
 openapi: 3.2.0
 info:
-  title: Armor FH-AUTH Security Authentication API
-  description: Armor Security Platform Authentication API using FH-AUTH flow.
-  version: 2.0.0
-  contact:
-    name: Armor Support
-    url: https://armor.com
+  version: v1
+  title: Armor Services Authentication API
 servers:
 - url: https://api.armor.com
-  description: Production API
 tags:
 - name: Authentication
-  description: 'FH-AUTH authentication flow endpoints.
-
-
-    ## Flow Overview
-
-    1. POST `/auth/authorize` with credentials → receive authorization code
-
-    2. POST `/auth/token` with code → receive access token
-
-    3. Use `Authorization: FH-AUTH {token}` header for API calls
-
-    4. POST `/auth/token/reissue` to refresh expired tokens'
 paths:
   /auth/authorize:
     post:
-      operationId: authorize
-      summary: Get authorization code
-      description: 'Authenticates user credentials and returns an authorization code.
-
-        The code must be exchanged for an access token within 2 minutes.'
       tags:
       - Authentication
-      security: []
+      summary: Authenticate with the API, creating a temporary authorization code that can be…
+      operationId: TenantOAuth_AuthorizeAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthAccessResponse'
+              example:
+                redirect_uri: null
+                code: VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu=
+                success: true
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthAccessResponse'
+        '403':
+          description: Access Denied
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/AuthorizeRequest'
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.AuthorizeAsyncSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.AuthorizeAsyncSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.AuthorizeAsyncSampleRequest'
+        description: Username and Password
+        required: true
+  /auth/okta/logout:
+    post:
+      tags:
+      - Authentication
+      summary: Remove Token from Cache
+      operationId: TenantOAuth_RemoveTokenAsync
       responses:
         '200':
-          description: Authorization code issued successfully
+          description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AuthorizeResponse'
-        '401':
-          description: Invalid credentials
-          content:
-            application/json:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '429':
-          description: Too many authentication attempts
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
   /auth/token:
     post:
-      operationId: exchangeToken
-      summary: Exchange authorization code for access token
-      description: 'Exchanges an authorization code for an access token and ID token.
-
-        The authorization code must be used within 2 minutes of issuance.
-
-        Access tokens are valid for 15 minutes.'
       tags:
       - Authentication
-      security: []
+      summary: Create an authentication token from an authorization code
+      operationId: TenantOAuth_TokenAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenResponse'
+              example:
+                access_token: 2261bac252204c2ea93ed32ea1ffd3ab
+                id_token: HJTX3gAAAAPXvOfOf4TA4lvblRjDTKbVo/NZEWCXF0KK7BMlJhcvfPXJ/nRzFJpY1eFX0gpBHFyGQPXp3Ev/cGvbfC9FEpkBTCpqh0bsne0t/Zvfxd2FVW6DZMDs5qQSgcMeEAhjlrCWwSoK4AgnqjtFuRdAkD5DeAlfQGbxHS3NzCMlAwLdoxRmbN+BzGUf86bSlen5cxFlktGIAftIxENgSMOUJOhV7ILOhry6qYr590dWRkIyQ6IIGghKaASs+hoViI0YNfKuct32sH73+S9YD87ik2Un
+                expires_in: 1800
+                token_type: Bearer
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenResponse'
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/TokenRequest'
-      responses:
-        '200':
-          description: Tokens issued successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '400':
-          description: Invalid or expired authorization code
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.TokenAsyncSampleRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.TokenAsyncSampleRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.ApiExamples.Models.TokenAsyncSampleRequest'
+        description: Authorization Code
+        required: true
   /auth/token/reissue:
     post:
-      operationId: refreshToken
-      summary: Refresh an access token
-      description: 'Exchanges an existing access token for a new one.
-
-        Use this endpoint when the current token is about to expire or has expired.'
       tags:
       - Authentication
-      security: []
+      summary: Reissue a new access token for the current user
+      operationId: TenantOAuth_ReissueAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenResponse'
+              example:
+                access_token: 2c307390e95843e38804f40ca8cac03e
+                expires_in: 1800
+                token_type: Bearer
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenResponse'
+      deprecated: false
       requestBody:
-        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/RefreshRequest'
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenReissueRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenReissueRequest'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Auth.Models.OAuthTokenReissueRequest'
+        description: Token
+        required: true
+  /me:
+    get:
+      tags:
+      - Authentication
+      summary: Return information about the current authenticated user, including account…
+      operationId: Me_GetMeAsync
       responses:
         '200':
-          description: New token issued successfully
+          description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/TokenResponse'
-        '401':
-          description: Invalid or expired token
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.MeResponse'
+              example:
+                user:
+                  type: User
+                  username: test.dev@armor.com
+                  firstName: Development
+                  lastName: Test
+                  links:
+                    userId: 2
+                  passwordExpiry: null
+                accounts:
+                - id: 2
+                  currency: USD
+                  name: Development Test Account
+                  status: Claimed
+                  parent: 1
+                  products: null
+                  accountType: Direct
+                  isSynced: false
+                  isFreeTrial: false
+                permissions:
+                  '2':
+                  - '1'
+                  - '15'
+                features:
+                - accountId: 2
+                  feature: AA-CORE
+                  productId: 1
+                - accountId: 2
+                  feature: ARMOR-COMPLETE.OPERATING-SYSTEM-PATCHING
+                  productId: 2
+                - accountId: 2
+                  feature: ARMOR-COMPLETE
+                  productId: 2
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.MeResponse'
+        '400':
+          description: Bad Request
+      deprecated: false
+  /me/user:
+    get:
+      tags:
+      - Authentication
+      operationId: Me_GetMeUserAsync
+      responses:
+        '200':
+          description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ErrorResponse'
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.UserIdResponse'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Infrastructure.Accounts.Data.UserIdResponse'
+      deprecated: false
+      summary: Me get me user async
+      x-summary-source: derived
 components:
   schemas:
-    AuthorizeRequest:
+    FireHost.Services.Http.Accounts.Models.UserAccountDto:
       type: object
-      required:
-      - username
-      - password
+      properties:
+        id:
+          format: int32
+          type: integer
+        currency:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        parent:
+          format: int32
+          type: integer
+        products:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+        accountType:
+          description: Type of Account
+          type: string
+        isSynced:
+          description: To Check Whether Account Is Qualys Account
+          type: boolean
+        isFreeTrial:
+          type: boolean
+    FireHost.Services.Http.Accounts.Models.MeResponse:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UserDto'
+          readOnly: true
+        accounts:
+          description: accounts for current user
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UserAccountDto'
+        departments:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.UserDepartmentDto'
+          readOnly: true
+        permissions:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+          readOnly: true
+        features:
+          type: array
+          items:
+            $ref: '#/components/schemas/FireHost.Services.Http.Accounts.Models.FeatureFlag'
+    FireHost.Services.Http.Auth.Models.OAuthAccessResponse:
+      type: object
+      properties:
+        redirect_uri:
+          type: string
+        code:
+          type: string
+        success:
+          type: boolean
+        validation_required:
+          type: boolean
+        client_id:
+          type: string
+    FireHost.Services.Http.Auth.Models.OAuthTokenReissueRequest:
+      description: The OAuth token reissue request.
+      type: object
+      properties:
+        token:
+          description: Gets or sets the token.
+          type: string
+      example:
+        token: 2261bac252204c2ea93ed32ea1ffd3ab
+    FireHost.Services.Http.Accounts.Models.UserDto:
+      type: object
+      properties:
+        type:
+          type: string
+        username:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        links:
+          $ref: '#/components/schemas/System.Object'
+        passwordExpiry:
+          type: string
+    FireHost.Services.Http.Auth.ApiExamples.Models.TokenAsyncSampleRequest:
+      type: object
+      properties:
+        grant_type:
+          type: string
+        code:
+          type: string
+          readOnly: true
+      example:
+        grant_type: authorization_code
+        code: VGhpcyBpcyBzb21lIHRleHQgdG8gY29udmVydCB2aWEgQ3J5cHQu=
+    FireHost.Infrastructure.Accounts.Data.UserIdResponse:
+      type: object
+      properties:
+        id:
+          format: int32
+          type: integer
+        isSubscriberKeyCreated:
+          type: boolean
+    FireHost.Services.Http.Auth.ApiExamples.Models.AuthorizeAsyncSampleRequest:
+      type: object
       properties:
         username:
           type: string
-          format: email
-          description: User's email address
-          example: user@example.com
+          readOnly: true
         password:
           type: string
-          format: password
-          description: User's password
-          writeOnly: true
-    RefreshRequest:
+          readOnly: true
+      example:
+        username: admin@example.com
+        password: password
+    System.Object:
       type: object
-      required:
-      - token
-      properties:
-        token:
-          type: string
-          description: Current access token to refresh
-          example: eyJhbGciOiJSUzI1NiIs...
-    TokenRequest:
-      type: object
-      required:
-      - code
-      - grant_type
-      properties:
-        code:
-          type: string
-          description: Authorization code from /auth/authorize
-          example: abc123xyz...
-        grant_type:
-          type: string
-          enum:
-          - authorization_code
-          description: Must be "authorization_code"
-          example: authorization_code
-    TokenResponse:
+      properties: {}
+    FireHost.Services.Http.Auth.Models.OAuthTokenResponse:
+      description: The OAuth token response.
       type: object
       properties:
         access_token:
+          description: Gets or sets the access token used to assert access to and permissions within an application.
           type: string
-          description: Access token for API calls (valid for 15 minutes)
-          example: eyJhbGciOiJSUzI1NiIs...
         id_token:
+          description: Gets or sets the JWT token providing basic user identity.
           type: string
-          description: ID token containing user identity claims
-          example: eyJhbGciOiJSUzI1NiIs...
-        token_type:
-          type: string
-          description: Token type (always "FH-AUTH")
-          example: FH-AUTH
         expires_in:
+          format: int32
+          description: Gets or sets the expiration of the included tokens (in seconds from now).
           type: integer
-          description: Seconds until access token expires
-          example: 900
-    ErrorResponse:
+        token_type:
+          description: Gets the token type.
+          type: string
+          readOnly: true
+        refresh_token:
+          description: Gets or sets the refresh token.
+          type: string
+    FireHost.Services.Http.Accounts.Models.FeatureFlag:
       type: object
       properties:
-        error:
-          type: string
-          description: Error code
-          example: invalid_credentials
-        error_description:
-          type: string
-          description: Human-readable error message
-          example: The provided credentials are invalid
-        status:
+        accountId:
+          format: int32
           type: integer
-          description: HTTP status code
-          example: 401
-    AuthorizeResponse:
+          readOnly: true
+        feature:
+          type: string
+          readOnly: true
+        productId:
+          format: int32
+          type: integer
+          readOnly: true
+    FireHost.Services.Http.Accounts.Models.UserDepartmentDto:
       type: object
       properties:
-        code:
-          type: string
-          description: Authorization code valid for 2 minutes
-          example: abc123xyz...
-        expiresIn:
+        id:
+          format: int32
           type: integer
-          description: Seconds until code expires
-          example: 120
+        name:
+          type: string
+        account:
+          format: int32
+          type: integer
   securitySchemes:
-    FH-AUTH:
-      type: http
-      scheme: bearer
-      bearerFormat: FH-AUTH
-      description: 'FH-AUTH token authentication.
-
-
-        ## Authentication Flow
-
-
-        1. **Authorize**: POST credentials to `/auth/authorize` to receive an authorization code
-
-        2. **Token Exchange**: Exchange the code at `/auth/token` within 2 minutes for access tokens
-
-        3. **API Calls**: Use the access token in the `Authorization: FH-AUTH {token}` header
-
-        4. **Refresh**: When token expires (15 minutes), refresh via `/auth/token/reissue`
-
-
-        ## Security Notes
-
-
-        - Authorization codes expire in 2 minutes
-
-        - Access tokens expire in 15 minutes
-
-        - All endpoints require HTTPS
-
-        - Never log or persist tokens in plain text
-
-
-        Include the access token in the Authorization header:
-
-        ```
-
-        Authorization: FH-AUTH {access_token}
-
-        ```
-
-        '
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

@@ -2,7 +2,72 @@ openapi: 3.2.0
 info:
   title: MDR Public TI - GraphQL API
   version: 1.0.0
-  description: Comprehensive API documentation for Armor's Managed Detection and Response (MDR) platform.
+  description: 'Comprehensive API documentation for Armor''s Managed Detection and Response (MDR) platform.
+
+
+    This unified API provides access to:
+
+
+    ## AI Platform (AIP)
+
+    - AI-processed incident analysis with threat indicators and recommendations
+
+    - Entity threat intelligence for security entities associated with incidents
+
+
+    ## Microsoft Defender Integration
+
+    - Machine/device management in Microsoft Defender for Endpoint
+
+    - Security action execution (isolation, scans, investigations)
+
+    - Investigation package collection and live response operations
+
+
+    ## Detection Rules Management
+
+    - Microsoft Sentinel detection rules across customer environments
+
+    - Enriched rule metadata including MITRE ATT&CK mappings
+
+    - Incident generation statistics
+
+
+    ## JSM Middleware
+
+    - Security incident management and tracking
+
+    - Metrics aggregation and reporting
+
+    - Service request management
+
+    - Organization management
+
+
+    ## Monthly Security Reports
+
+    - Access to monthly security reports (PowerPoint, JSON, PDF)
+
+    - Security metrics and performance indicators
+
+    - Data ingestion analytics
+
+
+    ## Threat Intelligence
+
+    - Threat actor intelligence data
+
+    - Customer-specific threat intelligence based on deployed products
+
+    - OpenCTI GraphQL proxy for advanced queries
+
+
+    ## Authentication
+
+    All endpoints (except health checks) require OAuth2 Bearer token authentication.
+
+
+    For authentication details, see: https://kb.armor.com/kb/sso-authentication-with-postman'
   contact:
     name: Armor Security Team
     url: https://armor.com
@@ -60,6 +125,17 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+        detail:
+          type: string
+        message:
+          type: string
+        statusCode:
+          type: integer
     GraphQLError:
       type: object
       properties:
@@ -74,17 +150,18 @@ components:
                 type: array
                 items:
                   type: object
-    ErrorResponse:
+    GraphQLRequest:
       type: object
+      required:
+      - query
       properties:
-        error:
+        query:
           type: string
-        detail:
+        variables:
+          type: object
+          additionalProperties: true
+        operationName:
           type: string
-        message:
-          type: string
-        statusCode:
-          type: integer
     GraphQLResponse:
       type: object
       properties:
@@ -106,18 +183,6 @@ components:
                 type: array
                 items:
                   type: string
-    GraphQLRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-        variables:
-          type: object
-          additionalProperties: true
-        operationName:
-          type: string
   securitySchemes:
     OAuth2BearerAuth:
       type: http

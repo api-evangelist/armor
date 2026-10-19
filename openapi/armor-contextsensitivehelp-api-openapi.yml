@@ -1,0 +1,55 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Context Sensitive Help API
+servers:
+- url: https://api.armor.com
+tags:
+- name: ContextSensitiveHelp
+paths:
+  /help/route:
+    get:
+      tags:
+      - ContextSensitiveHelp
+      summary: Gets the help document link by route
+      operationId: ContextSensitiveHelp_GetHelpDocumentLinkByRoute
+      parameters:
+      - name: userId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: accountId
+        in: query
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/System.Object'
+      deprecated: false
+components:
+  schemas:
+    System.Object:
+      type: object
+      properties: {}
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

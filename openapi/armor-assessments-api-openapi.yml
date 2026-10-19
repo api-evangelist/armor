@@ -130,15 +130,6 @@ components:
         scanTargetStatus:
           type: string
           description: Updated scan target status
-    AssessmentCreateAccountRequest:
-      type: object
-      properties:
-        accountId:
-          type: integer
-          description: Armor Account ID
-        sku:
-          type: string
-          description: Billing reference
     AssessmentAccountResponse:
       type: object
       properties:
@@ -157,6 +148,15 @@ components:
         scanTargetStatus:
           type: string
           description: Scan Target status
+    AssessmentCreateAccountRequest:
+      type: object
+      properties:
+        accountId:
+          type: integer
+          description: Armor Account ID
+        sku:
+          type: string
+          description: Billing reference
   securitySchemes:
     OAuth2:
       type: oauth2

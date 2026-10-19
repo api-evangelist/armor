@@ -112,54 +112,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-account-api
-  name: Armor Account API
-  description: Account management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Account
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-account-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-account-management-api
   name: Armor Account Management API
   description: The Account Management API from Armor — 47 operation(s) for account management.
@@ -520,102 +472,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/armor-authentication-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-cloud-connections-api
-  name: Armor Cloud Connections API
-  description: Cloud connection management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Cloud Connections
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-cloud-connections-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-connector-api
-  name: Armor Connector API
-  description: Connector management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Connector
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-connector-api-openapi.yml
   - type: Documentation
     url: https://developer.armor.com/
   - type: APIReference
@@ -1523,102 +1379,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-health-monitoring-status-api
-  name: Armor Health Monitoring Status API
-  description: Health monitoring status operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Health Monitoring Status
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-health-monitoring-status-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-image-api
-  name: Armor Image API
-  description: Image management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Image
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-image-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-infrastructure-api
   name: Armor Infrastructure API
   description: The Infrastructure API from Armor — 35 operation(s) for infrastructure.
@@ -2051,54 +1811,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-malware-configuration-api
-  name: Armor Malware Configuration API
-  description: Malware configuration APIs. These APIs are only available for specific partners.
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Malware Configuration
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-malware-configuration-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-meta-api
   name: Armor Meta API
   description: Meta resources and utility operations
@@ -2294,54 +2006,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-registry-api
-  name: Armor Registry API
-  description: Registry management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Registry
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-registry-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-reports-msr-api
   name: Armor Reports - MSR API
   description: Monthly Security Report file management and retrieval
@@ -2352,107 +2016,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/armor-reports-msr-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-scheduled-tasks-api
-  name: Armor Scheduled Tasks API
-  description: >-
-    The tasks resource enables an API customer to schedule, cancel and view agent CLI operations.
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Scheduled Tasks
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-scheduled-tasks-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-secure-notes-api
-  name: Armor Secure Notes API
-  description: >-
-    The secure notes resource allows users to securely store and manage sensitive information such as
-    passwords,
-
-    credentials, and other confidential data.
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Secure Notes
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-secure-notes-api-openapi.yml
   - type: Documentation
     url: https://developer.armor.com/
   - type: APIReference
@@ -2779,54 +2342,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-sensor-api
-  name: Armor Sensor API
-  description: Sensor management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Sensor
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-sensor-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-support-api
   name: Armor Support API
   description: The Support API from Armor — 16 operation(s) for support.
@@ -2837,54 +2352,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/armor-support-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-tags-api
-  name: Armor Tags API
-  description: Tag management operations
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Tags
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-tags-api-openapi.yml
   - type: Documentation
     url: https://developer.armor.com/
   - type: APIReference
@@ -3115,59 +2582,6 @@ apis:
     url: https://developer.armor.com/swagger/v1/security/swagger.json
   - type: APIReference
     url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-tours-api
-  name: Armor Tours API
-  description: >-
-    The tours resource describes a list of UI tours that help users learn about features in the ARMOR
-    Management Portal.
-
-    The preferences stored in this resource aid the portal in determining which tours should be displayed
-    to the currently logged-in user.
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - Tours
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-tours-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
 - aid: armor:armor-trend-api
   name: Armor Trend API
   description: Trend AV report operations
@@ -3178,54 +2592,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/armor-trend-api-openapi.yml
-  - type: Documentation
-    url: https://developer.armor.com/
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.fh-auth.yaml
-  - type: Authentication
-    url: authentication/armor-authentication.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/security.armor-psk.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/accounts-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/agent-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/compliance-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/container-security-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/incident-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/logs-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/notifications-api.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/webhooks-api.yaml
-  - type: Webhooks
-    url: asyncapi/armor-webhooks-events.yml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/public-apis-all.yaml
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/security/swagger.json
-  - type: APIReference
-    url: https://developer.armor.com/swagger/v1/support/swagger.json
-- aid: armor:armor-user-api
-  name: Armor User API
-  description: User profile and account information
-  humanURL: https://developer.armor.com/
-  baseURL: https://api.armor.com
-  tags:
-  - User
-  properties:
-  - type: OpenAPI
-    url: openapi/armor-user-api-openapi.yml
   - type: Documentation
     url: https://developer.armor.com/
   - type: APIReference
@@ -3418,6 +2784,198 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/armor-vulnerability-scanning-api-openapi.yml
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.fh-auth.yaml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.armor-psk.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/accounts-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/agent-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/compliance-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/container-security-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/incident-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/logs-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/notifications-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/webhooks-api.yaml
+  - type: Webhooks
+    url: asyncapi/armor-webhooks-events.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/public-apis-all.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/security/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/support/swagger.json
+- aid: armor:armor-contextsensitivehelp-api
+  name: Armor Context Sensitive Help API
+  description: The ContextSensitiveHelp API from Armor — 1 operation(s) for contextsensitivehelp.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - ContextSensitiveHelp
+  properties:
+  - type: OpenAPI
+    url: openapi/armor-contextsensitivehelp-api-openapi.yml
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.fh-auth.yaml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.armor-psk.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/accounts-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/agent-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/compliance-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/container-security-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/incident-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/logs-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/notifications-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/webhooks-api.yaml
+  - type: Webhooks
+    url: asyncapi/armor-webhooks-events.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/public-apis-all.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/security/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/support/swagger.json
+- aid: armor:armor-edrhealth-api
+  name: Armor Edr Health API
+  description: The EdrHealth API from Armor — 1 operation(s) for edrhealth.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - EdrHealth
+  properties:
+  - type: OpenAPI
+    url: openapi/armor-edrhealth-api-openapi.yml
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.fh-auth.yaml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.armor-psk.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/accounts-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/agent-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/compliance-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/container-security-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/incident-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/logs-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/notifications-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/webhooks-api.yaml
+  - type: Webhooks
+    url: asyncapi/armor-webhooks-events.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/public-apis-all.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/security/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/support/swagger.json
+- aid: armor:armor-health-monitoring-api
+  name: Armor Health Monitoring API
+  description: The Health Monitoring API from Armor — 8 operation(s) for health monitoring.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Health Monitoring
+  properties:
+  - type: OpenAPI
+    url: openapi/armor-health-monitoring-api-openapi.yml
+  - type: Documentation
+    url: https://developer.armor.com/
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.fh-auth.yaml
+  - type: Authentication
+    url: authentication/armor-authentication.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/security.armor-psk.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/accounts-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/agent-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/compliance-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/container-security-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/incident-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/infrastructure-management-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/logs-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/notifications-api.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/webhooks-api.yaml
+  - type: Webhooks
+    url: asyncapi/armor-webhooks-events.yml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/public-apis-all.yaml
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/account-management/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/infrastructure/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/security/swagger.json
+  - type: APIReference
+    url: https://developer.armor.com/swagger/v1/support/swagger.json
+- aid: armor:armor-security-services-api
+  name: Armor Security Services API
+  description: The Security Services API from Armor — 8 operation(s) for security services.
+  humanURL: https://developer.armor.com/
+  baseURL: https://api.armor.com
+  tags:
+  - Security Services
+  properties:
+  - type: OpenAPI
+    url: openapi/armor-security-services-api-openapi.yml
   - type: Documentation
     url: https://developer.armor.com/
   - type: APIReference

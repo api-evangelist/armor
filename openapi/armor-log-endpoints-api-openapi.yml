@@ -65,11 +65,6 @@ paths:
           description: Allocation successfully performed
 components:
   schemas:
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
     LogEndpoint:
       type: object
       properties:
@@ -122,6 +117,11 @@ components:
         modifiedByUserId:
           type: integer
           description: The unique identifier of the user that last updated this log endpoint.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
   securitySchemes:
     oauth2:
       type: oauth2

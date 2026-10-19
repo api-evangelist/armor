@@ -92,6 +92,46 @@ paths:
           description: Forbidden
 components:
   schemas:
+    AddExclusion:
+      type: object
+      required:
+      - vulnerabilityId
+      - vulnerabilityName
+      properties:
+        vulnerabilityId:
+          type: string
+          description: Vulnerability ID
+        vulnerabilityName:
+          type: string
+          description: Vulnerability name
+        excludeAllAssets:
+          type: boolean
+          description: Exclude all assets
+        excludedAssets:
+          type: array
+          items:
+            $ref: '#/components/schemas/AssetInfo'
+          description: Specific excluded assets
+        comment:
+          type: string
+          description: Exclusion details
+        exclusionReason:
+          type: string
+          description: Exclusion reason
+        expireDate:
+          type: string
+          format: date-time
+          description: Expiration date
+    AssetInfo:
+      type: object
+      properties:
+        assetId:
+          type: string
+          format: uuid
+          description: Asset ID
+        assetName:
+          type: string
+          description: Asset name
     ExclusionList:
       type: object
       properties:
@@ -124,46 +164,6 @@ components:
           type: string
           format: date-time
           description: Creation date
-    AssetInfo:
-      type: object
-      properties:
-        assetId:
-          type: string
-          format: uuid
-          description: Asset ID
-        assetName:
-          type: string
-          description: Asset name
-    AddExclusion:
-      type: object
-      required:
-      - vulnerabilityId
-      - vulnerabilityName
-      properties:
-        vulnerabilityId:
-          type: string
-          description: Vulnerability ID
-        vulnerabilityName:
-          type: string
-          description: Vulnerability name
-        excludeAllAssets:
-          type: boolean
-          description: Exclude all assets
-        excludedAssets:
-          type: array
-          items:
-            $ref: '#/components/schemas/AssetInfo'
-          description: Specific excluded assets
-        comment:
-          type: string
-          description: Exclusion details
-        exclusionReason:
-          type: string
-          description: Exclusion reason
-        expireDate:
-          type: string
-          format: date-time
-          description: Expiration date
   securitySchemes:
     OAuth2:
       type: oauth2

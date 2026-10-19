@@ -81,12 +81,6 @@ components:
         total:
           type: integer
           description: Total number of reports.
-    Message:
-      type: object
-      properties:
-        message:
-          type: string
-          description: Error or informational message
     TrendAvReports:
       type: object
       properties:
@@ -148,15 +142,21 @@ components:
         malwareMessage:
           type: string
           description: Malware message.
+    Message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Error or informational message
   responses:
-    Forbidden:
-      description: Forbidden
+    InternalServerError:
+      description: Internal server error
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Message'
-    InternalServerError:
-      description: Internal server error
+    Forbidden:
+      description: Forbidden
       content:
         application/json:
           schema:

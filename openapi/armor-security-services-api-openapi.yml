@@ -1,0 +1,406 @@
+openapi: 3.2.0
+info:
+  version: v1
+  title: Armor Services Security Services API
+servers:
+- url: https://api.armor.com
+tags:
+- name: Security Services
+paths:
+  /iprm/custom-rule:
+    post:
+      tags:
+      - Security Services
+      summary: The create custom rule entry
+      operationId: IprmCustomList_CreateCustomListEntryAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Bad Request
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmCustomListCreateRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmCustomListCreateRequestDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmCustomListCreateRequestDto'
+        description: The custom Indicator.
+        required: true
+  /iprm/custom-rule/{id}:
+    delete:
+      tags:
+      - Security Services
+      summary: The delete custom black or white rule entry
+      operationId: IprmCustomList_DeleteCustomListEntryAsync
+      parameters:
+      - name: id
+        in: path
+        description: Pass in indicator id value to delete white or black list ips.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /iprm/events:
+    get:
+      tags:
+      - Security Services
+      summary: Get IP Threat Lookup events for the account
+      operationId: IprmEvents_GetIprmEventsAsync
+      parameters:
+      - name: pageNumber
+        in: query
+        description: 'Query string to filter page number (eg : 0)'
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        description: 'Query string to filter number of records per page (eg: 10)'
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: searchText
+        in: query
+        description: 'Query string to filter by search text (eg : can be empty)'
+        required: false
+        schema:
+          type: string
+      - name: sortField
+        in: query
+        description: 'Query string to sort by field (eg : date)'
+        required: false
+        schema:
+          type: string
+      - name: sortDirection
+        in: query
+        description: Query string to sort direction by Ascending or Descending
+        required: false
+        schema:
+          type: string
+      - name: ruleType
+        in: query
+        description: 'Query string to filter rule type (eg : can be empty)'
+        required: false
+        schema:
+          type: string
+      - name: startDate
+        in: query
+        description: 'Query string to filter by start date(eg: 2018-06-24T18.30.00)'
+        required: false
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: 'Query string to filter by end date(eg: 2018-06-25T18.30.00)'
+        required: false
+        schema:
+          type: string
+      - name: isSuccess
+        in: query
+        description: 'Query string to filter by is success flag (eg : true)'
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Services.Http.Security.Models.IprmEventsDto%5D'
+              example:
+                total: 3
+                page: 1
+                items:
+                - accountId: 2
+                  ipAddress: 23.107.124.53
+                  createdBy: 2
+                  requester: Development Test
+                  date: '2026-02-12T16:26:00.4022142Z'
+                  recommendation: allow
+                  ruleType: None
+                  requestType: detail
+                - accountId: 2
+                  ipAddress: 23.107.124.54
+                  createdBy: 2
+                  requester: Development Test
+                  date: '2026-02-12T16:26:00.4022142Z'
+                  recommendation: allow
+                  ruleType: Whitelist
+                  requestType: detail
+                - accountId: 2
+                  ipAddress: 23.107.124.53
+                  createdBy: 2
+                  requester: Development Test
+                  date: '2026-02-12T16:26:00.4022142Z'
+                  recommendation: allow
+                  ruleType: Whitelist
+                  requestType: detail
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Services.Http.Security.Models.IprmEventsDto%5D'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /iprm/lookup:
+    post:
+      tags:
+      - Security Services
+      summary: The lookup ip from IP Threat Lookup async
+      operationId: IprmDetection_LookupIpFromIprmAsync
+      parameters:
+      - name: threshold
+        in: query
+        description: iprm threshold value provided
+        required: false
+        schema:
+          type: number
+          format: float
+      responses:
+        '200':
+          description: Ip found in IPRM list
+        '400':
+          description: Bad Request
+        '404':
+          description: Ip not found in IPRM list
+      deprecated: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmDetectionRequestDto'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmDetectionRequestDto'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/FireHost.Services.Http.Security.Models.IprmDetectionRequestDto'
+        description: The ip address.
+        required: true
+  /iprm/overview:
+    get:
+      tags:
+      - Security Services
+      summary: The get IP Threat Lookup events overview
+      operationId: IprmEvents_GetIprmEventsOverview
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSetIprmEventsOveriew%5BFireHost.Infrastructure.Security.Models.IprmEventsOverviewDto%5D'
+              example:
+                total: 2
+                items:
+                - eventCount: 2
+                  date: '2026-02-12T16:26:00.443878Z'
+                - eventCount: 3
+                  date: '2026-02-11T16:26:00.443878Z'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSetIprmEventsOveriew%5BFireHost.Infrastructure.Security.Models.IprmEventsOverviewDto%5D'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /iprm/totalevents:
+    get:
+      tags:
+      - Security Services
+      summary: Get Total IP Threat Lookup events and lookup type by Account Id
+      operationId: IprmEvents_GetIprmEventsTotalAndLookupTypeAsync
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Security.Models.IprmEventsTotalResponse'
+              example:
+              - total: 123456
+                lookupType: detail
+              - total: 201
+                lookupType: standard
+            text/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FireHost.Infrastructure.Security.Models.IprmEventsTotalResponse'
+        '400':
+          description: Invalid Request
+      deprecated: false
+  /iprm/usagehistory:
+    get:
+      tags:
+      - Security Services
+      operationId: IprmEvents_GetIprmEventsUsageHistory
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: boolean
+              example: true
+            text/json:
+              schema:
+                type: boolean
+        '400':
+          description: Invalid Request
+      deprecated: false
+      summary: Iprm events get iprm events usage history
+      x-summary-source: derived
+  /iprm/users:
+    get:
+      tags:
+      - Security Services
+      summary: Get Top 5 IP Threat Lookup users for the account
+      operationId: IprmUsers_GetTopIprmUsersAsync
+      parameters:
+      - name: pageNumber
+        in: query
+        description: 'Query string to filter page number (eg : 0)'
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        description: 'Query string to filter number of records per page (eg: 10)'
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: startDate
+        in: query
+        description: 'Query string to filter by start date(eg : 2018-06-24T18.30.00)'
+        required: false
+        schema:
+          type: string
+      - name: endDate
+        in: query
+        description: 'Query string to filter by end date(eg : 2018-06-25T18.30.00)'
+        required: false
+        schema:
+          type: string
+      - name: isSuccess
+        in: query
+        description: 'Query string to filter by is success flag (eg : true)'
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Security.Models.IprmUserResponse%5D'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/FireHost.Services.Common.Infrastructure.PagedResultSet%5BFireHost.Infrastructure.Security.Models.IprmUserResponse%5D'
+        '400':
+          description: Invalid Request
+      deprecated: false
+components:
+  schemas:
+    FireHost.Infrastructure.Security.Models.IprmEventsTotalResponse:
+      type: object
+      properties:
+        total:
+          format: int32
+          type: integer
+        lookupType:
+          type: string
+    FireHost.Services.Http.Security.Models.IprmCustomListCreateRequestDto:
+      description: The iprm custom list create request dto.
+      type: object
+      properties:
+        ip:
+          description: Gets or sets the ip.
+          type: string
+        rule:
+          format: int32
+          description: Gets or sets the rule.
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        expirationTime:
+          format: date-time
+          description: Gets or sets the expiration time.
+          type: string
+        meta:
+          description: Gets or sets the meta.
+          type: object
+          additionalProperties:
+            type: string
+        tags:
+          description: Gets or sets the tags.
+          type: array
+          items:
+            type: string
+      example:
+        ip: 23.251.224.0
+        rule: 1
+        expirationTime: '2026-02-26T16:26:00.224352Z'
+    FireHost.Services.Http.Security.Models.IprmDetectionRequestDto:
+      description: The iprm detection request dto.
+      type: object
+      properties:
+        ip:
+          description: Gets or sets the ip.
+          type: string
+        meta:
+          description: Gets or sets the meta.
+          type: object
+          additionalProperties:
+            type: string
+        tags:
+          description: Gets or sets the tags.
+          type: array
+          items:
+            type: string
+      example:
+        ip: 23.251.224.0
+  securitySchemes:
+    Authorization:
+      type: apiKey
+      description: Authorization Token
+      name: Authorization
+      in: header
+    X-Account-Context:
+      type: apiKey
+      description: X-Account-Context
+      name: X-Account-Context
+      in: header

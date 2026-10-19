@@ -196,6 +196,22 @@ components:
         requiresFlow:
           type: boolean
           description: Whether or not network flow sources need to be enabled on the org for this log source type.
+    Message:
+      type: object
+      required:
+      - message
+      properties:
+        message:
+          type: string
+          description: A message containing details about the request or of an exception thrown.
+          example: A confirmation message or explanation.
+    IpProtocol:
+      type: string
+      description: An IP protocol (tcp, udp)
+      enum:
+      - tcp
+      - udp
+      example: tcp
     LogSourceUpdateRequest:
       type: object
       required:
@@ -212,6 +228,11 @@ components:
         version:
           type: integer
           description: The version of this log source (used for concurrency checking). Pass this value with any subsequent update request.
+    Guid:
+      type: string
+      format: uuid
+      description: A universally unique identifier (UUID)
+      example: 550e8400-e29b-41d4-a716-446655440000
     LogSource:
       type: object
       properties:
@@ -274,20 +295,6 @@ components:
         modifiedByUserId:
           type: integer
           description: The unique identifier of the user that last updated this log source.
-    Message:
-      type: object
-      required:
-      - message
-      properties:
-        message:
-          type: string
-          description: A message containing details about the request or of an exception thrown.
-          example: A confirmation message or explanation.
-    Guid:
-      type: string
-      format: uuid
-      description: A universally unique identifier (UUID)
-      example: 550e8400-e29b-41d4-a716-446655440000
     LogSourceCreateRequest:
       type: object
       required:
@@ -311,13 +318,6 @@ components:
           type: object
           additionalProperties: true
           description: An object map of configuration properties when the log source protocol requires additional configuration options.
-    IpProtocol:
-      type: string
-      description: An IP protocol (tcp, udp)
-      enum:
-      - tcp
-      - udp
-      example: tcp
   securitySchemes:
     oauth2:
       type: oauth2
