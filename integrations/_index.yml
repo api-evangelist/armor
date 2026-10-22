@@ -27,3 +27,43 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: armor-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@armor/api
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@armor/api'
+      version: 23.3.0
+      released: '2024-07-30'
+      released_field: modified
+      lapsed: true
+      page: https://www.npmjs.com/package/@armor/api
+      repo_leg: github-org:armor
+      publisher_leg: email:armor.com
+      matched_by: domain
+    - name: '@armor/api-docs'
+      version: 5.37.5
+      released: '2026-02-12'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@armor/api-docs
+      repo_leg: github-org:armor
+      publisher_leg: email:armor.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
