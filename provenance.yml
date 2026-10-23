@@ -22,11 +22,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-access-control-lists-api
   collections/armor-account-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-account-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-account-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-account-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-account-management-api.opencollection.json:
     method: derived
     evidence: openapi/armor-account-management-api
@@ -76,17 +76,17 @@ artifacts:
     method: derived
     evidence: openapi/armor-authentication-api
   collections/armor-cloud-connections-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-cloud-connections-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-cloud-connections-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-cloud-connections-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-connector-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-connector-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-connector-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-connector-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-cspm-connector-api.opencollection.json:
     method: derived
     evidence: openapi/armor-cspm-connector-api
@@ -196,17 +196,17 @@ artifacts:
     method: derived
     evidence: openapi/armor-health-api
   collections/armor-health-monitoring-status-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-health-monitoring-status-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-health-monitoring-status-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-health-monitoring-status-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-image-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-image-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-image-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-image-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-infrastructure-api.opencollection.json:
     method: derived
     evidence: openapi/armor-infrastructure-api
@@ -262,11 +262,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-log-sources-api
   collections/armor-malware-configuration-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-malware-configuration-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-malware-configuration-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-malware-configuration-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-meta-api.opencollection.json:
     method: derived
     evidence: openapi/armor-meta-api
@@ -292,11 +292,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-preferences-api
   collections/armor-registry-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-registry-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-registry-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-registry-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-reports-msr-api.opencollection.json:
     method: derived
     evidence: openapi/armor-reports-msr-api
@@ -304,17 +304,17 @@ artifacts:
     method: derived
     evidence: openapi/armor-reports-msr-api
   collections/armor-scheduled-tasks-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-scheduled-tasks-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-scheduled-tasks-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-scheduled-tasks-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-secure-notes-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-secure-notes-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-secure-notes-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-secure-notes-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-security-analytics-api.opencollection.json:
     method: derived
     evidence: openapi/armor-security-analytics-api
@@ -352,11 +352,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-security-incidents-api
   collections/armor-sensor-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-sensor-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-sensor-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-sensor-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-support-api.opencollection.json:
     method: derived
     evidence: openapi/armor-support-api
@@ -364,11 +364,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-support-api
   collections/armor-tags-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-tags-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-tags-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-tags-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-ti-customer-intelligence-api.opencollection.json:
     method: derived
     evidence: openapi/armor-ti-customer-intelligence-api
@@ -394,11 +394,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-toolbox-api
   collections/armor-tours-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-tours-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-tours-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-tours-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-trend-api.opencollection.json:
     method: derived
     evidence: openapi/armor-trend-api
@@ -406,11 +406,11 @@ artifacts:
     method: derived
     evidence: openapi/armor-trend-api
   collections/armor-user-api.opencollection.json:
-    method: derived
-    evidence: openapi/armor-user-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-user-api.postman_collection.json:
-    method: derived
-    evidence: openapi/armor-user-api
+    method: unknown
+    evidence: no authorship recorded
   collections/armor-utilization-api.opencollection.json:
     method: derived
     evidence: openapi/armor-utilization-api
@@ -450,127 +450,13 @@ artifacts:
   front-door-ai/2026-09-17.yml:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
+  integrations/_index.yml:
     method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+    evidence: carries an API Evangelist house phrase
+  integrations/armor-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -654,6 +540,21 @@ artifacts:
   kin/score-2026-09-24T161608.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   lifecycle/armor-lifecycle.yml:
     method: searched
     evidence: declared in the artifact
@@ -663,23 +564,7 @@ artifacts:
   mcp/armor-mcp.yml:
     method: derived
     evidence: declared in the artifact
-  openapi/_original/armor-accounts-openapi-original.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-agent-management-openapi-original.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
   openapi/_original/armor-compliance-openapi-original.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-container-security-openapi-original.yml:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-fh-auth-openapi-original.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
@@ -703,34 +588,15 @@ artifacts:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
-  openapi/_original/armor-psk-auth-openapi-original.yml:
+  openapi/_original/armor-openapi.json:
     method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-v1-account-management-swagger-original.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-v1-infrastructure-swagger-original.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-v1-security-swagger-original.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
-  openapi/_original/armor-v1-support-swagger-original.json:
-    method: harvested
-    evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
-      to the provider's source is unverified
+    evidence: byte-identical to https://developer.armor.com/swagger/v1/swagger.json (sha256 8411b7d8ee72,
+      fetched 2026-10-19)
   openapi/_original/armor-webhooks-openapi-original.yml:
     method: harvested
     evidence: found in openapi/_original/; the fetch URL and bytes were not recorded, so byte-identity
       to the provider's source is unverified
   openapi/armor-access-control-lists-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-account-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-account-management-api-openapi.yml:
@@ -757,10 +623,7 @@ artifacts:
   openapi/armor-authentication-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-cloud-connections-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-connector-api-openapi.yml:
+  openapi/armor-contextsensitivehelp-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-cspm-connector-api-openapi.yml:
@@ -808,6 +671,9 @@ artifacts:
   openapi/armor-edr-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  openapi/armor-edrhealth-api-openapi.yml:
+    method: derived
+    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-events-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -817,10 +683,7 @@ artifacts:
   openapi/armor-health-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-health-monitoring-status-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-image-api-openapi.yml:
+  openapi/armor-health-monitoring-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-infrastructure-api-openapi.yml:
@@ -850,9 +713,6 @@ artifacts:
   openapi/armor-log-sources-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-malware-configuration-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-meta-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
@@ -865,16 +725,7 @@ artifacts:
   openapi/armor-preferences-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-registry-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-reports-msr-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-scheduled-tasks-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-secure-notes-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-security-analytics-api-openapi.yml:
@@ -895,13 +746,10 @@ artifacts:
   openapi/armor-security-incidents-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-sensor-api-openapi.yml:
+  openapi/armor-security-services-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-support-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-tags-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-ti-customer-intelligence-api-openapi.yml:
@@ -916,13 +764,7 @@ artifacts:
   openapi/armor-toolbox-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-tours-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-trend-api-openapi.yml:
-    method: derived
-    evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
-  openapi/armor-user-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   openapi/armor-utilization-api-openapi.yml:
@@ -938,53 +780,53 @@ artifacts:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
   overlays/armor-accounts-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-agent-management-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-compliance-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-container-security-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-fh-auth-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-incident-management-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-infrastructure-management-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-log-management-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-mdr-public-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-notifications-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-psk-auth-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-v1-account-management-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-v1-infrastructure-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-v1-security-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-v1-support-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/armor-webhooks-overlay.yaml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   packages/armor-packages.yml:
     method: searched
     evidence: declared in the artifact
